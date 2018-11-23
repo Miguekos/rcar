@@ -4,6 +4,7 @@
 <div class="container">
   <div class="row">
       <div class="col-md-12">
+        <example-component></example-component>
               @if(auth()->user()->rol == 'Administrador')
 
                 <div class="panel panel-success">
