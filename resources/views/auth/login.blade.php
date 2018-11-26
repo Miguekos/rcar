@@ -1,52 +1,151 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V18</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="loginnew/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginnew/css/util.css">
+	<link rel="stylesheet" type="text/css" href="loginnew/css/main.css">
+<!--===============================================================================================-->
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body style="background-color: #666666;">
+  <div id="app">
+      <v-app>
 
-@section('content')
-<h1 class="jumbotron text-center">Control</h1>
-<hr>
-<div id="img" class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
 
-            <div class="panel-heading">
-                <h1 class="panel-title">Acceso a la aplicacion</h1>
-            </div>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form action="{{ route('login') }}" method="POST" class="login100-form">
+          {{ csrf_field() }}
+					<span class="login100-form-title p-b-43">
+						SCHETTINI RENT A CAR<br>
+            <h6 style="color: grey">Bienvenido, por favor inicia sesion</h6>
+					</span>
 
-        <div class="panel-body">
+					<div data-validate = "Ingrese un email valido: ex@abc.xyz">
+						<!-- <input class="input100" type="text" name="email"> -->
+						<!-- <span class="focus-input100"></span> -->
+						<!-- <span class="label-input100">Email</span> -->
 
-            <form action="{{ route('login') }}" method="POST">
-                {{ csrf_field() }}
-                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <label for="email">Email</label>
-                    <input  class="form-control"
-                    autofocus
-                    value="{{ old('email') }}"
-                    name="email"
-                    type="email"
-                    placeholder="Ingresa tu email">
-                    {!! $errors->first('email','<span class="help-block">:message</span>') !!}
-                </div>
+          <v-text-field
+          autofocus
+          value=""
+          name="email"
+          type="email"
+          label="Email"
+          ></v-text-field>
 
-                <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                    <label for="password">Contraseña</label>
-                    <input  class="form-control"
-                    name="password"
-                    type="password"
-                    placeholder="Ingresa tu Contraseña">
-                    {!! $errors->first('password','<span class="help-block">:message</span>') !!}
-                </div>
 
-                <button class="btn btn-sm btn-primary btn-block">Acceder</button>
+					</div>
 
-            </form>
+					<div data-validate="Password es obligatoria">
+						<!-- <input class="input100" type="password" name="pass">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Password</span> -->
+            <v-text-field
+              label="Login"
+              name="password"
+              type="password"
+            ></v-text-field>
+					</div>
 
-        </div>
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Recuerdame
+							</label>
+						</div>
 
-            <div class="panel-footer">
-                miguekos1233@gmail.com
-            </div>
+						<div>
+							<a href="#" class="txt1">
+								Forgot Password?
+							</a>
+						</div>
+					</div>
 
-        </div>
+
+					 <v-flex xs12 sm6>
+						<!-- <button class="login100-form-btn">
+							Login
+						</button> -->
+            <v-btn type="submit" block dark color="black">Login</v-btn>
+					</v-flex>
+
+					<!-- <div class="text-center p-t-46 p-b-20">
+						<span class="txt2">
+							or sign up using
+						</span>
+					</div>
+
+					<div class="login100-form-social flex-c-m">
+						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+							<i class="fa fa-facebook-f" aria-hidden="true"></i>
+						</a>
+
+						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+							<i class="fa fa-twitter" aria-hidden="true"></i>
+						</a>
+					</div> -->
+				</form>
+
+				<div class="login100-more" style="background-image: url('loginnew/images/bg-01.jpg');">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+      </v-app>
     </div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({ el: '#app' })
+  </script>
+<!--===============================================================================================-->
+	<script src="loginnew/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="loginnew/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="loginnew/vendor/bootstrap/js/popper.js"></script>
+	<script src="loginnew/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="loginnew/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="loginnew/vendor/daterangepicker/moment.min.js"></script>
+	<script src="loginnew/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="loginnew/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="loginnew/js/main.js"></script>
 
-@endsection
+
+</body>
+</html>

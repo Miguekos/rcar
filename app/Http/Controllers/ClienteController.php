@@ -14,7 +14,17 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('clientes.index');
+    }
+
+    public function indexapi()
+    {
+        $cliente = Cliente::all();
+        // $clientesd = Cliente::where('deuda',0.00)->get();
+        return json_encode([
+            "cliente" => $cliente,
+            // "clientesd" => $clientesd
+        ]);
     }
 
     /**
@@ -24,7 +34,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**

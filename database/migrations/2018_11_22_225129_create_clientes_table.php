@@ -15,23 +15,24 @@ class CreateClientesTable extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("apellidoPaterno")->mullable();
-            $table->string("apellidoMaterno")->mullable();
-            $table->string("nombres")->mullable();
-            $table->integer("dni")->mullable();
-            $table->date("fechaNacimiento")->mullable();
-            $table->string("correo")->mullable();
-            $table->integer("celular")->mullable();
-            $table->string("direccion")->mullable();
-            $table->string("ciudad")->mullable();
-            $table->integer("cci")->mullable();
-            $table->string("banco")->mullable();
-            $table->string("nombreTitularCuenta")->mullable();
-            $table->string("numeroBrevete")->mullable();
-            $table->date("fechaVencimientoBrevete")->mullable();
-            $table->string("fotoDni")->mullable();
-            $table->string("calificacionCliente")->mullable();
-            $table->text("comentariosAdicionales")->mullable();
+            $table->string("apellidoPaterno")->nullable();
+            $table->string("apellidoMaterno")->nullable();
+            $table->string("nombres")->nullable();
+            $table->integer("dni")->nullable();
+            $table->string("image")->nullable();
+            $table->date("fechaNacimiento")->nullable();
+            $table->string("correo")->nullable();
+            $table->integer("celular")->nullable();
+            $table->string("direccion")->nullable();
+            $table->string("ciudad")->nullable();
+            $table->integer("cci")->nullable();
+            $table->string("banco")->nullable();
+            $table->string("nombreTitularCuenta")->nullable();
+            $table->string("numeroBrevete")->nullable();
+            $table->date("fechaVencimientoBrevete")->nullable();
+            $table->string("fotoDni")->nullable();
+            $table->string("calificacionCliente")->nullable();
+            $table->text("comentariosAdicionales")->nullable();
             $table->timestamps();
         });
     }

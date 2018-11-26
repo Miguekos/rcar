@@ -1,5 +1,17 @@
 <?php
 
+Route::group(['prefix' => 'v1.0'], function () {
+    Route::get('/clientes','ClienteController@indexapi');
+    Route::get('cliente/{cliente}', 'ClienteController@showapi');
+    Route::get('usuario', 'UserController@indexapi');
+    Route::post('cliente', 'ClienteController@storeapi');
+    Route::put('cliente/{cliente}', 'ClienteController@updateapi');
+    Route::post('login', 'Auth\LoginController@loginapi');
+    Route::delete('cliente/{cliente}', 'ClienteController@destroyapi');
+    
+    
+});
+
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::get('dashboard', 'DashboardController@dashboard')->name('dashboard');
@@ -20,3 +32,14 @@ Route::get('cambioclaveform', 'DashboardController@cambioclaveform')->name('camb
 // Route::get('password/request', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 
 Route::post('cambioclave/{empleado}', 'DashboardController@cambioclave')->name('cambioclave');
+
+
+
+// Cliente
+
+Route::resource('cliente', 'ClienteController');
+
+
+
+// Generar prueba
+
