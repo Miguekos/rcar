@@ -1,4 +1,5 @@
 <template>
+    <div>
   <v-form>
     <v-container>
       <v-toolbar-title>Informacion Basica</v-toolbar-title>
@@ -77,6 +78,7 @@
           ></v-text-field>
         </v-flex>
 </v-layout>
+        <v-divider light></v-divider>
 <v-toolbar-title>Informacion Bancaria</v-toolbar-title>
 <v-layout row wrap>
         <v-flex xs12 sm6>
@@ -100,6 +102,7 @@
           ></v-text-field>
         </v-flex>
 </v-layout>
+        <v-divider light></v-divider>
 <v-toolbar-title>Documentos</v-toolbar-title>
 <v-layout row wrap>
         <v-flex xs12 sm6>
@@ -137,15 +140,41 @@
           ></v-text-field>
         </v-flex>
       </v-layout>
+        <v-btn type="submit" color="green" dark black block>Guardar</v-btn>
     </v-container>
   </v-form>
+    </div>
 </template>
 
 <script>
   export default {
     data: () => ({
       first: 'John',
-      last: 'Doe'
-    })
+      last: 'Doe',
+        apellidoPaterno
+    }),
+      methods: {
+          sendForm (e) {
+              let form = document.getElementById('ContactForm');
+              const formData = new FormData(form);
+              let jsonObject = {};
+              for (const [key, value]  of formData.entries()) {
+                  jsonObject[key] = value;
+              }
+              console.log(jsonObject);
+              axios.post('/cliente',jsonObject)
+                  .then(response => {
+                      console.log(response)
+                      window.location.href = '/cliente';
+                  })
+                  .catch(error => {
+                      console.log(error)
+                      alert("Surgio un error al guardar tu cliente");
+                  })
+              this.close();
+              this.carga();
+          },
+      }
+
   }
 </script>

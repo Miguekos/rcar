@@ -39,7 +39,6 @@
         </v-toolbar>
 
         <v-data-table must-sort :pagination.sync="pagination" :headers="headers" :items="desserts" class="elevation-1" :search="search" :rows-per-page-items="[5,10,20]">
-            
 
             <template slot="items" slot-scope="props">
                 <td>{{ props.item.id }}</td>

@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
+// use App\Cliente;
+// use Illuminate\Http\Request;
+
+use App\User;
+use App\Control;
 use App\Cliente;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ClienteController extends Controller
 {
@@ -48,6 +56,18 @@ class ClienteController extends Controller
         //
     }
 
+    public function storeapi(Request $request)
+    {
+        $cliente = Cliente::create($request->all());
+        return $cliente;
+
+        // $flight = Cliente::find($control);
+        // $flight->deuda = $flight->deuda + $cliente->abono;
+//        return redirect()->route('cliente.index')->with('success','Se guardo correctammente el cliente');
+        
+        // return $request->all();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -57,6 +77,12 @@ class ClienteController extends Controller
     public function show(Cliente $cliente)
     {
         //
+    }
+
+    public function showapi($cliente)
+    {
+      $clientes = Cliente::findOrFail($cliente);
+      return $clientes;
     }
 
     /**
@@ -82,6 +108,25 @@ class ClienteController extends Controller
         //
     }
 
+    public function updateapi(Request $request, $cliente)
+    {
+
+                $clientes = Cliente::find($cliente);
+                $clientes ->nombres = $request->nombres;
+                $clientes ->dni = $request->dni;
+                $clientes ->direccion = $request->direccion;
+                $clientes ->celular = $request->celular;
+                $clientes ->save();
+                return $clientes;
+    //   $clientes  = Cliente::find($cliente);
+    //   return $clientes;
+    //   $input = $request->all();
+    //   return $input;
+    //   $clientes->fill($input)->save();
+    // Cliente::findOrFail($cliente)->first()->update($request->all())->save();
+        // return $request->all();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -91,5 +136,14 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         //
+    }
+
+    public function destroyapi(Cliente $cliente)
+    {
+        $clientes  = Cliente::findOrFail($cliente);
+        $cliente->delete();
+//        return redirect()->route('cliente.index')->with('flash','Se elimino el cliente correctamente..!!');
+        return $clientes;
+
     }
 }

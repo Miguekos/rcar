@@ -31,7 +31,7 @@ Vue.component('nav-bar', require('./components/templates/Nav.vue'));
 Vue.component('comp-dashboard', require('./components/templates/Dashboard.vue'));
 
 // Clientes
-Vue.component('comp-cliente', require('./components/clientes/Cliente.vue'));
+Vue.component('comp-cliente', require('./components/clientes/Cliente2.vue'));
 Vue.component('cliente-create', require('./components/clientes/ClienteCreate.vue'));
 Vue.component('cliente-edit', require('./components/clientes/ClienteEdit.vue'));
 Vue.component('cliente-show', require('./components/clientes/ClienteShow.vue'));

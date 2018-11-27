@@ -19,78 +19,113 @@
                 </template>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar color="grey darken-4" dark app absolute clipped-left>
+        <v-toolbar dense>
             <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-            <span class="title ml-3 mr-5">SCHETTINI&nbsp;<span class="font-weight-light">RENT A CAR</span></span>
-            <!-- <v-text-field solo-inverted flat hide-details label="Search" prepend-inner-icon="search"></v-text-field> -->
+            <v-toolbar-title>SCHETTINI&nbsp;<span class="font-weight-light">RENT A CAR </span></v-toolbar-title>
             <v-spacer></v-spacer>
-            
+            {{ user.name }}
+            <v-btn icon>
+                <v-icon>more_vert</v-icon>
+            </v-btn>
         </v-toolbar>
     </div>
 </template>
 
 <script>
-  export default {
-      props:['user'],
-    data: () => ({
-      drawer: null,
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      items: [
-        { icon: 'lightbulb_outline', text: 'Dasboard', link: '/' },
-        { icon: 'touch_app', text: 'Clientes', link: '/cliente' },
-        { divider: true },
-        { heading: 'Labels' },
-        { icon: 'add', text: 'Create new label', link: '/' },
-        { divider: true },
-        { icon: 'archive', text: 'Archive', link: '/' },
-        { icon: 'delete', text: 'Trash', link: '/' },
-        { divider: true },
-        { icon: 'settings', text: 'Settings', link: '/' },
-        { icon: 'chat_bubble', text: 'Trash', link: '/' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads', link: '/' },
-        { icon: 'keyboard', text: 'Keyboard shortcuts', link: '/' }
-      ]
-    }),
-    methods: {
+    export default {
+        props: ['user'],
+        data: () => ({
+            drawer: null,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            items: [{
+                    icon: 'lightbulb_outline',
+                    text: 'Dasboard',
+                    link: '/'
+                },
+                {
+                    icon: 'touch_app',
+                    text: 'Clientes',
+                    link: '/cliente'
+                },
+                {
+                    divider: true
+                },
+                {
+                    heading: 'Labels'
+                },
+                {
+                    icon: 'add',
+                    text: 'Create new label',
+                    link: '/'
+                },
+                {
+                    divider: true
+                },
+                {
+                    icon: 'archive',
+                    text: 'Archive',
+                    link: '/'
+                },
+                {
+                    icon: 'delete',
+                    text: 'Trash',
+                    link: '/'
+                },
+                {
+                    divider: true
+                },
+                {
+                    icon: 'settings',
+                    text: 'Settings',
+                    link: '/'
+                },
+                {
+                    icon: 'chat_bubble',
+                    text: 'Trash',
+                    link: '/'
+                },
+                {
+                    icon: 'help',
+                    text: 'Help'
+                },
+                {
+                    icon: 'phonelink',
+                    text: 'App downloads',
+                    link: '/'
+                },
+                {
+                    icon: 'keyboard',
+                    text: 'Keyboard shortcuts',
+                    link: '/'
+                },
+                {
+                    icon: 'exit_to_app',
+                    text: 'Salir',
+                    link: 'logout'
+                }
+            ]
+        }),
+        methods: {
             logout: function () {
                 console.log("entro a al logout");
-                //                this.dialog = true;
                 axios
                     .post(`/logout`, {
                         _token: this.csrf
                     })
                     .then(response => {
                         window.location.href = '/';
-                        // JSON responses are automatically parsed.
-                        //                        this.user = response.data;
-                        //                        console.log(response.data);
                     })
                     .catch(e => {
-                        //                        this.errors.push(e);
+                        console.log(e);
                     });
             },
-            // edit () { window.location.href = '/cliente'; },
-            link (link) { 
-                window.location.href = `${link}`;
-             },
-            // home: function () {
-            //     console.log("no entra");
-                
-            //     window.location.href = '/';
-            // },
-            clientes: function () {
-                window.location.href = '/cliente';
-            },
-            control: function () {
-                window.location.href = '/control';
-            },
-            reporte: function () {
-                window.location.href = '/report';
-            },
-            usuarios: function () {
-                window.location.href = '/user';
+            link(link) {
+                if (link != 'logout') {
+                    window.location.href = `${link}`;
+                } else {
+                    this.logout();
+                }
             },
         },
-  }
+    }
 </script>
