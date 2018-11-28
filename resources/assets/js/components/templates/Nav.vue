@@ -1,7 +1,23 @@
 <template>
     <div>
-        <v-navigation-drawer v-model="drawer" temporary fixed clipped class="grey lighten-4" app>
-            <v-list dense class="grey lighten-4">
+        <v-navigation-drawer v-model="drawer" temporary fixed clipped class="grey lighten-3" app>
+            <v-divider></v-divider>
+            <v-toolbar flat class="transparent">
+        <v-list class="pa-0">
+          <v-list-tile avatar>
+            <v-list-tile-avatar>
+              <img src="/img/avatar.jpg">
+            </v-list-tile-avatar>
+
+            <v-list-tile-content>
+              <v-list-tile-title>{{ user.name }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+       <v-divider></v-divider>
+
+            <v-list dense class="grey lighten-3">
                 <template v-for="(item, i) in items">
                     <v-layout v-if="item.heading" :key="i" row align-center>
                     </v-layout>
@@ -19,14 +35,29 @@
                 </template>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar dense>
+        <v-toolbar dense dark color="black lighten-1">
             <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>SCHETTINI&nbsp;<span class="font-weight-light">RENT A CAR </span></v-toolbar-title>
             <v-spacer></v-spacer>
             {{ user.name }}
-            <v-btn icon>
+            <v-menu
+              offset-x
+              offset-y
+              transition="scale-transition"
+            >
+              <v-btn icon
+            slot="activator"
+            >
                 <v-icon>more_vert</v-icon>
             </v-btn>
+              <v-list>
+                <v-list-tile
+                  @click="logout()"
+                >
+                  <v-list-tile-title>Salir</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
         </v-toolbar>
     </div>
 </template>
@@ -47,9 +78,9 @@
                     text: 'Clientes',
                     link: '/cliente'
                 },
-                {
-                    divider: true
-                },
+                // {
+                //     divider: false
+                // },
                 {
                     heading: 'Labels'
                 },
@@ -58,9 +89,9 @@
                     text: 'Create new label',
                     link: '/'
                 },
-                {
-                    divider: true
-                },
+                // {
+                //     divider: false
+                // },
                 {
                     icon: 'archive',
                     text: 'Archive',
@@ -71,9 +102,9 @@
                     text: 'Trash',
                     link: '/'
                 },
-                {
-                    divider: true
-                },
+                // {
+                //     divider: false
+                // },
                 {
                     icon: 'settings',
                     text: 'Settings',
@@ -129,3 +160,4 @@
         },
     }
 </script>
+

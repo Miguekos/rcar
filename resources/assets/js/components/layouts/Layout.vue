@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <v-app>
-  <v-navigation-drawer app></v-navigation-drawer>
+  <v-navigation-drawer color="black lighten-1" app></v-navigation-drawer>
   <v-toolbar app></v-toolbar>
   <v-content>
   <v-container fluid>

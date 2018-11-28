@@ -2,6 +2,7 @@
 
 Route::group(['prefix' => 'v1.0'], function () {
     Route::get('/clientes','ClienteController@indexapi');
+    Route::get('/promos','ClienteController@indexapi');
     Route::get('cliente/{cliente}', 'ClienteController@showapi');
     Route::get('usuario', 'UserController@indexapi');
     Route::post('cliente', 'ClienteController@storeapi');

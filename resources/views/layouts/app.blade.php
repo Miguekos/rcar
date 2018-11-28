@@ -19,11 +19,9 @@
 </head>
 
 <body>
-        <div id="app" data-app>
-            {{-- <template> --}}
+    <div id="app" data-app>
         <v-app>
             <nav-bar :user="{{ auth()->user() }}"></nav-bar>
-            
             <v-content>
                 <v-container>
                     {{-- <v-layout> --}}
@@ -31,14 +29,8 @@
                     {{-- </v-layout> --}}
                 </v-container>
             </v-content>
-            
-    </div>
-</template>
-            {{-- <v-footer app></v-footer> --}}
         </v-app>
-    {{-- </template> --}}
     </div>
-
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 

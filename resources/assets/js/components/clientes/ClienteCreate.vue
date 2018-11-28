@@ -1,157 +1,248 @@
+
+<style>
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  /*border: 1px solid #d2d2d2;*/
+  -webkit-text-fill-color: 1px #606060;
+  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+</style>
+
 <template>
     <div>
-  <v-form>
+  <v-form id="ContactForm" @submit="sendForm">
     <v-container>
-      <v-toolbar-title>Informacion Basica</v-toolbar-title>
+      <h2>Informacion Basica</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6>
+          <label for="">Apellido Paterno</label>
           <v-text-field
-            v-model="apellidoPaterno"
-            label="Apellido Parterno"
+            autofocus
+            name="apellidoPaterno"
+            solo          
+          ></v-text-field>
+        </v-flex>
+
+        <v-flex xs12 sm6>
+          <label for="">Apellido Materno</label>
+          <v-text-field
+            name="apellidoMaterno"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="apellidoMaterno"
-            label="Apellido Materno"
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            v-model="nombres"
+            name="nombres"
             label="Nombres"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="dni"
+            name="dni"
             label="Dni"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="image"
+            name="image"
             label="image"
+            solo
           ></v-text-field>
         </v-flex>
 
-        <v-flex xs12 sm6>
+        <v-flex xs12 sm6 md4>
+      <v-menu
+        :close-on-content-click="false"
+        v-model="menu2"
+        :nudge-right="40"
+        lazy
+        transition="scale-transition"
+        offset-y
+        full-width
+        min-width="290px"
+      >
+        <v-text-field
+          slot="activator"
+          name="fechaNacimiento"
+          v-model="date"
+          label="Fecha de Nacimiento"
+          prepend-icon="event"
+          readonly
+        ></v-text-field>
+        <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
+      </v-menu>
+    </v-flex>
+    <!-- <v-spacer></v-spacer> -->
+
+        <!-- <v-flex xs12 sm6>
           <v-text-field
-            v-model="fechaNacimiento"
+          date-with-time
+            name="fechaNacimiento"
             label="Fecha de Nacimiento"
+            solo
           ></v-text-field>
-        </v-flex>
+        </v-flex> -->
       </v-layout>
 <v-divider light></v-divider>
-<v-toolbar-title>Informacion de Contacto</v-toolbar-title>
+<!-- <v-toolbar-title>Informacion de Contacto</v-toolbar-title> -->
+<h2>Informacion de Contacto</h2>
 <v-layout row wrap>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="correo"
+            name="correo"
             label="correo"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="celular"
+            name="celular"
             label="celular"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="direccion"
+            name="direccion"
             label="direccion"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="ciudad"
+            name="ciudad"
             label="ciudad"
+            solo
           ></v-text-field>
         </v-flex>
 </v-layout>
         <v-divider light></v-divider>
-<v-toolbar-title>Informacion Bancaria</v-toolbar-title>
+<h2>Informacion Bancaria</h2>
+
 <v-layout row wrap>
         <v-flex xs12 sm6>
+          {{ token }}
           <v-text-field
-            v-model="cci"
+            name="cci"
             label="cci"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="banco"
+            name="banco"
             label="banco"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="nombreTitularCuenta"
+            name="nombreTitularCuenta"
             label="nombreTitularCuenta"
+            solo
           ></v-text-field>
         </v-flex>
 </v-layout>
         <v-divider light></v-divider>
-<v-toolbar-title>Documentos</v-toolbar-title>
+<h2>Documentos</h2>
 <v-layout row wrap>
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="numeroBrevete"
+            name="numeroBrevete"
             label="numeroBrevete"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="fechaVencimientoBrevete"
+            name="fechaVencimientoBrevete"
             label="fechaVencimientoBrevete"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="fotoDni"
+            name="fotoDni"
             label="fotoDni"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="calificacionCliente"
+            name="calificacionCliente"
             label="calificacionCliente"
+            solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
           <v-text-field
-            v-model="comentariosAdicionales"
+            name="comentariosAdicionales"
             label="comentariosAdicionales"
+            solo
           ></v-text-field>
+          <input type="hidden" name="_token" :value="csrf">
         </v-flex>
       </v-layout>
-        <v-btn type="submit" color="green" dark black block>Guardar</v-btn>
+        <v-btn type="submit" color="green" dark black>Guardar</v-btn> 
+        <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
     </v-container>
+    
+
+        
+      
   </v-form>
     </div>
 </template>
 
 <script>
+
   export default {
+    props: ['token'],
     data: () => ({
-      first: 'John',
-      last: 'Doe',
-        apellidoPaterno
+      date: new Date().toISOString().substr(0, 10),
+      menu2: false,
+      // apellidoPaterno: '',
+      // apellidoMaterno: '',
+      // nombres: '',
+      // dni: '',
+      // image: '',
+      // fechaNacimiento: '',
+      // correo: '',
+      // celular: '',
+      // direccion: '',
+      // ciudad: '',
+      // cci: '',
+      // banco: '',
+      // nombreTitularCuenta: '',
+      // numeroBrevete: '',
+      // fechaVencimientoBrevete: '',
+      // fotoDni: '',
+      // calificacionCliente: '',
+      // comentariosAdicionales: '',
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     }),
       methods: {
           sendForm (e) {
@@ -162,7 +253,7 @@
                   jsonObject[key] = value;
               }
               console.log(jsonObject);
-              axios.post('/cliente',jsonObject)
+              axios.post('/v1.0/cliente',jsonObject)
                   .then(response => {
                       console.log(response)
                       window.location.href = '/cliente';
@@ -171,8 +262,9 @@
                       console.log(error)
                       alert("Surgio un error al guardar tu cliente");
                   })
-              this.close();
-              this.carga();
+          },
+          cancelar () {
+            window.location.href = '/cliente';
           },
       }
 

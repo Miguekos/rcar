@@ -22,7 +22,115 @@
         </template>
       </v-card>
     </v-dialog>
-    <v-layout justify-center align-center>
+    <v-card>
+            <!-- <v-card color="cyan darken-2" class="white--text"> -->
+            <v-card>
+              <v-layout align-center justify-center row fill-height>
+                <v-flex  xs2>
+                  <v-avatar
+                    size="85px"
+                  >                  
+                  <v-img src=""></v-img>
+                  </v-avatar>
+                </v-flex>
+                <v-flex xs9>
+                  <v-card-title primary-title>
+                    <div>
+
+                      <div class="headline">Miguel</div>
+                      <div>Miguel</div>
+                      <div>Miguel</div>
+                      <v-spacer></v-spacer>
+                      <v-flex align-content-end>
+                        <v-icon small class="mr-2" @click="">
+                          edit
+                        </v-icon>
+                        <v-icon small @click="">
+                          delete
+                        </v-icon>
+                      </v-flex>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+              <!-- <v-divider light></v-divider> -->
+              <v-card-actions>
+              </v-card-actions>
+            </v-card>
+          </v-card>
+          <v-card>
+            <!-- <v-card color="cyan darken-2" class="white--text"> -->
+            <v-card>
+              <v-layout align-center justify-center row fill-height>
+                <v-flex  xs2>
+                  <v-avatar
+                    size="85px"
+                  >                  
+                  <v-img src=""></v-img>
+                  </v-avatar>
+                </v-flex>
+                <v-flex xs9>
+                  <v-card-title primary-title>
+                    <div>
+
+                      <div class="headline">Miguel</div>
+                      <div>Miguel</div>
+                      <div>Miguel</div>
+                      <v-spacer></v-spacer>
+                      <v-flex align-content-end>
+                        <v-icon small class="mr-2" @click="">
+                          edit
+                        </v-icon>
+                        <v-icon small @click="">
+                          delete
+                        </v-icon>
+                      </v-flex>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+              <!-- <v-divider light></v-divider> -->
+              <v-card-actions>
+              </v-card-actions>
+            </v-card>
+          </v-card>
+          <v-card>
+            <!-- <v-card color="cyan darken-2" class="white--text"> -->
+            <v-card>
+              <v-layout align-center justify-center row fill-height>
+                <v-flex  xs2>
+                  <v-avatar
+                    size="85px"
+                  >                  
+                  <v-img src=""></v-img>
+                  </v-avatar>
+                </v-flex>
+                <v-flex xs9>
+                  <v-card-title primary-title>
+                    <div>
+
+                      <div class="headline">Miguel</div>
+                      <div>Miguel</div>
+                      <div>Miguel</div>
+                      <v-spacer></v-spacer>
+                      <v-flex align-content-end>
+                        <v-icon small class="mr-2" @click="">
+                          edit
+                        </v-icon>
+                        <v-icon small @click="">
+                          delete
+                        </v-icon>
+                      </v-flex>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+              <!-- <v-divider light></v-divider> -->
+              <v-card-actions>
+              </v-card-actions>
+            </v-card>
+          </v-card>
+    <!-- <v-layout justify-center align-center>
       <v-flex xs3>
         <v-card dark color="green">
           <v-card-title>
@@ -80,7 +188,7 @@
 
     <v-flex xs12 sm5 md5 offset-xs0 offset-lg7>
       <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-    </v-flex>
+    </v-flex> -->
 
 
     <v-container fluid grid-list-md>
