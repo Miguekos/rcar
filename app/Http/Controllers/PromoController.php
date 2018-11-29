@@ -14,7 +14,13 @@ class PromoController extends Controller
      */
     public function index()
     {
-        //
+        return  view('promos.index');
+    }
+
+    public function indexapi()
+    {
+      $promos = Promo::all();
+      return $promos;
     }
 
     /**
@@ -38,6 +44,12 @@ class PromoController extends Controller
         //
     }
 
+    public function storeapi(Request $request)
+    {
+        $Promo = Promo::create($request->all());
+        return $Promo;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -47,6 +59,12 @@ class PromoController extends Controller
     public function show(Promo $promo)
     {
         //
+    }
+
+    public function showapi(Promo $promo)
+    {
+      $promos = Cliente::findOrFail($promo);
+      return $promos;
     }
 
     /**
@@ -72,6 +90,17 @@ class PromoController extends Controller
         //
     }
 
+    public function updateapi(Request $request, Promo $promo)
+    {
+      $clientes = Promo::find($promo);
+      $clientes ->nombre = $request->nombre;
+      $clientes ->vigencia = $request->vigencia;
+      $clientes ->direccion = $request->dias_pagados;
+      $clientes ->celular = $request->dias_libres;
+      $clientes ->save();
+      return $clientes;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -81,5 +110,12 @@ class PromoController extends Controller
     public function destroy(Promo $promo)
     {
         //
+    }
+
+    public function destroyapi(Promo $promo)
+    {
+      $clientes  = Promo::findOrFail($cliente);
+      $cliente->delete();
+      return $clientes;
     }
 }

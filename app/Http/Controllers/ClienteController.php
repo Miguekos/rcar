@@ -60,12 +60,6 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::create($request->all());
         return $cliente;
-
-        // $flight = Cliente::find($control);
-        // $flight->deuda = $flight->deuda + $cliente->abono;
-//        return redirect()->route('cliente.index')->with('success','Se guardo correctammente el cliente');
-        
-        // return $request->all();
     }
 
     /**

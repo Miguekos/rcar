@@ -10,7 +10,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import Vuetify from 'vuetify'
- 
+
 Vue.use(Vuetify)
 
 // index.js or main.js
@@ -37,7 +37,12 @@ Vue.component('cliente-edit', require('./components/clientes/ClienteEdit.vue'));
 Vue.component('cliente-show', require('./components/clientes/ClienteShow.vue'));
 Vue.component('cliente-table', require('./components/clientes/ClienteTable.vue'));
 
-// 
+// Promos
+Vue.component('comp-promos', require('./components/promos/Promos.vue'));
+Vue.component('promo-create', require('./components/promos/PromoCreate.vue'));
+Vue.component('promo-edit', require('./components/promos/PromoEdit.vue'));
+Vue.component('promo-show', require('./components/promos/PromoShow.vue'));
+// Vue.component('promo-table', require('./components/promos/PromoTable.vue'));
 
 
 const app = new Vue({

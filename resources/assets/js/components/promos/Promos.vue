@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <cliente-edit :cliente="editCliente" :user="user" :close="close" :carga="getDataCliente"></cliente-edit>
+                            <promo-edit :cliente="editCliente" :user="user" :close="close" :carga="getDataCliente"></promo-edit>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
             <v-card dark color="deep-orange">
                 <v-card-title>
                     <v-avatar>
-                        <v-icon size="350%">call_missed_outgoing</v-icon>
+                        <v-icon size="350%">trending_up</v-icon>
                     </v-avatar>
                     <div>
                         <span>10%</span>
@@ -79,7 +79,7 @@
     <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
             <v-flex xs4 text-sm-left>
-                <h1>Clientes</h1>
+                <h1>Promos</h1>
             </v-flex>
             <v-spacer></v-spacer>
             <!-- <v-flex xs4> -->
@@ -109,10 +109,9 @@
                             <v-flex xs9>
                                 <v-card-title primary-title>
                                     <div>
-
-                                        <div class="headline">{{ props.item.nombres }}</div>
-                                        <div>{{ props.item.dni }}</div>
-                                        <div>{{ props.item.direccion }}</div>
+                                        <div class="headline">{{ props.item.nombre }}</div>
+                                        <div>{{ props.item.vigencia }}</div>
+                                        <div>{{ props.item.dias_pagados }} - {{ props.item.dias_libres }}</div>
                                         <v-spacer></v-spacer>
                                         <v-flex align-content-end>
                                             <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -183,10 +182,10 @@ export default {
             getDataCliente() {
                 console.log("en get data nuew");
                 axios
-                    .get(`/v1.0/clientes`)
+                    .get(`/v1.0/promos`)
                     .then(response => {
-                        this.items = response.data.cliente;
-                        console.log(response.data.cliente);
+                        this.items = response.data;
+                        console.log(response.data);
                     })
                     .catch(e => {
                         this.errors.push(e);
@@ -199,7 +198,7 @@ export default {
                 this.idedit = item.id
                 console.log(item.id);
                 axios
-                    .get(`/v1.0/cliente/${item.id}`)
+                    .get(`/v1.0/promo/${item.id}`)
                     .then(response => {
                         this.editCliente = response.data;
                         console.log(response.data);
@@ -209,12 +208,12 @@ export default {
                     });
             },
             deleteItem(item) {
-                const index = this.desserts.indexOf(item)
+                const index = this.items.indexOf(item)
                 console.log("Aqui abajo");
                 console.log(item.id);
-                confirm('Esta seguro que desea borrar esta Cliente?') && this.desserts.splice(index, 1)
+                confirm('Esta seguro que desea borrar esta Cliente?') && this.items.splice(index, 1)
                 axios
-                    .delete(`/v1.0/cliente/${item.id}`, {
+                    .delete(`/v1.0/promo/${item.id}`, {
                         _token: this.csrf
                     })
                     .then(response => {
