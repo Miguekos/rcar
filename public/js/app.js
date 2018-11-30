@@ -67481,9 +67481,9 @@ var render = function() {
                                 { staticClass: "grey--text" },
                                 [
                                   _vm._v(
-                                    "\r\n                            " +
+                                    "\n                            " +
                                       _vm._s(item.text) +
-                                      "\r\n                        "
+                                      "\n                        "
                                   )
                                 ]
                               )
@@ -67522,7 +67522,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("v-spacer"),
-          _vm._v("\r\n        " + _vm._s(_vm.user.name) + "\r\n        "),
+          _vm._v("\n        " + _vm._s(_vm.user.name) + "\n        "),
           _c(
             "v-menu",
             {
@@ -68062,6 +68062,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -68073,6 +68102,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tile: false,
             search: "",
             total: "",
+            fecha: "",
+            clienten: "",
             editCliente: "",
             idedit: "",
             dialog: false,
@@ -68103,7 +68134,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/clientes').then(function (response) {
                 _this.items = response.data.cliente;
                 _this.total = response.data.clientec;
-                console.log(response.data.cliente);
+                _this.fecha = response.data.fecha;
+                _this.clienten = response.data.clienten;
+                console.log(response.data.fecha);
             }).catch(function (e) {
                 _this.errors.push(e);
             });
@@ -68281,7 +68314,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", [
-                        _c("span", [_vm._v("50")]),
+                        _c("span", [_vm._v(_vm._s(_vm.clienten))]),
                         _vm._v(" "),
                         _c("br"),
                         _vm._v(" "),
@@ -68321,7 +68354,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", [
-                        _c("span", [_vm._v("10%")]),
+                        _c("span", [_vm._v(_vm._s(_vm.fecha) + "%")]),
                         _vm._v(" "),
                         _c("br"),
                         _vm._v(" "),
@@ -68406,6 +68439,63 @@ var render = function() {
                 1
               )
             ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-speed-dial",
+        {
+          attrs: {
+            top: _vm.top,
+            bottom: _vm.bottom,
+            right: _vm.right,
+            left: _vm.left,
+            direction: _vm.direction,
+            "open-on-hover": _vm.hover,
+            transition: _vm.transition
+          },
+          model: {
+            value: _vm.fab,
+            callback: function($$v) {
+              _vm.fab = $$v
+            },
+            expression: "fab"
+          }
+        },
+        [
+          _c(
+            "v-btn",
+            {
+              attrs: {
+                slot: "activator",
+                color: "blue darken-2",
+                dark: "",
+                fab: ""
+              },
+              slot: "activator",
+              model: {
+                value: _vm.fab,
+                callback: function($$v) {
+                  _vm.fab = $$v
+                },
+                expression: "fab"
+              }
+            },
+            [
+              _c("v-icon", [_vm._v("account_circle")]),
+              _vm._v(" "),
+              _c("v-icon", [_vm._v("close")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            { attrs: { fab: "", dark: "", small: "", color: "green" } },
+            [_c("v-icon", [_vm._v("edit")])],
             1
           )
         ],
@@ -68576,11 +68666,7 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c("v-card-actions", [
-                                  _vm._v(
-                                    "\r\n                            uisfhjsf\r\n                        "
-                                  )
-                                ])
+                                _c("v-card-actions")
                               ],
                               1
                             )

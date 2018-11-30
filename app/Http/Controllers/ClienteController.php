@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 // use App\Cliente;
 // use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\User;
 use App\Control;
 use App\Cliente;
@@ -27,14 +27,27 @@ class ClienteController extends Controller
 
     public function indexapi()
     {
+        // 30 dias menos
+        $dias = Carbon::now()->subDay(30);
         $cliente = Cliente::all();
         $clientesc = Cliente::count();
+        $clientesn = Cliente::where([
+          ['created_at', '>=', $dias],
+          ])->count();
+        $num1 = $clientesc / 100;
+        $fecha = $num1 * $clientesn;
+        // $fecha = Carbon::now()->subDay(2);
+        // $fecha = CarbonImmutable::now();
+        // $fecha->calendar();
+        // $fecha->sub('8 days')->calendar();
         // par validar el auemto en % se usara el total de cliente
         // $clienten = Cliente::where->('created-at' '>' 30 days);
         // $clientesn = Cliente::where('deuda',0.00)->get();
         return json_encode([
             "cliente" => $cliente,
-            "clientec" => $clientesc
+            "clientec" => $clientesc,
+            "fecha" => $fecha,
+            "clienten" => $clientesn,
         ]);
     }
 

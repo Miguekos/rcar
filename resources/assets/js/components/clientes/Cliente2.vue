@@ -40,7 +40,7 @@
                         <v-icon size="350%">person_add</v-icon>
                     </v-avatar>
                     <div>
-                        <span>50</span>
+                        <span>{{ clienten }}</span>
                         <br>
                         <span>Nuevos Clientes</span>
                         <br>
@@ -56,7 +56,7 @@
                         <v-icon size="350%">call_missed_outgoing</v-icon>
                     </v-avatar>
                     <div>
-                        <span>10%</span>
+                        <span>{{ fecha }}%</span>
                         <br>
                         <span>Aumento</span>
                         <br>
@@ -92,10 +92,34 @@
             </v-flex>
         </v-layout>
     </v-container>
+    <v-speed-dial
+          v-model="fab"
+          :top="top"
+          :bottom="bottom"
+          :right="right"
+          :left="left"
+          :direction="direction"
+          :open-on-hover="hover"
+          :transition="transition"
+        >
+          <v-btn
+            slot="activator"
+            v-model="fab"
+            color="blue darken-2"
+            dark
+            fab
+          >
+            <v-icon>account_circle</v-icon>
+            <v-icon>close</v-icon>
+          </v-btn>
+          
+          </v-btn>
 
+        </v-speed-dial>
 
     <v-container fluid grid-list-md>
         <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap>
+
             <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
                 <v-card>
                     <!-- <v-card color="cyan darken-2" class="white--text"> -->
@@ -109,7 +133,6 @@
                             <v-flex xs9>
                                 <v-card-title primary-title>
                                     <div>
-
                                         <div class="headline">{{ props.item.nombres }}</div>
                                         <div>{{ props.item.direccion }}</div>
                                         <div>{{ props.item.celular }}</div>
@@ -128,7 +151,7 @@
                         </v-layout>
                         <!-- <v-divider dense light></v-divider> -->
                         <v-card-actions>
-                            uisfhjsf
+                            <!-- <v-btn flat >Listen now</v-btn> -->
                         </v-card-actions>
                     </v-card>
                 </v-card>
@@ -155,6 +178,8 @@ export default {
         tile: false,
         search: "",
         total: "",
+        fecha: "",
+        clienten: "",
         editCliente: "",
         idedit: "",
         dialog: false,
@@ -189,7 +214,9 @@ export default {
                     .then(response => {
                         this.items = response.data.cliente;
                         this.total = response.data.clientec;
-                        console.log(response.data.cliente);
+                        this.fecha = response.data.fecha;
+                        this.clienten = response.data.clienten;
+                        console.log(response.data.fecha);
                     })
                     .catch(e => {
                         this.errors.push(e);
