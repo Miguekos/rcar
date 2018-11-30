@@ -28,10 +28,13 @@ class ClienteController extends Controller
     public function indexapi()
     {
         $cliente = Cliente::all();
-        // $clientesd = Cliente::where('deuda',0.00)->get();
+        $clientesc = Cliente::count();
+        // par validar el auemto en % se usara el total de cliente
+        // $clienten = Cliente::where->('created-at' '>' 30 days);
+        // $clientesn = Cliente::where('deuda',0.00)->get();
         return json_encode([
             "cliente" => $cliente,
-            // "clientesd" => $clientesd
+            "clientec" => $clientesc
         ]);
     }
 

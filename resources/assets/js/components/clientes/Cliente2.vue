@@ -25,7 +25,7 @@
                         <v-icon size="350%">perm_identity</v-icon>
                     </v-avatar>
                     <div>
-                        <span>500</span>
+                        <span>{{ total }}</span>
                         <br>
                         <span>Total Clientes</span>
                         <br>
@@ -111,8 +111,8 @@
                                     <div>
 
                                         <div class="headline">{{ props.item.nombres }}</div>
-                                        <div>{{ props.item.dni }}</div>
                                         <div>{{ props.item.direccion }}</div>
+                                        <div>{{ props.item.celular }}</div>
                                         <v-spacer></v-spacer>
                                         <v-flex align-content-end>
                                             <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -128,6 +128,7 @@
                         </v-layout>
                         <!-- <v-divider dense light></v-divider> -->
                         <v-card-actions>
+                            uisfhjsf
                         </v-card-actions>
                     </v-card>
                 </v-card>
@@ -153,6 +154,7 @@ export default {
         slider: 56,
         tile: false,
         search: "",
+        total: "",
         editCliente: "",
         idedit: "",
         dialog: false,
@@ -186,6 +188,7 @@ export default {
                     .get(`/v1.0/clientes`)
                     .then(response => {
                         this.items = response.data.cliente;
+                        this.total = response.data.clientec;
                         console.log(response.data.cliente);
                     })
                     .catch(e => {
