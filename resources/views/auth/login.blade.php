@@ -19,15 +19,15 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="loginnew/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="loginnew/vendor/select2/select2.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="loginnew/vendor/select2/select2.min.css"> -->
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="loginnew/vendor/daterangepicker/daterangepicker.css">
+	<!-- <link rel="stylesheet" type="text/css" href="loginnew/vendor/daterangepicker/daterangepicker.css"> -->
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="loginnew/css/util.css">
 	<link rel="stylesheet" type="text/css" href="loginnew/css/main.css">
 <!--===============================================================================================-->
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
-  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <link href="loginnew/vuetify.min.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body style="background-color: #666666;">
   <div id="app">
@@ -124,8 +124,8 @@
 
       </v-app>
     </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="/loginnew/vue.js"></script>
+  <script src="/loginnew/vuetify.js"></script>
   <script>
     new Vue({ el: '#app' })
   </script>
@@ -137,14 +137,14 @@
 	<script src="loginnew/vendor/bootstrap/js/popper.js"></script>
 	<script src="loginnew/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="loginnew/vendor/select2/select2.min.js"></script>
+	<!-- <script src="loginnew/vendor/select2/select2.min.js"></script> -->
 <!--===============================================================================================-->
-	<script src="loginnew/vendor/daterangepicker/moment.min.js"></script>
-	<script src="loginnew/vendor/daterangepicker/daterangepicker.js"></script>
+	<!-- <script src="loginnew/vendor/daterangepicker/moment.min.js"></script> -->
+	<!-- <script src="loginnew/vendor/daterangepicker/daterangepicker.js"></script> -->
 <!--===============================================================================================-->
-	<script src="loginnew/vendor/countdowntime/countdowntime.js"></script>
+	<!-- <script src="loginnew/vendor/countdowntime/countdowntime.js"></script> -->
 <!--===============================================================================================-->
-	<script src="loginnew/js/main.js"></script>
+	<!-- <script src="loginnew/js/main.js"></script> -->
 
 
 </body>

@@ -1,5 +1,77 @@
-<template>
+<style>
+.app-fab--absolute {
+  position: fixed;
+  /*z-index: 3;*/
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: green;
+    right: 0;
+    bottom: 0;
+    /*position: absolute;*/
+    margin-right: 13px;
+    margin-bottom: 13px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-size: 32px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: .3s;
+}
 
+@media(min-width: 1024px) {
+   .app-fab--absolute {
+    bottom: 2.5rem;
+    right: 2.5rem;
+    /*z-index: 3;*/
+  }
+}
+button:hover {
+    /*background: grey;
+    color: white;
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #F44336;*/
+}
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+.hvr-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-pulse:hover, .hvr-pulse:focus, .hvr-pulse:active {
+  -webkit-animation-name: hvr-pulse;
+  animation-name: hvr-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+</style>
+<template>
+<div>
 <v-container grid-list-md fluid text-xs-justify>
     <v-dialog v-model="dialog1" max-width="700px">
         <v-card>
@@ -17,69 +89,72 @@
             </template>
         </v-card>
     </v-dialog>
-    <v-layout justify-center align-center>
-        <v-flex xs3>
-            <v-card dark color="green">
-                <v-card-title>
+    <v-container fluid grid-list-md>
+        <v-layout row wrap justify-center align-center>
+            <v-flex d-flex xs12 sm6 md3 elevation-5>
+                <v-card color="" >
+                    <v-card-title primary class="title">
                     <v-avatar>
-                        <v-icon size="350%">perm_identity</v-icon>
+                        <v-icon color="orange" size="250%">perm_identity</v-icon>
                     </v-avatar>
-                    <div>
-                        <span>{{ total }}</span>
-                        <br>
-                        <span>Total Clientes</span>
-                        <br>
-                    </div>
-                </v-card-title>
-            </v-card>
-        </v-flex>
-        <v-flex xs3>
-            <v-card dark color="blue">
-                <v-card-title>
+                    <v-layout row wrap>
+                      <v-flex xs9>
+                          <v-card-text class="px-0">Total Clientes</v-card-text>
+                      </v-flex>
+                      <v-flex xs3>
+                          <v-card-text class="px-0">{{ total }}</v-card-text>
+                      </v-flex>
+                    </v-layout>
+                    </v-card-title>
+                    <!-- <span class="caption"> Total Clientes </span>&nbsp;<span> {{ total }}</span> </v-card-title> -->
+                    <!-- <v-card-text></v-card-text> -->
+                </v-card>
+            </v-flex>
+            <v-flex d-flex xs12 sm6 md3 elevation-5>
+                <v-card color="" >
+                    <v-card-title primary class="title">
+                    <v-avatar row wrap>
+                        <v-icon color="blue" size="250%">person_add</v-icon>
+                    </v-avatar>
+                    <v-layout >
+                      <v-flex xs11>
+                          <v-card-text class="px-0">Nuevos Clientes</v-card-text>
+                      </v-flex>
+                      <v-flex xs1>
+                          <v-card-text class="px-0">{{ clienten }}</v-card-text>
+                      </v-flex>
+                    </v-layout>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+            <v-flex d-flex xs12 sm6 md3 elevation-5>
+                <v-card color="" >
+                    <v-card-title primary class="title">
                     <v-avatar>
-                        <v-icon size="350%">person_add</v-icon>
+                        <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
                     </v-avatar>
-                    <div>
-                        <span>{{ clienten }}</span>
-                        <br>
-                        <span>Nuevos Clientes</span>
-                        <br>
-                    </div>
-                </v-card-title>
-            </v-card>
-        </v-flex>
-
-        <v-flex xs3>
-            <v-card dark color="deep-orange">
-                <v-card-title>
-                    <v-avatar>
-                        <v-icon size="350%">call_missed_outgoing</v-icon>
-                    </v-avatar>
-                    <div>
-                        <span>{{ fecha }}%</span>
-                        <br>
-                        <span>Aumento</span>
-                        <br>
-                    </div>
-                </v-card-title>
-            </v-card>
-        </v-flex>
-
-        <v-flex xs1 @click="crear()">
-            <v-btn color="green" dark fab>
-                <v-icon>
-                    add
-                </v-icon>
-            </v-btn>
-        </v-flex>
-    </v-layout>
+                    <v-layout row wrap>
+                      <v-flex xs9>
+                          <v-card-text class="px-0">Aumento</v-card-text>
+                      </v-flex>
+                      <v-flex xs3>
+                          <v-card-text class="px-0">{{ fecha }}%</v-card-text>
+                      </v-flex>
+                    </v-layout>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 
     <hr>
+        <h2 class="text-center">Clientes</h2>
+    <!-- <hr> -->
 
-    <v-container grid-list-md text-xs-center>
+    <!-- <v-container grid-list-md text-xs-center> -->
         <v-layout row wrap>
             <v-flex xs4 text-sm-left>
-                <h1>Clientes</h1>
+        
             </v-flex>
             <v-spacer></v-spacer>
             <!-- <v-flex xs4> -->
@@ -87,50 +162,56 @@
                     <v-card-text class="px-4">Descargar</v-card-text>
                 </v-card> -->
             <!-- </v-flex> -->
-            <v-flex xs4>
+            <v-flex xs12>
                 <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+                <hr>
             </v-flex>
         </v-layout>
-    </v-container>
-    <v-speed-dial
-          v-model="fab"
-          :top="top"
-          :bottom="bottom"
-          :right="right"
-          :left="left"
-          :direction="direction"
-          :open-on-hover="hover"
-          :transition="transition"
+    <!-- </v-container> -->
+    <!-- <v-container fluid grid-list-md> -->
+        <!-- <v-toolbar-title>Login form</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-tooltip bottom>
+                  <v-btn
+                    icon
+                    large
+                    :href="source"
+                    target="_blank"
+                    slot="activator"
+                  >
+                    <v-icon large>code</v-icon>
+                  </v-btn>
+                  <span>Source</span>
+                </v-tooltip>
+              </v-toolbar> -->
+        <v-data-iterator 
+        :items="items" 
+        :rows-per-page-items="rowsPerPageItems" 
+        :pagination.sync="pagination" 
+        :search="search" 
+        content-tag="v-layout" 
+        row wrap
+        class="elevation-5"
+        hide-actions
         >
-          <v-btn
-            slot="activator"
-            v-model="fab"
-            color="blue darken-2"
-            dark
-            fab
-          >
-            <v-icon>account_circle</v-icon>
-            <v-icon>close</v-icon>
-          </v-btn>
-          
-          </v-btn>
-
-        </v-speed-dial>
-
-    <v-container fluid grid-list-md>
-        <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap>
 
             <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
-                <v-card>
+                <!-- <v-card 
+                slot-scope="{ hover }"
+      :class="`elevation-${hover ? 12 : 2}`"
+      class="mx-auto"
+      width="344"> -->
+      <v-card>
                     <!-- <v-card color="cyan darken-2" class="white--text"> -->
-                    <v-card>
                         <v-layout align-center justify-center row fill-height>
-                            <v-flex xs2>
+                            <v-flex xs1>
+                            </v-flex>
+                            <v-flex xs3>
                                 <v-avatar size="100%">
                                     <v-img :src="props.item.image"></v-img>
                                 </v-avatar>
                             </v-flex>
-                            <v-flex xs9>
+                            <v-flex xs8>
                                 <v-card-title primary-title>
                                     <div>
                                         <div class="headline">{{ props.item.nombres }}</div>
@@ -153,7 +234,6 @@
                         <v-card-actions>
                             <!-- <v-btn flat >Listen now</v-btn> -->
                         </v-card-actions>
-                    </v-card>
                 </v-card>
             </v-flex>
             <template slot="no-data">
@@ -161,19 +241,38 @@
                     Lo siento no hay datos que cargar :(
                 </v-alert>
             </template>
+            
         </v-data-iterator>
-    </v-container>
-
+        <!-- <div class="text-xs-center pt-2">
+                <v-pagination
+                  v-model="page"
+                  :length="6"
+                ></v-pagination>
+              </div> -->
+        <div class="text-xs-center pt-2">
+            <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+        </div>
+    <!-- </v-container> -->
 </v-container>
 
+<button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+  <span class="mdc-fab__icon material-icons">add</span>
+</button>
+<pre>{{ $data }}</pre>
+</div>
 </template>
 
 <script>
-
 import axios from 'axios';
 export default {
     props: ['user'],
     data: () => ({
+        // boton inicio
+        // boton fin
+         // pagination: {},
+         pages: "",
+        reviews: 413,
+        value: 4.5,
         slider: 56,
         tile: false,
         search: "",
@@ -184,7 +283,7 @@ export default {
         idedit: "",
         dialog: false,
         dialog1: false,
-        rowsPerPageItems: [4, 8, 12],
+        rowsPerPageItems: [8, 12],
         pagination: {
             rowsPerPage: 8
         },
@@ -201,7 +300,14 @@ export default {
         this.getDataCliente();
     },
     computed: {
+        pages () {
+        if (this.pagination.rowsPerPage == null ||
+          this.pagination.totalItems == null
+        ) return 0
 
+        return Math.ceil(this.items / this.pagination.rowsPerPage)
+        console.log(this.items / this.pagination.rowsPerPage);
+      }
     },
     methods: {
         crear() {
@@ -269,6 +375,7 @@ export default {
                 // }, 300)
             },
     },
+    
 }
 
 </script>

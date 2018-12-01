@@ -1,7 +1,4 @@
-
-
 <template>
-
 <div>
     <v-navigation-drawer v-model="drawer" temporary fixed clipped class="grey lighten-3" app>
         <v-divider></v-divider>
@@ -11,7 +8,6 @@
                     <v-list-tile-avatar>
                         <img src="/img/avatar.jpg">
                     </v-list-tile-avatar>
-
                     <v-list-tile-content>
                         <v-list-tile-title>{{ user.name }}</v-list-tile-title>
                     </v-list-tile-content>
@@ -42,7 +38,7 @@
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>SCHETTINI&nbsp;<span class="font-weight-light">RENT A CAR </span></v-toolbar-title>
         <v-spacer></v-spacer>
-        {{ user.name }}
+        <!-- {{ user.name }} -->
         <v-menu offset-x offset-y transition="scale-transition">
             <v-btn icon slot="activator">
                 <v-icon>more_vert</v-icon>
