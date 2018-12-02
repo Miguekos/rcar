@@ -1,61 +1,138 @@
 <template>
-<div class="container-fluid">
-    <div class="row">
-        <div id="" class="col-md-12">
-            <form id="ContactForm" @submit.prevent="update">
-                        <div class="form-group">
-                            <div class="form-group col-md-6">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" required :value="cliente.nombres" autofocus name="nombres" placeholder="">
-                            </div>
+<div>
+    <v-form id="ContactForm" @submit.prevent="update">
+      <v-container>
+        <h2>Informacion Basica</h2>
+        <v-layout row wrap>
+          <v-flex xs12 sm6>
+            <label for="">Apellido Paterno</label>
+            <v-text-field autofocus :value="info.apellidoPaterno" name="apellidoPaterno" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
 
-                            <div class="form-group col-md-6">
-                                <label for="telf">DNI</label>
-                                <input type="text" class="form-control" required :value="cliente.dni" name="dni" placeholder="">
-                            </div>
+          <v-flex xs12 sm6>
+            <label for="">Apellido Materno</label>
+            <v-text-field :value="info.apellidoMaterno" name="apellidoMaterno" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
 
-                            <div class="form-group col-md-6">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" class="form-control" required :value="cliente.direccion" name="direccion" placeholder="">
-                            </div>
+          <v-flex xs12 sm6>
+            <label for="">Nombres</label>
+            <v-text-field :value="info.nombres" name="nombres" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
 
-                            <div class="form-group col-md-6">
-                                <label for="dni">Telf</label>
-                                <input type="text" class="form-control" required :value="cliente.celular" name="celular" placeholder="">
-                            </div>
+          <v-flex xs12 sm6>
+            <label for="">DNI</label>
+            <v-text-field :value="info.dni" name="dni" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
 
-                        </div>
-                        
-                        <v-flex class="form-group col-md-12">
-                            <v-btn
-                                    :loading="loading"
-                                    :disabled="loading"
-                                    color="green"
-                                    type="submit"
-                                    black
-                                    dark
-                                    small
-                            >
-                                Guardar
-                            </v-btn>
-                            <v-btn black small color="red darken-1" dark @click.native="close">Cancel</v-btn>
-                            
-                        </v-flex>
-                        <!-- <input type="hidden" name="agregado" :value="user.name">
-                        <input type="hidden" name="agregado_id" :value="user.id">
-                        <input type="hidden" name="abono_id" :value="0"> -->
-                        <!-- <input type="hidden" name="_token" :value="csrf"> -->
-                    </form>
-        </div>
-    </div>
+          <v-flex xs12 sm6>
+            <label for="">Imagen</label>
+            <v-text-field :value="info.image" name="image" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6 md4>
+            <label for="">Fecha</label>
+            <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition"
+              offset-y full-width min-width="290px">
+              <v-text-field slot="activator" :value="info.fechaNacimiento" name="fechaNacimiento" v-model="date" label="Fecha de Nacimiento"
+                prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
+            </v-menu>
+          </v-flex>
+        </v-layout>
+        <v-divider light></v-divider>
+        <h2>Informacion de Contacto</h2>
+        <v-layout row wrap>
+
+          <v-flex xs12 sm6>
+            <label for="">Correo</label>
+            <v-text-field :value="info.correo" name="correo" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Celular</label>
+            <v-text-field :value="info.celular" name="celular" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Direccion</label>
+            <v-text-field :value="info.direccion" name="direccion" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Ciudad</label>
+            <v-text-field :value="info.ciudad" name="ciudad" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-divider light></v-divider>
+        <h2>Informacion Bancaria</h2>
+
+        <v-layout row wrap>
+          <v-flex xs12 sm6>
+            <label for="">CCi</label>
+            <v-text-field :value="info.cci" name="cci" solo :rules="[rules.required]" type="number"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Banco</label>
+            <v-text-field :value="info.banco" name="banco" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Nombre Titutar</label>
+            <v-text-field :value="info.nombreTitularCuenta" name="nombreTitularCuenta" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-divider light></v-divider>
+        <h2>Documentos</h2>
+        <v-layout row wrap>
+          <v-flex xs12 sm6>
+            <label for="">N° Brevete</label>
+            <v-text-field :value="info.numeroBrevete" name="numeroBrevete" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6 md4>
+            <label for="">Fecha de Vencimiento Brevete</label>
+            <v-menu :close-on-content-click="false" v-model="menu3" :nudge-right="40" lazy transition="scale-transition"
+              offset-y full-width min-width="290px">
+              <v-text-field slot="activator" :value="info.fechaVencimientoBrevete" name="fechaVencimientoBrevete" v-model="date" label="Fecha de Nacimiento"
+                prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" @input="menu3 = false"></v-date-picker>
+            </v-menu>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Foto Dni</label>
+            <v-text-field :value="info.fotoDni" name="fotoDni" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Clasificacion Cliente</label>
+            <v-text-field :value="info.calificacionCliente" name="calificacionCliente" solo :rules="[rules.required]"></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <label for="">Comentarios</label>
+            <v-textarea hint="Comentarios" :value="info.comentariosAdicionales" name="comentariosAdicionales"></v-textarea>
+
+            <input type="hidden" name="_token" :value="csrf">
+          </v-flex>
+        </v-layout>
+        <v-btn type="submit" color="green" dark black>Guardar</v-btn>
+        <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
+      </v-container>
+
+    </v-form>
 </div>
 </template>
 
 <script>
     export default {
-        props: ['cliente','user','close','carga'],
+        props: ['info'],
         data() {
             return{
+              date: new Date().toISOString().substr(0, 10),
+              menu2: false,
+              menu3: false,
                 loader: null,
                 agregado: "",
                 agregado_id: "",
@@ -67,8 +144,13 @@
                 formType: true,
 //                serverResponse: false,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                rules: {
+                  required: value => !!value || 'Obligatorio.',
+                },
             }
         },
+        created() {
+            },
         watch: {
             loader () {
                 const l = this.loader
@@ -82,7 +164,7 @@
         methods: {
             update () {
                 console.log("aqui id para ipdate");
-                console.log(this.cliente.id);
+                // console.log(this.cliente.id);
 //                alert('Enviando Form')
 //                this.snackbar= true
                     let form = document.getElementById('ContactForm');
@@ -94,19 +176,21 @@
                     console.log(jsonObject);
                     axios({
                         method: 'put',
-                        url: `/v1.0/cliente/${this.cliente.id}`,
+                        url: `/v1.0/cliente/${this.info.id}`,
                         data: jsonObject,
                     })
                         .then(function (response) {
                             response.data
                             console.log(response.data);
+                            window.location.href = '/cliente';
                         });
-                    this.close();
-                    this.carga();
                     },
             preciono: function () {
                 console.log("preciono el boton")
-            }
+            },
+            cancelar() {
+              window.location.href = '/cliente';
+            },
         }
     }
 </script>

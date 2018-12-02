@@ -103,7 +103,10 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        // $info = Cliente::find($cliente);
+        // return $clientes;
+        $info = $cliente;
+        return view('clientes.edit',compact('info'));
     }
 
     /**

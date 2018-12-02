@@ -1,243 +1,425 @@
+<style>
+  .app-fab--absolute {
+    position: fixed;
+    /*z-index: 3;*/
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: green;
+    right: 0;
+    bottom: 0;
+    /*position: absolute;*/
+    margin-right: 13px;
+    margin-bottom: 13px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-size: 32px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: .3s;
+  }
+
+  @media(min-width: 1024px) {
+    .app-fab--absolute {
+      bottom: 2.5rem;
+      right: 2.5rem;
+      /*z-index: 3;*/
+    }
+  }
+
+  button:hover {
+    /*background: grey;
+    color: white;
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #F44336;*/
+  }
+
+  @-webkit-keyframes hvr-pulse {
+    25% {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    75% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+
+  @keyframes hvr-pulse {
+    25% {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    75% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+
+  .hvr-pulse {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  }
+
+  .hvr-pulse:hover,
+  .hvr-pulse:focus,
+  .hvr-pulse:active {
+    -webkit-animation-name: hvr-pulse;
+    animation-name: hvr-pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+
+</style>
 <template>
-
-<v-container grid-list-md fluid text-xs-justify>
-    <v-dialog v-model="dialog1" max-width="700px">
-        <v-card>
-            <v-card-title>
-                <span class="headline">Editar Cliente</span>
-            </v-card-title>
-            <template>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <promo-edit :cliente="editCliente" :user="user" :close="close" :carga="getDataCliente"></promo-edit>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </v-card>
+  <div>
+    
+<v-dialog v-model="dialog3" persistent max-width="690">  
+      <v-card>
+        <v-card-title class="headline">Enviar Correo</v-card-title>
+        <v-card-text>
+          <v-textarea
+          name="input-7-1"
+          label="Escribe tu correo"
+          value=""
+          hint="Escribe aqui el correo"
+        ></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat @click="dialog3 = false">Cancelar</v-btn>
+          <v-btn color="green darken-1" flat @click="eliminar = 1">Enviar</v-btn>
+        </v-card-actions>
+      </v-card>
     </v-dialog>
-    <v-layout justify-center align-center>
-        <v-flex xs3>
-            <v-card dark color="green">
-                <v-card-title>
-                    <v-avatar>
-                        <v-icon size="350%">perm_identity</v-icon>
-                    </v-avatar>
-                    <div>
-                        <span>500</span>
-                        <br>
-                        <span>Total Clientes</span>
-                        <br>
-                    </div>
-                </v-card-title>
+
+    <v-container grid-list-md fluid text-xs-justify>
+      <v-dialog v-model="dialog1" max-width="700px">
+        
+        <v-card>
+          <v-card-title>
+            <span class="headline">Editar Cliente</span>
+          </v-card-title>
+          <template>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <cliente-edit :cliente="editCliente" :user="user" :close="close" :carga="getDataCliente"></cliente-edit>
+                </div>
+              </div>
+            </div>
+          </template>
+        </v-card>
+      </v-dialog>
+      <v-container fluid grid-list-md>
+        <v-layout row wrap justify-center align-center>
+          <v-flex d-flex xs12 sm6 md4 elevation-2>
+            <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            width="344">
+            <v-card-title style="padding: 0px;" class="title">
+              <v-avatar>
+                <v-icon color="orange" size="150%">perm_identity</v-icon>
+              </v-avatar>
+              <v-layout>
+                <v-flex xs9>
+                  <v-card-text class="px-0">Total Clientes</v-card-text>
+                </v-flex>
+                <v-flex xs3>
+                  <v-card-text class="px-0">{{ total }}</v-card-text>
+                </v-flex>
+              </v-layout>
+            </v-card-title>
+            <!-- <span class="caption"> Total Clientes </span>&nbsp;<span> {{ total }}</span> </v-card-title> -->
+            <!-- <v-card-text></v-card-text> -->
             </v-card>
-        </v-flex>
-        <v-flex xs3>
-            <v-card dark color="blue">
-                <v-card-title>
-                    <v-avatar>
-                        <v-icon size="350%">person_add</v-icon>
-                    </v-avatar>
-                    <div>
-                        <span>50</span>
-                        <br>
-                        <span>Nuevos Clientes</span>
-                        <br>
-                    </div>
-                </v-card-title>
+            </v-hover>
+          </v-flex>
+          <v-flex d-flex xs12 sm6 md4 elevation-2>
+            <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            width="344">
+            <v-card-title style="padding: 0px;" class="title">
+              <v-avatar row wrap>
+                <v-icon color="blue" size="150%">person_add</v-icon>
+              </v-avatar>
+              <v-layout>
+                <v-flex xs9>
+                  <v-card-text class="px-0">Nuevos Clientes</v-card-text>
+                </v-flex>
+                <v-flex xs3>
+                  <v-card-text class="px-0">{{ clienten }}</v-card-text>
+                </v-flex>
+              </v-layout>
+            </v-card-title>
             </v-card>
-        </v-flex>
-
-        <v-flex xs3>
-            <v-card dark color="deep-orange">
-                <v-card-title>
-                    <v-avatar>
-                        <v-icon size="350%">trending_up</v-icon>
-                    </v-avatar>
-                    <div>
-                        <span>10%</span>
-                        <br>
-                        <span>Aumento</span>
-                        <br>
-                    </div>
-                </v-card-title>
+            </v-hover>
+          </v-flex>
+          <v-flex d-flex xs12 sm6 md4 elevation-2>
+            <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            width="344">
+            <v-card-title style="padding: 0px;" class="title">
+              <v-avatar>
+                <v-icon color="green" size="150%">call_missed_outgoing</v-icon>
+              </v-avatar>
+              <v-layout>
+                <v-flex xs8>
+                  <v-card-text class="px-0">Aumento</v-card-text>
+                </v-flex>
+                <v-flex xs4>
+                  <v-card-text class="px-0">{{ fecha }}%</v-card-text>
+                </v-flex>
+              </v-layout>
+            </v-card-title>
             </v-card>
+            </v-hover>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <hr>
+      <h2 class="font-weight-black text-center">Clientes</h2>
+      <!-- <hr> -->
+
+      <!-- <v-container grid-list-md text-xs-center> -->
+      <v-layout row wrap>
+        <v-flex xs4 text-sm-left>
+
         </v-flex>
-
-        <v-flex xs1 @click="crear()">
-            <v-btn color="green" dark fab>
-                <v-icon>
-                    add
-                </v-icon>
-            </v-btn>
-        </v-flex>
-    </v-layout>
-
-    <hr>
-
-    <v-container grid-list-md text-xs-center>
-        <v-layout row wrap>
-            <v-flex xs4 text-sm-left>
-                <h1>Promos</h1>
-            </v-flex>
-            <v-spacer></v-spacer>
-            <!-- <v-flex xs4> -->
-                <!-- <v-card dark color="green">
+        <v-spacer></v-spacer>
+        <!-- <v-flex xs4> -->
+        <!-- <v-card dark color="green">
                     <v-card-text class="px-4">Descargar</v-card-text>
                 </v-card> -->
-            <!-- </v-flex> -->
-            <v-flex xs4>
-                <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-            </v-flex>
-        </v-layout>
+        <!-- </v-flex> -->
+        <v-flex xs12>
+          <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+          <hr>
+        </v-flex>
+      </v-layout>
+
+      <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
+        content-tag="v-layout" row wrap class="elevation-5" hide-actions>
+
+        <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
+          <!-- <v-card
+                slot-scope="{ hover }"
+      :class="`elevation-${hover ? 12 : 2}`"
+      class="mx-auto"
+      width="344"> -->
+          <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 1}`"
+            class="mx-auto"
+            >
+            <!-- <v-card color="cyan darken-2" class="white--text"> -->
+            <v-layout align-center justify-center row fill-height>
+              <v-flex xs1>
+              </v-flex>
+              <v-flex xs3>
+                <v-avatar size="100%">
+                  <v-img :src="props.item.image"></v-img>
+                </v-avatar>
+              </v-flex>
+              <v-flex xs8>
+                <v-flex text-right>
+                  <v-icon small class="mr-2" @click="editItem(props.item)">
+                    edit
+                  </v-icon>
+                  <v-icon small @click="deleteItem(props.item)">
+                    close
+                  </v-icon>
+                </v-flex>
+
+                <v-card-title primary-title>
+
+                  <div>
+                    <div class="headline">{{ props.item.nombre }}</div>
+                    <div class="text-xs-left">{{ props.item.vigencia }}</div>
+                    <div>{{ props.item.dias_pagados }}</div>
+                    <v-spacer></v-spacer>
+                    <v-flex align-content-end>
+                      <v-icon small class="mr-2" @click="dialog3 = true">
+                        mail_outline
+                      </v-icon>
+                    </v-flex>
+                  </div>
+                </v-card-title>
+              </v-flex>
+            </v-layout>
+            <!-- <v-divider dense light></v-divider> -->
+            <v-card-actions>
+              <!-- <v-btn flat >Listen now</v-btn> -->  
+            </v-card-actions>
+          </v-card>
+          </v-hover>
+        </v-flex>
+        <template slot="no-data">
+          <v-alert :value="true" color="red" icon="warning">
+            Lo siento no hay datos que cargar :(
+          </v-alert>
+        </template>
+
+      </v-data-iterator>
+      <div class="text-xs-center pt-2">
+        <v-pagination v-model="pagination.page" :length="page"></v-pagination>
+      </div>
     </v-container>
 
-
-    <v-container fluid grid-list-md>
-        <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap>
-            <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
-                <v-card>
-                    <!-- <v-card color="cyan darken-2" class="white--text"> -->
-                    <v-card>
-                        <v-layout align-center justify-center row fill-height>
-                            <v-flex xs2>
-                                <v-avatar size="100%">
-                                    <v-img :src="props.item.image"></v-img>
-                                </v-avatar>
-                            </v-flex>
-                            <v-flex xs9>
-                                <v-card-title primary-title>
-                                    <div>
-                                        <div class="headline">{{ props.item.nombre }}</div>
-                                        <div>{{ props.item.vigencia }}</div>
-                                        <div>{{ props.item.dias_pagados }} - {{ props.item.dias_libres }}</div>
-                                        <v-spacer></v-spacer>
-                                        <v-flex align-content-end>
-                                            <v-icon small class="mr-2" @click="editItem(props.item)">
-                                                edit
-                                            </v-icon>
-                                            <v-icon small @click="deleteItem(props.item)">
-                                                delete
-                                            </v-icon>
-                                        </v-flex>
-                                    </div>
-                                </v-card-title>
-                            </v-flex>
-                        </v-layout>
-                        <!-- <v-divider dense light></v-divider> -->
-                        <v-card-actions>
-                        </v-card-actions>
-                    </v-card>
-                </v-card>
-            </v-flex>
-            <template slot="no-data">
-                <v-alert :value="true" color="red" icon="warning">
-                    Lo siento no hay datos que cargar :(
-                </v-alert>
-            </template>
-        </v-data-iterator>
-    </v-container>
-
-</v-container>
-
+    <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+      <span class="mdc-fab__icon material-icons">add</span>
+    </button>
+    <pre>{{ $data }}</pre>
+  </div>
 </template>
 
 <script>
-
-import axios from 'axios';
-export default {
+  import axios from 'axios';
+  export default {
     props: ['user'],
     data: () => ({
-        slider: 56,
-        tile: false,
-        search: "",
-        editCliente: "",
-        idedit: "",
-        dialog: false,
-        dialog1: false,
-        rowsPerPageItems: [4, 8, 12],
-        pagination: {
-            rowsPerPage: 8
-        },
-        items: [],
-        editedIndex: -1,
-        editedItem: {
+      // boton inicio
+      // boton fin
+      // pagination: {},
+      registros: "",
+      page: "",
+      reviews: 413,
+      value: 4.5,
+      eliminar: "",
+      dialog3: false,
+      pagination: {},
+      slider: 56,
+      tile: false,
+      search: "",
+      total: "",
+      fecha: "",
+      clienten: "",
+      editCliente: "",
+      idedit: "",
+      dialog: false,
+      dialog1: false,
+      rowsPerPageItems: [8, 12],
+      pagination: {
+        // rowsPerPage: 8
+      },
+      items: [],
+      editedIndex: -1,
+      editedItem: {
 
-        },
-        defaultItem: {
+      },
+      defaultItem: {
 
-        },
+      },
     }),
     created() {
-        this.getDataCliente();
+      this.getDataCliente();
+      
     },
     computed: {
 
     },
     methods: {
-        crear() {
-                window.location.href = '/cliente/create';
-            },
-            getDataCliente() {
-                console.log("en get data nuew");
-                axios
-                    .get(`/v1.0/promos`)
-                    .then(response => {
-                        this.items = response.data;
-                        console.log(response.data);
-                    })
-                    .catch(e => {
-                        this.errors.push(e);
-                    });
-            },
-            editItem(item) {
-                // this.editedIndex = this.desserts.indexOf(item)
-                // this.editedItem = Object.assign({}, item)
-                this.dialog1 = true
-                this.idedit = item.id
-                console.log(item.id);
-                axios
-                    .get(`/v1.0/promo/${item.id}`)
-                    .then(response => {
-                        this.editCliente = response.data;
-                        console.log(response.data);
-                    })
-                    .catch(e => {
-                        this.errors.push(e);
-                    });
-            },
-            deleteItem(item) {
-                const index = this.items.indexOf(item)
-                console.log("Aqui abajo");
-                console.log(item.id);
-                confirm('Esta seguro que desea borrar esta Cliente?') && this.items.splice(index, 1)
-                axios
-                    .delete(`/v1.0/promo/${item.id}`, {
-                        _token: this.csrf
-                    })
-                    .then(response => {
-                        //                    window.location.href = '/';
-                        // JSON responses are automatically parsed.
-                        //                        this.user = response.data;
-                        //                        console.log(response.data);
-                        console.log("Borrado correctamente");
-                    })
-                    .catch(e => {
-                        //                        this.errors.push(e);
-                    });
-            },
-            close() {
-                this.dialog1 = false
-                this.dialog = false
-                console.log("entro seguo que si");
+        paginas() {
+            var paginas = Math.ceil(this.items / 8)
+            console.log(paginas);
+            console.log(this.items.length);
+            this.registros = this.items.length;
+            this.page = paginas;
+        },
+      crear() {
+        window.location.href = '/promo/create';
+      },
+      getDataCliente() {
+        console.log("en get data nuew");
+        axios
+          .get(`/v1.0/promos`)
+          .then(response => {
+            this.items = response.data;
+            // this.total = response.data.clientec;
+            // this.fecha = response.data.fecha;
+            // this.clienten = response.data.clienten;
+            // console.log(response.data.fecha);
+          })
+          .catch(e => {
+            this.errors.push(e);
+          });
+          this.paginas();
+          console.log("aqui");
+          
+      },
+      editItem(item) {
+        window.location.href = `/promo/${item.id}/edit`;
+        // this.editedIndex = this.desserts.indexOf(item)
+        // this.editedItem = Object.assign({}, item)
+        // this.dialog1 = true
+        // this.idedit = item.id
+        // console.log(item.id);
+        // axios
+          // .get(`/v1.0/cliente/${item.id}`)
+          // .then(response => {
+            // this.editCliente = response.data;
+            // console.log(response.data);
+          // })
+          // .catch(e => {
+            // this.errors.push(e);
+          // });
+      },
+      deleteItem(item) {
+        // const index = this.desserts.indexOf(item)
+        console.log("Aqui abajo");
+        console.log(item.id);
+        var borrar = confirm('Esta seguro que desea borrar est promo?')
+        if (!borrar) {
+          alert("Se cancelo");
+        }else{
+        axios
+          .delete(`/v1.0/promo/${item.id}`, {
+            _token: this.csrf
+          })
+          .then(response => {
+            //                    window.location.href = '/';
+            // JSON responses are automatically parsed.
+            //                        this.user = response.data;
+            //                        console.log(response.data);
+            console.log("Borrado correctamente");
+          })
+          .catch(e => {
+            //                        this.errors.push(e);
+          });
+          this.getDataCliente();
+        }
+      },
+      close() {
+        this.dialog1 = false
+        this.dialog = false
+        console.log("entro seguo que si");
 
-                // setTimeout(() => {
-                // this.editedItem = Object.assign({}, this.defaultItem)
-                // this.editedIndex = -1
-                // }, 300)
-            },
+        // setTimeout(() => {
+        // this.editedItem = Object.assign({}, this.defaultItem)
+        // this.editedIndex = -1
+        // }, 300)
+      },
     },
-}
 
+  }
 </script>

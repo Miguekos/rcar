@@ -102,9 +102,9 @@
       </v-card>
     </v-dialog>
 
-
     <v-container grid-list-md fluid text-xs-justify>
       <v-dialog v-model="dialog1" max-width="700px">
+        
         <v-card>
           <v-card-title>
             <span class="headline">Editar Cliente</span>
@@ -123,7 +123,12 @@
       <v-container fluid grid-list-md>
         <v-layout row wrap justify-center align-center>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
-            <!-- <v-card color=""> -->
+            <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            width="344">
             <v-card-title style="padding: 0px;" class="title">
               <v-avatar>
                 <v-icon color="orange" size="150%">perm_identity</v-icon>
@@ -139,10 +144,16 @@
             </v-card-title>
             <!-- <span class="caption"> Total Clientes </span>&nbsp;<span> {{ total }}</span> </v-card-title> -->
             <!-- <v-card-text></v-card-text> -->
-            <!-- </v-card> -->
+            </v-card>
+            </v-hover>
           </v-flex>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
-            <!-- <v-card color=""> -->
+            <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            width="344">
             <v-card-title style="padding: 0px;" class="title">
               <v-avatar row wrap>
                 <v-icon color="blue" size="150%">person_add</v-icon>
@@ -156,10 +167,16 @@
                 </v-flex>
               </v-layout>
             </v-card-title>
-            <!-- </v-card> -->
+            </v-card>
+            </v-hover>
           </v-flex>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
-            <!-- <v-card color=""> -->
+            <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            width="344">
             <v-card-title style="padding: 0px;" class="title">
               <v-avatar>
                 <v-icon color="green" size="150%">call_missed_outgoing</v-icon>
@@ -173,13 +190,14 @@
                 </v-flex>
               </v-layout>
             </v-card-title>
-            <!-- </v-card> -->
+            </v-card>
+            </v-hover>
           </v-flex>
         </v-layout>
       </v-container>
 
       <hr>
-      <h2 class="text-center">Clientes</h2>
+      <h2 class="font-weight-black text-center">Clientes</h2>
       <!-- <hr> -->
 
       <!-- <v-container grid-list-md text-xs-center> -->
@@ -208,7 +226,12 @@
       :class="`elevation-${hover ? 12 : 2}`"
       class="mx-auto"
       width="344"> -->
-          <v-card>
+          <v-hover>
+            <v-card 
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 1}`"
+            class="mx-auto"
+            >
             <!-- <v-card color="cyan darken-2" class="white--text"> -->
             <v-layout align-center justify-center row fill-height>
               <v-flex xs1>
@@ -249,6 +272,7 @@
               <!-- <v-btn flat >Listen now</v-btn> -->  
             </v-card-actions>
           </v-card>
+          </v-hover>
         </v-flex>
         <template slot="no-data">
           <v-alert :value="true" color="red" icon="warning">
@@ -278,11 +302,11 @@
       // boton fin
       // pagination: {},
       page: "",
+      reviews: 413,
+      value: 4.5,
       eliminar: "",
       dialog3: false,
       pagination: {},
-      reviews: 413,
-      value: 4.5,
       slider: 56,
       tile: false,
       search: "",
@@ -334,20 +358,21 @@
           });
       },
       editItem(item) {
+        window.location.href = `/cliente/${item.id}/edit`;
         // this.editedIndex = this.desserts.indexOf(item)
         // this.editedItem = Object.assign({}, item)
-        this.dialog1 = true
-        this.idedit = item.id
-        console.log(item.id);
-        axios
-          .get(`/v1.0/cliente/${item.id}`)
-          .then(response => {
-            this.editCliente = response.data;
-            console.log(response.data);
-          })
-          .catch(e => {
-            this.errors.push(e);
-          });
+        // this.dialog1 = true
+        // this.idedit = item.id
+        // console.log(item.id);
+        // axios
+          // .get(`/v1.0/cliente/${item.id}`)
+          // .then(response => {
+            // this.editCliente = response.data;
+            // console.log(response.data);
+          // })
+          // .catch(e => {
+            // this.errors.push(e);
+          // });
       },
       deleteItem(item) {
         // const index = this.desserts.indexOf(item)
