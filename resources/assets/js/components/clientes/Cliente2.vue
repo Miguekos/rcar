@@ -129,10 +129,10 @@
                 <v-icon color="orange" size="150%">perm_identity</v-icon>
               </v-avatar>
               <v-layout>
-                <v-flex xs8>
+                <v-flex xs9>
                   <v-card-text class="px-0">Total Clientes</v-card-text>
                 </v-flex>
-                <v-flex xs4>
+                <v-flex xs3>
                   <v-card-text class="px-0">{{ total }}</v-card-text>
                 </v-flex>
               </v-layout>
@@ -219,8 +219,7 @@
                 </v-avatar>
               </v-flex>
               <v-flex xs8>
-
-                <v-flex text-lg-right>
+                <v-flex text-right>
                   <v-icon small class="mr-2" @click="editItem(props.item)">
                     edit
                   </v-icon>
@@ -233,15 +232,12 @@
 
                   <div>
                     <div class="headline">{{ props.item.nombres }}</div>
-                    <div>{{ props.item.direccion }}</div>
+                    <div class="text-xs-left">{{ props.item.direccion }}</div>
                     <div>{{ props.item.celular }}</div>
                     <v-spacer></v-spacer>
                     <v-flex align-content-end>
                       <v-icon small class="mr-2" @click="dialog3 = true">
                         mail_outline
-                      </v-icon>
-                      <v-icon small class="mr-2" @click="deleteItem(props.item)">
-                        whatsapp
                       </v-icon>
                     </v-flex>
                   </div>
@@ -357,7 +353,6 @@
         // const index = this.desserts.indexOf(item)
         console.log("Aqui abajo");
         console.log(item.id);
-        this.dialog3 = true;
         var borrar = confirm('Esta seguro que desea borrar este Cliente?')
         if (!borrar) {
           alert("Se cancelo");

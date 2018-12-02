@@ -68228,10 +68228,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68308,7 +68304,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // const index = this.desserts.indexOf(item)
       console.log("Aqui abajo");
       console.log(item.id);
-      this.dialog3 = true;
       var borrar = confirm('Esta seguro que desea borrar este Cliente?');
       if (!borrar) {
         alert("Se cancelo");
@@ -68532,7 +68527,7 @@ var render = function() {
                             [
                               _c(
                                 "v-flex",
-                                { attrs: { xs8: "" } },
+                                { attrs: { xs9: "" } },
                                 [
                                   _c("v-card-text", { staticClass: "px-0" }, [
                                     _vm._v("Total Clientes")
@@ -68543,7 +68538,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "v-flex",
-                                { attrs: { xs4: "" } },
+                                { attrs: { xs3: "" } },
                                 [
                                   _c("v-card-text", { staticClass: "px-0" }, [
                                     _vm._v(_vm._s(_vm.total))
@@ -68805,7 +68800,7 @@ var render = function() {
                                   [
                                     _c(
                                       "v-flex",
-                                      { attrs: { "text-lg-right": "" } },
+                                      { attrs: { "text-right": "" } },
                                       [
                                         _c(
                                           "v-icon",
@@ -68862,11 +68857,15 @@ var render = function() {
                                               ]
                                             ),
                                             _vm._v(" "),
-                                            _c("div", [
-                                              _vm._v(
-                                                _vm._s(props.item.direccion)
-                                              )
-                                            ]),
+                                            _c(
+                                              "div",
+                                              { staticClass: "text-xs-left" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(props.item.direccion)
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c("div", [
                                               _vm._v(_vm._s(props.item.celular))
@@ -68896,26 +68895,6 @@ var render = function() {
                                                   [
                                                     _vm._v(
                                                       "\n                        mail_outline\n                      "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-icon",
-                                                  {
-                                                    staticClass: "mr-2",
-                                                    attrs: { small: "" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.deleteItem(
-                                                          props.item
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                        whatsapp\n                      "
                                                     )
                                                   ]
                                                 )
