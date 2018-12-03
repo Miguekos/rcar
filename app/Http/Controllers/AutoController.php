@@ -14,7 +14,17 @@ class AutoController extends Controller
      */
     public function index()
     {
-        //
+        return view('autos.index');
+    }
+
+    public function indexapi()
+    {
+      $autos = Auto::all();
+      $autost = Auto::count();
+      return json_encode([
+          "autos" => $autos,
+          "autost" => $autost,
+      ]);
     }
 
     /**

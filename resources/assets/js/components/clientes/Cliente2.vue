@@ -82,8 +82,8 @@
 </style>
 <template>
   <div>
-    
-<v-dialog v-model="dialog3" persistent max-width="690">  
+
+<v-dialog v-model="dialog3" persistent max-width="690">
       <v-card>
         <v-card-title class="headline">Enviar Correo</v-card-title>
         <v-card-text>
@@ -103,28 +103,11 @@
     </v-dialog>
 
     <v-container grid-list-md fluid text-xs-justify>
-      <v-dialog v-model="dialog1" max-width="700px">
-        
-        <v-card>
-          <v-card-title>
-            <span class="headline">Editar Cliente</span>
-          </v-card-title>
-          <template>
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-12">
-                  <cliente-edit :cliente="editCliente" :user="user" :close="close" :carga="getDataCliente"></cliente-edit>
-                </div>
-              </div>
-            </div>
-          </template>
-        </v-card>
-      </v-dialog>
       <v-container fluid grid-list-md>
         <v-layout row wrap justify-center align-center>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
             <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -149,7 +132,7 @@
           </v-flex>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
             <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -172,7 +155,7 @@
           </v-flex>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
             <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -227,7 +210,7 @@
       class="mx-auto"
       width="344"> -->
           <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 1}`"
             class="mx-auto"
@@ -242,7 +225,7 @@
                 </v-avatar>
               </v-flex>
               <v-flex xs8>
-                <v-flex text-right>
+                <v-flex text-sm-right>
                   <v-icon small class="mr-2" @click="editItem(props.item)">
                     edit
                   </v-icon>
@@ -269,7 +252,7 @@
             </v-layout>
             <!-- <v-divider dense light></v-divider> -->
             <v-card-actions>
-              <!-- <v-btn flat >Listen now</v-btn> -->  
+              <!-- <v-btn flat >Listen now</v-btn> -->
             </v-card-actions>
           </v-card>
           </v-hover>
@@ -319,12 +302,10 @@
       dialog1: false,
       rowsPerPageItems: [8, 12],
       pagination: {
-        // rowsPerPage: 8
       },
       items: [],
       editedIndex: -1,
       editedItem: {
-
       },
       defaultItem: {
 
@@ -334,6 +315,8 @@
       this.getDataCliente();
       var paginas = Math.ceil(19 / 8)
       this.page = paginas;
+      console.log("abajo el total");
+      // console.log(this.total);
     },
     computed: {
 
@@ -352,6 +335,8 @@
             this.fecha = response.data.fecha;
             this.clienten = response.data.clienten;
             console.log(response.data.fecha);
+            var paginas =  Math.ceil(response.data.clientec / 8);
+            this.page = paginas;
           })
           .catch(e => {
             this.errors.push(e);

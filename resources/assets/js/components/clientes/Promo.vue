@@ -1,5 +1,4 @@
 <template>
-
   <v-container grid-list-md fluid text-xs-justify>
     <v-dialog v-model="dialog1" max-width="700px">
       <v-card>
@@ -10,10 +9,10 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
-                <cliente-edit 
-                :cliente="editCliente" 
-                :user="user" 
-                :close="close" 
+                <cliente-edit
+                :cliente="editCliente"
+                :user="user"
+                :close="close"
                 :carga="getDataCliente"
                 ></cliente-edit>
               </div>
@@ -90,17 +89,25 @@
             <!-- <v-card color="cyan darken-2" class="white--text"> -->
             <v-card>
               <v-layout align-center justify-center row fill-height>
-                <v-flex  xs2>
-                  <v-avatar
-                    size="85px"
-                  >                  
-                  <v-img :src="props.item.image"></v-img>
+                <v-flex xs1>
+                </v-flex>
+                <v-flex xs3>
+                  <v-avatar size="100%">
+                    <v-img :src="props.item.image"></v-img>
                   </v-avatar>
                 </v-flex>
-                <v-flex xs9>
+                <v-flex xs8>
+                  <v-flex text-sm-right>
+                    <v-icon small class="mr-2" @click="editItem(props.item)">
+                      edit
+                    </v-icon>
+                    <v-icon small @click="deleteItem(props.item)">
+                      close
+                    </v-icon>
+                  </v-flex>
+
                   <v-card-title primary-title>
                     <div>
-
                       <div class="headline">{{ props.item.nombres }}</div>
                       <div>{{ props.item.dni }}</div>
                       <div>{{ props.item.direccion }}</div>

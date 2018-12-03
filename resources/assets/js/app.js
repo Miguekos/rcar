@@ -15,8 +15,9 @@ Vue.use(Vuetify)
 
 // index.js or main.js
 // import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
+
+// const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 /**
 Next, we will create a fresh Vue application instance and attach it to
@@ -42,7 +43,19 @@ Vue.component('comp-promos', require('./components/promos/Promos.vue'));
 Vue.component('promo-create', require('./components/promos/PromoCreate.vue'));
 Vue.component('promo-edit', require('./components/promos/PromoEdit.vue'));
 Vue.component('promo-show', require('./components/promos/PromoShow.vue'));
-// Vue.component('promo-table', require('./components/promos/PromoTable.vue'));
+
+// Auto
+Vue.component('comp-autos', require('./components/autos/Autos.vue'));
+Vue.component('auto-create', require('./components/autos/AutoCreate.vue'));
+Vue.component('auto-edit', require('./components/autos/AutoEdit.vue'));
+Vue.component('auto-show', require('./components/autos/AutoShow.vue'));
+
+// Reservas
+Vue.component('comp-reservas', require('./components/reservas/Reservas.vue'));
+Vue.component('pre-reserva', require('./components/reservas/PreReserva.vue'));
+Vue.component('reserva-create', require('./components/reservas/ReservaCreate.vue'));
+Vue.component('reserva-edit', require('./components/reservas/ReservaEdit.vue'));
+Vue.component('reserva-show', require('./components/reservas/ReservaShow.vue'));
 
 
 const app = new Vue({

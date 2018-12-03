@@ -75,22 +75,24 @@ export default {
             // },
             {
                 heading: 'Labels'
-            }, {
+            },
+            {
                 icon: 'favorite_border',
                 text: 'Promos',
-                link: '/promos'
+                link: '/promo'
             },
             // {
             //     divider: false
             // },
             {
-                icon: 'archive',
-                text: 'Archive',
-                link: '/'
-            }, {
+                icon: 'directions_car',
+                text: 'Autos',
+                link: '/auto'
+            },
+            {
                 icon: 'delete',
-                text: 'Trash',
-                link: '/'
+                text: 'Reservas',
+                link: '/reserva'
             },
             // {
             //     divider: false

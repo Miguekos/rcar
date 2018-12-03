@@ -30,7 +30,8 @@ class PromoController extends Controller
      */
     public function create()
     {
-        //
+      // return "sADasdasd";
+        return view('promos.create');
     }
 
     /**

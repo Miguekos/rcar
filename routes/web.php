@@ -13,7 +13,6 @@ Route::group(['prefix' => 'v1.0'], function () {
     Route::get('usuario', 'UserController@indexapi');
     Route::post('login', 'Auth\LoginController@loginapi');
 
-
 // Promos Api
     Route::get('/promos','PromoController@indexapi');
     Route::get('promo/{promo}', 'PromoController@showapi');
@@ -21,7 +20,20 @@ Route::group(['prefix' => 'v1.0'], function () {
     Route::put('promo/{promo}', 'PromoController@updateapi');
     Route::delete('promo/{promo}', 'PromoController@destroyapi');
 
+// Auto Api
+    Route::get('/autos','AutoController@indexapi');
+    Route::get('auto/{auto}', 'AutoController@showapi');
+    Route::post('auto', 'AutoController@storeapi');
+    Route::put('auto/{auto}', 'AutoController@updateapi');
+    Route::delete('auto/{auto}', 'AutoController@destroyapi');
 
+
+// Reserva Api
+    Route::get('/reservas','ReservaController@indexapi');
+    Route::get('reserva/{reserva}', 'ReservaController@showapi');
+    Route::post('reserva', 'ReservaController@storeapi');
+    Route::put('reserva/{reserva}', 'ReservaController@updateapi');
+    Route::delete('reserva/{reserva}', 'ReservaController@destroyapi');
 
 
 });
@@ -41,7 +53,13 @@ Route::post('register', 'Auth\RegisterController@register')->name('register');
 Route::resource('user','UserController');
 
 // promos
-Route::resource('promos','PromoController');
+Route::resource('promo','PromoController');
+
+// reservas
+Route::resource('reserva','ReservaController');
+
+// promos
+Route::resource('auto','AutoController');
 
 //resetear contraseña
 Route::get('cambioclaveform', 'DashboardController@cambioclaveform')->name('cambioclaveform.update');

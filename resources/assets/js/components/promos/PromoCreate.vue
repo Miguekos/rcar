@@ -1,7 +1,7 @@
 
 <style>
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover
@@ -18,52 +18,29 @@ select:-webkit-autofill:focus {
 
 <template>
     <div>
-  <v-form id="ContactForm" @submit="sendForm">
+  <v-form id="ContactForm" @submit.prevent="sendForm">
     <v-container>
       <h2>Informacion Basica</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6>
-          <label for="">Apellido Paterno</label>
+          <label for="">Nombre</label>
           <v-text-field
             autofocus
-            name="apellidoPaterno"
-            solo          
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <label for="">Apellido Materno</label>
-          <v-text-field
-            name="apellidoMaterno"
+            name="nombre"
             solo
           ></v-text-field>
         </v-flex>
 
-        <v-flex xs12 sm6>
+        <!-- <v-flex xs12 sm6>
+          <label for="">Vigencia</label>
           <v-text-field
-            name="nombres"
-            label="Nombres"
+            name="vigencia"
             solo
           ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="dni"
-            label="Dni"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="image"
-            label="image"
-            solo
-          ></v-text-field>
-        </v-flex>
+        </v-flex> -->
 
         <v-flex xs12 sm6 md4>
+          <label for="">Vigencia</label>
       <v-menu
         :close-on-content-click="false"
         v-model="menu2"
@@ -75,144 +52,37 @@ select:-webkit-autofill:focus {
         min-width="290px"
       >
         <v-text-field
+          name="vigencia"
           slot="activator"
-          name="fechaNacimiento"
           v-model="date"
-          label="Fecha de Nacimiento"
           prepend-icon="event"
           readonly
         ></v-text-field>
         <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
       </v-menu>
     </v-flex>
-    <!-- <v-spacer></v-spacer> -->
-
-        <!-- <v-flex xs12 sm6>
-          <v-text-field
-          date-with-time
-            name="fechaNacimiento"
-            label="Fecha de Nacimiento"
-            solo
-          ></v-text-field>
-        </v-flex> -->
-      </v-layout>
-<v-divider light></v-divider>
-<!-- <v-toolbar-title>Informacion de Contacto</v-toolbar-title> -->
-<h2>Informacion de Contacto</h2>
-<v-layout row wrap>
 
         <v-flex xs12 sm6>
+          <label for="">Dias Pagados</label>
           <v-text-field
-            name="correo"
-            label="correo"
+            name="dias_pagados"
             solo
           ></v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6>
+          <label for="">Dias Libres</label>
           <v-text-field
-            name="celular"
-            label="celular"
+            name="dias_libres"
             solo
           ></v-text-field>
         </v-flex>
 
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="direccion"
-            label="direccion"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="ciudad"
-            label="ciudad"
-            solo
-          ></v-text-field>
-        </v-flex>
-</v-layout>
-        <v-divider light></v-divider>
-<h2>Informacion Bancaria</h2>
-
-<v-layout row wrap>
-        <v-flex xs12 sm6>
-          {{ token }}
-          <v-text-field
-            name="cci"
-            label="cci"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="banco"
-            label="banco"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="nombreTitularCuenta"
-            label="nombreTitularCuenta"
-            solo
-          ></v-text-field>
-        </v-flex>
-</v-layout>
-        <v-divider light></v-divider>
-<h2>Documentos</h2>
-<v-layout row wrap>
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="numeroBrevete"
-            label="numeroBrevete"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="fechaVencimientoBrevete"
-            label="fechaVencimientoBrevete"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="fotoDni"
-            label="fotoDni"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="calificacionCliente"
-            label="calificacionCliente"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="comentariosAdicionales"
-            label="comentariosAdicionales"
-            solo
-          ></v-text-field>
           <input type="hidden" name="_token" :value="csrf">
-        </v-flex>
       </v-layout>
-        <v-btn type="submit" color="green" dark black>Guardar</v-btn> 
+        <v-btn type="submit" color="green" dark black>Guardar</v-btn>
         <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
     </v-container>
-    
-
-        
-      
   </v-form>
     </div>
 </template>
@@ -253,18 +123,18 @@ select:-webkit-autofill:focus {
                   jsonObject[key] = value;
               }
               console.log(jsonObject);
-              axios.post('/v1.0/cliente',jsonObject)
+              axios.post('/v1.0/promo',jsonObject)
                   .then(response => {
                       console.log(response)
-                      window.location.href = '/cliente';
+                      // window.location.href = '/promo';
                   })
                   .catch(error => {
-                      console.log(error)
                       alert("Surgio un error al guardar tu cliente");
+                      console.log(error)
                   })
           },
           cancelar () {
-            window.location.href = '/cliente';
+            window.location.href = '/promo';
           },
       }
 

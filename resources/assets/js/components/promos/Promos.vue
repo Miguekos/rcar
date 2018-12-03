@@ -82,8 +82,8 @@
 </style>
 <template>
   <div>
-    
-<v-dialog v-model="dialog3" persistent max-width="690">  
+
+<v-dialog v-model="dialog3" persistent max-width="690">
       <v-card>
         <v-card-title class="headline">Enviar Correo</v-card-title>
         <v-card-text>
@@ -104,7 +104,7 @@
 
     <v-container grid-list-md fluid text-xs-justify>
       <v-dialog v-model="dialog1" max-width="700px">
-        
+
         <v-card>
           <v-card-title>
             <span class="headline">Editar Cliente</span>
@@ -124,7 +124,7 @@
         <v-layout row wrap justify-center align-center>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
             <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -135,7 +135,7 @@
               </v-avatar>
               <v-layout>
                 <v-flex xs9>
-                  <v-card-text class="px-0">Total Clientes</v-card-text>
+                  <v-card-text class="px-0">Total {{ title }}</v-card-text>
                 </v-flex>
                 <v-flex xs3>
                   <v-card-text class="px-0">{{ total }}</v-card-text>
@@ -149,7 +149,7 @@
           </v-flex>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
             <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -160,7 +160,7 @@
               </v-avatar>
               <v-layout>
                 <v-flex xs9>
-                  <v-card-text class="px-0">Nuevos Clientes</v-card-text>
+                  <v-card-text class="px-0">Nuevas {{ title }}</v-card-text>
                 </v-flex>
                 <v-flex xs3>
                   <v-card-text class="px-0">{{ clienten }}</v-card-text>
@@ -172,7 +172,7 @@
           </v-flex>
           <v-flex d-flex xs12 sm6 md4 elevation-2>
             <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -197,13 +197,13 @@
       </v-container>
 
       <hr>
-      <h2 class="font-weight-black text-center">Clientes</h2>
+      <br>
+      <h1 class="font-weight-black text-lg-center">{{ title }}</h1>
       <!-- <hr> -->
 
       <!-- <v-container grid-list-md text-xs-center> -->
       <v-layout row wrap>
         <v-flex xs4 text-sm-left>
-
         </v-flex>
         <v-spacer></v-spacer>
         <!-- <v-flex xs4> -->
@@ -227,7 +227,7 @@
       class="mx-auto"
       width="344"> -->
           <v-hover>
-            <v-card 
+            <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 1}`"
             class="mx-auto"
@@ -238,11 +238,12 @@
               </v-flex>
               <v-flex xs3>
                 <v-avatar size="100%">
-                  <v-img :src="props.item.image"></v-img>
+                  <!-- <v-img :src="props.item.image"></v-img> -->
+                  <v-img src="/img/default.jpg"></v-img>
                 </v-avatar>
               </v-flex>
               <v-flex xs8>
-                <v-flex text-right>
+                <v-flex text-sm-right>
                   <v-icon small class="mr-2" @click="editItem(props.item)">
                     edit
                   </v-icon>
@@ -269,7 +270,7 @@
             </v-layout>
             <!-- <v-divider dense light></v-divider> -->
             <v-card-actions>
-              <!-- <v-btn flat >Listen now</v-btn> -->  
+              <!-- <v-btn flat >Listen now</v-btn> -->
             </v-card-actions>
           </v-card>
           </v-hover>
@@ -289,7 +290,7 @@
     <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
       <span class="mdc-fab__icon material-icons">add</span>
     </button>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre> -->
   </div>
 </template>
 
@@ -301,6 +302,7 @@
       // boton inicio
       // boton fin
       // pagination: {},
+      title: "Promos",
       registros: "",
       page: "",
       reviews: 413,
@@ -333,7 +335,7 @@
     }),
     created() {
       this.getDataCliente();
-      
+
     },
     computed: {
 
@@ -365,7 +367,7 @@
           });
           this.paginas();
           console.log("aqui");
-          
+
       },
       editItem(item) {
         window.location.href = `/promo/${item.id}/edit`;
