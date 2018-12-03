@@ -82,7 +82,6 @@
 </style>
 <template>
   <div>
-
 <v-dialog v-model="dialog3" persistent max-width="690">
       <v-card>
         <v-card-title class="headline">Enviar Correo</v-card-title>
@@ -180,25 +179,12 @@
       </v-container>
 
       <hr>
-      <h2 class="font-weight-black text-center">Clientes</h2>
-      <!-- <hr> -->
-
-      <!-- <v-container grid-list-md text-xs-center> -->
-      <v-layout row wrap>
-        <v-flex xs4 text-sm-left>
-
-        </v-flex>
-        <v-spacer></v-spacer>
-        <!-- <v-flex xs4> -->
-        <!-- <v-card dark color="green">
-                    <v-card-text class="px-4">Descargar</v-card-text>
-                </v-card> -->
-        <!-- </v-flex> -->
-        <v-flex xs12>
+      <br>
+      <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
           <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-          <hr>
+        <v-flex>
+        <br>
         </v-flex>
-      </v-layout>
 
       <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
         content-tag="v-layout" row wrap class="elevation-5" hide-actions>
@@ -284,6 +270,7 @@
       // boton inicio
       // boton fin
       // pagination: {},
+      title:"Clientes",
       page: "",
       reviews: 413,
       value: 4.5,
@@ -313,10 +300,6 @@
     }),
     created() {
       this.getDataCliente();
-      var paginas = Math.ceil(19 / 8)
-      this.page = paginas;
-      console.log("abajo el total");
-      // console.log(this.total);
     },
     computed: {
 

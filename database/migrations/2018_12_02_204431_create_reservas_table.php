@@ -20,8 +20,7 @@ class CreateReservasTable extends Migration
             $table->integer('vehiculo')->nullable();
             $table->integer('cliente')->nullable();
             $table->integer('producto')->nullable();
-            $table->integer('promo_id')->unsigned();
-            $table->foreign ('promo_id')->references('id')->on('promos');
+            $table->integer('promo')->nullable();
             $table->integer('zonaDeEntrega')->nullable();
             $table->string('direccionEntrega')->nullable();
             $table->integer('seguro')->nullable();
@@ -32,6 +31,7 @@ class CreateReservasTable extends Migration
             $table->integer('doblePiloto')->nullable();
             $table->integer('tanqueLleno')->nullable();
             $table->string('autoSeleccionado')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }

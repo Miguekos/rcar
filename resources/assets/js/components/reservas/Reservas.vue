@@ -1,3 +1,85 @@
+<style>
+  .app-fab--absolute {
+    position: fixed;
+    /*z-index: 3;*/
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: orange;
+    right: 0;
+    bottom: 0;
+    /*position: absolute;*/
+    margin-right: 13px;
+    margin-bottom: 13px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-size: 32px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: .3s;
+  }
+
+  @media(min-width: 1024px) {
+    .app-fab--absolute {
+      bottom: 2.5rem;
+      right: 2.5rem;
+      /*z-index: 3;*/
+    }
+  }
+
+  button:hover {
+    /*background: grey;
+    color: white;
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #F44336;*/
+  }
+
+  @-webkit-keyframes hvr-pulse {
+    25% {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    75% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+
+  @keyframes hvr-pulse {
+    25% {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    75% {
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+
+  .hvr-pulse {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  }
+
+  .hvr-pulse:hover,
+  .hvr-pulse:focus,
+  .hvr-pulse:active {
+    -webkit-animation-name: hvr-pulse;
+    animation-name: hvr-pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+
+</style>
 <template>
   <div>
     <template>
@@ -10,35 +92,35 @@
       <v-tabs
         centered
       >
-        <v-tabs-slider background-color="gray" color="green"></v-tabs-slider>
+        <v-tabs-slider color="green"></v-tabs-slider>
 
         <v-tab href="#tab-1">
           Pre-Reserva &nbsp;
-          <h2>24</h2>
+          <h2>00</h2>
 
         </v-tab>
 
         <v-tab href="#tab-2">
           Evaluacion Pendiente &nbsp;
-          <h2>24</h2>
+          <h2>00</h2>
 
         </v-tab>
 
         <v-tab href="#tab-3">
           Reserva Aprobada &nbsp;
-          <h2>24</h2>
+          <h2>00</h2>
 
         </v-tab>
 
         <v-tab href="#tab-4">
           Pendiente de Entrega &nbsp;
-          <h2>24</h2>
+          <h2>00</h2>
 
         </v-tab>
 
         <v-tab href="#tab-5">
           Liquidacion &nbsp;
-          <h2>24</h2>
+          <h2>00</h2>
 
         </v-tab>
 
@@ -56,14 +138,18 @@
           id="tab-2"
         >
           <v-card flat>
-            <v-card-text>2</v-card-text>
+            <v-card-text>
+              <pre-reserva></pre-reserva>
+            </v-card-text>
           </v-card>
         </v-tab-item>
         <v-tab-item
           id="tab-3"
         >
           <v-card flat>
-            <v-card-text>3</v-card-text>
+            <v-card-text>
+              <pre-reserva></pre-reserva>
+            </v-card-text>
           </v-card>
         </v-tab-item>
 
@@ -71,7 +157,9 @@
           id="tab-4"
         >
           <v-card flat>
-            <v-card-text>4</v-card-text>
+            <v-card-text>
+              <pre-reserva></pre-reserva>
+            </v-card-text>
           </v-card>
         </v-tab-item>
 
@@ -79,12 +167,16 @@
           id="tab-5"
         >
           <v-card flat>
-            <v-card-text>5</v-card-text>
+            <v-card-text>
+              <pre-reserva></pre-reserva>
+            </v-card-text>
           </v-card>
         </v-tab-item>
       </v-tabs>
     </template>
-
+    <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+      <span class="mdc-fab__icon material-icons">add</span>
+    </button>
     <!-- <pre>{{ $data }}</pre> -->
   </div>
 </template>
@@ -97,124 +189,18 @@
       // boton inicio
       // boton fin
       // pagination: {},
-      registros: "",
-      page: "",
-      reviews: 413,
-      value: 4.5,
-      eliminar: "",
-      dialog3: false,
-      pagination: {},
-      slider: 56,
-      tile: false,
-      search: "",
-      total: "",
-      fecha: "",
-      clienten: "",
-      editCliente: "",
-      idedit: "",
-      dialog: false,
-      dialog1: false,
-      rowsPerPageItems: [8, 12],
-      pagination: {
-        // rowsPerPage: 8
-      },
-      items: [],
-      editedIndex: -1,
-      editedItem: {
 
-      },
-      defaultItem: {
-
-      },
     }),
     created() {
-      this.getDataCliente();
 
     },
     computed: {
 
     },
     methods: {
-        paginas() {
-            var paginas = Math.ceil(this.items / 8)
-            console.log(paginas);
-            console.log(this.items.length);
-            this.registros = this.items.length;
-            this.page = paginas;
-        },
-      crear() {
+      crear (){
         window.location.href = '/reserva/create';
-      },
-      getDataCliente() {
-        console.log("en get data nuew");
-        axios
-          .get(`/v1.0/reservas`)
-          .then(response => {
-            this.items = response.data;
-            // this.total = response.data.clientec;
-            // this.fecha = response.data.fecha;
-            // this.clienten = response.data.clienten;
-            // console.log(response.data.fecha);
-          })
-          .catch(e => {
-            this.errors.push(e);
-          });
-          this.paginas();
-          console.log("aqui");
-
-      },
-      editItem(item) {
-        window.location.href = `/reserva/${item.id}/edit`;
-        // this.editedIndex = this.desserts.indexOf(item)
-        // this.editedItem = Object.assign({}, item)
-        // this.dialog1 = true
-        // this.idedit = item.id
-        // console.log(item.id);
-        // axios
-          // .get(`/v1.0/cliente/${item.id}`)
-          // .then(response => {
-            // this.editCliente = response.data;
-            // console.log(response.data);
-          // })
-          // .catch(e => {
-            // this.errors.push(e);
-          // });
-      },
-      deleteItem(item) {
-        // const index = this.desserts.indexOf(item)
-        console.log("Aqui abajo");
-        console.log(item.id);
-        var borrar = confirm('Esta seguro que desea borrar est reserva?')
-        if (!borrar) {
-          alert("Se cancelo");
-        }else{
-        axios
-          .delete(`/v1.0/reserva/${item.id}`, {
-            _token: this.csrf
-          })
-          .then(response => {
-            //                    window.location.href = '/';
-            // JSON responses are automatically parsed.
-            //                        this.user = response.data;
-            //                        console.log(response.data);
-            console.log("Borrado correctamente");
-          })
-          .catch(e => {
-            //                        this.errors.push(e);
-          });
-          this.getDataCliente();
-        }
-      },
-      close() {
-        this.dialog1 = false
-        this.dialog = false
-        console.log("entro seguo que si");
-
-        // setTimeout(() => {
-        // this.editedItem = Object.assign({}, this.defaultItem)
-        // this.editedIndex = -1
-        // }, 300)
-      },
+      }
     },
 
   }

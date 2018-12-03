@@ -185,7 +185,6 @@
           <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
         <v-flex>
         <br>
-        <br>
         </v-flex>
 
       <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"

@@ -198,47 +198,27 @@
 
       <hr>
       <br>
-      <h1 class="font-weight-black text-lg-center">{{ title }}</h1>
-      <!-- <hr> -->
-
-      <!-- <v-container grid-list-md text-xs-center> -->
-      <v-layout row wrap>
-        <v-flex xs4 text-sm-left>
-        </v-flex>
-        <v-spacer></v-spacer>
-        <!-- <v-flex xs4> -->
-        <!-- <v-card dark color="green">
-                    <v-card-text class="px-4">Descargar</v-card-text>
-                </v-card> -->
-        <!-- </v-flex> -->
-        <v-flex xs12>
+      <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
           <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-          <hr>
+        <v-flex>
+        <br>
         </v-flex>
-      </v-layout>
 
-      <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
+      <v-data-iterator :disable-page-reset="true" :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
         content-tag="v-layout" row wrap class="elevation-5" hide-actions>
 
         <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
-          <!-- <v-card
-                slot-scope="{ hover }"
-      :class="`elevation-${hover ? 12 : 2}`"
-      class="mx-auto"
-      width="344"> -->
           <v-hover>
             <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 1}`"
             class="mx-auto"
             >
-            <!-- <v-card color="cyan darken-2" class="white--text"> -->
             <v-layout align-center justify-center row fill-height>
               <v-flex xs1>
               </v-flex>
               <v-flex xs3>
                 <v-avatar size="100%">
-                  <!-- <v-img :src="props.item.image"></v-img> -->
                   <v-img src="/img/default.jpg"></v-img>
                 </v-avatar>
               </v-flex>
@@ -283,14 +263,14 @@
 
       </v-data-iterator>
       <div class="text-xs-center pt-2">
-        <v-pagination v-model="pagination.page" :length="page"></v-pagination>
+        <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
       </div>
     </v-container>
 
     <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
       <span class="mdc-fab__icon material-icons">add</span>
     </button>
-    <!-- <pre>{{ $data }}</pre> -->
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -341,13 +321,6 @@
 
     },
     methods: {
-        paginas() {
-            var paginas = Math.ceil(this.items / 8)
-            console.log(paginas);
-            console.log(this.items.length);
-            this.registros = this.items.length;
-            this.page = paginas;
-        },
       crear() {
         window.location.href = '/promo/create';
       },
@@ -365,9 +338,7 @@
           .catch(e => {
             this.errors.push(e);
           });
-          this.paginas();
           console.log("aqui");
-
       },
       editItem(item) {
         window.location.href = `/promo/${item.id}/edit`;

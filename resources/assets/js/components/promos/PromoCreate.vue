@@ -18,7 +18,7 @@ select:-webkit-autofill:focus {
 
 <template>
     <div>
-  <v-form id="ContactForm" @submit.prevent="sendForm">
+  <v-form id="ContactForm" @submit="sendForm">
     <v-container>
       <h2>Informacion Basica</h2>
       <v-layout row wrap>

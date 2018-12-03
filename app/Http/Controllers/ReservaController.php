@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reserva;
+use App\Promo;
+use App\Auto;
+use App\Cliente;
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
@@ -22,7 +25,6 @@ class ReservaController extends Controller
       $promo = Promo::all();
       $cliente = Cliente::all();
       $auto = Auto::all();
-      $promo = Promo::all();
         return json_encode([
           'promo' => $promo,
           'cliente' => $cliente,
@@ -37,7 +39,7 @@ class ReservaController extends Controller
      */
     public function create()
     {
-        //
+        return view('reservas.create');
     }
 
     /**
