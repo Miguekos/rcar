@@ -68348,7 +68348,11 @@ var render = function() {
                                             _c(
                                               "v-flex",
                                               {
-                                                attrs: { "text-sm-right": "" }
+                                                attrs: {
+                                                  "text-xs-right": "",
+                                                  "text-lg-right": "",
+                                                  "text-sm-right": ""
+                                                }
                                               },
                                               [
                                                 _c(
@@ -71911,7 +71915,11 @@ var render = function() {
                                             _c(
                                               "v-flex",
                                               {
-                                                attrs: { "text-sm-right": "" }
+                                                attrs: {
+                                                  "text-xs-right": "",
+                                                  "text-lg-right": "",
+                                                  "text-sm-right": ""
+                                                }
                                               },
                                               [
                                                 _c(
@@ -73997,7 +74005,11 @@ var render = function() {
                                             _c(
                                               "v-flex",
                                               {
-                                                attrs: { "text-sm-right": "" }
+                                                attrs: {
+                                                  "text-xs-right": "",
+                                                  "text-lg-right": "",
+                                                  "text-sm-right": ""
+                                                }
                                               },
                                               [
                                                 _c(
@@ -76203,7 +76215,11 @@ var render = function() {
                                             _c(
                                               "v-flex",
                                               {
-                                                attrs: { "text-sm-right": "" }
+                                                attrs: {
+                                                  "text-xs-right": "",
+                                                  "text-lg-right": "",
+                                                  "text-sm-right": ""
+                                                }
                                               },
                                               [
                                                 _c(
@@ -76219,7 +76235,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                                        edit\n                                    "
+                                                      "\r\n                                        edit\r\n                                    "
                                                     )
                                                   ]
                                                 ),
@@ -76238,7 +76254,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                                        close\n                                    "
+                                                      "\r\n                                        close\r\n                                    "
                                                     )
                                                   ]
                                                 )
@@ -76321,7 +76337,7 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\n                                                mail_outline\n                                            "
+                                                              "\r\n                                                mail_outline\r\n                                            "
                                                             )
                                                           ]
                                                         )
@@ -76365,7 +76381,7 @@ var render = function() {
                     { attrs: { value: true, color: "red", icon: "warning" } },
                     [
                       _vm._v(
-                        "\n                    Lo siento no hay datos que cargar :(\n                "
+                        "\r\n                    Lo siento no hay datos que cargar :(\r\n                "
                       )
                     ]
                   )
@@ -77005,19 +77021,19 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("div", [
                                   _vm._v(
-                                    "\n                                Placa: WQE-123\n                                "
+                                    "\r\n                                Placa: WQE-123\r\n                                "
                                   ),
                                   _c("br"),
                                   _vm._v(
-                                    "\n                                    Color: Rojo\n                                    "
+                                    "\r\n                                    Color: Rojo\r\n                                    "
                                   ),
                                   _c("br"),
                                   _vm._v(
-                                    "\n                                        Año: 2014\n                                        "
+                                    "\r\n                                        Año: 2014\r\n                                        "
                                   ),
                                   _c("br"),
                                   _vm._v(
-                                    "\n                                            Precio: 89$\n                                        "
+                                    "\r\n                                            Precio: 89$\r\n                                        "
                                   )
                                 ])
                               ])
