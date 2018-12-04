@@ -3,10 +3,7 @@
     <v-container fluid grid-list-md>
         <v-layout row wrap>
             <v-flex d-flex xs12 sm6 md4 elevation-5>
-                <v-card color="purple" dark>
-                    <v-card-title primary class="title">Lorem</v-card-title>
-                    <v-card-text>{{ lorem }}</v-card-text>
-                </v-card>
+
             </v-flex>
             <v-flex d-flex xs12 sm6 md3 elevation-5>
                 <v-layout row wrap>
@@ -41,9 +38,10 @@
 </template>
 
 <script>
+
     export default {
         data: () => ({
-            lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`
-        })
+          lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`
+        }),
     }
 </script>

@@ -1,7 +1,6 @@
 <template lang="html">
 <div class="">
     <v-container grid-list-md fluid text-xs-justify>
-
         <v-data-iterator
             :items="items"
             :rows-per-page-items="rowsPerPageItems"
@@ -20,7 +19,7 @@
                             <v-flex xs1></v-flex>
                             <v-flex xs3>
                                 <v-avatar size="100%">
-                                    <v-img src="/img/default.jpg"></v-img>
+                                    <v-img src="/img/default1.jpg"></v-img>
                                 </v-avatar>
                             </v-flex>
                             <v-flex xs8>

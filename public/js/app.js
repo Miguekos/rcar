@@ -12376,9 +12376,14 @@ __webpack_require__(16);
 
 window.Vue = __webpack_require__(13);
 
-
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuetify___default.a);
 
+// import HighchartsVue from 'highcharts-vue'
+// Vue.use(HighchartsVue)
+// Vue.use(HighchartsVue, {tagName: ['charts']})
+
+
+// Vue.use(HighchartsVue)
 // index.js or main.js
 // import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
@@ -66376,6 +66381,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 });
 //# sourceMappingURL=vuetify.js.map
 
+
 /***/ }),
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -67177,16 +67183,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            lorem: "Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos."
-        };
-    }
+  data: function data() {
+    return {
+      lorem: "Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos."
+    };
+  }
 });
 
 /***/ }),
@@ -67205,35 +67209,15 @@ var render = function() {
         "v-layout",
         { attrs: { row: "", wrap: "" } },
         [
-          _c(
-            "v-flex",
-            {
-              attrs: {
-                "d-flex": "",
-                xs12: "",
-                sm6: "",
-                md4: "",
-                "elevation-5": ""
-              }
-            },
-            [
-              _c(
-                "v-card",
-                { attrs: { color: "purple", dark: "" } },
-                [
-                  _c(
-                    "v-card-title",
-                    { staticClass: "title", attrs: { primary: "" } },
-                    [_vm._v("Lorem")]
-                  ),
-                  _vm._v(" "),
-                  _c("v-card-text", [_vm._v(_vm._s(_vm.lorem))])
-                ],
-                1
-              )
-            ],
-            1
-          ),
+          _c("v-flex", {
+            attrs: {
+              "d-flex": "",
+              xs12: "",
+              sm6: "",
+              md4: "",
+              "elevation-5": ""
+            }
+          }),
           _vm._v(" "),
           _c(
             "v-flex",
@@ -67952,7 +67936,7 @@ var render = function() {
                       attrs: {
                         "d-flex": "",
                         xs12: "",
-                        sm6: "",
+                        sm4: "",
                         md4: "",
                         "elevation-2": ""
                       }
@@ -68006,7 +67990,7 @@ var render = function() {
                                               _c(
                                                 "v-card-text",
                                                 { staticClass: "px-0" },
-                                                [_vm._v("Total Clientes")]
+                                                [_vm._v("Total")]
                                               )
                                             ],
                                             1
@@ -68047,7 +68031,7 @@ var render = function() {
                       attrs: {
                         "d-flex": "",
                         xs12: "",
-                        sm6: "",
+                        sm4: "",
                         md4: "",
                         "elevation-2": ""
                       }
@@ -68102,7 +68086,7 @@ var render = function() {
                                               _c(
                                                 "v-card-text",
                                                 { staticClass: "px-0" },
-                                                [_vm._v("Nuevos Clientes")]
+                                                [_vm._v("Nuevos")]
                                               )
                                             ],
                                             1
@@ -68143,7 +68127,7 @@ var render = function() {
                       attrs: {
                         "d-flex": "",
                         xs12: "",
-                        sm6: "",
+                        sm4: "",
                         md4: "",
                         "elevation-2": ""
                       }
@@ -68293,7 +68277,7 @@ var render = function() {
                   fn: function(props) {
                     return _c(
                       "v-flex",
-                      { attrs: { xs12: "", sm6: "", md4: "", lg6: "" } },
+                      { attrs: { xs12: "", sm6: "", md6: "", lg6: "" } },
                       [
                         _c("v-hover", {
                           scopedSlots: _vm._u([
@@ -76024,7 +76008,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -76198,7 +76181,7 @@ var render = function() {
                                               [
                                                 _c("v-img", {
                                                   attrs: {
-                                                    src: "/img/default.jpg"
+                                                    src: "/img/default1.jpg"
                                                   }
                                                 })
                                               ],
@@ -76631,6 +76614,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
   props: ['token'],
   data: function data() {
     return {
+      vehiculoId: "",
+      clientes: "",
+      vehiculoData: "",
       date: new Date().toISOString().substr(0, 10),
       menu1: false,
       menu2: false,
@@ -76673,7 +76659,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
       var _this = this;
 
       console.log("en get data nuew");
-      axios.get('/v1.0/reservas').then(function (response) {
+      axios.get("/v1.0/reservas").then(function (response) {
         _this.promo = response.data.promo;
         _this.cliente = response.data.cliente;
         _this.auto = response.data.auto;
@@ -76729,9 +76715,17 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     },
     cancelar: function cancelar() {
       window.location.href = '/cliente';
+    },
+    verAuto: function verAuto() {
+      var autos = axios({
+        method: 'get',
+        url: "/v1.0/auto/" + this.vehiculoId
+      }).then(function (response) {
+        console.log(response.data);
+        this.vehiculoData = response.data;
+      });
     }
   }
-
 });
 
 /***/ }),
@@ -76893,12 +76887,17 @@ var render = function() {
                       required: "",
                       solo: ""
                     },
+                    on: {
+                      change: function($event) {
+                        _vm.verAuto()
+                      }
+                    },
                     model: {
-                      value: _vm.vehiculo,
+                      value: _vm.vehiculoId,
                       callback: function($$v) {
-                        _vm.vehiculo = $$v
+                        _vm.vehiculoId = $$v
                       },
-                      expression: "vehiculo"
+                      expression: "vehiculoId"
                     }
                   }),
                   _vm._v(" "),
@@ -76914,71 +76913,11 @@ var render = function() {
                       solo: ""
                     },
                     model: {
-                      value: _vm.cliente,
+                      value: _vm.clientes,
                       callback: function($$v) {
-                        _vm.cliente = $$v
+                        _vm.clientes = $$v
                       },
-                      expression: "cliente"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", [_vm._v("Producto")]),
-                  _vm._v(" "),
-                  _c("v-autocomplete", {
-                    attrs: {
-                      items: _vm.auto,
-                      "item-text": "marca",
-                      "item-value": "id",
-                      placeholder: "Select...",
-                      required: "",
-                      solo: ""
-                    },
-                    model: {
-                      value: _vm.producto,
-                      callback: function($$v) {
-                        _vm.producto = $$v
-                      },
-                      expression: "producto"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", [_vm._v("Paquete")]),
-                  _vm._v(" "),
-                  _c("v-autocomplete", {
-                    attrs: {
-                      items: _vm.cliente,
-                      "item-text": "nombres",
-                      "item-value": "id",
-                      placeholder: "Select...",
-                      required: "",
-                      solo: ""
-                    },
-                    model: {
-                      value: _vm.promo,
-                      callback: function($$v) {
-                        _vm.promo = $$v
-                      },
-                      expression: "promo"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", [_vm._v("Zona de entrega")]),
-                  _vm._v(" "),
-                  _c("v-autocomplete", {
-                    attrs: {
-                      items: _vm.cliente,
-                      "item-text": "nombres",
-                      "item-value": "id",
-                      placeholder: "Select...",
-                      required: "",
-                      solo: ""
-                    },
-                    model: {
-                      value: _vm.zonaDeEntrega,
-                      callback: function($$v) {
-                        _vm.zonaDeEntrega = $$v
-                      },
-                      expression: "zonaDeEntrega"
+                      expression: "clientes"
                     }
                   })
                 ],
@@ -77005,7 +76944,7 @@ var render = function() {
                         [
                           _c("v-img", {
                             attrs: {
-                              src: "/img/default.jpg",
+                              src: "/img/default1.jpg",
                               "aspect-ratio": "2.75"
                             }
                           }),
@@ -77021,19 +76960,19 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("div", [
                                   _vm._v(
-                                    "\r\n                                Placa: WQE-123\r\n                                "
+                                    "\n                                Placa: WQE-123\n                                "
                                   ),
                                   _c("br"),
                                   _vm._v(
-                                    "\r\n                                    Color: Rojo\r\n                                    "
+                                    "\n                                    Color: Rojo\n                                    "
                                   ),
                                   _c("br"),
                                   _vm._v(
-                                    "\r\n                                        Año: 2014\r\n                                        "
+                                    "\n                                        Año: 2014\n                                        "
                                   ),
                                   _c("br"),
                                   _vm._v(
-                                    "\r\n                                            Precio: 89$\r\n                                        "
+                                    "\n                                            Precio: 89$\n                                        "
                                   )
                                 ])
                               ])
@@ -77089,7 +77028,9 @@ var render = function() {
           _c("v-btn", { attrs: { color: "error" } }, [_vm._v("Cancelar")])
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("pre", [_vm._v(_vm._s(_vm.$data))])
     ],
     1
   )

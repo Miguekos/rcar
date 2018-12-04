@@ -104,7 +104,7 @@
     <v-container grid-list-md fluid text-xs-justify>
       <v-container fluid grid-list-md>
         <v-layout row wrap justify-center align-center>
-          <v-flex d-flex xs12 sm6 md4 elevation-2>
+          <v-flex d-flex xs12 sm4 md4 elevation-2>
             <v-hover>
             <v-card
             slot-scope="{ hover }"
@@ -117,7 +117,7 @@
               </v-avatar>
               <v-layout>
                 <v-flex xs9>
-                  <v-card-text class="px-0">Total Clientes</v-card-text>
+                  <v-card-text class="px-0">Total</v-card-text>
                 </v-flex>
                 <v-flex xs3>
                   <v-card-text class="px-0">{{ total }}</v-card-text>
@@ -129,7 +129,7 @@
             </v-card>
             </v-hover>
           </v-flex>
-          <v-flex d-flex xs12 sm6 md4 elevation-2>
+          <v-flex d-flex xs12 sm4 md4 elevation-2>
             <v-hover>
             <v-card
             slot-scope="{ hover }"
@@ -142,7 +142,7 @@
               </v-avatar>
               <v-layout>
                 <v-flex xs9>
-                  <v-card-text class="px-0">Nuevos Clientes</v-card-text>
+                  <v-card-text class="px-0">Nuevos</v-card-text>
                 </v-flex>
                 <v-flex xs3>
                   <v-card-text class="px-0">{{ clienten }}</v-card-text>
@@ -152,7 +152,7 @@
             </v-card>
             </v-hover>
           </v-flex>
-          <v-flex d-flex xs12 sm6 md4 elevation-2>
+          <v-flex d-flex xs12 sm4 md4 elevation-2>
             <v-hover>
             <v-card
             slot-scope="{ hover }"
@@ -189,7 +189,7 @@
       <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
         content-tag="v-layout" row wrap class="elevation-5" hide-actions>
 
-        <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
+        <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
           <!-- <v-card
                 slot-scope="{ hover }"
       :class="`elevation-${hover ? 12 : 2}`"

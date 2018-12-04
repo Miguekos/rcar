@@ -10,9 +10,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import Vuetify from 'vuetify'
-
 Vue.use(Vuetify)
 
+
+// import HighchartsVue from 'highcharts-vue'
+// Vue.use(HighchartsVue)
+// Vue.use(HighchartsVue, {tagName: ['charts']})
+
+
+// Vue.use(HighchartsVue)
 // index.js or main.js
 // import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 

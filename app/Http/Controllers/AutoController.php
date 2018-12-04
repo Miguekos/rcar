@@ -59,6 +59,12 @@ class AutoController extends Controller
         //
     }
 
+    public function showapi(Auto $auto)
+    {
+      $autos = Auto::findOrFail($auto);
+      return $autos;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

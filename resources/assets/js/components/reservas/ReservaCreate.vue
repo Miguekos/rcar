@@ -33,15 +33,17 @@ select:-webkit-autofill:focus {
                     <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
                 </v-menu>
                 <label>Vehiculo</label>
-                <v-autocomplete :items="auto" item-text="marca" item-value="id" v-model="vehiculo" placeholder="Select..." required solo></v-autocomplete>
+
+                <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
+
                 <label>Cliente</label>
-                <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="cliente" placeholder="Select..." required solo></v-autocomplete>
-                <label>Producto</label>
+                <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
+                <!-- <label>Producto</label>
                 <v-autocomplete :items="auto" item-text="marca" item-value="id" v-model="producto" placeholder="Select..." required solo></v-autocomplete>
                 <label>Paquete</label>
                 <v-autocomplete :items="cliente" item-text="nombres" item-value="id" v-model="promo" placeholder="Select..." required solo></v-autocomplete>
                 <label>Zona de entrega</label>
-                <v-autocomplete :items="cliente" item-text="nombres" item-value="id" v-model="zonaDeEntrega" placeholder="Select..." required solo></v-autocomplete>
+                <v-autocomplete :items="cliente" item-text="nombres" item-value="id" v-model="zonaDeEntrega" placeholder="Select..." required solo></v-autocomplete> -->
             </v-card-text>
             <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
             v-if="formHasErrors" left> <v-btn slot="activator" icon class="my-0" @click="resetForm"> <v-icon>refresh</v-icon> </v-btn> <span>Refresh form</span>
@@ -54,8 +56,7 @@ select:-webkit-autofill:focus {
         <v-card-text>
             <v-flex>
                 <v-card>
-                    <v-img src="/img/default.jpg" aspect-ratio="2.75"></v-img>
-
+                    <v-img src="/img/default1.jpg" aspect-ratio="2.75"></v-img>
                     <v-card-title primary-title>
                         <div>
                             <h3 class="headline mb-0">BMW 316i</h3>
@@ -87,14 +88,13 @@ select:-webkit-autofill:focus {
                     </v-tooltip> </v-slide-x-reverse-transition> <v-btn color="primary" flat @click="submit">Submit</v-btn> </v-card-actions> -->
                 </v-card>
             </v-flex>
-
         </v-layout>
         <v-container text-lg-center>
         <v-btn color="success">Guardar</v-btn>
         <v-btn color="error">Cancelar</v-btn>
         </v-container>
 
-        <!-- <pre>{{ $data }}</pre> -->
+        <pre>{{ $data }}</pre>
     </div>
 </template>
 
@@ -103,6 +103,9 @@ select:-webkit-autofill:focus {
   export default {
     props: ['token'],
     data: () => ({
+      vehiculoId: "",
+      clientes:"",
+      vehiculoData: "",
       date: new Date().toISOString().substr(0, 10),
       menu1: false,
       menu2: false,
@@ -137,6 +140,7 @@ select:-webkit-autofill:focus {
     }),
     created () {
       this.getDataCliente();
+
     },
       methods: {
         getDataCliente() {
@@ -176,7 +180,16 @@ select:-webkit-autofill:focus {
           cancelar () {
             window.location.href = '/cliente';
           },
-      }
-
+          verAuto () {
+            const autos = axios({
+                method: 'get',
+                url: `/v1.0/auto/${this.vehiculoId}`,
+              })
+              .then(function (response) {
+                  console.log(response.data)
+                  this.vehiculoData = response.data
+              });
+            },
+    }
   }
 </script>
