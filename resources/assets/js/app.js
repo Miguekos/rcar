@@ -10,8 +10,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import Vuetify from 'vuetify'
-Vue.use(Vuetify)
+import VDateRange from 'vuetify-daterange-picker';
 
+
+Vue.use(Vuetify)
+Vue.use(VDateRange);
 
 // import HighchartsVue from 'highcharts-vue'
 // Vue.use(HighchartsVue)
