@@ -183,7 +183,7 @@ select:-webkit-autofill:focus {
     </v-flex>
   </v-container>
   <!-- <input type="text" name="daterange" value="01/01/2018 - 02/15/2018" /> -->
-  <v-container text-lg-center>
+  <v-container text-lg-center text-xs-center text-sm-center>
     <v-btn color="success">Guardar</v-btn>
     <v-btn color="error">Cancelar</v-btn>
   </v-container>
@@ -193,7 +193,7 @@ select:-webkit-autofill:focus {
     <v-daterange :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
   </v-layout>
 
-  <pre>{{ $data }}</pre>
+  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 
