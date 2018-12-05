@@ -17,87 +17,184 @@ select:-webkit-autofill:focus {
 <template>
 <div>
 
-    <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex xs12 sm10 md8 lg6 elevation-5>
-            <v-card-text>
-                <label>Fecha Inicio</label>
-                <span>{{ someDate | moment("dddd, MMMM Do YYYY") }}</span>
-                <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-                    <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" prepend-icon="event" readonly></v-text-field>
-                    <v-date-picker locale="Es-es" v-model="date" @input="menu1 = false"></v-date-picker>
-                </v-menu>
-                <label>Fecha Fin</label>
-                <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-                    <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" prepend-icon="event" readonly></v-text-field>
-                    <v-date-picker locale="Es-es" v-model="date" @input="menu2 = false"></v-date-picker>
-                </v-menu>
-                <label>Vehiculo</label>
-                <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
-                <label>Cliente</label>
-                <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
-                <label>Producto</label>
-                <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="productos" placeholder="Select..." required solo></v-autocomplete>
-                <label>Paquete</label>
-                <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
-                <label>Zona de Entrega</label>
-                <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="zonas" placeholder="Select..." required solo></v-autocomplete>
-            </v-card-text>
-            <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
+  <v-layout align-center justify-space-around row wrap fill-height>
+    <v-flex xs12 sm10 md8 lg6 elevation-5>
+      <v-card-text>
+        <label>Fecha Inicio</label>
+        <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
+          <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" prepend-icon="event" readonly></v-text-field>
+          <v-date-picker locale="Es-es" v-model="date" @input="menu1 = false"></v-date-picker>
+        </v-menu>
+        <label>Fecha Fin</label>
+        <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
+          <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" prepend-icon="event" readonly></v-text-field>
+          <v-date-picker locale="Es-es" v-model="date" @input="menu2 = false"></v-date-picker>
+        </v-menu>
+        <label>Vehiculo</label>
+        <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
+        <label>Cliente</label>
+        <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
+        <label>Producto</label>
+        <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="productos" placeholder="Select..." required solo></v-autocomplete>
+        <label>Paquete</label>
+        <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
+        <label>Zona de Entrega</label>
+        <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="zonas" placeholder="Select..." required solo></v-autocomplete>
+        <v-flex xs12 sm12 md12>
+          <label>Direccion de Entrega</label>
+          <v-text-field solo></v-text-field>
+        </v-flex>
+        <label>Seguro</label>
+        <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="zonas" placeholder="Select..." required solo></v-autocomplete>
+        <v-divider></v-divider>
+        <v-card-title primary-title>
+          Programa de Beneficios
+        </v-card-title>
+
+
+        <v-layout align-center justify-space-between row fill-height>
+
+
+          <v-flex xs12 sm4>
+            <v-text-field solo></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm4>
+            <v-text-field solo></v-text-field>
+          </v-flex>
+          <v-flex xs12 sm4>
+            <v-text-field solo></v-text-field>
+          </v-flex>
+
+        </v-layout>
+
+        <v-divider></v-divider>
+        <v-card-title primary-title>
+          Adicionales
+        </v-card-title>
+
+        <v-layout align-center justify-space-between row fill-height>
+
+
+          <!-- <v-flex xs12 sm4>
+            <v-switch
+             v-model="sillabebe"
+             label="Silla Bebe"
+             color="success"
+             value="success"
+             hide-details
+           ></v-switch>
+           </v-flex>
+
+           <v-flex xs12 sm4>
+             <v-switch
+              v-model="puntocanjear"
+              label="Puntos Canjear"
+              color="success"
+              value="success"
+              hide-details
+            ></v-switch>
+           </v-flex>
+           <v-flex xs12 sm4>
+             <v-switch
+             v-model="diaadicional"
+             label="Dia Adicionales"
+             color="success"
+             value="success"
+             hide-details
+           ></v-switch>
+            </v-flex> -->
+
+          <v-flex xs12 sm4>
+            <v-checkbox v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-checkbox>
+          </v-flex>
+
+          <v-flex xs12 sm4>
+            <v-checkbox v-model="puntocanjear" label="Puntos Canjear" color="success" value="success" hide-details></v-checkbox>
+          </v-flex>
+          <v-flex xs12 sm4>
+            <v-checkbox v-model="diaadicional" label="Dia Adicionales" color="success" value="success" hide-details></v-checkbox>
+          </v-flex>
+
+
+
+        </v-layout>
+
+      </v-card-text>
+
+      <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
             v-if="formHasErrors" left> <v-btn slot="activator" icon class="my-0" @click="resetForm"> <v-icon>refresh</v-icon> </v-btn> <span>Refresh form</span>
             </v-tooltip> </v-slide-x-reverse-transition> <v-btn color="primary" flat @click="submit">Submit</v-btn> </v-card-actions> -->
-        </v-card>
+      </v-card>
     </v-flex>
 
     <v-flex xs12 sm10 md8 lg4 elevation-5>
-        <v-card-text>
-            <v-flex>
-                <v-card>
-                    <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
-                    <v-card-title>
-                        <div>
-                            <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3>
-                            <div>
-                                Placa:
-                                {{ vehiculoData.marca }}
-                                <br>
-                                    Color:
-                                    {{ vehiculoData.color }}
-                                    <br>
-                                        Año:
-                                        {{ vehiculoData.anio }}
-                                        <br>
-                                            Precio: 89$
-                                        </div>
-                                    </div>
-                                </v-card-title>
+      <v-card-text>
+        <v-flex>
+          <v-card>
+            <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
+            <v-card-title>
+              <div>
+                <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3>
+                <div>
+                  Placa:
+                  {{ vehiculoData.marca }}
+                  <br>
+                  Color:
+                  {{ vehiculoData.color }}
+                  <br>
+                  Año:
+                  {{ vehiculoData.anio }}
+                  <br>
+                  Precio: 89$
+                </div>
+              </div>
+            </v-card-title>
 
-                                <v-layout row wrap justify-center>
-                                    <!-- <v-date-picker locale="Es-es" v-model="picker" :landscape="landscape" :reactive="reactive"></v-date-picker> -->
-                                    <v-date-picker v-model="dates" multiple></v-date-picker>
-                                </v-layout>
+            <v-layout row wrap justify-center>
+              <!-- <v-date-picker locale="Es-es" v-model="picker" :landscape="landscape" :reactive="reactive"></v-date-picker> -->
+              <v-date-picker v-model="dates" multiple></v-date-picker>
+            </v-layout>
 
-                                <v-card-actions>
-                                    <!-- <v-btn flat color="orange">Share</v-btn> <v-btn flat color="orange">Explore</v-btn> -->
-                                </v-card-actions>
-                            </v-card>
-                        </v-flex>
+            <v-card-actions>
+              <!-- <v-btn flat color="orange">Share</v-btn> <v-btn flat color="orange">Explore</v-btn> -->
+            </v-card-actions>
+          </v-card>
+        </v-flex>
 
-                    </v-card-text>
-                    <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
+      </v-card-text>
+      <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
                     v-if="formHasErrors" left> <v-btn slot="activator" icon class="my-0" @click="resetForm"> <v-icon>refresh</v-icon> </v-btn> <span>Refresh form</span>
                     </v-tooltip> </v-slide-x-reverse-transition> <v-btn color="primary" flat @click="submit">Submit</v-btn> </v-card-actions> -->
-                </v-card>
-            </v-flex>
-        </v-layout>
-        <!-- <v-daterange :options="dateRangeOptions" @input="onDateRangeChange"></v-daterange> -->
-        <!-- <input type="text" name="daterange" value="01/01/2018 - 02/15/2018" /> -->
-        <v-container text-lg-center>
-            <v-btn color="success">Guardar</v-btn>
-            <v-btn color="error">Cancelar</v-btn>
-        </v-container>
+      </v-card>
+    </v-flex>
 
-        <pre>{{ $data }}</pre>
-    </div>
+  </v-layout>
+
+  <v-container grid-list>
+    <v-flex>
+      <v-card hover>
+        <v-card-text>
+
+            <comp-factura></comp-factura>
+
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-container>
+  <!-- <input type="text" name="daterange" value="01/01/2018 - 02/15/2018" /> -->
+  <v-container text-lg-center>
+    <v-btn color="success">Guardar</v-btn>
+    <v-btn color="error">Cancelar</v-btn>
+  </v-container>
+
+
+  <v-layout align-center justify-center row fill-height>
+    <v-daterange :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
+  </v-layout>
+
+  <pre>{{ $data }}</pre>
+</div>
 </template>
 
 <script>
@@ -116,6 +213,9 @@ import DateRange from 'vuetify-daterange-picker';
 export default {
   props: ['token'],
   data: () => ({
+    sillabebe: "",
+    puntocanjear: "",
+    diaadicional:"",
     errors: [],
     vehiculoId: "",
     clientes: "",
@@ -145,38 +245,36 @@ export default {
     picker: new Date().toISOString().substr(0, 10),
     landscape: false,
     reactive: false,
-     range: [],
-     dateRangeOptions: {
-       // startDate: format(subDays(new Date(), 7), 'YYYY-MM-DD'),
-       // endDate: format(new Date(), 'YYYY-MM-DD'),
-       startDate: moment().subtract(10, 'days').calendar(),
-       endDate: new Date().toISOString().substr(0, 10),
-       format: 'MM/DD/YYYY',
-       presets: [
-         {
-           label: 'Today',
-           range: [
-             new Date().toISOString().substr(0, 10),
-             new Date().toISOString().substr(0, 10),
-           ],
-         },
-         {
-           label: 'Yesterday',
-           range: [
-             // formatDistance(subDays(new Date(), 3), new Date()),
-             // formatDistance(subDays(new Date(), 3), new Date())
-
-           ],
-         },
-         {
-           label: 'Last 30 Days',
-           range: [
-             // format(subDays(new Date(), 30), 'YYYY-MM-DD'),
-             // format(subDays(new Date(), 1), 'YYYY-MM-DD'),
-           ],
-         },
-       ],
-     },
+    range: [],
+    dateRangeOptions: {
+      startDate: new Date('11/12/2018').toISOString().substr(0, 10),
+      endDate: new Date('12/12/2018').toISOString().substr(0, 10),
+      format: 'MM/DD/YYYY',
+      // presets: [
+      //   {
+      //     label: 'Today',
+      //     range: [
+      //       new Date().toISOString().substr(0, 10),
+      //       new Date().toISOString().substr(0, 10),
+      //     ],
+      //   },
+      //   {
+      //     label: 'Yesterday',
+      //     range: [
+      //       // formatDistance(subDays(new Date(), 3), new Date()),
+      //       // formatDistance(subDays(new Date(), 3), new Date())
+      //
+      //     ],
+      //   },
+      //   // {
+      //   //   label: 'Last 30 Days',
+      //   //   // range: [
+      //   //     // format(subDays(new Date(), 30), 'YYYY-MM-DD'),
+      //   //     // format(subDays(new Date(), 1), 'YYYY-MM-DD'),
+      //   //   ],
+      //   // },
+      // ],
+    },
     // apellidoPaterno: '',
     // apellidoMaterno: '',
     // nombres: '',
@@ -198,7 +296,9 @@ export default {
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
   }),
-components: { DateRange: DateRange },
+  components: {
+    DateRange: DateRange
+  },
   created() {
     this.getDataCliente();
 

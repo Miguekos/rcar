@@ -1,4 +1,8 @@
 <style>
+.custom-ripple {
+    user-select: none
+  }
+
   .app-fab--absolute {
     position: fixed;
     /*z-index: 3;*/
@@ -107,6 +111,7 @@
           <v-flex d-flex xs12 sm4 md4 elevation-2>
             <v-hover>
             <v-card
+            hover
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -132,6 +137,7 @@
           <v-flex d-flex xs12 sm4 md4 elevation-2>
             <v-hover>
             <v-card
+            hover
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -155,6 +161,7 @@
           <v-flex d-flex xs12 sm4 md4 elevation-2>
             <v-hover>
             <v-card
+            hover
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
@@ -190,16 +197,20 @@
         content-tag="v-layout" row wrap class="elevation-5" hide-actions>
 
         <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
-          <!-- <v-card
-                slot-scope="{ hover }"
-      :class="`elevation-${hover ? 12 : 2}`"
-      class="mx-auto"
-      width="344"> -->
-          <v-hover>
-            <v-card
+          <!-- <v-hover> -->
+            <!-- <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 1}`"
+            class="mx-auto custom-ripple"
+            ripple
+            :color="colors[color]"
+            @click="color = (color + 1) % colors.length"
+            > -->
+            <v-card
             class="mx-auto"
+            hover
+            ripple
+            tile
             >
             <!-- <v-card color="cyan darken-2" class="white--text"> -->
             <v-layout align-center justify-center row fill-height>
@@ -241,7 +252,7 @@
               <!-- <v-btn flat >Listen now</v-btn> -->
             </v-card-actions>
           </v-card>
-          </v-hover>
+          <!-- </v-hover> -->
         </v-flex>
         <template slot="no-data">
           <v-alert :value="true" color="red" icon="warning">
@@ -255,7 +266,7 @@
       </div>
     </v-container>
 
-    <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+    <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
       <span class="mdc-fab__icon material-icons">add</span>
     </button>
     <!-- <pre>{{ $data }}</pre> -->
@@ -267,6 +278,28 @@
   export default {
     props: ['user'],
     data: () => ({
+      color: 0,
+          colors: [
+            'red',
+            'pink',
+            'purple',
+            'deep-purple',
+            'indigo',
+            'blue',
+            'light-blue',
+            'cyan',
+            'teal',
+            'green',
+            'light-green',
+            'lime',
+            'yellow',
+            'amber',
+            'orange',
+            'deep-orange',
+            'brown',
+            'blue-grey',
+            'grey'
+          ],
       // boton inicio
       // boton fin
       // pagination: {},

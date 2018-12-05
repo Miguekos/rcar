@@ -174,7 +174,7 @@
         </v-tab-item>
       </v-tabs>
     </template>
-    <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+    <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
       <span class="mdc-fab__icon material-icons">add</span>
     </button>
     <!-- <pre>{{ $data }}</pre> -->

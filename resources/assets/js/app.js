@@ -43,6 +43,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('layout-nav', require('./components/layouts/Layout.vue'));
 Vue.component('nav-bar', require('./components/templates/Nav.vue'));
 Vue.component('comp-dashboard', require('./components/templates/Dashboard.vue'));
+Vue.component('comp-factura', require('./components/templates/Factura.vue'));
 
 // Clientes
 Vue.component('comp-cliente', require('./components/clientes/Cliente2.vue'));

@@ -21,7 +21,7 @@
                 <v-layout v-if="item.heading" :key="i" row align-center>
                 </v-layout>
                 <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-                <v-list-tile v-else :key="i" @click="link(item.link)">
+                <v-list-tile :ripple="{ class: 'info--text' }" v-else :key="i" @click="link(item.link)">
                     <v-list-tile-action>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-tile-action>
