@@ -76,7 +76,7 @@ select:-webkit-autofill:focus {
         <v-layout align-center justify-space-between row fill-height>
 
 
-          <!-- <v-flex xs12 sm4>
+          <v-flex xs12 sm4>
             <v-switch
              v-model="sillabebe"
              label="Silla Bebe"
@@ -103,9 +103,9 @@ select:-webkit-autofill:focus {
              value="success"
              hide-details
            ></v-switch>
-            </v-flex> -->
+            </v-flex>
 
-          <v-flex xs12 sm4>
+          <!-- <v-flex xs12 sm4>
             <v-checkbox v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-checkbox>
           </v-flex>
 
@@ -114,7 +114,7 @@ select:-webkit-autofill:focus {
           </v-flex>
           <v-flex xs12 sm4>
             <v-checkbox v-model="diaadicional" label="Dia Adicionales" color="success" value="success" hide-details></v-checkbox>
-          </v-flex>
+          </v-flex> -->
 
 
 
