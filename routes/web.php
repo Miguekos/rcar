@@ -1,5 +1,10 @@
 <?php
 
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return "Se limpio el cache correctamente";
+});
+
 Route::group(['prefix' => 'v1.0'], function () {
 
 // Clientes Api

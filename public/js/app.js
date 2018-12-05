@@ -89093,7 +89093,7 @@ var render = function() {
                         "v-flex",
                         { attrs: { xs12: "", sm4: "" } },
                         [
-                          _c("v-checkbox", {
+                          _c("v-switch", {
                             attrs: {
                               label: "Silla Bebe",
                               color: "success",
@@ -89116,7 +89116,7 @@ var render = function() {
                         "v-flex",
                         { attrs: { xs12: "", sm4: "" } },
                         [
-                          _c("v-checkbox", {
+                          _c("v-switch", {
                             attrs: {
                               label: "Puntos Canjear",
                               color: "success",
@@ -89139,7 +89139,7 @@ var render = function() {
                         "v-flex",
                         { attrs: { xs12: "", sm4: "" } },
                         [
-                          _c("v-checkbox", {
+                          _c("v-switch", {
                             attrs: {
                               label: "Dia Adicionales",
                               color: "success",
@@ -89280,7 +89280,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-container",
-        { attrs: { "text-lg-center": "" } },
+        {
+          attrs: {
+            "text-lg-center": "",
+            "text-xs-center": "",
+            "text-sm-center": ""
+          }
+        },
         [
           _c("v-btn", { attrs: { color: "success" } }, [_vm._v("Guardar")]),
           _vm._v(" "),
@@ -89306,9 +89312,7 @@ var render = function() {
           })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("pre", [_vm._v(_vm._s(_vm.$data))])
+      )
     ],
     1
   )
