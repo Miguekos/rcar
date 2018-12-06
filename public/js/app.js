@@ -88565,6 +88565,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
 
 
 
@@ -89296,20 +89299,19 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "v-layout",
-        {
-          attrs: {
-            "align-center": "",
-            "justify-center": "",
-            row: "",
-            "fill-height": ""
-          }
-        },
+        "v-container",
         [
-          _c("v-daterange", {
-            attrs: { options: _vm.dateRangeOptions, "no-presets": "" },
-            on: { input: _vm.onDateRangeChange }
-          })
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c("v-daterange", {
+                attrs: { options: _vm.dateRangeOptions, "no-presets": "" },
+                on: { input: _vm.onDateRangeChange }
+              })
+            ],
+            1
+          )
         ],
         1
       )

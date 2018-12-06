@@ -188,10 +188,13 @@ select:-webkit-autofill:focus {
     <v-btn color="error">Cancelar</v-btn>
   </v-container>
 
+<v-container >
 
-  <v-layout align-center justify-center row fill-height>
+  <v-layout row wrap>
     <v-daterange :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
   </v-layout>
+
+  </v-container>
 
   <!-- <pre>{{ $data }}</pre> -->
 </div>
