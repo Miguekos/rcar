@@ -69111,6 +69111,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 });
 //# sourceMappingURL=vuetify.js.map
 
+
 /***/ }),
 /* 100 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -88351,7 +88352,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n", ""]);
+exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\n", ""]);
 
 // exports
 
@@ -88366,28 +88367,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -88585,6 +88564,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
   props: ['token'],
   data: function data() {
     return {
+      puntosd: 600,
+      puntosc: 300,
+      diasd: 1,
       sillabebe: "",
       puntocanjear: "",
       diaadicional: "",
@@ -89053,22 +89035,42 @@ var render = function() {
                     [
                       _c(
                         "v-flex",
-                        { attrs: { xs12: "", sm4: "" } },
-                        [_c("v-text-field", { attrs: { solo: "" } })],
+                        { attrs: { xs12: "", sm3: "", lg3: "" } },
+                        [
+                          _c("label", [_vm._v("Puntos Disponibles")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-text-field",
+                            { attrs: { "solo-inverted": "" } },
+                            [_vm._v(_vm._s(_vm.puntosd))]
+                          )
+                        ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-flex",
-                        { attrs: { xs12: "", sm4: "" } },
-                        [_c("v-text-field", { attrs: { solo: "" } })],
+                        { attrs: { xs12: "", sm3: "", lg3: "" } },
+                        [
+                          _c("label", [_vm._v("Puntos a Canjear")]),
+                          _vm._v(" "),
+                          _c("v-text-field", { attrs: { solo: "" } }, [
+                            _vm._v(_vm._s(_vm.puntosc))
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-flex",
-                        { attrs: { xs12: "", sm4: "" } },
-                        [_c("v-text-field", { attrs: { solo: "" } })],
+                        { attrs: { xs12: "", sm3: "", lg3: "" } },
+                        [
+                          _c("label", [_vm._v("Dias Disponibles")]),
+                          _vm._v(" "),
+                          _c("v-text-field", { attrs: { solo: "" } }, [
+                            _vm._v(_vm._s(_vm.diasd))
+                          ])
+                        ],
                         1
                       )
                     ],
@@ -89230,15 +89232,14 @@ var render = function() {
                               attrs: { row: "", wrap: "", "justify-center": "" }
                             },
                             [
-                              _c("v-date-picker", {
-                                attrs: { multiple: "" },
-                                model: {
-                                  value: _vm.dates,
-                                  callback: function($$v) {
-                                    _vm.dates = $$v
-                                  },
-                                  expression: "dates"
-                                }
+                              _c("v-daterange", {
+                                attrs: {
+                                  locale: "ES-es",
+                                  "highlight-colors": "green lighten-5",
+                                  options: _vm.dateRangeOptions,
+                                  "no-presets": ""
+                                },
+                                on: { input: _vm.onDateRangeChange }
                               })
                             ],
                             1
@@ -89294,24 +89295,6 @@ var render = function() {
           _c("v-btn", { attrs: { color: "success" } }, [_vm._v("Guardar")]),
           _vm._v(" "),
           _c("v-btn", { attrs: { color: "error" } }, [_vm._v("Cancelar")])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-container",
-        [
-          _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
-            [
-              _c("v-daterange", {
-                attrs: { options: _vm.dateRangeOptions, "no-presets": "" },
-                on: { input: _vm.onDateRangeChange }
-              })
-            ],
-            1
-          )
         ],
         1
       )

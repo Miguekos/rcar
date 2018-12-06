@@ -12,6 +12,12 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.date-range__pickers[data-v-a39c29f4] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: block;
+}
 </style>
 
 <template>
@@ -51,19 +57,21 @@ select:-webkit-autofill:focus {
           Programa de Beneficios
         </v-card-title>
 
-
         <v-layout align-center justify-space-between row fill-height>
 
-
-          <v-flex xs12 sm4>
-            <v-text-field solo></v-text-field>
+          <v-flex xs12 sm3 lg3>
+            <label>Puntos Disponibles</label>
+            <v-text-field solo-inverted >{{ puntosd }}</v-text-field>
           </v-flex>
 
-          <v-flex xs12 sm4>
-            <v-text-field solo></v-text-field>
+          <v-flex xs12 sm3 lg3>
+            <label>Puntos a Canjear</label>
+            <v-text-field solo>{{ puntosc }}</v-text-field>
           </v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field solo></v-text-field>
+
+          <v-flex xs12 sm3 lg3>
+            <label>Dias Disponibles</label>
+            <v-text-field solo>{{ diasd }}</v-text-field>
           </v-flex>
 
         </v-layout>
@@ -77,33 +85,15 @@ select:-webkit-autofill:focus {
 
 
           <v-flex xs12 sm4>
-            <v-switch
-             v-model="sillabebe"
-             label="Silla Bebe"
-             color="success"
-             value="success"
-             hide-details
-           ></v-switch>
-           </v-flex>
+            <v-switch v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-switch>
+          </v-flex>
 
-           <v-flex xs12 sm4>
-             <v-switch
-              v-model="puntocanjear"
-              label="Puntos Canjear"
-              color="success"
-              value="success"
-              hide-details
-            ></v-switch>
-           </v-flex>
-           <v-flex xs12 sm4>
-             <v-switch
-             v-model="diaadicional"
-             label="Dia Adicionales"
-             color="success"
-             value="success"
-             hide-details
-           ></v-switch>
-            </v-flex>
+          <v-flex xs12 sm4>
+            <v-switch v-model="puntocanjear" label="Puntos Canjear" color="success" value="success" hide-details></v-switch>
+          </v-flex>
+          <v-flex xs12 sm4>
+            <v-switch v-model="diaadicional" label="Dia Adicionales" color="success" value="success" hide-details></v-switch>
+          </v-flex>
 
           <!-- <v-flex xs12 sm4>
             <v-checkbox v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-checkbox>
@@ -152,8 +142,7 @@ select:-webkit-autofill:focus {
             </v-card-title>
 
             <v-layout row wrap justify-center>
-              <!-- <v-date-picker locale="Es-es" v-model="picker" :landscape="landscape" :reactive="reactive"></v-date-picker> -->
-              <v-date-picker v-model="dates" multiple></v-date-picker>
+              <v-daterange locale="ES-es"  highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
             </v-layout>
 
             <v-card-actions>
@@ -176,27 +165,16 @@ select:-webkit-autofill:focus {
       <v-card hover>
         <v-card-text>
 
-            <comp-factura></comp-factura>
+          <comp-factura></comp-factura>
 
         </v-card-text>
       </v-card>
     </v-flex>
   </v-container>
-  <!-- <input type="text" name="daterange" value="01/01/2018 - 02/15/2018" /> -->
   <v-container text-lg-center text-xs-center text-sm-center>
     <v-btn color="success">Guardar</v-btn>
     <v-btn color="error">Cancelar</v-btn>
   </v-container>
-
-<v-container >
-
-  <v-layout row wrap>
-    <v-daterange :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
-  </v-layout>
-
-  </v-container>
-
-  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 
@@ -216,9 +194,12 @@ import DateRange from 'vuetify-daterange-picker';
 export default {
   props: ['token'],
   data: () => ({
+    puntosd: 600,
+    puntosc: 300,
+    diasd: 1,
     sillabebe: "",
     puntocanjear: "",
-    diaadicional:"",
+    diaadicional: "",
     errors: [],
     vehiculoId: "",
     clientes: "",
