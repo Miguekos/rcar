@@ -1,4 +1,12 @@
 <style>
+html {
+    font-size: 12px;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 .custom-ripple {
     user-select: none
   }
@@ -217,8 +225,9 @@
               <v-flex xs1>
               </v-flex>
               <v-flex xs3>
-                <v-avatar size="100%">
-                  <v-img :src="props.item.image"></v-img>
+                <v-avatar size="70%">
+                  <!-- <v-img :src="props.item.image"></v-img> -->
+                  <v-img src="loginnew/images/logo.png"></v-img>
                 </v-avatar>
               </v-flex>
               <v-flex xs8>
@@ -234,8 +243,8 @@
                 <v-card-title primary-title>
 
                   <div>
-                    <div class="headline">{{ props.item.nombres }}</div>
-                    <div class="text-xs-left">{{ props.item.direccion }}</div>
+                    <div><h2>{{ props.item.nombres }}</h2></div>
+                    <div class="text-xs-left">{{ props.item.ciudad }}</div>
                     <div>{{ props.item.celular }}</div>
                     <v-spacer></v-spacer>
                     <v-flex align-content-end>
@@ -248,11 +257,14 @@
               </v-flex>
             </v-layout>
             <!-- <v-divider dense light></v-divider> -->
-            <v-card-actions>
+            <!-- <v-card-actions> -->
               <!-- <v-btn flat >Listen now</v-btn> -->
-            </v-card-actions>
+            <!-- </v-card-actions> -->
           </v-card>
           <!-- </v-hover> -->
+          <hr>
+          <v-divider ></v-divider>
+
         </v-flex>
         <template slot="no-data">
           <v-alert :value="true" color="red" icon="warning">

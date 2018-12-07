@@ -1,5 +1,5 @@
 <style>
-  input:-webkit-autofill,
+input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
 textarea:-webkit-autofill,
@@ -9,9 +9,12 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   /*border: 1px solid #d2d2d2;*/
-  -webkit-text-fill-color: 1px #606060;
-  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;
+  -webkit-text-fill-color: 1px white;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+html {
+    font-size: 14px;
 }
 </style>
 
@@ -42,17 +45,37 @@ select:-webkit-autofill:focus {
           </v-flex>
 
           <v-flex xs12 sm6>
-            <label for="">Imagen</label>
-            <v-text-field name="image" solo :rules="[rules.required]"></v-text-field>
+            <label for="">Imagen del Cliente</label>
+            <v-text-field type="file" name="image" solo :rules="[rules.required]"></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6 md4>
-            <label for="">Fecha</label>
-            <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition"
-              offset-y full-width min-width="290px">
-              <v-text-field slot="activator" name="fechaNacimiento" v-model="date" label="Fecha de Nacimiento"
-                prepend-icon="event" readonly></v-text-field>
-              <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
+            <label for="">Fecha de Nacimiento</label>
+            <v-menu
+              ref="menu"
+              :close-on-content-click="false"
+              v-model="menu"
+              :nudge-right="40"
+              lazy
+              transition="scale-transition"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <v-text-field
+                slot="activator"
+                v-model="date"
+
+                prepend-icon="event"
+                readonly
+              ></v-text-field>
+              <v-date-picker
+                ref="picker"
+                v-model="date"
+                :max="new Date().toISOString().substr(0, 10)"
+                min="1950-01-01"
+                @change="save"
+              ></v-date-picker>
             </v-menu>
           </v-flex>
         </v-layout>
@@ -109,17 +132,37 @@ select:-webkit-autofill:focus {
 
           <v-flex xs12 sm6 md4>
             <label for="">Fecha de Vencimiento Brevete</label>
-            <v-menu :close-on-content-click="false" v-model="menu3" :nudge-right="40" lazy transition="scale-transition"
-              offset-y full-width min-width="290px">
-              <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" label="Fecha de Nacimiento"
-                prepend-icon="event" readonly></v-text-field>
-              <v-date-picker v-model="date" @input="menu3 = false"></v-date-picker>
+            <v-menu
+              ref="menu1"
+              :close-on-content-click="false"
+              v-model="menu1"
+              :nudge-right="40"
+              lazy
+              transition="scale-transition"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <v-text-field
+                slot="activator"
+                v-model="date1"
+
+                prepend-icon="event"
+                readonly
+              ></v-text-field>
+              <v-date-picker
+                ref="picker1"
+                v-model="date1"
+                :max="new Date().toISOString().substr(0, 10)"
+                min="1950-01-01"
+                @change="save1"
+              ></v-date-picker>
             </v-menu>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Foto Dni</label>
-            <v-text-field name="fotoDni" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field type="file" name="fotoDni" solo :rules="[rules.required]"></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
@@ -146,15 +189,30 @@ select:-webkit-autofill:focus {
   export default {
     props: ['token'],
     data: () => ({
-      date: new Date().toISOString().substr(0, 10),
-      menu2: false,
-      menu3: false,
+      date: null,
+      date1: null,
+      menu: false,
+      menu1: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       rules: {
         required: value => !!value || 'Obligatorio.',
       },
     }),
+    watch: {
+      menu (val) {
+        val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
+      },
+      menu1 (val) {
+        val && this.$nextTick(() => (this.$refs.picker1.activePicker = 'YEAR'))
+      }
+    },
     methods: {
+      save (date) {
+        this.$refs.menu.save(date)
+      },
+      save1 (date) {
+        this.$refs.menu1.save(date)
+      },
       sendForm(e) {
         let form = document.getElementById('ContactForm');
         const formData = new FormData(form);

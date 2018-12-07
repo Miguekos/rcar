@@ -34,13 +34,17 @@
             </template>
         </v-list>
     </v-navigation-drawer>
+
+
+
     <v-toolbar dense dark color="black lighten-1">
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+        <img src="loginnew/images/logo.png" alt="logo" width="2%">
         <v-toolbar-title>SCHETTINI&nbsp;<span class="font-weight-light">RENT A CAR </span></v-toolbar-title>
         <v-spacer></v-spacer>
-        <!-- {{ user.name }} -->
         <v-menu offset-x offset-y transition="scale-transition">
             <v-btn icon slot="activator">
+
                 <v-icon>more_vert</v-icon>
             </v-btn>
             <v-list>
@@ -50,6 +54,8 @@
             </v-list>
         </v-menu>
     </v-toolbar>
+
+
 </div>
 
 </template>
@@ -148,3 +154,19 @@ export default {
 }
 
 </script>
+<style media="screen">
+.v-card__title--primary {
+  padding-top: 0px;
+}
+.v-card__title {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0px;
+}
+</style>

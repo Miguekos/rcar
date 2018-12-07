@@ -39,7 +39,10 @@
 			<div class="wrap-login100">
 				<form action="{{ route('login') }}" method="POST" class="login100-form">
           {{ csrf_field() }}
+
+
 					<span class="login100-form-title p-b-43">
+						<img src="loginnew/images/logo.png" alt="logo" width="30%"><br>
 						SCHETTINI RENT A CAR<br>
             <h6 style="color: grey">Bienvenido, por favor inicia sesion</h6>
 					</span>
@@ -111,7 +114,7 @@
 					</div> -->
 				</form>
 
-				<div class="login100-more" style="background-image: url('loginnew/images/bg-01.jpg');">
+				<div class="login100-more" style="background-image: url('loginnew/images/bg-01.png');">
 				</div>
 			</div>
 		</div>
