@@ -11,6 +11,14 @@
     <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Inconsolata:300|Material+Icons' rel="stylesheet" type="text/css"> -->
     <!-- Required styles for MDC Web -->
     <!-- CSRF Token -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  
+  <!-- CSS Files -->
+  
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  
 
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -38,6 +46,21 @@
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<!--   Core JS Files   -->
+
+
+
+
+<!--  Google Maps Plugin    -->
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+
+<!--  Notifications Plugin    -->
+
+<!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+
+<!-- Black Dashboard DEMO methods, don't include it in your project! -->
 
 
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->

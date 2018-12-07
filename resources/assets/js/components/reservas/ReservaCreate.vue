@@ -161,7 +161,7 @@ select:-webkit-autofill:focus {
   </v-layout>
 
   <v-container grid-list>
-    <v-flex>
+    <v-flex xs12 sm10 md8 lg4 elevation-5>
       <v-card hover>
         <v-card-text>
 

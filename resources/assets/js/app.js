@@ -12,6 +12,7 @@ window.Vue = require('vue');
 import Vuetify from 'vuetify';
 import VueMoment from 'vue-moment';
 // import moment from 'moment-timezone';
+import ECharts from 'vue-echarts/components/ECharts';
 import VDateRange from 'vuetify-daterange-picker';
 Vue.use(VueMoment, {
     moment,
@@ -19,6 +20,8 @@ Vue.use(VueMoment, {
 // Vue.use(require('vue-moment'));
 Vue.use(Vuetify)
 Vue.use(VDateRange);
+Vue.component('v-chart', ECharts)
+
 
 // import HighchartsVue from 'highcharts-vue'
 // Vue.use(HighchartsVue)
