@@ -79167,30 +79167,6 @@ module.exports = Component.exports
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 $(document).ready(function () {
   // Javascript method's body can be found in assets/js/demos.js
@@ -79415,12 +79391,6 @@ var staticRenderFns = [
                       _c("tr", [
                         _c("th", [
                           _vm._v(
-                            "\n                        Nombre\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("th", [
-                          _vm._v(
                             "\n                        Marca\n                      "
                           )
                         ]),
@@ -79443,12 +79413,6 @@ var staticRenderFns = [
                       _c("tr", [
                         _c("td", [
                           _vm._v(
-                            "\n                        Dakota Rice\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
                             "\n                        Niger\n                      "
                           )
                         ]),
@@ -79467,12 +79431,6 @@ var staticRenderFns = [
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _c("td", [
-                          _vm._v(
-                            "\n                        Minerva Hooper\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c("td", [
                           _vm._v(
                             "\n                        Curaçao\n                      "
@@ -79495,12 +79453,6 @@ var staticRenderFns = [
                       _c("tr", [
                         _c("td", [
                           _vm._v(
-                            "\n                        Sage Rodriguez\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
                             "\n                        Netherlands\n                      "
                           )
                         ]),
@@ -79519,12 +79471,6 @@ var staticRenderFns = [
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _c("td", [
-                          _vm._v(
-                            "\n                        Philip Chaney\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c("td", [
                           _vm._v(
                             "\n                        Korea, South\n                      "
@@ -79547,12 +79493,6 @@ var staticRenderFns = [
                       _c("tr", [
                         _c("td", [
                           _vm._v(
-                            "\n                        Doris Greene\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
                             "\n                        Malawi\n                      "
                           )
                         ]),
@@ -79573,12 +79513,6 @@ var staticRenderFns = [
                       _c("tr", [
                         _c("td", [
                           _vm._v(
-                            "\n                        Mason Porter\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
                             "\n                        Chile\n                      "
                           )
                         ]),
@@ -79597,12 +79531,6 @@ var staticRenderFns = [
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _c("td", [
-                          _vm._v(
-                            "\n                        Jon Porter\n                      "
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c("td", [
                           _vm._v(
                             "\n                        Portugal\n                      "
@@ -90068,7 +89996,7 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: { xs11: "", "offset-xs2": "", "elevation-5": "" }
+                      attrs: { xs10: "", "offset-xs1": "", "elevation-5": "" }
                     },
                     [
                       _c(

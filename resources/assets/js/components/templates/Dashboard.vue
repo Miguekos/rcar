@@ -97,9 +97,6 @@
                     <thead class="text-primary">
                       <tr>
                         <th>
-                          Nombre
-                        </th>
-                        <th>
                           Marca
                         </th>
                         <th>
@@ -113,9 +110,6 @@
                     <tbody>
                       <tr>
                         <td>
-                          Dakota Rice
-                        </td>
-                        <td>
                           Niger
                         </td>
                         <td>
@@ -126,9 +120,6 @@
                         </td>
                       </tr>
                       <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
                         <td>
                           Curaçao
                         </td>
@@ -141,9 +132,6 @@
                       </tr>
                       <tr>
                         <td>
-                          Sage Rodriguez
-                        </td>
-                        <td>
                           Netherlands
                         </td>
                         <td>
@@ -154,9 +142,6 @@
                         </td>
                       </tr>
                       <tr>
-                        <td>
-                          Philip Chaney
-                        </td>
                         <td>
                           Korea, South
                         </td>
@@ -169,9 +154,6 @@
                       </tr>
                       <tr>
                         <td>
-                          Doris Greene
-                        </td>
-                        <td>
                           Malawi
                         </td>
                         <td>
@@ -183,9 +165,6 @@
                       </tr>
                       <tr>
                         <td>
-                          Mason Porter
-                        </td>
-                        <td>
                           Chile
                         </td>
                         <td>
@@ -196,9 +175,6 @@
                         </td>
                       </tr>
                       <tr>
-                        <td>
-                          Jon Porter
-                        </td>
                         <td>
                           Portugal
                         </td>

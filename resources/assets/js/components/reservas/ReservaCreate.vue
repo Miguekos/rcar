@@ -124,7 +124,7 @@ select:-webkit-autofill:focus {
     <v-layout align-center justify-center column fill-height>
       <v-container>
 
-        <v-flex xs11 offset-xs2 elevation-5>
+        <v-flex xs10 offset-xs1 elevation-5>
           <v-card hover>
             <v-card-text>
 
