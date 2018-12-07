@@ -44,6 +44,7 @@ Vue.component('layout-nav', require('./components/layouts/Layout.vue'));
 Vue.component('nav-bar', require('./components/templates/Nav.vue'));
 Vue.component('comp-dashboard', require('./components/templates/Dashboard.vue'));
 Vue.component('comp-factura', require('./components/templates/Factura.vue'));
+Vue.component('comp-disponibilidad', require('./components/templates/Disponibilidad.vue'));
 
 // Clientes
 Vue.component('comp-cliente', require('./components/clientes/Cliente2.vue'));

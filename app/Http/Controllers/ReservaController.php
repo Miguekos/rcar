@@ -15,6 +15,12 @@ class ReservaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function disponibilidad()
+     {
+       return view('templates.disponibilidad');
+     }
+
     public function index()
     {
       return view('reservas.index');
