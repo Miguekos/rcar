@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div>
   <v-toolbar-title>Precio Total</v-toolbar-title>
   <v-data-table :headers="headers" :items="desserts" item-key="name" hide-actions>
     <template slot="items" slot-scope="props">

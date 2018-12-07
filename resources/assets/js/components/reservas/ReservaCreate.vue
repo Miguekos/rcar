@@ -56,68 +56,38 @@ select:-webkit-autofill:focus {
         <v-card-title primary-title>
           Programa de Beneficios
         </v-card-title>
-
         <v-layout align-center justify-space-between row fill-height>
-
           <v-flex xs12 sm3 lg3>
             <label>Puntos Disponibles</label>
-            <v-text-field solo-inverted >{{ puntosd }}</v-text-field>
+            <v-text-field solo-inverted>{{ puntosd }}</v-text-field>
           </v-flex>
-
           <v-flex xs12 sm3 lg3>
             <label>Puntos a Canjear</label>
             <v-text-field solo>{{ puntosc }}</v-text-field>
           </v-flex>
-
           <v-flex xs12 sm3 lg3>
             <label>Dias Disponibles</label>
             <v-text-field solo>{{ diasd }}</v-text-field>
           </v-flex>
-
         </v-layout>
-
         <v-divider></v-divider>
         <v-card-title primary-title>
           Adicionales
         </v-card-title>
-
         <v-layout align-center justify-space-between row fill-height>
-
-
           <v-flex xs12 sm4>
             <v-switch v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-switch>
           </v-flex>
-
           <v-flex xs12 sm4>
             <v-switch v-model="puntocanjear" label="Puntos Canjear" color="success" value="success" hide-details></v-switch>
           </v-flex>
           <v-flex xs12 sm4>
             <v-switch v-model="diaadicional" label="Dia Adicionales" color="success" value="success" hide-details></v-switch>
           </v-flex>
-
-          <!-- <v-flex xs12 sm4>
-            <v-checkbox v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-checkbox>
-          </v-flex>
-
-          <v-flex xs12 sm4>
-            <v-checkbox v-model="puntocanjear" label="Puntos Canjear" color="success" value="success" hide-details></v-checkbox>
-          </v-flex>
-          <v-flex xs12 sm4>
-            <v-checkbox v-model="diaadicional" label="Dia Adicionales" color="success" value="success" hide-details></v-checkbox>
-          </v-flex> -->
-
-
-
         </v-layout>
-
       </v-card-text>
-
-      <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
-            v-if="formHasErrors" left> <v-btn slot="activator" icon class="my-0" @click="resetForm"> <v-icon>refresh</v-icon> </v-btn> <span>Refresh form</span>
-            </v-tooltip> </v-slide-x-reverse-transition> <v-btn color="primary" flat @click="submit">Submit</v-btn> </v-card-actions> -->
       </v-card>
     </v-flex>
-
     <v-flex xs12 sm10 md8 lg4 elevation-5>
       <v-card-text>
         <v-flex>
@@ -140,37 +110,37 @@ select:-webkit-autofill:focus {
                 </div>
               </div>
             </v-card-title>
-
             <v-layout row wrap justify-center>
-              <v-daterange locale="ES-es"  highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
+              <v-daterange locale="ES-es" highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
             </v-layout>
-
             <v-card-actions>
-              <!-- <v-btn flat color="orange">Share</v-btn> <v-btn flat color="orange">Explore</v-btn> -->
             </v-card-actions>
           </v-card>
         </v-flex>
-
       </v-card-text>
-      <!-- <v-divider class="mt-5"></v-divider> <v-card-actions> <v-btn flat>Cancel</v-btn> <v-spacer></v-spacer> <v-slide-x-reverse-transition> <v-tooltip
-                    v-if="formHasErrors" left> <v-btn slot="activator" icon class="my-0" @click="resetForm"> <v-icon>refresh</v-icon> </v-btn> <span>Refresh form</span>
-                    </v-tooltip> </v-slide-x-reverse-transition> <v-btn color="primary" flat @click="submit">Submit</v-btn> </v-card-actions> -->
       </v-card>
     </v-flex>
+
+    <v-layout align-center justify-center column fill-height>
+      <v-container>
+
+        <v-flex xs11 offset-xs2 elevation-5>
+          <v-card hover>
+            <v-card-text>
+
+    <comp-factura></comp-factura>
+
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-container>
+    </v-layout>
 
   </v-layout>
 
-  <v-container grid-list>
-    <v-flex xs12 sm10 md8 lg4 elevation-5>
-      <v-card hover>
-        <v-card-text>
 
-          <comp-factura></comp-factura>
 
-        </v-card-text>
-      </v-card>
-    </v-flex>
-  </v-container>
+
   <v-container text-lg-center text-xs-center text-sm-center>
     <v-btn color="success">Guardar</v-btn>
     <v-btn color="error">Cancelar</v-btn>

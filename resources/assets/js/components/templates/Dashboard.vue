@@ -7,7 +7,7 @@
                 <div class="row">
                   <div class="col-sm-6 text-left">
                     <h5 class="card-category">Ultimo Mes</h5>
-                    <h2 class="card-title">Alguiler</h2>
+                    <h2 class="card-title">Alquiler</h2>
                   </div>
                   <div class="col-sm-6">
                     <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
@@ -86,15 +86,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6 col-md-12">
-            <div class="card ">
+          <div class="col-lg-12 col-md-12">
+            <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Vehiculos con mayor produccion</h4>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table tablesorter " id="">
-                    <thead class=" text-primary">
+                <div class="">
+                  <table class="table tablesorter "id="">
+                    <thead class="text-primary">
                       <tr>
                         <th>
                           Nombre
@@ -239,8 +239,6 @@ $(document).ready(function() {
         window_width = $(window).width();
 
         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
 
         $('.fixed-plugin a').click(function(event) {
           if ($(this).hasClass('switch-trigger')) {

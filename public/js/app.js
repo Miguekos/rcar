@@ -78437,7 +78437,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n.v-card__title {\r\n    -webkit-box-align: center;\r\n    -ms-flex-align: center;\r\n    align-items: center;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -ms-flex-wrap: wrap;\r\n    flex-wrap: wrap;\r\n    padding: 0px;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n.v-card__title {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n", ""]);
 
 // exports
 
@@ -78511,92 +78511,91 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['user'],
-    data: function data() {
-        return {
-            drawer: null,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            items: [{
-                icon: 'lightbulb_outline',
-                text: 'Dasboard',
-                link: '/'
-            }, {
-                icon: 'touch_app',
-                text: 'Clientes',
-                link: '/cliente'
-            },
-            // {
-            //     divider: false
-            // },
-            {
-                heading: 'Labels'
-            }, {
-                icon: 'favorite_border',
-                text: 'Promos',
-                link: '/promo'
-            },
-            // {
-            //     divider: false
-            // },
-            {
-                icon: 'directions_car',
-                text: 'Autos',
-                link: '/auto'
-            }, {
-                icon: 'delete',
-                text: 'Reservas',
-                link: '/reserva'
-            },
-            // {
-            //     divider: false
-            // },
-            {
-                icon: 'settings',
-                text: 'Settings',
-                link: '/'
-            }, {
-                icon: 'chat_bubble',
-                text: 'Trash',
-                link: '/'
-            }, {
-                icon: 'help',
-                text: 'Help'
-            }, {
-                icon: 'phonelink',
-                text: 'App downloads',
-                link: '/'
-            }, {
-                icon: 'keyboard',
-                text: 'Keyboard shortcuts',
-                link: '/'
-            }, {
-                icon: 'exit_to_app',
-                text: 'Salir',
-                link: 'logout'
-            }]
-        };
+  props: ['user'],
+  data: function data() {
+    return {
+      drawer: null,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      items: [{
+        icon: 'lightbulb_outline',
+        text: 'Dasboard',
+        link: '/'
+      }, {
+        icon: 'touch_app',
+        text: 'Clientes',
+        link: '/cliente'
+      },
+      // {
+      //     divider: false
+      // },
+      {
+        heading: 'Labels'
+      }, {
+        icon: 'favorite_border',
+        text: 'Promos',
+        link: '/promo'
+      },
+      // {
+      //     divider: false
+      // },
+      {
+        icon: 'directions_car',
+        text: 'Autos',
+        link: '/auto'
+      }, {
+        icon: 'delete',
+        text: 'Reservas',
+        link: '/reserva'
+      },
+      // {
+      //     divider: false
+      // },
+      {
+        icon: 'settings',
+        text: 'Settings',
+        link: '/'
+      }, {
+        icon: 'chat_bubble',
+        text: 'Trash',
+        link: '/'
+      }, {
+        icon: 'help',
+        text: 'Help'
+      }, {
+        icon: 'phonelink',
+        text: 'App downloads',
+        link: '/'
+      }, {
+        icon: 'keyboard',
+        text: 'Keyboard shortcuts',
+        link: '/'
+      }, {
+        icon: 'exit_to_app',
+        text: 'Salir',
+        link: 'logout'
+      }]
+    };
+  },
+  methods: {
+    logout: function logout() {
+      console.log("entro a al logout");
+      axios.post('/logout', {
+        _token: this.csrf
+      }).then(function (response) {
+        window.location.href = '/';
+      }).catch(function (e) {
+        console.log(e);
+      });
     },
-    methods: {
-        logout: function logout() {
-            console.log("entro a al logout");
-            axios.post('/logout', {
-                _token: this.csrf
-            }).then(function (response) {
-                window.location.href = '/';
-            }).catch(function (e) {
-                console.log(e);
-            });
-        },
-        link: function link(_link) {
-            if (_link != 'logout') {
-                window.location.href = '' + _link;
-            } else {
-                this.logout();
-            }
-        }
+    link: function link(_link) {
+      if (_link != 'logout') {
+        window.location.href = '' + _link;
+      } else {
+        this.logout();
+      }
     }
+  }
 });
 
 /***/ }),
@@ -78706,9 +78705,9 @@ var render = function() {
                                 { staticClass: "grey--text" },
                                 [
                                   _vm._v(
-                                    "\r\n                            " +
+                                    "\r\n              " +
                                       _vm._s(item.text) +
-                                      "\r\n                        "
+                                      "\r\n            "
                                   )
                                 ]
                               )
@@ -78729,7 +78728,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-toolbar",
-        { attrs: { dense: "", dark: "", color: "black lighten-1" } },
+        { attrs: { dark: "", color: "black lighten-1" } },
         [
           _c("v-toolbar-side-icon", {
             on: {
@@ -78739,15 +78738,15 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("img", {
-            attrs: { src: "loginnew/images/logo.png", alt: "logo", width: "2%" }
+          _c("v-toolbar-title", [_vm._v("SCHETTINI ")]),
+          _vm._v(" "),
+          _c("v-divider", {
+            staticClass: "mx-3",
+            attrs: { inset: "", vertical: "" }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [
-            _vm._v("SCHETTINI "),
-            _c("span", { staticClass: "font-weight-light" }, [
-              _vm._v("RENT A CAR ")
-            ])
+          _c("span", { staticClass: "font-weight-light" }, [
+            _vm._v("RENT A CAR ")
           ]),
           _vm._v(" "),
           _c("v-spacer"),
@@ -79192,8 +79191,6 @@ module.exports = Component.exports
 //
 //
 //
-//
-//
 
 $(document).ready(function () {
   // Javascript method's body can be found in assets/js/demos.js
@@ -79226,7 +79223,7 @@ var staticRenderFns = [
                     _vm._v("Ultimo Mes")
                   ]),
                   _vm._v(" "),
-                  _c("h2", { staticClass: "card-title" }, [_vm._v("Alguiler")])
+                  _c("h2", { staticClass: "card-title" }, [_vm._v("Alquiler")])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-6" }, [
@@ -79400,8 +79397,8 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-lg-6 col-md-12" }, [
-          _c("div", { staticClass: "card " }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12" }, [
+          _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("h4", { staticClass: "card-title" }, [
                 _vm._v(" Vehiculos con mayor produccion")
@@ -79409,12 +79406,12 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "table-responsive" }, [
+              _c("div", {}, [
                 _c(
                   "table",
                   { staticClass: "table tablesorter ", attrs: { id: "" } },
                   [
-                    _c("thead", { staticClass: " text-primary" }, [
+                    _c("thead", { staticClass: "text-primary" }, [
                       _c("tr", [
                         _c("th", [
                           _vm._v(
@@ -79782,7 +79779,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
     [
       _c("v-toolbar-title", [_vm._v("Precio Total")]),
       _vm._v(" "),
@@ -89178,7 +89174,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\r\n", ""]);
+exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\n", ""]);
 
 // exports
 
@@ -89193,36 +89189,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -90083,25 +90049,38 @@ var render = function() {
               )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-container",
-        { attrs: { "grid-list": "" } },
-        [
+          ),
+          _vm._v(" "),
           _c(
-            "v-flex",
+            "v-layout",
             {
-              attrs: { xs12: "", sm10: "", md8: "", lg4: "", "elevation-5": "" }
+              attrs: {
+                "align-center": "",
+                "justify-center": "",
+                column: "",
+                "fill-height": ""
+              }
             },
             [
               _c(
-                "v-card",
-                { attrs: { hover: "" } },
-                [_c("v-card-text", [_c("comp-factura")], 1)],
+                "v-container",
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: { xs11: "", "offset-xs2": "", "elevation-5": "" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { hover: "" } },
+                        [_c("v-card-text", [_c("comp-factura")], 1)],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
                 1
               )
             ],
