@@ -1,5 +1,17 @@
 <template lang="html">
 <div class="">
+  <!-- <v-dialog v-model="dialog4" persistent max-width="290">
+      <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn>
+      <v-card>
+        <v-card-title class="headline">Use Google's location service?</v-card-title>
+        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat @click="dialog4 = false">Disagree</v-btn>
+          <v-btn color="green darken-1" flat @click="dialog4 = false">Agree</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog> -->
     <v-container grid-list-md fluid text-xs-justify>
         <v-data-iterator
             :items="items"
@@ -29,21 +41,28 @@
                                         close
                                     </v-icon>
                                 </v-flex>
-
                                 <v-card-title primary-title>
+                                <v-layout align-center justify-space-around row fill-height>
 
                                     <div>
-                                        <div class="headline">{{ props.item.nombre }}</div>
-                                        <div class="text-xs-left">{{ props.item.vigencia }}</div>
-                                        <div>{{ props.item.dias_pagados }}</div>
+                                        <div class="headline">{{ props.item.cliente }}</div>
+                                        <div class="text-xs-left"><strong>Monto a pagar:</strong> {{ props.item.totalF }}$</div>
+                                        <div class="text-xs-left"><strong>Dias Disponible:</strong> {{ props.item.diasdisponible }}</div>
                                     </div>
+                                    <div>
+                                        <div class="text-xs-right"><strong>Cliente:</strong> {{ props.item.cliente }}</div>
+                                        <div class="text-xs-right"><strong>Auto:</strong> {{ props.item.autoSeleccionado }}</div>
+                                        <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechaFin }}</div>
+                                    </div>
+                                </v-layout>
                                 </v-card-title>
                             </v-flex>
                         </v-layout>
                         <!-- <v-divider dense light></v-divider> -->
                         <v-card-actions>
+                          <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
                             <v-spacer></v-spacer>
-                            <v-btn small color="primary">confirmar</v-btn>
+                            <v-btn @click="confirmar(props.item)" small color="primary">confirmar</v-btn>
 
                             <!-- <v-btn  small color="error">cancelar</v-btn> -->
                         </v-card-actions>
@@ -70,6 +89,7 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    dialog4: false,
     registros: "",
     page: "",
     reviews: 413,
@@ -113,10 +133,10 @@ export default {
     getDataCliente() {
       console.log("en get data nuew");
       axios
-        .get(`/v1.0/promos`)
+        .get(`/v1.0/reservas`)
         .then(response => {
-          this.items = response.data;
-          console.log(response.data);
+          this.items = response.data.reserva;
+          console.log(response.data.reserva);
           // this.total = response.data.clientec;
           // this.fecha = response.data.fecha;
           // this.clienten = response.data.clienten;
@@ -128,6 +148,10 @@ export default {
       // this.paginas();
       console.log("aqui");
 
+    },
+    confirmar(item) {
+      console.log(item);
+      // window.location.href = `/reserva/${item.id}/edit`;
     },
     editItem(item) {
       window.location.href = `/reserva/${item.id}/edit`;
@@ -144,10 +168,6 @@ export default {
             _token: this.csrf
           })
           .then(response => {
-            //                    window.location.href = '/';
-            // JSON responses are automatically parsed.
-            //                        this.user = response.data;
-            //                        console.log(response.data);
             console.log("Borrado correctamente");
           })
           .catch(e => {

@@ -216,7 +216,6 @@
       // boton inicio
       // boton fin
       // pagination: {},
-
     }),
     created() {
 

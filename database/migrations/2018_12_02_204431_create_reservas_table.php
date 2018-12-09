@@ -15,15 +15,15 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('nreserva')->nullable();
             $table->date('fechasInicio')->nullable();
             $table->date('fechaFin')->nullable();
             $table->integer('vehiculo')->nullable();
-            $table->integer('cliente')->nullable();
+            $table->string('cliente')->nullable();
             $table->integer('producto')->nullable();
-            $table->integer('promo')->nullable();
+            $table->string('promo')->nullable();
             $table->integer('zonaDeEntrega')->nullable();
             $table->string('direccionEntrega')->nullable();
-            $table->integer('seguro')->nullable();
             $table->integer('puntosDisponible')->nullable();
             $table->integer('PuntosCanjear')->nullable();
             $table->integer('diaAdicionales')->nullable();
@@ -31,7 +31,13 @@ class CreateReservasTable extends Migration
             $table->integer('doblePiloto')->nullable();
             $table->integer('tanqueLleno')->nullable();
             $table->string('autoSeleccionado')->nullable();
-            $table->string('estado')->nullable();
+            $table->integer('estado')->nullable();
+            $table->float('preciovihiculo')->nullable();
+            $table->float('productos')->nullable();
+            $table->float('seguro')->nullable();
+            $table->float('diaadicional')->nullable();
+            $table->float('totalF')->nullable();
+            $table->float('diasdisponible')->nullable();
             $table->timestamps();
         });
     }

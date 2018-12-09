@@ -17,78 +17,60 @@ select:-webkit-autofill:focus {
   display: -ms-flexbox;
   display: block;
 }
+
 .font {
-  font-family: Roboto,sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
+/* table.v-table tbody td,
+table.v-table tbody th {
+  height: 18px;
+} */
 </style>
 
 <template>
 <div>
+  <form method="post" @submit.prevent="sendForm()">
   <v-layout align-start justify-space-between row wrap fill-height>
     <v-flex xs12 lg6 elevation-3>
       <v-card-text>
+        {{ fechadiff }}
         <label>Fecha Inicio</label>
-        <v-menu
-          ref="menu1"
-          :close-on-content-click="false"
-          v-model="menu1"
-          :nudge-right="40"
-          lazy
-          transition="scale-transition"
-          offset-y
-          full-width
-          max-width="290px"
-          min-width="290px"
-        >
-          <v-text-field
-            slot="activator"
-            v-model="dateFormatted"
-            label="Date"
-            hint="MM/DD/YYYY format"
-            persistent-hint
-            prepend-icon="event"
-            @blur="date = parseDate(dateFormatted)"
-          ></v-text-field>
-          <v-date-picker v-model="date" no-title @input="menu1 = false"></v-date-picker>
+        <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
+          <v-text-field slot="activator" v-model="fecha1" prepend-icon="event" readonly></v-text-field>
+          <v-date-picker v-model="fecha1" @input="menu1 = false"></v-date-picker>
         </v-menu>
         <label>Fecha Fin</label>
         <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-          <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date2" prepend-icon="event" readonly></v-text-field>
-          <v-date-picker locale="Es-es" v-model="date" @input="menu2 = false"></v-date-picker>
+          <v-text-field slot="activator" v-model="fecha2" prepend-icon="event" readonly></v-text-field>
+          <v-date-picker v-model="fecha2" @input="menu2 = false"></v-date-picker>
         </v-menu>
         <label>Vehiculo</label>
         <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
         <label>Cliente</label>
         <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
         <label>Producto</label>
-        <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="productos" placeholder="Select..." required solo></v-autocomplete>
+        <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
         <label>Paquete</label>
-        <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
+        <v-autocomplete :items="promo" item-text="nombre" item-value="value" v-model="paquetes" placeholder="Select..." required solo></v-autocomplete>
         <label>Zona de Entrega</label>
-        <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="zonas" placeholder="Select..." required solo></v-autocomplete>
-        <v-flex xs12 sm12 md12>
-          <label>Direccion de Entrega</label>
-          <v-text-field solo></v-text-field>
-        </v-flex>
+        <v-select :items="zonaItem" item-text="name" item-value="value" v-model="zonas" placeholder="Select..." solo></v-select>
+        <label>Direccion de Entrega</label>
+        <v-text-field v-model="direccionEntrega"></v-text-field>
         <label>Seguro</label>
-        <v-autocomplete :items="promo" item-text="nombre" item-value="id" v-model="zonas" placeholder="Select..." required solo></v-autocomplete>
-        <v-divider></v-divider>
-        <v-card-title primary-title>
-          Programa de Beneficios
-        </v-card-title>
+        <v-select :items="seguroItem" item-text="name" item-value="value" v-model="seguro" placeholder="Select..." solo></v-select>
         <v-layout align-center justify-space-between row fill-height>
           <v-flex xs12 sm3 lg3>
             <label>Puntos Disponibles</label>
-            <v-text-field solo-inverted>{{ puntosd }}</v-text-field>
+            <v-text-field v-model="puntosd" solo-inverted></v-text-field>
           </v-flex>
           <v-flex xs12 sm3 lg3>
             <label>Puntos a Canjear</label>
-            <v-text-field solo>{{ puntosc }}</v-text-field>
+            <v-text-field v-model="puntosc" solo></v-text-field>
           </v-flex>
           <v-flex xs12 sm3 lg3>
             <label>Dias Disponibles</label>
-            <v-text-field solo>{{ diasd }}</v-text-field>
+            <v-text-field v-model="diasd" solo></v-text-field>
           </v-flex>
         </v-layout>
         <v-divider></v-divider>
@@ -97,75 +79,183 @@ select:-webkit-autofill:focus {
         </v-card-title>
         <v-layout align-center justify-space-between row fill-height>
           <v-flex xs12 sm4>
-            <v-switch v-model="sillabebe" label="Silla Bebe" color="success" value="success" hide-details></v-switch>
+            <v-switch
+            v-model="sillabebeP"
+            true-value="50"
+            false-value="0"
+            label="Silla Bebe" color="success" hide-details></v-switch>
           </v-flex>
           <v-flex xs12 sm4>
-            <v-switch v-model="puntocanjear" label="Puntos Canjear" color="success" value="success" hide-details></v-switch>
+            <v-switch
+            v-model="doblePiloto"
+            true-value="50"
+            false-value="0"
+            label="Doble Piloto" color="success" hide-details></v-switch>
           </v-flex>
           <v-flex xs12 sm4>
-            <v-switch v-model="diaadicional" label="Dia Adicionales" color="success" value="success" hide-details></v-switch>
+            <v-switch
+            v-model="tanqueLleno"
+            true-value="50"
+            false-value="0"
+            label="Tanque LLeno" color="success" hide-details></v-switch>
           </v-flex>
         </v-layout>
       </v-card-text>
       </v-card>
     </v-flex>
-    <v-flex xs12 lg5>
-      <v-card-text elevation-3>
-        <v-flex>
-          <v-card>
-            <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
-            <v-card-title>
-              <div>
-                <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3>
-                <div>
-                  Placa:
-                  {{ vehiculoData.marca }}
-                  <br>
-                  Color:
-                  {{ vehiculoData.color }}
-                  <br>
-                  Año:
-                  {{ vehiculoData.anio }}
-                  <br>
-                  Precio: 89$
-                </div>
-              </div>
-            </v-card-title>
-            <v-layout row wrap justify-center>
-              <v-daterange locale="ES-es" highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
+    <v-flex xs12 lg5 elevation-3>
+      <v-flex>
+        <v-card>
+          <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
+          <v-toolbar-title class="text-lg-center">{{ vehiculoData.marca }}</v-toolbar-title>
+          <!-- <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3> -->
+          <v-card-title>
+            <v-layout align-center justify-space-between row fill-height>
+              <table class="v-datatable v-table theme--light">
+                <tbody style="height: 18px;">
+                  <tr>
+                    <td style="height: 18px">Marca</td>
+                    <td style="height: 18px" class="text-xs-right">{{ vehiculoData.marca }}</td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px">Modelo:</td>
+                    <td style="height: 18px" class="text-xs-right">{{ vehiculoData.modelo }}</td>
+                  </tr>
+                  <tr class="v-datatable__expand-row">
+                    <td style="height: 18px" colspan="2" class="v-datatable__expand-col"></td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px">Color:</td>
+                    <td style="height: 18px" class="text-xs-right">{{ vehiculoData.color }}</td>
+                  </tr>
+                  <tr class="v-datatable__expand-row">
+                    <td colspan="2" class="v-datatable__expand-col"></td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px">Precio por dia:</td>
+                    <td style="height: 18px" class="text-xs-right">{{ vehiculoData.precio_por_dia }}$</td>
+                  </tr>
+                  <tr class="v-datatable__expand-row">
+                    <td colspan="2" class="v-datatable__expand-col"></td>
+                  </tr>
+                  <tr class="v-datatable__expand-row">
+                    <td colspan="2" class="v-datatable__expand-col"></td>
+                  </tr>
+                </tbody>
+              </table>
             </v-layout>
-            <v-card-actions>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-card-text>
+          </v-card-title>
+          <v-layout row wrap justify-center>
+            <v-daterange locale="ES-es" highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
+          </v-layout>
+          <v-card-actions>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+      </v-card>
+    </v-flex>
+  </v-layout>
+
+  <br>
+  <br>
+  <!-- <v-container lg12> -->
+  <v-layout align-center justify-center>
+
+    <v-flex>
+      <v-card>
+        <v-card-text>
+
+          <v-toolbar-title>Precio Total</v-toolbar-title>
+          <table class="v-datatable v-table theme--light">
+            <thead>
+              <tr>
+                <th role="columnheader" scope="col" aria-label="Items: Not sorted." aria-sort="none" class="column text-xs-left">Items</th>
+                <th role="columnheader" scope="col" aria-label="Precio: Not sorted." aria-sort="none" class="column text-xs-right">Precio</th>
+              </tr>
+              <tr class="v-datatable__progress">
+                <th colspan="2" class="column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vehiculo</td>
+                <td class="text-xs-right">{{ preciovihiculo }}</td>
+              </tr>
+              <tr>
+                <td>Paquete</td>
+                <td class="text-xs-right">{{ productos }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+              <tr>
+                <td>Delivery</td>
+                <td class="text-xs-right">{{ zonas }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+              <tr>
+                <td>Silla Bebe</td>
+                <td class="text-xs-right">{{ sillabebeP }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+              <tr>
+                <td>Doble Piloto</td>
+                <td class="text-xs-right">{{ doblePiloto }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+              <tr>
+                <td>Tanque LLeno</td>
+                <td class="text-xs-right">{{ tanqueLleno }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+              <tr>
+                <td>Seguro Tipo A</td>
+                <td class="text-xs-right">{{ seguro }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+              <tr>
+                <td>Dia Adicional</td>
+                <td class="text-xs-right">{{ diaadicional }}</td>
+              </tr>
+              <tr class="v-datatable__expand-row">
+                <td colspan="2" class="v-datatable__expand-col"></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><strong>IGV 18%</strong></td>
+                <td class="text-xs-right"><b>{{ (suma * 0.18).toFixed(2) }} $</b></td>
+              </tr>
+              <tr>
+                <td><strong>Total a Depositar</strong></td>
+                <td class="text-xs-right"><b>{{ suma }} $</b></td>
+              </tr>
+            </tfoot>
+          </table>
+
+        </v-card-text>
       </v-card>
     </v-flex>
 
-    <v-layout align-center justify-center column fill-height>
-      <v-container>
-
-        <v-flex xs10 offset-xs1 elevation-5>
-          <v-card hover>
-            <v-card-text>
-
-                <comp-factura></comp-factura>
-
-            </v-card-text>
-          </v-card>
-        </v-flex>
-      </v-container>
-    </v-layout>
-
   </v-layout>
-
-
-
+  <!-- </v-container> -->
 
   <v-container text-lg-center text-xs-center text-sm-center>
-    <v-btn color="success">Guardar</v-btn>
+    <v-btn type="submit" color="success">Guardar</v-btn>
     <v-btn color="error">Cancelar</v-btn>
   </v-container>
+  </form>
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 
@@ -185,35 +275,34 @@ import DateRange from 'vuetify-daterange-picker';
 export default {
   props: ['token'],
   data: () => ({
+
+    preciovihiculo: 0,
+    preciov: 0,
+    fechadiferencia: "",
+    zonas: 0,
+    direccionEntrega: "",
+    sillabebeP: 0,
+    doblePiloto: 0,
+    tanqueLleno: 0,
+    seguro: 0,
+    diaadicional: 0,
+    totalF: 0,
+    afacturar: null,
+    fecha1: new Date().toISOString().substr(0, 10),
+    fecha2: new Date().toISOString().substr(0, 10),
+    menu1: false,
+    menu2: false,
     puntosd: 600,
     puntosc: 300,
     diasd: 1,
-    sillabebe: "",
     puntocanjear: "",
-    diaadicional: "",
     errors: [],
     vehiculoId: "",
+    vehiculoPrecio: 0,
     clientes: "",
-    productos: "",
-    paquetes: "",
-    zonas: "",
+    productos: 0,
+    paquetes: 0,
     vehiculoData: {},
-    date1: new Date().toISOString().substr(0, 10),
-    date2: new Date().toISOString().substr(0, 10),
-    menu1: false,
-    menu2: false,
-    menu3: false,
-    menu4: false,
-    dates: [
-      '2018-12-10',
-      '2018-12-11',
-      '2018-12-12',
-      '2018-12-13',
-      '2018-12-14',
-      '2018-12-15',
-      '2018-12-16',
-    ],
-    menu: false,
     promo: [],
     cliente: [],
     auto: [],
@@ -222,69 +311,97 @@ export default {
     landscape: false,
     reactive: false,
     range: [],
+    productosItem: [{
+        name: "Alquiler por Dia",
+        value: '100'
+      },
+      {
+        name: "Alquiler por Kilometros",
+        value: '200'
+      },
+    ],
+    zonaItem: [{
+        name: "San Isidro",
+        value: '100'
+      },
+      {
+        name: "Surco",
+        value: '200'
+      },
+      {
+        name: "Miraflores",
+        value: '300'
+      },
+      {
+        name: "Callao",
+        value: '400'
+      },
+      {
+        name: "Cercado",
+        value: '600'
+      },
+    ],
+    seguroItem: [{
+        name: "Seguro tipo A",
+        value: '100'
+      },
+      {
+        name: "Seguro tipo B",
+        value: '200'
+      },
+      {
+        name: "Seguro tipo C",
+        value: '300'
+      },
+    ],
     dateRangeOptions: {
       startDate: new Date('11/12/2018').toISOString().substr(0, 10),
       endDate: new Date('12/12/2018').toISOString().substr(0, 10),
       format: 'MM/DD/YYYY',
-      // presets: [
-      //   {
-      //     label: 'Today',
-      //     range: [
-      //       new Date().toISOString().substr(0, 10),
-      //       new Date().toISOString().substr(0, 10),
-      //     ],
-      //   },
-      //   {
-      //     label: 'Yesterday',
-      //     range: [
-      //       // formatDistance(subDays(new Date(), 3), new Date()),
-      //       // formatDistance(subDays(new Date(), 3), new Date())
-      //
-      //     ],
-      //   },
-      //   // {
-      //   //   label: 'Last 30 Days',
-      //   //   // range: [
-      //   //     // format(subDays(new Date(), 30), 'YYYY-MM-DD'),
-      //   //     // format(subDays(new Date(), 1), 'YYYY-MM-DD'),
-      //   //   ],
-      //   // },
-      // ],
     },
-    // apellidoPaterno: '',
-    // apellidoMaterno: '',
-    // nombres: '',
-    // dni: '',
-    // image: '',
-    // fechaNacimiento: '',
-    // correo: '',
-    // celular: '',
-    // direccion: '',
-    // ciudad: '',
-    // cci: '',
-    // banco: '',
-    // nombreTitularCuenta: '',
-    // numeroBrevete: '',
-    // fechaVencimientoBrevete: '',
-    // fotoDni: '',
-    // calificacionCliente: '',
-    // comentariosAdicionales: '',
-    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+    formulario: {
 
+    },
+    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
   }),
+
   components: {
     DateRange: DateRange
   },
+  computed: {
+    suma: function() {
+      var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
+      this.preciovihiculo = totalv;
+      var total =
+      parseFloat(this.productos) +
+      parseFloat(this.sillabebeP) +
+      parseFloat(this.doblePiloto) +
+      parseFloat(this.tanqueLleno) +
+      parseFloat(this.zonas) +
+      parseFloat(this.seguro) + totalv;
+      this.totalF = total.toFixed(2);
+      return total.toFixed(2);
+    },
+    fechadiff: function () {
+      var a = moment(this.fecha1);
+      var b = moment(this.fecha2);
+      var c = b.diff(a, 'days');
+      console.log(c);
+      this.fechadiferencia = c;
+      return c;
+    },
+  },
   created() {
+    console.log(moment().format());
     this.getDataCliente();
-
+    console.log(this.formulario);
   },
   methods: {
     onDateRangeChange(range) {
       this.range = range;
     },
     getDataCliente() {
-      console.log("en get data nuew");
+      console.log("OpteniandoDatosDeeserva");
       axios
         .get(`/v1.0/reservas`)
         .then(response => {
@@ -292,25 +409,50 @@ export default {
           this.cliente = response.data.cliente;
           this.auto = response.data.auto;
           console.log(response.data);
-          // var paginas =  Math.ceil(response.data.clientec / 8);
-          // this.page = paginas;
         })
         .catch(e => {
           this.errors.push(e);
         });
     },
     sendForm(e) {
-      let form = document.getElementById('ContactForm');
-      const formData = new FormData(form);
-      let jsonObject = {};
-      for (const [key, value] of formData.entries()) {
-        jsonObject[key] = value;
+      // let form = document.getElementById('ContactForm');
+      // const formData = new FormData(form);
+      // let jsonObject = {};
+      // for (const [key, value] of formData.entries()) {
+        // jsonObject[key] = value;
+      // }
+      console.log("entro a guardar");
+      console.log(this.formulario);
+      axios.post('/v1.0/reserva',
+      {
+        nreserva: '0000001',
+        fechasInicio: this.fecha1,
+        fechaFin: this.fecha2,
+        vehiculo: this.vehiculoId,
+        cliente: this.clientes,
+        producto: this.productos,
+        promo: this.paquetes,
+        zonaDeEntrega: this.zonas,
+        direccionEntrega: this.direccionEntrega,
+        seguro: this.seguro,
+        puntosDisponible: this.puntosd,
+        PuntosCanjear: this.puntosc,
+        diaAdicionales: this.diasd,
+        sillaBebe: this.sillabebeP,
+        doblePiloto: this.doblePiloto,
+        tanqueLleno: this.tanqueLleno,
+        autoSeleccionado: this.autoSeleccionado,
+        estado: this.estado,
+        preciovihiculo: this.preciovihiculo,
+        diaadicional: this.diaadicional,
+        totalF: this.totalF,
+        diasdisponible: this.fechadiferencia,
       }
-      console.log(jsonObject);
-      axios.post('/v1.0/cliente', jsonObject)
+      )
         .then(response => {
+          console.log("SI PASO");
           console.log(response)
-          window.location.href = '/cliente';
+          // window.location.href = '/cliente';
         })
         .catch(error => {
           console.log(error)
@@ -321,13 +463,15 @@ export default {
       window.location.href = '/cliente';
     },
     verAuto() {
+      console.log("aqui esta");
+      // console.log(this.vehiculoData.value);
       axios
         .get(`/v1.0/auto/${this.vehiculoId}`)
         .then(response => {
           this.vehiculoData = response.data[0];
+          this.preciov = response.data[0].precio_por_dia;
+          this.autoSeleccionado = response.data[0].marca;
           console.log(response.data[0]);
-          // var paginas =  Math.ceil(response.data.clientec / 8);
-          // this.page = paginas;
         })
         .catch(e => {
           this.errors.push(e);
