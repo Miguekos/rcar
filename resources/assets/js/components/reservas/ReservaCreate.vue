@@ -1,5 +1,4 @@
-
-<style>
+<style scope>
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus textarea:-webkit-autofill,
@@ -18,22 +17,44 @@ select:-webkit-autofill:focus {
   display: -ms-flexbox;
   display: block;
 }
+.font {
+  font-family: Roboto,sans-serif;
+}
+
 </style>
 
 <template>
 <div>
-
-  <v-layout align-center justify-space-around row wrap fill-height>
-    <v-flex xs12 sm10 md8 lg6 elevation-5>
+  <v-layout align-start justify-space-between row wrap fill-height>
+    <v-flex xs12 lg6 elevation-3>
       <v-card-text>
         <label>Fecha Inicio</label>
-        <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-          <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" prepend-icon="event" readonly></v-text-field>
-          <v-date-picker locale="Es-es" v-model="date" @input="menu1 = false"></v-date-picker>
+        <v-menu
+          ref="menu1"
+          :close-on-content-click="false"
+          v-model="menu1"
+          :nudge-right="40"
+          lazy
+          transition="scale-transition"
+          offset-y
+          full-width
+          max-width="290px"
+          min-width="290px"
+        >
+          <v-text-field
+            slot="activator"
+            v-model="dateFormatted"
+            label="Date"
+            hint="MM/DD/YYYY format"
+            persistent-hint
+            prepend-icon="event"
+            @blur="date = parseDate(dateFormatted)"
+          ></v-text-field>
+          <v-date-picker v-model="date" no-title @input="menu1 = false"></v-date-picker>
         </v-menu>
         <label>Fecha Fin</label>
         <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-          <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date" prepend-icon="event" readonly></v-text-field>
+          <v-text-field slot="activator" name="fechaVencimientoBrevete" v-model="date2" prepend-icon="event" readonly></v-text-field>
           <v-date-picker locale="Es-es" v-model="date" @input="menu2 = false"></v-date-picker>
         </v-menu>
         <label>Vehiculo</label>
@@ -88,8 +109,8 @@ select:-webkit-autofill:focus {
       </v-card-text>
       </v-card>
     </v-flex>
-    <v-flex xs12 sm10 md8 lg4 elevation-5>
-      <v-card-text>
+    <v-flex xs12 lg5>
+      <v-card-text elevation-3>
         <v-flex>
           <v-card>
             <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
@@ -128,7 +149,7 @@ select:-webkit-autofill:focus {
           <v-card hover>
             <v-card-text>
 
-    <comp-factura></comp-factura>
+                <comp-factura></comp-factura>
 
             </v-card-text>
           </v-card>
@@ -177,7 +198,8 @@ export default {
     paquetes: "",
     zonas: "",
     vehiculoData: {},
-    date: new Date().toISOString().substr(0, 10),
+    date1: new Date().toISOString().substr(0, 10),
+    date2: new Date().toISOString().substr(0, 10),
     menu1: false,
     menu2: false,
     menu3: false,

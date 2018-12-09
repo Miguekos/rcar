@@ -119,8 +119,8 @@ export default {
         link: '/'
       }, {
         icon: 'keyboard',
-        text: 'Keyboard shortcuts',
-        link: '/'
+        text: 'Limpiar Cache',
+        link: '/clear-cache'
       }, {
         icon: 'exit_to_app',
         text: 'Salir',
@@ -152,20 +152,3 @@ export default {
   },
 }
 </script>
-<style media="screen">
-.v-card__title--primary {
-  padding-top: 0px;
-}
-
-.v-card__title {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  padding: 0px;
-}
-</style>

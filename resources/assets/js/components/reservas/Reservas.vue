@@ -1,11 +1,38 @@
-<style>
+<style scope>
+.v-btn--small {
+    font-size: 10px;
+    height: 18px;
+    padding: 0 8px;
+}
+.v-card__title--primary {
+  padding: 0px 0px 0px 0px;
+}
+.v-card__tit  le {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+  html {
+    font-size: 12px;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
   .app-fab--absolute {
     position: fixed;
     /*z-index: 3;*/
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    background: orange;
+    background: green;
     right: 0;
     bottom: 0;
     /*position: absolute;*/
@@ -139,7 +166,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <pre-reserva></pre-reserva>
+              <!-- <pre-reserva></pre-reserva> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -148,7 +175,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <pre-reserva></pre-reserva>
+              <!-- <pre-reserva></pre-reserva> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -158,7 +185,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <pre-reserva></pre-reserva>
+              <!-- <pre-reserva></pre-reserva> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -168,7 +195,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <pre-reserva></pre-reserva>
+              <!-- <pre-reserva></pre-reserva> -->
             </v-card-text>
           </v-card>
         </v-tab-item>

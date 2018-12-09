@@ -2,7 +2,10 @@
 
 @section('content')
 <comp-dashboard></comp-dashboard>
+
 @endsection
+
+
 
 <link href="../grafica/assets/css/nucleo-icons.css" rel="stylesheet" />
 <link href="../grafica/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />

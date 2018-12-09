@@ -3,8 +3,10 @@
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('view:clear');
-    return "Se limpio el cache correctamente";
+    return back();
 });
+
+Route::post('/foto', 'DashboardController@updatePhoto');
 
 Route::group(['prefix' => 'v1.0'], function () {
 
@@ -41,7 +43,6 @@ Route::group(['prefix' => 'v1.0'], function () {
     Route::put('reserva/{reserva}', 'ReservaController@updateapi');
     Route::delete('reserva/{reserva}', 'ReservaController@destroyapi');
 
-
 });
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
@@ -56,16 +57,16 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register')->name('register');
 
 //Usuarios
-Route::resource('user','UserController');
+Route::resource('user','UserController')->middleware('auth');
 
 // promos
-Route::resource('promo','PromoController');
+Route::resource('promo','PromoController')->middleware('auth');
 
 // reservas
-Route::resource('reserva','ReservaController');
+Route::resource('reserva','ReservaController')->middleware('auth');
 
 // promos
-Route::resource('auto','AutoController');
+Route::resource('auto','AutoController')->middleware('auth');
 
 //resetear contraseña
 Route::get('cambioclaveform', 'DashboardController@cambioclaveform')->name('cambioclaveform.update');
@@ -74,11 +75,8 @@ Route::get('cambioclaveform', 'DashboardController@cambioclaveform')->name('camb
 Route::post('cambioclave/{empleado}', 'DashboardController@cambioclave')->name('cambioclave');
 
 
-
 // Cliente
-
-Route::resource('cliente', 'ClienteController');
-
-
+Route::resource('cliente', 'ClienteController')->middleware('auth');
 
 // Generar prueba
+Route::get('prueba', 'DashboardController@prueba')->name('prueba');

@@ -46,7 +46,9 @@ html {
 
           <v-flex xs12 sm6>
             <label for="">Imagen del Cliente</label>
-            <v-text-field type="file" name="image" solo :rules="[rules.required]"></v-text-field>
+            <v-form id="subir" @submit.prevent="subir">
+                <v-text-field type="file" name="photo" @change="subir()" solo :rules="[rules.required]"></v-text-field>
+            </V-form>
           </v-flex>
 
           <v-flex xs12 sm6 md4>
@@ -207,6 +209,24 @@ html {
       }
     },
     methods: {
+      subir () {
+        let form = document.getElementById('subir');
+        const formData = new FormData(form);
+        let jsonObject = {};
+        // for (const [key, value] of formData.entries()) {
+        //   jsonObject[key] = value;
+        // }
+        console.log(jsonObject);
+        axios.post('/foto', jsonObject)
+          .then(response => {
+            console.log(response)
+            // window.location.href = '/cliente';
+          })
+          .catch(error => {
+            console.log(error)
+            alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+          })
+        },
       save (date) {
         this.$refs.menu.save(date)
       },

@@ -1,4 +1,19 @@
-<style>
+<style scope>
+.v-card__title--primary {
+  padding-top: 0px;
+}
+
+.v-card__tit  le {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0px;
+}
 html {
     font-size: 12px;
     overflow-x: hidden;
@@ -93,7 +108,7 @@ html {
 
 </style>
 <template>
-  <div>
+  <div id="cartas">
 <v-dialog v-model="dialog3" persistent max-width="690">
       <v-card>
         <v-card-title class="headline">Enviar Correo</v-card-title>
@@ -202,7 +217,7 @@ html {
         </v-flex>
 
       <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
-        content-tag="v-layout" row wrap class="elevation-5" hide-actions>
+        content-tag="v-layout" row wrap hide-actions>
 
         <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
           <!-- <v-hover> -->

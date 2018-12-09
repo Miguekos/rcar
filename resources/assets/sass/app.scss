@@ -1,9 +1,12 @@
 
 // Fonts
-// @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Inconsolata:300|Material+Icons");
+//@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Inconsolata:300|Material+Icons");
+//@import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
+// index.js or main.js
+@import '~material-design-icons-iconfont/dist/material-design-icons.css'; // Ensure you are using css-loader
 
 
 
