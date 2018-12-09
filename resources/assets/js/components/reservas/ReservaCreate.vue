@@ -34,7 +34,6 @@ table.v-table tbody th {
   <v-layout align-start justify-space-between row wrap fill-height>
     <v-flex xs12 lg6 elevation-3>
       <v-card-text>
-        {{ fechadiff }}
         <label>Fecha Inicio</label>
         <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
           <v-text-field slot="activator" v-model="fecha1" prepend-icon="event" readonly></v-text-field>
@@ -134,6 +133,10 @@ table.v-table tbody th {
                   <tr>
                     <td style="height: 18px">Precio por dia:</td>
                     <td style="height: 18px" class="text-xs-right">{{ vehiculoData.precio_por_dia }}$</td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px">Dias alquilado:</td>
+                    <td style="height: 18px" class="text-xs-right">{{ fechadiff }}</td>
                   </tr>
                   <tr class="v-datatable__expand-row">
                     <td colspan="2" class="v-datatable__expand-col"></td>
@@ -242,11 +245,9 @@ table.v-table tbody th {
               </tr>
             </tfoot>
           </table>
-
         </v-card-text>
       </v-card>
     </v-flex>
-
   </v-layout>
   <!-- </v-container> -->
 
@@ -275,7 +276,9 @@ import DateRange from 'vuetify-daterange-picker';
 export default {
   props: ['token'],
   data: () => ({
-
+    fechainicioauto: "",
+    fechafinauto: "",
+    reservastotal: "",
     preciovihiculo: 0,
     preciov: 0,
     fechadiferencia: "",
@@ -355,12 +358,9 @@ export default {
       },
     ],
     dateRangeOptions: {
-      startDate: new Date('11/12/2018').toISOString().substr(0, 10),
-      endDate: new Date('12/12/2018').toISOString().substr(0, 10),
-      format: 'MM/DD/YYYY',
-    },
-    formulario: {
-
+      startDate: this.fechainicioauto,
+      endDate: this.fechafinauto,
+      format: 'YYYY/MM/DD',
     },
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
   }),
@@ -369,6 +369,14 @@ export default {
     DateRange: DateRange
   },
   computed: {
+    fechadiff: function () {
+      var a = moment(this.fecha1);
+      var b = moment(this.fecha2);
+      var c = b.diff(a, 'days');
+      console.log(c);
+      this.fechadiferencia = c;
+      return c;
+    },
     suma: function() {
       var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
       this.preciovihiculo = totalv;
@@ -381,14 +389,6 @@ export default {
       parseFloat(this.seguro) + totalv;
       this.totalF = total.toFixed(2);
       return total.toFixed(2);
-    },
-    fechadiff: function () {
-      var a = moment(this.fecha1);
-      var b = moment(this.fecha2);
-      var c = b.diff(a, 'days');
-      console.log(c);
-      this.fechadiferencia = c;
-      return c;
     },
   },
   created() {
@@ -408,6 +408,7 @@ export default {
           this.promo = response.data.promo;
           this.cliente = response.data.cliente;
           this.auto = response.data.auto;
+          this.reservastotal = response.data.reserva;
           console.log(response.data);
         })
         .catch(e => {
@@ -415,44 +416,38 @@ export default {
         });
     },
     sendForm(e) {
-      // let form = document.getElementById('ContactForm');
-      // const formData = new FormData(form);
-      // let jsonObject = {};
-      // for (const [key, value] of formData.entries()) {
-        // jsonObject[key] = value;
-      // }
       console.log("entro a guardar");
       console.log(this.formulario);
       axios.post('/v1.0/reserva',
-      {
-        nreserva: '0000001',
-        fechasInicio: this.fecha1,
-        fechaFin: this.fecha2,
-        vehiculo: this.vehiculoId,
-        cliente: this.clientes,
-        producto: this.productos,
-        promo: this.paquetes,
-        zonaDeEntrega: this.zonas,
-        direccionEntrega: this.direccionEntrega,
-        seguro: this.seguro,
-        puntosDisponible: this.puntosd,
-        PuntosCanjear: this.puntosc,
-        diaAdicionales: this.diasd,
-        sillaBebe: this.sillabebeP,
-        doblePiloto: this.doblePiloto,
-        tanqueLleno: this.tanqueLleno,
-        autoSeleccionado: this.autoSeleccionado,
-        estado: this.estado,
-        preciovihiculo: this.preciovihiculo,
-        diaadicional: this.diaadicional,
-        totalF: this.totalF,
-        diasdisponible: this.fechadiferencia,
-      }
+        {
+          nreserva: `0000${this.reservastotal}`,
+          fechasInicio: this.fecha1,
+          fechaFin: this.fecha2,
+          vehiculo: this.vehiculoId,
+          cliente: this.clientes,
+          producto: this.productos,
+          promo: this.paquetes,
+          zonaDeEntrega: this.zonas,
+          direccionEntrega: this.direccionEntrega,
+          seguro: this.seguro,
+          puntosDisponible: this.puntosd,
+          PuntosCanjear: this.puntosc,
+          diaAdicionales: this.diasd,
+          sillaBebe: this.sillabebeP,
+          doblePiloto: this.doblePiloto,
+          tanqueLleno: this.tanqueLleno,
+          autoSeleccionado: this.autoSeleccionado,
+          estado: 1,
+          preciovihiculo: this.preciovihiculo,
+          diaadicional: this.diaadicional,
+          totalF: this.totalF,
+          diasdisponible: this.fechadiferencia,
+        }
       )
         .then(response => {
           console.log("SI PASO");
           console.log(response)
-          // window.location.href = '/cliente';
+          window.location.href = '/reserva';
         })
         .catch(error => {
           console.log(error)
@@ -471,7 +466,10 @@ export default {
           this.vehiculoData = response.data[0];
           this.preciov = response.data[0].precio_por_dia;
           this.autoSeleccionado = response.data[0].marca;
+          this.fechainicioauto = response.data[0].fechainicioauto;
+          this.fechafinauto = response.data[0].fechafinauto;
           console.log(response.data[0]);
+          console.log(response.data[0].precio_por_dia);
         })
         .catch(e => {
           this.errors.push(e);

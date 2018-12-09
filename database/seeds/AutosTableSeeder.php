@@ -26,6 +26,7 @@ class AutosTableSeeder extends Seeder
             'color' => $color,
             'anio' => $faker->biasedNumberBetween(1998,2017, 'sqrt'),
             'imagen1' => "/img/car/" . $i . ".jpg",
+            'precio_por_dia' => $faker->randomNumber(2),
           ]);
       }
     }

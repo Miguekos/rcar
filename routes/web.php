@@ -39,6 +39,8 @@ Route::group(['prefix' => 'v1.0'], function () {
 // Reserva Api
     Route::get('/reservas','ReservaController@indexapi');
     Route::get('reserva/{reserva}', 'ReservaController@showapi');
+    Route::get('reservastotales', 'ReservaController@reservastotales');
+    Route::get('reservascount', 'ReservaController@reservascount');
     Route::post('reserva', 'ReservaController@storeapi');
     Route::put('reserva/{reserva}', 'ReservaController@updateapi');
     Route::delete('reserva/{reserva}', 'ReservaController@destroyapi');

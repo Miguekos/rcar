@@ -1,4 +1,4 @@
-<style scope>
+<style scoped="reservas">
 .v-btn--small {
     font-size: 10px;
     height: 18px;
@@ -107,7 +107,7 @@
   }
 
 </style>
-<template>
+<template id="reservas">
   <div>
     <template>
       <!-- <v-tabs
@@ -123,31 +123,31 @@
 
         <v-tab href="#tab-1">
           Pre-Reserva &nbsp;
-          <h2>00</h2>
+          <h2>{{ preReserva }}</h2>
 
         </v-tab>
 
         <v-tab href="#tab-2">
           Evaluacion Pendiente &nbsp;
-          <h2>00</h2>
+          <h2>{{ pendientee }}</h2>
 
         </v-tab>
 
         <v-tab href="#tab-3">
           Reserva Aprobada &nbsp;
-          <h2>00</h2>
+          <h2>{{ reservaapr }}</h2>
 
         </v-tab>
 
         <v-tab href="#tab-4">
           Pendiente de Entrega &nbsp;
-          <h2>00</h2>
+          <h2>{{ pendiented }}</h2>
 
         </v-tab>
 
         <v-tab href="#tab-5">
           Liquidacion &nbsp;
-          <h2>00</h2>
+          <h2>{{ liquidacio }}</h2>
 
         </v-tab>
 
@@ -166,7 +166,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <!-- <pre-reserva></pre-reserva> -->
+              <evapendiente-reserva></evapendiente-reserva>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -213,12 +213,17 @@
   export default {
     props: ['user'],
     data: () => ({
+      preReserva: "",
+      pendientee: "",
+      reservaapr: "",
+      pendiented: "",
+      liquidacio: "",
       // boton inicio
       // boton fin
       // pagination: {},
     }),
     created() {
-
+      this.totalescount()
     },
     computed: {
 
@@ -226,6 +231,21 @@
     methods: {
       crear (){
         window.location.href = '/reserva/create';
+      },
+      totalescount () {
+      axios
+        .get(`/v1.0/reservascount`)
+        .then(response => {
+          this.preReserva = response.data.preReserva;
+          this.pendientee = response.data.pendientee;
+          this.reservaapr = response.data.reservaapr;
+          this.pendiented = response.data.pendiented;
+          this.liquidacio = response.data.liquidacio;
+          console.log(response.data);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
       }
     },
 

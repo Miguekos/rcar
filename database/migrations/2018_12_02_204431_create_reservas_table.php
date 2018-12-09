@@ -38,10 +38,13 @@ class CreateReservasTable extends Migration
             $table->float('diaadicional')->nullable();
             $table->float('totalF')->nullable();
             $table->float('diasdisponible')->nullable();
+            $table->string('tipodepago')->nullable();
+            $table->string('banco')->nullable();
+            $table->integer('codigodepago')->nullable();
+            $table->float('montodepositado')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

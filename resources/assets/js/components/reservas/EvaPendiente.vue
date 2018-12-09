@@ -6,7 +6,7 @@
 }
 
 .v-card__title--primary {
-  padding: 0px 0px 0px 0px;
+  padding: 0px 13px 0px 0px;
 }
 
 .v-card__tit le {
@@ -201,8 +201,8 @@ export default {
       axios
         .get(`/v1.0/reservastotales`)
         .then(response => {
-          this.items = response.data.preReserva;
-          console.log(response.data.preReserva);
+          this.items = response.data.pendientee;
+          console.log(response.data.pendientee);
         })
         .catch(e => {
           this.errors.push(e);
@@ -266,7 +266,7 @@ export default {
                 .then(function (response) {
                     response.data
                     console.log(response.data);
-                    window.location.href = '/reservas';
+                    window.location.href = '/cliente';
                 });
             },
     close() {

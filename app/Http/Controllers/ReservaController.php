@@ -31,13 +31,51 @@ class ReservaController extends Controller
       $promo = Promo::all();
       $cliente = Cliente::all();
       $auto = Auto::all();
-      $reserva = Reserva::all();
+      $reserva = Reserva::count();
         return json_encode([
           'promo' => $promo,
           'cliente' => $cliente,
           'auto' => $auto,
           'reserva' => $reserva
           ]);
+    }
+
+    public function reservastotales()
+    {
+      $preReserva = Reserva::where('estado',1)->get();
+      $pendientee = Reserva::where('estado',2)->get();
+      $reservaapr = Reserva::where('estado',3)->get();
+      $pendiented = Reserva::where('estado',4)->get();
+      $liquidacio = Reserva::where('estado',5)->get();
+
+      return  json_encode([
+        'preReserva' => $preReserva,
+        'pendientee' => $pendientee,
+        'reservaapr' => $reservaapr,
+        'pendiented' => $pendiented,
+        'liquidacio' => $liquidacio,
+      ]);
+
+
+    }
+
+    public function reservascount()
+    {
+      $preReserva = Reserva::where('estado',1)->count();
+      $pendientee = Reserva::where('estado',2)->count();
+      $reservaapr = Reserva::where('estado',3)->count();
+      $pendiented = Reserva::where('estado',4)->count();
+      $liquidacio = Reserva::where('estado',5)->count();
+
+      return  json_encode([
+        'preReserva' => $preReserva,
+        'pendientee' => $pendientee,
+        'reservaapr' => $reservaapr,
+        'pendiented' => $pendiented,
+        'liquidacio' => $liquidacio,
+      ]);
+
+
     }
 
     /**
@@ -99,6 +137,18 @@ class ReservaController extends Controller
     public function update(Request $request, Reserva $reserva)
     {
         //
+    }
+
+    public function updateapi(Request $request, $reserva)
+    {
+                $reservas = Reserva::find($reserva);
+                $reservas->tipodepago = $request->Tipopagovalue;
+                $reservas->banco = $request->Bancovalue;
+                $reservas->codigodepago = $request->codigodepago;
+                $reservas->montodepositado = $request->montodepositado;
+                $reservas->estado = $request->estado;
+                $reservas ->save();
+                return $reservas;
     }
 
     /**

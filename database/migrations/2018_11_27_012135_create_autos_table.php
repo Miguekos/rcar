@@ -42,6 +42,8 @@ class CreateAutosTable extends Migration
             $table->string('imagen2')->nullable();
             $table->string('imagen3')->nullable();
             $table->text('comentarios')->nullable();
+            $table->date('fechainicioauto')->nullable();
+            $table->date('fechafinauto')->nullable();
             $table->timestamps();
         });
     }

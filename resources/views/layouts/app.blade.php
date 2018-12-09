@@ -24,6 +24,12 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
 
 
+<style>
+html {
+      font-family: Roboto,sans-serif!important;
+      }
+</style>
+
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

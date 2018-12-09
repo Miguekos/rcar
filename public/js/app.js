@@ -35244,8 +35244,9 @@ Vue.component('auto-show', __webpack_require__(441));
 
 // Reservas
 Vue.component('comp-reservas', __webpack_require__(442));
-Vue.component('pre-reserva', __webpack_require__(447));
 Vue.component('reserva-create', __webpack_require__(450));
+Vue.component('pre-reserva', __webpack_require__(447));
+Vue.component('evapendiente-reserva', __webpack_require__(478));
 Vue.component('reserva-edit', __webpack_require__(455));
 Vue.component('reserva-show', __webpack_require__(460));
 
@@ -123570,19 +123571,19 @@ module.exports = Component.exports
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(443)
+  __webpack_require__(475)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(445)
 /* template */
-var __vue_template__ = __webpack_require__(446)
+var __vue_template__ = __webpack_require__(477)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-0b7dd728"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -123615,46 +123616,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 443 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(444);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(5)("b452023a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 444 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.v-btn--small {\r\n    font-size: 10px;\r\n    height: 18px;\r\n    padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit  le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml {\r\n    font-size: 12px;\r\n    overflow-x: hidden;\r\n    text-rendering: optimizeLegibility;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    -webkit-tap-highlight-color: rgba(0,0,0,0);\n}\n.app-fab--absolute {\r\n    position: fixed;\r\n    /*z-index: 3;*/\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 100%;\r\n    background: green;\r\n    right: 0;\r\n    bottom: 0;\r\n    /*position: absolute;*/\r\n    margin-right: 13px;\r\n    margin-bottom: 13px;\r\n    border: none;\r\n    outline: none;\r\n    color: #FFF;\r\n    font-size: 32px;\r\n    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n    -webkit-transition: .3s;\r\n    transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute {\r\n      bottom: 2.5rem;\r\n      right: 2.5rem;\r\n      /*z-index: 3;*/\n}\n}\nbutton:hover {\r\n    /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n.hvr-pulse {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    -webkit-transform: perspective(1px) translateZ(0);\r\n    transform: perspective(1px) translateZ(0);\r\n    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n            box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse:hover,\r\n  .hvr-pulse:focus,\r\n  .hvr-pulse:active {\r\n    -webkit-animation-name: hvr-pulse;\r\n    animation-name: hvr-pulse;\r\n    -webkit-animation-duration: 1s;\r\n    animation-duration: 1s;\r\n    -webkit-animation-timing-function: linear;\r\n    animation-timing-function: linear;\r\n    -webkit-animation-iteration-count: infinite;\r\n    animation-iteration-count: infinite;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 443 */,
+/* 444 */,
 /* 445 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -123878,148 +123841,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['user'],
   data: function data() {
     return {
+      preReserva: "",
+      pendientee: "",
+      reservaapr: "",
+      pendiented: "",
+      liquidacio: ""
       // boton inicio
       // boton fin
       // pagination: {},
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.totalescount();
+  },
 
   computed: {},
   methods: {
     crear: function crear() {
       window.location.href = '/reserva/create';
+    },
+    totalescount: function totalescount() {
+      var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservascount').then(function (response) {
+        _this.preReserva = response.data.preReserva;
+        _this.pendientee = response.data.pendientee;
+        _this.reservaapr = response.data.reservaapr;
+        _this.pendiented = response.data.pendiented;
+        _this.liquidacio = response.data.liquidacio;
+        console.log(response.data);
+      }).catch(function (e) {
+        _this.errors.push(e);
+      });
     }
   }
 
 });
 
 /***/ }),
-/* 446 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      [
-        _c(
-          "v-tabs",
-          { attrs: { centered: "" } },
-          [
-            _c("v-tabs-slider", { attrs: { color: "green" } }),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-1" } }, [
-              _vm._v("\n        Pre-Reserva  \n        "),
-              _c("h2", [_vm._v("00")])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-2" } }, [
-              _vm._v("\n        Evaluacion Pendiente  \n        "),
-              _c("h2", [_vm._v("00")])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-3" } }, [
-              _vm._v("\n        Reserva Aprobada  \n        "),
-              _c("h2", [_vm._v("00")])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-4" } }, [
-              _vm._v("\n        Pendiente de Entrega  \n        "),
-              _c("h2", [_vm._v("00")])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-5" } }, [
-              _vm._v("\n        Liquidacion  \n        "),
-              _c("h2", [_vm._v("00")])
-            ]),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-1" } },
-              [
-                _c(
-                  "v-card",
-                  { attrs: { flat: "" } },
-                  [_c("v-card-text", [_c("pre-reserva")], 1)],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-2" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-3" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-4" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-5" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            )
-          ],
-          1
-        )
-      ],
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          directives: [{ name: "ripple", rawName: "v-ripple" }],
-          staticClass: "mdc-fab app-fab--absolute",
-          attrs: { id: "hvr-pulse", "aria-label": "Agregar" },
-          on: {
-            click: function($event) {
-              _vm.crear()
-            }
-          }
-        },
-        [
-          _c("span", { staticClass: "mdc-fab__icon material-icons" }, [
-            _vm._v("add")
-          ])
-        ]
-      )
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0b7dd728", module.exports)
-  }
-}
-
-/***/ }),
+/* 446 */,
 /* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(473)
+}
 var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(448)
@@ -124028,7 +123896,7 @@ var __vue_template__ = __webpack_require__(449)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -124158,6 +124026,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -124166,7 +124072,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
+      codigodepago: "",
+      montodepositado: "",
+      Tipopagovalue: "",
+      Bancovalue: "",
+      Tipopago: [{
+        text: 'D. Bancario'
+      }, {
+        text: 'T. Credito'
+      }, {
+        text: 'T. Debito'
+      }],
+      Banco: [{
+        text: 'BBVA'
+      }, {
+        text: 'Scotiabank'
+      }, {
+        text: 'BCP'
+      }, {
+        text: 'Interbank'
+      }],
       dialog4: false,
+      idupdate: "",
       registros: "",
       page: "",
       reviews: 413,
@@ -124202,13 +124129,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       console.log("en get data nuew");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservas').then(function (response) {
-        _this.items = response.data.reserva;
-        console.log(response.data.reserva);
-        // this.total = response.data.clientec;
-        // this.fecha = response.data.fecha;
-        // this.clienten = response.data.clienten;
-        // console.log(response.data.fecha);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
+        _this.items = response.data.preReserva;
+        console.log(response.data.preReserva);
       }).catch(function (e) {
         _this.errors.push(e);
       });
@@ -124217,6 +124140,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     confirmar: function confirmar(item) {
       console.log(item);
+      this.dialog4 = true;
+      this.idupdate = item.id;
       // window.location.href = `/reserva/${item.id}/edit`;
     },
     editItem: function editItem(item) {
@@ -124239,11 +124164,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.getDataCliente();
       }
     },
+    update: function update() {
+      console.log("aqui id para ipdate");
+      // console.log(this.cliente.id);
+      //                alert('Enviando Form')
+      //                this.snackbar= true
+      // let form = document.getElementById('ContactForm');
+      // const formData = new FormData(form);
+      // let jsonObject = {};
+      // for (const [key, value]  of formData.entries()) {
+      // jsonObject[key] = value;
+      // }
+      // console.log(jsonObject);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'put',
+        url: '/v1.0/reserva/' + this.idupdate,
+        data: {
+          codigodepago: this.codigodepago,
+          montodepositado: this.montodepositado,
+          Tipopagovalue: this.Tipopagovalue,
+          Bancovalue: this.Bancovalue,
+          estado: 2
+        }
+      }).then(function (response) {
+        response.data;
+        console.log(response.data);
+        window.location.href = '/reservas';
+      });
+    },
     close: function close() {
       this.dialog1 = false;
       this.dialog = false;
       console.log("entro seguo que si");
-
       // setTimeout(() => {
       // this.editedItem = Object.assign({}, this.defaultItem)
       // this.editedIndex = -1
@@ -124265,6 +124217,169 @@ var render = function() {
     "div",
     {},
     [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "60%" },
+          model: {
+            value: _vm.dialog4,
+            callback: function($$v) {
+              _vm.dialog4 = $$v
+            },
+            expression: "dialog4"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("Registro de confirmacion de reserva")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { fluid: "", "grid-list-xl": "" } },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.Tipopago,
+                                  "item-text": "text",
+                                  "item-value": "text",
+                                  label: "Tipo de Pago"
+                                },
+                                model: {
+                                  value: _vm.Tipopagovalue,
+                                  callback: function($$v) {
+                                    _vm.Tipopagovalue = $$v
+                                  },
+                                  expression: "Tipopagovalue"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.Banco,
+                                  "item-text": "text",
+                                  "item-value": "text",
+                                  label: "Banco"
+                                },
+                                model: {
+                                  value: _vm.Bancovalue,
+                                  callback: function($$v) {
+                                    _vm.Bancovalue = $$v
+                                  },
+                                  expression: "Bancovalue"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Codigo de Deposito" },
+                                model: {
+                                  value: _vm.codigodepago,
+                                  callback: function($$v) {
+                                    _vm.codigodepago = $$v
+                                  },
+                                  expression: "codigodepago"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Monto Depositado" },
+                                model: {
+                                  value: _vm.montodepositado,
+                                  callback: function($$v) {
+                                    _vm.montodepositado = $$v
+                                  },
+                                  expression: "montodepositado"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.update(), (_vm.dialog4 = false)
+                        }
+                      }
+                    },
+                    [_vm._v("Guardar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog4 = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancelar")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "v-container",
         { attrs: { "grid-list-md": "", fluid: "", "text-xs-justify": "" } },
@@ -124369,7 +124484,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\r\n                                        edit\r\n                                    "
+                                                      "\r\n                    edit\r\n                  "
                                                     )
                                                   ]
                                                 ),
@@ -124388,7 +124503,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\r\n                                        close\r\n                                    "
+                                                      "\r\n                    close\r\n                  "
                                                     )
                                                   ]
                                                 )
@@ -124485,13 +124600,13 @@ var render = function() {
                                                         },
                                                         [
                                                           _c("strong", [
-                                                            _vm._v("Cliente:")
+                                                            _vm._v("Auto:")
                                                           ]),
                                                           _vm._v(
                                                             " " +
                                                               _vm._s(
                                                                 props.item
-                                                                  .cliente
+                                                                  .autoSeleccionado
                                                               )
                                                           )
                                                         ]
@@ -124505,13 +124620,15 @@ var render = function() {
                                                         },
                                                         [
                                                           _c("strong", [
-                                                            _vm._v("Auto:")
+                                                            _vm._v(
+                                                              "Fecha Inicio:"
+                                                            )
                                                           ]),
                                                           _vm._v(
                                                             " " +
                                                               _vm._s(
                                                                 props.item
-                                                                  .autoSeleccionado
+                                                                  .fechasInicio
                                                               )
                                                           )
                                                         ]
@@ -124558,7 +124675,7 @@ var render = function() {
                                         _vm._v(
                                           " 00000" +
                                             _vm._s(props.item.nreserva) +
-                                            "\r\n                            "
+                                            "\r\n              "
                                         ),
                                         _c("v-spacer"),
                                         _vm._v(" "),
@@ -124604,7 +124721,7 @@ var render = function() {
                     { attrs: { value: true, color: "red", icon: "warning" } },
                     [
                       _vm._v(
-                        "\r\n                    Lo siento no hay datos que cargar :(\r\n                "
+                        "\r\n          Lo siento no hay datos que cargar :(\r\n        "
                       )
                     ]
                   )
@@ -124748,6 +124865,9 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker__);
+var _this = this;
+
+//
 //
 //
 //
@@ -125026,7 +125146,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['token'],
   data: function data() {
     return {
-
+      fechainicioauto: "",
+      fechafinauto: "",
+      reservastotal: "",
       preciovihiculo: 0,
       preciov: 0,
       fechadiferencia: "",
@@ -125096,11 +125218,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         value: '300'
       }],
       dateRangeOptions: {
-        startDate: new Date('11/12/2018').toISOString().substr(0, 10),
-        endDate: new Date('12/12/2018').toISOString().substr(0, 10),
-        format: 'MM/DD/YYYY'
+        startDate: _this.fechainicioauto,
+        endDate: _this.fechafinauto,
+        format: 'YYYY/MM/DD'
       },
-      formulario: {},
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
@@ -125109,13 +125230,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     DateRange: __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker___default.a
   },
   computed: {
-    suma: function suma() {
-      var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
-      this.preciovihiculo = totalv;
-      var total = parseFloat(this.productos) + parseFloat(this.sillabebeP) + parseFloat(this.doblePiloto) + parseFloat(this.tanqueLleno) + parseFloat(this.zonas) + parseFloat(this.seguro) + totalv;
-      this.totalF = total.toFixed(2);
-      return total.toFixed(2);
-    },
     fechadiff: function fechadiff() {
       var a = moment(this.fecha1);
       var b = moment(this.fecha2);
@@ -125123,6 +125237,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(c);
       this.fechadiferencia = c;
       return c;
+    },
+    suma: function suma() {
+      var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
+      this.preciovihiculo = totalv;
+      var total = parseFloat(this.productos) + parseFloat(this.sillabebeP) + parseFloat(this.doblePiloto) + parseFloat(this.tanqueLleno) + parseFloat(this.zonas) + parseFloat(this.seguro) + totalv;
+      this.totalF = total.toFixed(2);
+      return total.toFixed(2);
     }
   },
   created: function created() {
@@ -125136,29 +125257,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.range = range;
     },
     getDataCliente: function getDataCliente() {
-      var _this = this;
+      var _this2 = this;
 
       console.log("OpteniandoDatosDeeserva");
       axios.get('/v1.0/reservas').then(function (response) {
-        _this.promo = response.data.promo;
-        _this.cliente = response.data.cliente;
-        _this.auto = response.data.auto;
+        _this2.promo = response.data.promo;
+        _this2.cliente = response.data.cliente;
+        _this2.auto = response.data.auto;
+        _this2.reservastotal = response.data.reserva;
         console.log(response.data);
       }).catch(function (e) {
-        _this.errors.push(e);
+        _this2.errors.push(e);
       });
     },
     sendForm: function sendForm(e) {
-      // let form = document.getElementById('ContactForm');
-      // const formData = new FormData(form);
-      // let jsonObject = {};
-      // for (const [key, value] of formData.entries()) {
-      // jsonObject[key] = value;
-      // }
       console.log("entro a guardar");
       console.log(this.formulario);
       axios.post('/v1.0/reserva', {
-        nreserva: '0000001',
+        nreserva: '0000' + this.reservastotal,
         fechasInicio: this.fecha1,
         fechaFin: this.fecha2,
         vehiculo: this.vehiculoId,
@@ -125175,7 +125291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         doblePiloto: this.doblePiloto,
         tanqueLleno: this.tanqueLleno,
         autoSeleccionado: this.autoSeleccionado,
-        estado: this.estado,
+        estado: 1,
         preciovihiculo: this.preciovihiculo,
         diaadicional: this.diaadicional,
         totalF: this.totalF,
@@ -125183,7 +125299,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         console.log("SI PASO");
         console.log(response);
-        // window.location.href = '/cliente';
+        window.location.href = '/reserva';
       }).catch(function (error) {
         console.log(error);
         alert("Surgio un error al guardar tu cliente");
@@ -125193,17 +125309,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location.href = '/cliente';
     },
     verAuto: function verAuto() {
-      var _this2 = this;
+      var _this3 = this;
 
       console.log("aqui esta");
       // console.log(this.vehiculoData.value);
       axios.get('/v1.0/auto/' + this.vehiculoId).then(function (response) {
-        _this2.vehiculoData = response.data[0];
-        _this2.preciov = response.data[0].precio_por_dia;
-        _this2.autoSeleccionado = response.data[0].marca;
+        _this3.vehiculoData = response.data[0];
+        _this3.preciov = response.data[0].precio_por_dia;
+        _this3.autoSeleccionado = response.data[0].marca;
+        _this3.fechainicioauto = response.data[0].fechainicioauto;
+        _this3.fechafinauto = response.data[0].fechafinauto;
         console.log(response.data[0]);
+        console.log(response.data[0].precio_por_dia);
       }).catch(function (e) {
-        _this2.errors.push(e);
+        _this3.errors.push(e);
       });
     }
   }
@@ -125249,9 +125368,6 @@ var render = function() {
                 _c(
                   "v-card-text",
                   [
-                    _vm._v(
-                      "\r\n        " + _vm._s(_vm.fechadiff) + "\r\n        "
-                    ),
                     _c("label", [_vm._v("Fecha Inicio")]),
                     _vm._v(" "),
                     _c(
@@ -125835,6 +125951,23 @@ var render = function() {
                                                 ) + "$"
                                               )
                                             ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c(
+                                            "td",
+                                            { staticStyle: { height: "18px" } },
+                                            [_vm._v("Dias alquilado:")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: "text-xs-right",
+                                              staticStyle: { height: "18px" }
+                                            },
+                                            [_vm._v(_vm._s(_vm.fechadiff))]
                                           )
                                         ]),
                                         _vm._v(" "),
@@ -126620,6 +126753,1152 @@ module.exports = Component.exports
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(474);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("3baf2478", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7968da7c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PreReserva.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7968da7c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PreReserva.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 474 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 475 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(476);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("d5b25d9c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 476 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.v-btn--small[data-v-0b7dd728] {\r\n    font-size: 10px;\r\n    height: 18px;\r\n    padding: 0 8px;\n}\n.v-card__title--primary[data-v-0b7dd728] {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit  le[data-v-0b7dd728] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml[data-v-0b7dd728] {\r\n    font-size: 12px;\r\n    overflow-x: hidden;\r\n    text-rendering: optimizeLegibility;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    -webkit-tap-highlight-color: rgba(0,0,0,0);\n}\n.app-fab--absolute[data-v-0b7dd728] {\r\n    position: fixed;\r\n    /*z-index: 3;*/\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 100%;\r\n    background: green;\r\n    right: 0;\r\n    bottom: 0;\r\n    /*position: absolute;*/\r\n    margin-right: 13px;\r\n    margin-bottom: 13px;\r\n    border: none;\r\n    outline: none;\r\n    color: #FFF;\r\n    font-size: 32px;\r\n    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n    -webkit-transition: .3s;\r\n    transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0b7dd728] {\r\n      bottom: 2.5rem;\r\n      right: 2.5rem;\r\n      /*z-index: 3;*/\n}\n}\nbutton[data-v-0b7dd728]:hover {\r\n    /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0b7dd728 {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0b7dd728 {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0b7dd728] {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    -webkit-transform: perspective(1px) translateZ(0);\r\n    transform: perspective(1px) translateZ(0);\r\n    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n            box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0b7dd728]:hover,\r\n  .hvr-pulse[data-v-0b7dd728]:focus,\r\n  .hvr-pulse[data-v-0b7dd728]:active {\r\n    -webkit-animation-name: hvr-pulse-data-v-0b7dd728;\r\n    animation-name: hvr-pulse-data-v-0b7dd728;\r\n    -webkit-animation-duration: 1s;\r\n    animation-duration: 1s;\r\n    -webkit-animation-timing-function: linear;\r\n    animation-timing-function: linear;\r\n    -webkit-animation-iteration-count: infinite;\r\n    animation-iteration-count: infinite;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 477 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      [
+        _c(
+          "v-tabs",
+          { attrs: { centered: "" } },
+          [
+            _c("v-tabs-slider", { attrs: { color: "green" } }),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-1" } }, [
+              _vm._v("\n        Pre-Reserva  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.preReserva))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-2" } }, [
+              _vm._v("\n        Evaluacion Pendiente  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.pendientee))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-3" } }, [
+              _vm._v("\n        Reserva Aprobada  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.reservaapr))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-4" } }, [
+              _vm._v("\n        Pendiente de Entrega  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.pendiented))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-5" } }, [
+              _vm._v("\n        Liquidacion  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.liquidacio))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-1" } },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { flat: "" } },
+                  [_c("v-card-text", [_c("pre-reserva")], 1)],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-2" } },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { flat: "" } },
+                  [_c("v-card-text", [_c("evapendiente-reserva")], 1)],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-3" } },
+              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-4" } },
+              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-5" } },
+              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          directives: [{ name: "ripple", rawName: "v-ripple" }],
+          staticClass: "mdc-fab app-fab--absolute",
+          attrs: { id: "hvr-pulse", "aria-label": "Agregar" },
+          on: {
+            click: function($event) {
+              _vm.crear()
+            }
+          }
+        },
+        [
+          _c("span", { staticClass: "mdc-fab__icon material-icons" }, [
+            _vm._v("add")
+          ])
+        ]
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0b7dd728", module.exports)
+  }
+}
+
+/***/ }),
+/* 478 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(479)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(481)
+/* template */
+var __vue_template__ = __webpack_require__(482)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/reservas/EvaPendiente.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c5548696", Component.options)
+  } else {
+    hotAPI.reload("data-v-c5548696", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 479 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(480);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("317631d2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5548696\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EvaPendiente.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5548696\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EvaPendiente.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 480 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 13px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 481 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user'],
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      codigodepago: "",
+      montodepositado: "",
+      Tipopagovalue: "",
+      Bancovalue: "",
+      Tipopago: [{
+        text: 'D. Bancario'
+      }, {
+        text: 'T. Credito'
+      }, {
+        text: 'T. Debito'
+      }],
+      Banco: [{
+        text: 'BBVA'
+      }, {
+        text: 'Scotiabank'
+      }, {
+        text: 'BCP'
+      }, {
+        text: 'Interbank'
+      }],
+      dialog4: false,
+      idupdate: "",
+      registros: "",
+      page: "",
+      reviews: 413,
+      value: 4.5,
+      eliminar: "",
+      dialog3: false,
+      pagination: {},
+      slider: 56,
+      tile: false,
+      search: "",
+      total: "",
+      fecha: "",
+      clienten: "",
+      editCliente: "",
+      idedit: "",
+      dialog: false,
+      dialog1: false,
+      rowsPerPageItems: [8, 12]
+    }, _defineProperty(_ref, 'pagination', {
+      // rowsPerPage: 8
+    }), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
+  },
+  created: function created() {
+    this.getDataCliente();
+  },
+
+  computed: {},
+  methods: {
+    crear: function crear() {
+      window.location.href = '/reserva/create';
+    },
+    getDataCliente: function getDataCliente() {
+      var _this = this;
+
+      console.log("en get data nuew");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
+        _this.items = response.data.pendientee;
+        console.log(response.data.pendientee);
+      }).catch(function (e) {
+        _this.errors.push(e);
+      });
+      // this.paginas();
+      console.log("aqui");
+    },
+    confirmar: function confirmar(item) {
+      console.log(item);
+      this.dialog4 = true;
+      this.idupdate = item.id;
+      // window.location.href = `/reserva/${item.id}/edit`;
+    },
+    editItem: function editItem(item) {
+      window.location.href = '/reserva/' + item.id + '/edit';
+    },
+    deleteItem: function deleteItem(item) {
+      console.log("Aqui abajo");
+      console.log(item.id);
+      var borrar = confirm('Esta seguro que desea borrar est reserva?');
+      if (!borrar) {
+        alert("Se cancelo");
+      } else {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/v1.0/reserva/' + item.id, {
+          _token: this.csrf
+        }).then(function (response) {
+          console.log("Borrado correctamente");
+        }).catch(function (e) {
+          //                        this.errors.push(e);
+        });
+        this.getDataCliente();
+      }
+    },
+    update: function update() {
+      console.log("aqui id para ipdate");
+      // console.log(this.cliente.id);
+      //                alert('Enviando Form')
+      //                this.snackbar= true
+      // let form = document.getElementById('ContactForm');
+      // const formData = new FormData(form);
+      // let jsonObject = {};
+      // for (const [key, value]  of formData.entries()) {
+      // jsonObject[key] = value;
+      // }
+      // console.log(jsonObject);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'put',
+        url: '/v1.0/reserva/' + this.idupdate,
+        data: {
+          codigodepago: this.codigodepago,
+          montodepositado: this.montodepositado,
+          Tipopagovalue: this.Tipopagovalue,
+          Bancovalue: this.Bancovalue,
+          estado: 2
+        }
+      }).then(function (response) {
+        response.data;
+        console.log(response.data);
+        window.location.href = '/cliente';
+      });
+    },
+    close: function close() {
+      this.dialog1 = false;
+      this.dialog = false;
+      console.log("entro seguo que si");
+      // setTimeout(() => {
+      // this.editedItem = Object.assign({}, this.defaultItem)
+      // this.editedIndex = -1
+      // }, 300)
+    }
+  }
+
+});
+
+/***/ }),
+/* 482 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {},
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "60%" },
+          model: {
+            value: _vm.dialog4,
+            callback: function($$v) {
+              _vm.dialog4 = $$v
+            },
+            expression: "dialog4"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("Registro de confirmacion de reserva")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { fluid: "", "grid-list-xl": "" } },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.Tipopago,
+                                  "item-text": "text",
+                                  "item-value": "text",
+                                  label: "Tipo de Pago"
+                                },
+                                model: {
+                                  value: _vm.Tipopagovalue,
+                                  callback: function($$v) {
+                                    _vm.Tipopagovalue = $$v
+                                  },
+                                  expression: "Tipopagovalue"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.Banco,
+                                  "item-text": "text",
+                                  "item-value": "text",
+                                  label: "Banco"
+                                },
+                                model: {
+                                  value: _vm.Bancovalue,
+                                  callback: function($$v) {
+                                    _vm.Bancovalue = $$v
+                                  },
+                                  expression: "Bancovalue"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Codigo de Deposito" },
+                                model: {
+                                  value: _vm.codigodepago,
+                                  callback: function($$v) {
+                                    _vm.codigodepago = $$v
+                                  },
+                                  expression: "codigodepago"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Monto Depositado" },
+                                model: {
+                                  value: _vm.montodepositado,
+                                  callback: function($$v) {
+                                    _vm.montodepositado = $$v
+                                  },
+                                  expression: "montodepositado"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.update(), (_vm.dialog4 = false)
+                        }
+                      }
+                    },
+                    [_vm._v("Guardar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog4 = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancelar")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-md": "", fluid: "", "text-xs-justify": "" } },
+        [
+          _c(
+            "v-data-iterator",
+            {
+              attrs: {
+                items: _vm.items,
+                "rows-per-page-items": _vm.rowsPerPageItems,
+                pagination: _vm.pagination,
+                search: _vm.search,
+                "content-tag": "v-layout",
+                row: "",
+                wrap: "",
+                "hide-actions": ""
+              },
+              on: {
+                "update:pagination": function($event) {
+                  _vm.pagination = $event
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "item",
+                  fn: function(props) {
+                    return _c(
+                      "v-flex",
+                      { attrs: { xs12: "", sm6: "", md4: "", lg6: "" } },
+                      [
+                        _c("v-hover", {
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var hover = ref.hover
+                                return _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "mx-auto",
+                                    class: "elevation-" + (hover ? 12 : 1)
+                                  },
+                                  [
+                                    _c(
+                                      "v-layout",
+                                      {
+                                        attrs: {
+                                          "align-center": "",
+                                          "justify-center": "",
+                                          row: "",
+                                          "fill-height": ""
+                                        }
+                                      },
+                                      [
+                                        _c("v-flex", { attrs: { xs1: "" } }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          { attrs: { xs3: "" } },
+                                          [
+                                            _c(
+                                              "v-avatar",
+                                              { attrs: { size: "70%" } },
+                                              [
+                                                _c("v-img", {
+                                                  attrs: {
+                                                    src:
+                                                      "loginnew/images/logo.png"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          { attrs: { xs8: "" } },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              {
+                                                attrs: {
+                                                  "text-xs-right": "",
+                                                  "text-lg-right": "",
+                                                  "text-sm-right": ""
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-icon",
+                                                  {
+                                                    staticClass: "mr-2",
+                                                    attrs: { small: "" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.editItem(props.item)
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\r\n                    edit\r\n                  "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-icon",
+                                                  {
+                                                    attrs: { small: "" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.deleteItem(
+                                                          props.item
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\r\n                    close\r\n                  "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-card-title",
+                                              {
+                                                attrs: { "primary-title": "" }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-layout",
+                                                  {
+                                                    attrs: {
+                                                      "align-center": "",
+                                                      "justify-space-around":
+                                                        "",
+                                                      row: "",
+                                                      "fill-height": ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("div", [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "headline"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              props.item.cliente
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-left"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v(
+                                                              "Monto a pagar:"
+                                                            )
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .totalF
+                                                              ) +
+                                                              "$"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-left"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v(
+                                                              "Dias Disponible:"
+                                                            )
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .diasdisponible
+                                                              )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("div", [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-right"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v("Auto:")
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .autoSeleccionado
+                                                              )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-right"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v(
+                                                              "Fecha Inicio:"
+                                                            )
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .fechasInicio
+                                                              )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-right"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v("Fecha Fin:")
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .fechaFin
+                                                              )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ])
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card-actions",
+                                      [
+                                        _c("strong", [
+                                          _vm._v("Numero de Reserva:  ")
+                                        ]),
+                                        _vm._v(
+                                          " 00000" +
+                                            _vm._s(props.item.nreserva) +
+                                            "\r\n              "
+                                        ),
+                                        _c("v-spacer"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              small: "",
+                                              color: "primary"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.confirmar(props.item)
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("confirmar")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  }
+                }
+              ])
+            },
+            [
+              _c(
+                "template",
+                { slot: "no-data" },
+                [
+                  _c(
+                    "v-alert",
+                    { attrs: { value: true, color: "red", icon: "warning" } },
+                    [
+                      _vm._v(
+                        "\r\n          Lo siento no hay datos que cargar :(\r\n        "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-xs-center pt-2" },
+            [
+              _c("v-pagination", {
+                attrs: { length: _vm.pagination.page },
+                model: {
+                  value: _vm.pagination.page,
+                  callback: function($$v) {
+                    _vm.$set(_vm.pagination, "page", $$v)
+                  },
+                  expression: "pagination.page"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c5548696", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
