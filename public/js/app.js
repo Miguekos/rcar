@@ -1237,6 +1237,316 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(176)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var zrUtil = __webpack_require__(1);
@@ -1728,316 +2038,6 @@ exports.makeInner = makeInner;
 exports.parseFinder = parseFinder;
 exports.setAttribute = setAttribute;
 exports.getAttribute = getAttribute;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(176)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-var options = null
-var ssrIdKey = 'data-vue-ssr-id'
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction, _options) {
-  isProduction = _isProduction
-
-  options = _options || {}
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-  if (options.ssrId) {
-    styleElement.setAttribute(ssrIdKey, obj.id)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
 
 /***/ }),
 /* 6 */
@@ -3960,6 +3960,12 @@ module.exports = g;
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(151);
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var _config = __webpack_require__(10);
 
 var __DEV__ = _config.__DEV__;
@@ -4223,11 +4229,11 @@ exports.enableClassManagement = enableClassManagement;
 exports.setReadOnly = setReadOnly;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
-var startOfISOWeek = __webpack_require__(16)
+var startOfISOWeek = __webpack_require__(17)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -4274,7 +4280,7 @@ module.exports = getISOYear
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var startOfWeek = __webpack_require__(42)
@@ -4305,7 +4311,7 @@ module.exports = startOfISOWeek
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
@@ -4334,12 +4340,6 @@ function startOfDay (dirtyDate) {
 
 module.exports = startOfDay
 
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(151);
 
 /***/ }),
 /* 19 */
@@ -6129,11 +6129,11 @@ var zrUtil = __webpack_require__(1);
 
 var env = __webpack_require__(12);
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var makeInner = _model.makeInner;
 
-var _clazz = __webpack_require__(14);
+var _clazz = __webpack_require__(15);
 
 var enableClassExtend = _clazz.enableClassExtend;
 var enableClassCheck = _clazz.enableClassCheck;
@@ -7466,12 +7466,12 @@ var Model = __webpack_require__(23);
 
 var componentUtil = __webpack_require__(38);
 
-var _clazz = __webpack_require__(14);
+var _clazz = __webpack_require__(15);
 
 var enableClassManagement = _clazz.enableClassManagement;
 var parseClassType = _clazz.parseClassType;
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var makeInner = _model.makeInner;
 
@@ -7694,7 +7694,7 @@ var _util = __webpack_require__(1);
 var createHashMap = _util.createHashMap;
 var isTypedArray = _util.isTypedArray;
 
-var _clazz = __webpack_require__(14);
+var _clazz = __webpack_require__(15);
 
 var enableClassCheck = _clazz.enableClassCheck;
 
@@ -7950,8 +7950,8 @@ module.exports = addMilliseconds
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(15)
-var startOfISOWeek = __webpack_require__(16)
+var getISOYear = __webpack_require__(16)
+var startOfISOWeek = __webpack_require__(17)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -10242,7 +10242,7 @@ module.exports = _default;
 
 var zrUtil = __webpack_require__(1);
 
-var _clazz = __webpack_require__(14);
+var _clazz = __webpack_require__(15);
 
 var parseClassType = _clazz.parseClassType;
 
@@ -10448,7 +10448,7 @@ var _config = __webpack_require__(10);
 
 var __DEV__ = _config.__DEV__;
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var makeInner = _model.makeInner;
 var getDataItemValue = _model.getDataItemValue;
@@ -11027,7 +11027,7 @@ var assert = _util.assert;
 var each = _util.each;
 var isObject = _util.isObject;
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var getDataItemValue = _model.getDataItemValue;
 var isDataItemOption = _model.isDataItemOption;
@@ -11378,7 +11378,7 @@ exports.retrieveRawAttr = retrieveRawAttr;
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var clazzUtil = __webpack_require__(14);
+var clazzUtil = __webpack_require__(15);
 
 /*
 * Licensed to the Apache Software Foundation (ASF) under one
@@ -11602,7 +11602,7 @@ module.exports = startOfWeek
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(17)
+var startOfDay = __webpack_require__(18)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_DAY = 86400000
@@ -14865,7 +14865,7 @@ module.exports = endOfDay
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
-var startOfISOWeek = __webpack_require__(16)
+var startOfISOWeek = __webpack_require__(17)
 var startOfISOYear = __webpack_require__(30)
 
 var MILLISECONDS_IN_WEEK = 604800000
@@ -29453,7 +29453,7 @@ var merge = _util.merge;
 var extend = _util.extend;
 var mixin = _util.mixin;
 
-var modelUtil = __webpack_require__(3);
+var modelUtil = __webpack_require__(5);
 
 var Model = __webpack_require__(23);
 
@@ -30457,7 +30457,7 @@ exports.buildPath = buildPath;
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var makeInner = _model.makeInner;
 var normalizeToArray = _model.normalizeToArray;
@@ -30790,7 +30790,7 @@ var Group = __webpack_require__(32);
 
 var componentUtil = __webpack_require__(38);
 
-var clazzUtil = __webpack_require__(14);
+var clazzUtil = __webpack_require__(15);
 
 /*
 * Licensed to the Apache Software Foundation (ASF) under one
@@ -30848,7 +30848,7 @@ module.exports = _default;
 /* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var makeInner = _model.makeInner;
 
@@ -33093,7 +33093,7 @@ var extend = _util.extend;
 var isObject = _util.isObject;
 var clone = _util.clone;
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var normalizeToArray = _model.normalizeToArray;
 
@@ -33787,7 +33787,7 @@ module.exports = addHours
 /* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(15)
+var getISOYear = __webpack_require__(16)
 var setISOYear = __webpack_require__(111)
 
 /**
@@ -33985,7 +33985,7 @@ module.exports = addYears
 /* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(15)
+var getISOYear = __webpack_require__(16)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -35156,7 +35156,7 @@ module.exports = setMonth
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(145);
-module.exports = __webpack_require__(461);
+module.exports = __webpack_require__(468);
 
 
 /***/ }),
@@ -35244,11 +35244,11 @@ Vue.component('auto-show', __webpack_require__(441));
 
 // Reservas
 Vue.component('comp-reservas', __webpack_require__(442));
-Vue.component('reserva-create', __webpack_require__(450));
-Vue.component('pre-reserva', __webpack_require__(447));
-Vue.component('evapendiente-reserva', __webpack_require__(478));
-Vue.component('reserva-edit', __webpack_require__(455));
-Vue.component('reserva-show', __webpack_require__(460));
+Vue.component('reserva-create', __webpack_require__(447));
+Vue.component('pre-reserva', __webpack_require__(452));
+Vue.component('evapendiente-reserva', __webpack_require__(457));
+Vue.component('reserva-edit', __webpack_require__(462));
+Vue.component('reserva-show', __webpack_require__(467));
 
 var app = new Vue({
   el: '#app'
@@ -35279,7 +35279,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(18);
+window.axios = __webpack_require__(14);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -93977,7 +93977,7 @@ var content = __webpack_require__(175);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("fa1dca66", content, false, {});
+var update = __webpack_require__(4)("fa1dca66", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -93996,7 +93996,7 @@ if(false) {
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -94357,7 +94357,7 @@ var ChartView = __webpack_require__(227);
 
 var graphic = __webpack_require__(24);
 
-var modelUtil = __webpack_require__(3);
+var modelUtil = __webpack_require__(5);
 
 var _throttle = __webpack_require__(100);
 
@@ -102212,7 +102212,7 @@ module.exports = _default;
 
 var zrUtil = __webpack_require__(1);
 
-var modelUtil = __webpack_require__(3);
+var modelUtil = __webpack_require__(5);
 
 var ComponentModel = __webpack_require__(25);
 
@@ -102656,7 +102656,7 @@ var isObject = _util.isObject;
 
 var compatStyle = __webpack_require__(223);
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var normalizeToArray = _model.normalizeToArray;
 
@@ -102777,7 +102777,7 @@ module.exports = _default;
 
 var zrUtil = __webpack_require__(1);
 
-var modelUtil = __webpack_require__(3);
+var modelUtil = __webpack_require__(5);
 
 /*
 * Licensed to the Apache Software Foundation (ASF) under one
@@ -103217,7 +103217,7 @@ var encodeHTML = _format.encodeHTML;
 var addCommas = _format.addCommas;
 var getTooltipMarker = _format.getTooltipMarker;
 
-var modelUtil = __webpack_require__(3);
+var modelUtil = __webpack_require__(5);
 
 var ComponentModel = __webpack_require__(25);
 
@@ -103886,9 +103886,9 @@ var Group = __webpack_require__(32);
 
 var componentUtil = __webpack_require__(38);
 
-var clazzUtil = __webpack_require__(14);
+var clazzUtil = __webpack_require__(15);
 
-var modelUtil = __webpack_require__(3);
+var modelUtil = __webpack_require__(5);
 
 var _task = __webpack_require__(53);
 
@@ -104612,7 +104612,7 @@ var GlobalModel = __webpack_require__(89);
 
 var ExtensionAPI = __webpack_require__(96);
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var normalizeToArray = _model.normalizeToArray;
 
@@ -105625,7 +105625,7 @@ var _dimensionHelper = __webpack_require__(54);
 
 var getDimensionTypeByAxis = _dimensionHelper.getDimensionTypeByAxis;
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var getDataItemValue = _model.getDataItemValue;
 
@@ -108151,7 +108151,7 @@ var zrUtil = __webpack_require__(1);
 
 var textContain = __webpack_require__(22);
 
-var _model = __webpack_require__(3);
+var _model = __webpack_require__(5);
 
 var makeInner = _model.makeInner;
 
@@ -109372,7 +109372,7 @@ module.exports = {
   getISODay: __webpack_require__(129),
   getISOWeek: __webpack_require__(66),
   getISOWeeksInYear: __webpack_require__(297),
-  getISOYear: __webpack_require__(15),
+  getISOYear: __webpack_require__(16),
   getMilliseconds: __webpack_require__(298),
   getMinutes: __webpack_require__(299),
   getMonth: __webpack_require__(300),
@@ -109444,9 +109444,9 @@ module.exports = {
   setQuarter: __webpack_require__(349),
   setSeconds: __webpack_require__(350),
   setYear: __webpack_require__(351),
-  startOfDay: __webpack_require__(17),
+  startOfDay: __webpack_require__(18),
   startOfHour: __webpack_require__(131),
-  startOfISOWeek: __webpack_require__(16),
+  startOfISOWeek: __webpack_require__(17),
   startOfISOYear: __webpack_require__(30),
   startOfMinute: __webpack_require__(135),
   startOfMonth: __webpack_require__(352),
@@ -109632,7 +109632,7 @@ module.exports = closestTo
 /* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfISOWeek = __webpack_require__(16)
+var startOfISOWeek = __webpack_require__(17)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_WEEK = 604800000
@@ -110633,8 +110633,8 @@ module.exports = endOfISOWeek
 /* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(15)
-var startOfISOWeek = __webpack_require__(16)
+var getISOYear = __webpack_require__(16)
+var startOfISOWeek = __webpack_require__(17)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -110896,7 +110896,7 @@ module.exports = endOfYesterday
 
 var getDayOfYear = __webpack_require__(125)
 var getISOWeek = __webpack_require__(66)
-var getISOYear = __webpack_require__(15)
+var getISOYear = __webpack_require__(16)
 var parse = __webpack_require__(0)
 var isValid = __webpack_require__(127)
 var enLocale = __webpack_require__(64)
@@ -111900,7 +111900,7 @@ module.exports = isPast
 /* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(17)
+var startOfDay = __webpack_require__(18)
 
 /**
  * @category Day Helpers
@@ -112287,7 +112287,7 @@ module.exports = isThursday
 /* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(17)
+var startOfDay = __webpack_require__(18)
 
 /**
  * @category Day Helpers
@@ -112315,7 +112315,7 @@ module.exports = isToday
 /* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(17)
+var startOfDay = __webpack_require__(18)
 
 /**
  * @category Day Helpers
@@ -112479,7 +112479,7 @@ module.exports = isWithinRange
 /* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(17)
+var startOfDay = __webpack_require__(18)
 
 /**
  * @category Day Helpers
@@ -112540,8 +112540,8 @@ module.exports = lastDayOfISOWeek
 /* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(15)
-var startOfISOWeek = __webpack_require__(16)
+var getISOYear = __webpack_require__(16)
+var startOfISOWeek = __webpack_require__(17)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -113165,7 +113165,7 @@ module.exports = startOfMonth
 /* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(17)
+var startOfDay = __webpack_require__(18)
 
 /**
  * @category Day Helpers
@@ -113705,7 +113705,7 @@ var content = __webpack_require__(370);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("4f6dbfe6", content, false, {});
+var update = __webpack_require__(4)("4f6dbfe6", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -113724,7 +113724,7 @@ if(false) {
 /* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -113852,7 +113852,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -114050,7 +114049,8 @@ var render = function() {
                         [
                           _c("v-list-tile-title", [
                             _vm._v(_vm._s(_vm.user.name))
-                          ])
+                          ]),
+                          _vm._v("\r\n            v1.1\r\n          ")
                         ],
                         1
                       )
@@ -114261,8 +114261,6 @@ module.exports = Component.exports
 /* 377 */
 /***/ (function(module, exports) {
 
-//
-//
 //
 //
 //
@@ -115236,7 +115234,7 @@ var content = __webpack_require__(386);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("1433bf8f", content, false, {});
+var update = __webpack_require__(4)("1433bf8f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -115255,7 +115253,7 @@ if(false) {
 /* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -115432,7 +115430,7 @@ var content = __webpack_require__(391);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("21da3f9a", content, false, {});
+var update = __webpack_require__(4)("21da3f9a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -115451,7 +115449,7 @@ if(false) {
 /* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -115467,7 +115465,7 @@ exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -116650,7 +116648,7 @@ var content = __webpack_require__(396);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("3fcb9984", content, false, {});
+var update = __webpack_require__(4)("3fcb9984", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -116669,7 +116667,7 @@ if(false) {
 /* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -117606,7 +117604,7 @@ var content = __webpack_require__(401);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("5b0fa045", content, false, {});
+var update = __webpack_require__(4)("5b0fa045", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -117625,7 +117623,7 @@ if(false) {
 /* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -118512,7 +118510,7 @@ var content = __webpack_require__(407);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("407a9d38", content, false, {});
+var update = __webpack_require__(4)("407a9d38", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -118531,7 +118529,7 @@ if(false) {
 /* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -119044,7 +119042,7 @@ var content = __webpack_require__(412);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("6ded25a4", content, false, {});
+var update = __webpack_require__(4)("6ded25a4", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -119063,7 +119061,7 @@ if(false) {
 /* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -119079,7 +119077,7 @@ exports.push([module.i, "\n.app-fab--absolute {\n  position: fixed;\n  /*z-index
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -120330,7 +120328,7 @@ var content = __webpack_require__(417);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("5598e3e4", content, false, {});
+var update = __webpack_require__(4)("5598e3e4", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -120349,7 +120347,7 @@ if(false) {
 /* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -120774,7 +120772,7 @@ var content = __webpack_require__(422);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("483d861e", content, false, {});
+var update = __webpack_require__(4)("483d861e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -120793,7 +120791,7 @@ if(false) {
 /* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -121196,7 +121194,7 @@ var content = __webpack_require__(428);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("e41a7d78", content, false, {});
+var update = __webpack_require__(4)("e41a7d78", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -121215,7 +121213,7 @@ if(false) {
 /* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -121231,7 +121229,7 @@ exports.push([module.i, "\n.app-fab--absolute {\n  position: fixed;\n  /*z-index
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -122415,7 +122413,7 @@ var content = __webpack_require__(433);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("4e61511a", content, false, {});
+var update = __webpack_require__(4)("4e61511a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -122434,7 +122432,7 @@ if(false) {
 /* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -123204,7 +123202,7 @@ var content = __webpack_require__(438);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("c06e1b56", content, false, {});
+var update = __webpack_require__(4)("c06e1b56", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -123223,7 +123221,7 @@ if(false) {
 /* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -123571,13 +123569,13 @@ module.exports = Component.exports
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(475)
+  __webpack_require__(443)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(445)
 /* template */
-var __vue_template__ = __webpack_require__(477)
+var __vue_template__ = __webpack_require__(446)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -123616,14 +123614,52 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 443 */,
-/* 444 */,
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(444);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("d5b25d9c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 444 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.v-btn--small[data-v-0b7dd728] {\r\n    font-size: 10px;\r\n    height: 18px;\r\n    padding: 0 8px;\n}\n.v-card__title--primary[data-v-0b7dd728] {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit  le[data-v-0b7dd728] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml[data-v-0b7dd728] {\r\n    font-size: 12px;\r\n    overflow-x: hidden;\r\n    text-rendering: optimizeLegibility;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    -webkit-tap-highlight-color: rgba(0,0,0,0);\n}\n.app-fab--absolute[data-v-0b7dd728] {\r\n    position: fixed;\r\n    /*z-index: 3;*/\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 100%;\r\n    background: green;\r\n    right: 0;\r\n    bottom: 0;\r\n    /*position: absolute;*/\r\n    margin-right: 13px;\r\n    margin-bottom: 13px;\r\n    border: none;\r\n    outline: none;\r\n    color: #FFF;\r\n    font-size: 32px;\r\n    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n    -webkit-transition: .3s;\r\n    transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0b7dd728] {\r\n      bottom: 2.5rem;\r\n      right: 2.5rem;\r\n      /*z-index: 3;*/\n}\n}\nbutton[data-v-0b7dd728]:hover {\r\n    /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0b7dd728 {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0b7dd728 {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0b7dd728] {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    -webkit-transform: perspective(1px) translateZ(0);\r\n    transform: perspective(1px) translateZ(0);\r\n    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n            box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0b7dd728]:hover,\r\n  .hvr-pulse[data-v-0b7dd728]:focus,\r\n  .hvr-pulse[data-v-0b7dd728]:active {\r\n    -webkit-animation-name: hvr-pulse-data-v-0b7dd728;\r\n    animation-name: hvr-pulse-data-v-0b7dd728;\r\n    -webkit-animation-duration: 1s;\r\n    animation-duration: 1s;\r\n    -webkit-animation-timing-function: linear;\r\n    animation-timing-function: linear;\r\n    -webkit-animation-iteration-count: infinite;\r\n    animation-iteration-count: infinite;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 445 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -123879,334 +123915,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 446 */,
-/* 447 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(473)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(448)
-/* template */
-var __vue_template__ = __webpack_require__(449)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/reservas/PreReserva.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7968da7c", Component.options)
-  } else {
-    hotAPI.reload("data-v-7968da7c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 448 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user'],
-  data: function data() {
-    var _ref;
-
-    return _ref = {
-      codigodepago: "",
-      montodepositado: "",
-      Tipopagovalue: "",
-      Bancovalue: "",
-      Tipopago: [{
-        text: 'D. Bancario'
-      }, {
-        text: 'T. Credito'
-      }, {
-        text: 'T. Debito'
-      }],
-      Banco: [{
-        text: 'BBVA'
-      }, {
-        text: 'Scotiabank'
-      }, {
-        text: 'BCP'
-      }, {
-        text: 'Interbank'
-      }],
-      dialog4: false,
-      idupdate: "",
-      registros: "",
-      page: "",
-      reviews: 413,
-      value: 4.5,
-      eliminar: "",
-      dialog3: false,
-      pagination: {},
-      slider: 56,
-      tile: false,
-      search: "",
-      total: "",
-      fecha: "",
-      clienten: "",
-      editCliente: "",
-      idedit: "",
-      dialog: false,
-      dialog1: false,
-      rowsPerPageItems: [8, 12]
-    }, _defineProperty(_ref, 'pagination', {
-      // rowsPerPage: 8
-    }), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
-  },
-  created: function created() {
-    this.getDataCliente();
-  },
-
-  computed: {},
-  methods: {
-    crear: function crear() {
-      window.location.href = '/reserva/create';
-    },
-    getDataCliente: function getDataCliente() {
-      var _this = this;
-
-      console.log("en get data nuew");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
-        _this.items = response.data.preReserva;
-        console.log(response.data.preReserva);
-      }).catch(function (e) {
-        _this.errors.push(e);
-      });
-      // this.paginas();
-      console.log("aqui");
-    },
-    confirmar: function confirmar(item) {
-      console.log(item);
-      this.dialog4 = true;
-      this.idupdate = item.id;
-      // window.location.href = `/reserva/${item.id}/edit`;
-    },
-    editItem: function editItem(item) {
-      window.location.href = '/reserva/' + item.id + '/edit';
-    },
-    deleteItem: function deleteItem(item) {
-      console.log("Aqui abajo");
-      console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar est reserva?');
-      if (!borrar) {
-        alert("Se cancelo");
-      } else {
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/v1.0/reserva/' + item.id, {
-          _token: this.csrf
-        }).then(function (response) {
-          console.log("Borrado correctamente");
-        }).catch(function (e) {
-          //                        this.errors.push(e);
-        });
-        this.getDataCliente();
-      }
-    },
-    update: function update() {
-      console.log("aqui id para ipdate");
-      // console.log(this.cliente.id);
-      //                alert('Enviando Form')
-      //                this.snackbar= true
-      // let form = document.getElementById('ContactForm');
-      // const formData = new FormData(form);
-      // let jsonObject = {};
-      // for (const [key, value]  of formData.entries()) {
-      // jsonObject[key] = value;
-      // }
-      // console.log(jsonObject);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'put',
-        url: '/v1.0/reserva/' + this.idupdate,
-        data: {
-          codigodepago: this.codigodepago,
-          montodepositado: this.montodepositado,
-          Tipopagovalue: this.Tipopagovalue,
-          Bancovalue: this.Bancovalue,
-          estado: 2
-        }
-      }).then(function (response) {
-        response.data;
-        console.log(response.data);
-        window.location.href = '/reservas';
-      });
-    },
-    close: function close() {
-      this.dialog1 = false;
-      this.dialog = false;
-      console.log("entro seguo que si");
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
-    }
-  }
-
-});
-
-/***/ }),
-/* 449 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -124215,545 +123924,112 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
     [
+      [
+        _c(
+          "v-tabs",
+          { attrs: { centered: "" } },
+          [
+            _c("v-tabs-slider", { attrs: { color: "green" } }),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-1" } }, [
+              _vm._v("\n        Pre-Reserva  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.preReserva))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-2" } }, [
+              _vm._v("\n        Evaluacion Pendiente  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.pendientee))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-3" } }, [
+              _vm._v("\n        Reserva Aprobada  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.reservaapr))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-4" } }, [
+              _vm._v("\n        Pendiente de Entrega  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.pendiented))])
+            ]),
+            _vm._v(" "),
+            _c("v-tab", { attrs: { href: "#tab-5" } }, [
+              _vm._v("\n        Liquidacion  \n        "),
+              _c("h2", [_vm._v(_vm._s(_vm.liquidacio))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-1" } },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { flat: "" } },
+                  [_c("v-card-text", [_c("pre-reserva")], 1)],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-2" } },
+              [
+                _c(
+                  "v-card",
+                  { attrs: { flat: "" } },
+                  [_c("v-card-text", [_c("evapendiente-reserva")], 1)],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-3" } },
+              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-4" } },
+              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-tab-item",
+              { attrs: { id: "tab-5" } },
+              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      _vm._v(" "),
       _c(
-        "v-dialog",
+        "button",
         {
-          attrs: { persistent: "", "max-width": "60%" },
-          model: {
-            value: _vm.dialog4,
-            callback: function($$v) {
-              _vm.dialog4 = $$v
-            },
-            expression: "dialog4"
+          directives: [{ name: "ripple", rawName: "v-ripple" }],
+          staticClass: "mdc-fab app-fab--absolute",
+          attrs: { id: "hvr-pulse", "aria-label": "Agregar" },
+          on: {
+            click: function($event) {
+              _vm.crear()
+            }
           }
         },
         [
-          _c(
-            "v-card",
-            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
-            [
-              _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Registro de confirmacion de reserva")
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-container",
-                    { attrs: { fluid: "", "grid-list-xl": "" } },
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { row: "", wrap: "" } },
-                        [
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.Tipopago,
-                                  "item-text": "text",
-                                  "item-value": "text",
-                                  label: "Tipo de Pago"
-                                },
-                                model: {
-                                  value: _vm.Tipopagovalue,
-                                  callback: function($$v) {
-                                    _vm.Tipopagovalue = $$v
-                                  },
-                                  expression: "Tipopagovalue"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.Banco,
-                                  "item-text": "text",
-                                  "item-value": "text",
-                                  label: "Banco"
-                                },
-                                model: {
-                                  value: _vm.Bancovalue,
-                                  callback: function($$v) {
-                                    _vm.Bancovalue = $$v
-                                  },
-                                  expression: "Bancovalue"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Codigo de Deposito" },
-                                model: {
-                                  value: _vm.codigodepago,
-                                  callback: function($$v) {
-                                    _vm.codigodepago = $$v
-                                  },
-                                  expression: "codigodepago"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Monto Depositado" },
-                                model: {
-                                  value: _vm.montodepositado,
-                                  callback: function($$v) {
-                                    _vm.montodepositado = $$v
-                                  },
-                                  expression: "montodepositado"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green darken-1", round: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.update(), (_vm.dialog4 = false)
-                        }
-                      }
-                    },
-                    [_vm._v("Guardar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "red darken-1", round: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog4 = false
-                        }
-                      }
-                    },
-                    [_vm._v("Cancelar")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-container",
-        { attrs: { "grid-list-md": "", fluid: "", "text-xs-justify": "" } },
-        [
-          _c(
-            "v-data-iterator",
-            {
-              attrs: {
-                items: _vm.items,
-                "rows-per-page-items": _vm.rowsPerPageItems,
-                pagination: _vm.pagination,
-                search: _vm.search,
-                "content-tag": "v-layout",
-                row: "",
-                wrap: "",
-                "hide-actions": ""
-              },
-              on: {
-                "update:pagination": function($event) {
-                  _vm.pagination = $event
-                }
-              },
-              scopedSlots: _vm._u([
-                {
-                  key: "item",
-                  fn: function(props) {
-                    return _c(
-                      "v-flex",
-                      { attrs: { xs12: "", sm6: "", md4: "", lg6: "" } },
-                      [
-                        _c("v-hover", {
-                          scopedSlots: _vm._u([
-                            {
-                              key: "default",
-                              fn: function(ref) {
-                                var hover = ref.hover
-                                return _c(
-                                  "v-card",
-                                  {
-                                    staticClass: "mx-auto",
-                                    class: "elevation-" + (hover ? 12 : 1)
-                                  },
-                                  [
-                                    _c(
-                                      "v-layout",
-                                      {
-                                        attrs: {
-                                          "align-center": "",
-                                          "justify-center": "",
-                                          row: "",
-                                          "fill-height": ""
-                                        }
-                                      },
-                                      [
-                                        _c("v-flex", { attrs: { xs1: "" } }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-flex",
-                                          { attrs: { xs3: "" } },
-                                          [
-                                            _c(
-                                              "v-avatar",
-                                              { attrs: { size: "70%" } },
-                                              [
-                                                _c("v-img", {
-                                                  attrs: {
-                                                    src:
-                                                      "loginnew/images/logo.png"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-flex",
-                                          { attrs: { xs8: "" } },
-                                          [
-                                            _c(
-                                              "v-flex",
-                                              {
-                                                attrs: {
-                                                  "text-xs-right": "",
-                                                  "text-lg-right": "",
-                                                  "text-sm-right": ""
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-icon",
-                                                  {
-                                                    staticClass: "mr-2",
-                                                    attrs: { small: "" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.editItem(props.item)
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\r\n                    edit\r\n                  "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-icon",
-                                                  {
-                                                    attrs: { small: "" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.deleteItem(
-                                                          props.item
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\r\n                    close\r\n                  "
-                                                    )
-                                                  ]
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-card-title",
-                                              {
-                                                attrs: { "primary-title": "" }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-layout",
-                                                  {
-                                                    attrs: {
-                                                      "align-center": "",
-                                                      "justify-space-around":
-                                                        "",
-                                                      row: "",
-                                                      "fill-height": ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("div", [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "headline"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              props.item.cliente
-                                                            )
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-xs-left"
-                                                        },
-                                                        [
-                                                          _c("strong", [
-                                                            _vm._v(
-                                                              "Monto a pagar:"
-                                                            )
-                                                          ]),
-                                                          _vm._v(
-                                                            " " +
-                                                              _vm._s(
-                                                                props.item
-                                                                  .totalF
-                                                              ) +
-                                                              "$"
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-xs-left"
-                                                        },
-                                                        [
-                                                          _c("strong", [
-                                                            _vm._v(
-                                                              "Dias Disponible:"
-                                                            )
-                                                          ]),
-                                                          _vm._v(
-                                                            " " +
-                                                              _vm._s(
-                                                                props.item
-                                                                  .diasdisponible
-                                                              )
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("div", [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-xs-right"
-                                                        },
-                                                        [
-                                                          _c("strong", [
-                                                            _vm._v("Auto:")
-                                                          ]),
-                                                          _vm._v(
-                                                            " " +
-                                                              _vm._s(
-                                                                props.item
-                                                                  .autoSeleccionado
-                                                              )
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-xs-right"
-                                                        },
-                                                        [
-                                                          _c("strong", [
-                                                            _vm._v(
-                                                              "Fecha Inicio:"
-                                                            )
-                                                          ]),
-                                                          _vm._v(
-                                                            " " +
-                                                              _vm._s(
-                                                                props.item
-                                                                  .fechasInicio
-                                                              )
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-xs-right"
-                                                        },
-                                                        [
-                                                          _c("strong", [
-                                                            _vm._v("Fecha Fin:")
-                                                          ]),
-                                                          _vm._v(
-                                                            " " +
-                                                              _vm._s(
-                                                                props.item
-                                                                  .fechaFin
-                                                              )
-                                                          )
-                                                        ]
-                                                      )
-                                                    ])
-                                                  ]
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-card-actions",
-                                      [
-                                        _c("strong", [
-                                          _vm._v("Numero de Reserva:  ")
-                                        ]),
-                                        _vm._v(
-                                          " 00000" +
-                                            _vm._s(props.item.nreserva) +
-                                            "\r\n              "
-                                        ),
-                                        _c("v-spacer"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              small: "",
-                                              color: "primary"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.confirmar(props.item)
-                                              }
-                                            }
-                                          },
-                                          [_vm._v("confirmar")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              }
-                            }
-                          ])
-                        })
-                      ],
-                      1
-                    )
-                  }
-                }
-              ])
-            },
-            [
-              _c(
-                "template",
-                { slot: "no-data" },
-                [
-                  _c(
-                    "v-alert",
-                    { attrs: { value: true, color: "red", icon: "warning" } },
-                    [
-                      _vm._v(
-                        "\r\n          Lo siento no hay datos que cargar :(\r\n        "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-xs-center pt-2" },
-            [
-              _c("v-pagination", {
-                attrs: { length: _vm.pagination.page },
-                model: {
-                  value: _vm.pagination.page,
-                  callback: function($$v) {
-                    _vm.$set(_vm.pagination, "page", $$v)
-                  },
-                  expression: "pagination.page"
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
+          _c("span", { staticClass: "mdc-fab__icon material-icons" }, [
+            _vm._v("add")
+          ])
+        ]
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -124762,24 +124038,24 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7968da7c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0b7dd728", module.exports)
   }
 }
 
 /***/ }),
-/* 450 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(451)
+  __webpack_require__(448)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(453)
+var __vue_script__ = __webpack_require__(450)
 /* template */
-var __vue_template__ = __webpack_require__(454)
+var __vue_template__ = __webpack_require__(451)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -124818,17 +124094,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 451 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(452);
+var content = __webpack_require__(449);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("4e29b94c", content, false, {});
+var update = __webpack_require__(4)("4e29b94c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -124844,10 +124120,10 @@ if(false) {
 }
 
 /***/ }),
-/* 452 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -124858,7 +124134,7 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 
 /***/ }),
-/* 453 */
+/* 450 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -125329,7 +124605,7 @@ var _this = this;
 });
 
 /***/ }),
-/* 454 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -126327,19 +125603,19 @@ if (false) {
 }
 
 /***/ }),
-/* 455 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(456)
+  __webpack_require__(453)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(458)
+var __vue_script__ = __webpack_require__(455)
 /* template */
-var __vue_template__ = __webpack_require__(459)
+var __vue_template__ = __webpack_require__(456)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -126356,7 +125632,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/reservas/ReservaEdit.vue"
+Component.options.__file = "resources/assets/js/components/reservas/PreReserva.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -126365,9 +125641,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9e11cdf6", Component.options)
+    hotAPI.createRecord("data-v-7968da7c", Component.options)
   } else {
-    hotAPI.reload("data-v-9e11cdf6", Component.options)
+    hotAPI.reload("data-v-7968da7c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -126378,405 +125654,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 456 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(457);
+var content = __webpack_require__(454);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("35f800e0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 457 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s infinite;\n            animation: loader 1s infinite;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n@-webkit-keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n@keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 458 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['cliente', 'user', 'close', 'carga'],
-    data: function data() {
-        return {
-            loader: null,
-            agregado: "",
-            agregado_id: "",
-            abono_id: "",
-            loading: false,
-            loading2: false,
-            loading3: false,
-            loading4: false,
-            formType: true,
-            //                serverResponse: false,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        };
-    },
-
-    watch: {
-        loader: function loader() {
-            var _this = this;
-
-            var l = this.loader;
-            this[l] = !this[l];
-
-            setTimeout(function () {
-                return _this[l] = false;
-            }, 3000);
-
-            this.loader = null;
-        }
-    },
-    methods: {
-        update: function update() {
-            console.log("aqui id para ipdate");
-            console.log(this.cliente.id);
-            //                alert('Enviando Form')
-            //                this.snackbar= true
-            var form = document.getElementById('ContactForm');
-            var formData = new FormData(form);
-            var jsonObject = {};
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var _ref = _step.value;
-
-                    var _ref2 = _slicedToArray(_ref, 2);
-
-                    var key = _ref2[0];
-                    var value = _ref2[1];
-
-                    jsonObject[key] = value;
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            console.log(jsonObject);
-            axios({
-                method: 'put',
-                url: '/v1.0/cliente/' + this.cliente.id,
-                data: jsonObject
-            }).then(function (response) {
-                response.data;
-                console.log(response.data);
-            });
-            this.close();
-            this.carga();
-        },
-
-        preciono: function preciono() {
-            console.log("preciono el boton");
-        }
-    }
-});
-
-/***/ }),
-/* 459 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12", attrs: { id: "" } }, [
-        _c(
-          "form",
-          {
-            attrs: { id: "ContactForm" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.update($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    autofocus: "",
-                    name: "nombres",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.nombre }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "telf" } }, [_vm._v("DNI")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "vigencia",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.vigencia }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "direccion" } }, [
-                  _vm._v("Direccion")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "dias_pagados",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.dias_pagados }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "dni" } }, [_vm._v("Telf")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "dias_libres",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.dias_libres }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "v-flex",
-              { staticClass: "form-group col-md-12" },
-              [
-                _c(
-                  "v-btn",
-                  {
-                    attrs: {
-                      loading: _vm.loading,
-                      disabled: _vm.loading,
-                      color: "green",
-                      type: "submit",
-                      black: "",
-                      dark: "",
-                      small: ""
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\r\n                                Guardar\r\n                            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  {
-                    attrs: {
-                      black: "",
-                      small: "",
-                      color: "red darken-1",
-                      dark: ""
-                    },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.close($event)
-                      }
-                    }
-                  },
-                  [_vm._v("Cancel")]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9e11cdf6", module.exports)
-  }
-}
-
-/***/ }),
-/* 460 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/reservas/ReservaShow.vue"
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 461 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 462 */,
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(474);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(5)("3baf2478", content, false, {});
+var update = __webpack_require__(4)("3baf2478", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -126792,10 +125680,10 @@ if(false) {
 }
 
 /***/ }),
-/* 474 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -126806,47 +125694,282 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 
 /***/ }),
-/* 475 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 455 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// load the styles
-var content = __webpack_require__(476);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(5)("d5b25d9c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b7dd728\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reservas.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user'],
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      codigodepago: "",
+      montodepositado: "",
+      Tipopagovalue: "",
+      Bancovalue: "",
+      Tipopago: [{
+        text: 'D. Bancario'
+      }, {
+        text: 'T. Credito'
+      }, {
+        text: 'T. Debito'
+      }],
+      Banco: [{
+        text: 'BBVA'
+      }, {
+        text: 'Scotiabank'
+      }, {
+        text: 'BCP'
+      }, {
+        text: 'Interbank'
+      }],
+      dialog4: false,
+      idupdate: "",
+      registros: "",
+      page: "",
+      reviews: 413,
+      value: 4.5,
+      eliminar: "",
+      dialog3: false,
+      pagination: {},
+      slider: 56,
+      tile: false,
+      search: "",
+      total: "",
+      fecha: "",
+      clienten: "",
+      editCliente: "",
+      idedit: "",
+      dialog: false,
+      dialog1: false,
+      rowsPerPageItems: [8, 12]
+    }, _defineProperty(_ref, 'pagination', {
+      // rowsPerPage: 8
+    }), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
+  },
+  created: function created() {
+    this.getDataCliente();
+  },
+
+  computed: {},
+  methods: {
+    crear: function crear() {
+      window.location.href = '/reserva/create';
+    },
+    getDataCliente: function getDataCliente() {
+      var _this = this;
+
+      console.log("en get data nuew");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
+        _this.items = response.data.preReserva;
+        console.log(response.data.preReserva);
+      }).catch(function (e) {
+        _this.errors.push(e);
+      });
+      // this.paginas();
+      console.log("aqui");
+    },
+    confirmar: function confirmar(item) {
+      console.log(item);
+      this.dialog4 = true;
+      this.idupdate = item.id;
+      // window.location.href = `/reserva/${item.id}/edit`;
+    },
+    editItem: function editItem(item) {
+      window.location.href = '/reserva/' + item.id + '/edit';
+    },
+    deleteItem: function deleteItem(item) {
+      console.log("Aqui abajo");
+      console.log(item.id);
+      var borrar = confirm('Esta seguro que desea borrar est reserva?');
+      if (!borrar) {
+        alert("Se cancelo");
+      } else {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/v1.0/reserva/' + item.id, {
+          _token: this.csrf
+        }).then(function (response) {
+          console.log("Borrado correctamente");
+        }).catch(function (e) {
+          //                        this.errors.push(e);
+        });
+        this.getDataCliente();
+      }
+    },
+    update: function update() {
+      console.log("aqui id para ipdate");
+      // console.log(this.cliente.id);
+      //                alert('Enviando Form')
+      //                this.snackbar= true
+      // let form = document.getElementById('ContactForm');
+      // const formData = new FormData(form);
+      // let jsonObject = {};
+      // for (const [key, value]  of formData.entries()) {
+      // jsonObject[key] = value;
+      // }
+      // console.log(jsonObject);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'put',
+        url: '/v1.0/reserva/' + this.idupdate,
+        data: {
+          codigodepago: this.codigodepago,
+          montodepositado: this.montodepositado,
+          Tipopagovalue: this.Tipopagovalue,
+          Bancovalue: this.Bancovalue,
+          estado: 2
+        }
+      }).then(function (response) {
+        response.data;
+        console.log(response.data);
+        window.location.href = '/reservas';
+      });
+    },
+    close: function close() {
+      this.dialog1 = false;
+      this.dialog = false;
+      console.log("entro seguo que si");
+      // setTimeout(() => {
+      // this.editedItem = Object.assign({}, this.defaultItem)
+      // this.editedIndex = -1
+      // }, 300)
+    }
+  }
+
+});
 
 /***/ }),
-/* 476 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.v-btn--small[data-v-0b7dd728] {\r\n    font-size: 10px;\r\n    height: 18px;\r\n    padding: 0 8px;\n}\n.v-card__title--primary[data-v-0b7dd728] {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit  le[data-v-0b7dd728] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml[data-v-0b7dd728] {\r\n    font-size: 12px;\r\n    overflow-x: hidden;\r\n    text-rendering: optimizeLegibility;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    -webkit-tap-highlight-color: rgba(0,0,0,0);\n}\n.app-fab--absolute[data-v-0b7dd728] {\r\n    position: fixed;\r\n    /*z-index: 3;*/\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 100%;\r\n    background: green;\r\n    right: 0;\r\n    bottom: 0;\r\n    /*position: absolute;*/\r\n    margin-right: 13px;\r\n    margin-bottom: 13px;\r\n    border: none;\r\n    outline: none;\r\n    color: #FFF;\r\n    font-size: 32px;\r\n    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n    -webkit-transition: .3s;\r\n    transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0b7dd728] {\r\n      bottom: 2.5rem;\r\n      right: 2.5rem;\r\n      /*z-index: 3;*/\n}\n}\nbutton[data-v-0b7dd728]:hover {\r\n    /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0b7dd728 {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0b7dd728 {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0b7dd728] {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    -webkit-transform: perspective(1px) translateZ(0);\r\n    transform: perspective(1px) translateZ(0);\r\n    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n            box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0b7dd728]:hover,\r\n  .hvr-pulse[data-v-0b7dd728]:focus,\r\n  .hvr-pulse[data-v-0b7dd728]:active {\r\n    -webkit-animation-name: hvr-pulse-data-v-0b7dd728;\r\n    animation-name: hvr-pulse-data-v-0b7dd728;\r\n    -webkit-animation-duration: 1s;\r\n    animation-duration: 1s;\r\n    -webkit-animation-timing-function: linear;\r\n    animation-timing-function: linear;\r\n    -webkit-animation-iteration-count: infinite;\r\n    animation-iteration-count: infinite;\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 477 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -126855,112 +125978,545 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {},
     [
-      [
-        _c(
-          "v-tabs",
-          { attrs: { centered: "" } },
-          [
-            _c("v-tabs-slider", { attrs: { color: "green" } }),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-1" } }, [
-              _vm._v("\n        Pre-Reserva  \n        "),
-              _c("h2", [_vm._v(_vm._s(_vm.preReserva))])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-2" } }, [
-              _vm._v("\n        Evaluacion Pendiente  \n        "),
-              _c("h2", [_vm._v(_vm._s(_vm.pendientee))])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-3" } }, [
-              _vm._v("\n        Reserva Aprobada  \n        "),
-              _c("h2", [_vm._v(_vm._s(_vm.reservaapr))])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-4" } }, [
-              _vm._v("\n        Pendiente de Entrega  \n        "),
-              _c("h2", [_vm._v(_vm._s(_vm.pendiented))])
-            ]),
-            _vm._v(" "),
-            _c("v-tab", { attrs: { href: "#tab-5" } }, [
-              _vm._v("\n        Liquidacion  \n        "),
-              _c("h2", [_vm._v(_vm._s(_vm.liquidacio))])
-            ]),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-1" } },
-              [
-                _c(
-                  "v-card",
-                  { attrs: { flat: "" } },
-                  [_c("v-card-text", [_c("pre-reserva")], 1)],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-2" } },
-              [
-                _c(
-                  "v-card",
-                  { attrs: { flat: "" } },
-                  [_c("v-card-text", [_c("evapendiente-reserva")], 1)],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-3" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-4" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-tab-item",
-              { attrs: { id: "tab-5" } },
-              [_c("v-card", { attrs: { flat: "" } }, [_c("v-card-text")], 1)],
-              1
-            )
-          ],
-          1
-        )
-      ],
-      _vm._v(" "),
       _c(
-        "button",
+        "v-dialog",
         {
-          directives: [{ name: "ripple", rawName: "v-ripple" }],
-          staticClass: "mdc-fab app-fab--absolute",
-          attrs: { id: "hvr-pulse", "aria-label": "Agregar" },
-          on: {
-            click: function($event) {
-              _vm.crear()
-            }
+          attrs: { persistent: "", "max-width": "60%" },
+          model: {
+            value: _vm.dialog4,
+            callback: function($$v) {
+              _vm.dialog4 = $$v
+            },
+            expression: "dialog4"
           }
         },
         [
-          _c("span", { staticClass: "mdc-fab__icon material-icons" }, [
-            _vm._v("add")
-          ])
-        ]
+          _c(
+            "v-card",
+            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("Registro de confirmacion de reserva")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { fluid: "", "grid-list-xl": "" } },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { row: "", wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.Tipopago,
+                                  "item-text": "text",
+                                  "item-value": "text",
+                                  label: "Tipo de Pago"
+                                },
+                                model: {
+                                  value: _vm.Tipopagovalue,
+                                  callback: function($$v) {
+                                    _vm.Tipopagovalue = $$v
+                                  },
+                                  expression: "Tipopagovalue"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.Banco,
+                                  "item-text": "text",
+                                  "item-value": "text",
+                                  label: "Banco"
+                                },
+                                model: {
+                                  value: _vm.Bancovalue,
+                                  callback: function($$v) {
+                                    _vm.Bancovalue = $$v
+                                  },
+                                  expression: "Bancovalue"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Codigo de Deposito" },
+                                model: {
+                                  value: _vm.codigodepago,
+                                  callback: function($$v) {
+                                    _vm.codigodepago = $$v
+                                  },
+                                  expression: "codigodepago"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Monto Depositado" },
+                                model: {
+                                  value: _vm.montodepositado,
+                                  callback: function($$v) {
+                                    _vm.montodepositado = $$v
+                                  },
+                                  expression: "montodepositado"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.update(), (_vm.dialog4 = false)
+                        }
+                      }
+                    },
+                    [_vm._v("Guardar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog4 = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancelar")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-md": "", fluid: "", "text-xs-justify": "" } },
+        [
+          _c(
+            "v-data-iterator",
+            {
+              attrs: {
+                items: _vm.items,
+                "rows-per-page-items": _vm.rowsPerPageItems,
+                pagination: _vm.pagination,
+                search: _vm.search,
+                "content-tag": "v-layout",
+                row: "",
+                wrap: "",
+                "hide-actions": ""
+              },
+              on: {
+                "update:pagination": function($event) {
+                  _vm.pagination = $event
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "item",
+                  fn: function(props) {
+                    return _c(
+                      "v-flex",
+                      { attrs: { xs12: "", sm6: "", md4: "", lg6: "" } },
+                      [
+                        _c("v-hover", {
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var hover = ref.hover
+                                return _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "mx-auto",
+                                    class: "elevation-" + (hover ? 12 : 1)
+                                  },
+                                  [
+                                    _c(
+                                      "v-layout",
+                                      {
+                                        attrs: {
+                                          "align-center": "",
+                                          "justify-center": "",
+                                          row: "",
+                                          "fill-height": ""
+                                        }
+                                      },
+                                      [
+                                        _c("v-flex", { attrs: { xs1: "" } }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          { attrs: { xs3: "" } },
+                                          [
+                                            _c(
+                                              "v-avatar",
+                                              { attrs: { size: "70%" } },
+                                              [
+                                                _c("v-img", {
+                                                  attrs: {
+                                                    src:
+                                                      "loginnew/images/logo.png"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          { attrs: { xs8: "" } },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              {
+                                                attrs: {
+                                                  "text-xs-right": "",
+                                                  "text-lg-right": "",
+                                                  "text-sm-right": ""
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-icon",
+                                                  {
+                                                    staticClass: "mr-2",
+                                                    attrs: { small: "" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.editItem(props.item)
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\r\n                    edit\r\n                  "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-icon",
+                                                  {
+                                                    attrs: { small: "" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.deleteItem(
+                                                          props.item
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\r\n                    close\r\n                  "
+                                                    )
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-card-title",
+                                              {
+                                                attrs: { "primary-title": "" }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-layout",
+                                                  {
+                                                    attrs: {
+                                                      "align-center": "",
+                                                      "justify-space-around":
+                                                        "",
+                                                      row: "",
+                                                      "fill-height": ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("div", [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "headline"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              props.item.cliente
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-left"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v(
+                                                              "Monto a pagar:"
+                                                            )
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .totalF
+                                                              ) +
+                                                              "$"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-left"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v(
+                                                              "Dias Disponible:"
+                                                            )
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .diasdisponible
+                                                              )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("div", [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-right"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v("Auto:")
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .autoSeleccionado
+                                                              )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-right"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v(
+                                                              "Fecha Inicio:"
+                                                            )
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .fechasInicio
+                                                              )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-xs-right"
+                                                        },
+                                                        [
+                                                          _c("strong", [
+                                                            _vm._v("Fecha Fin:")
+                                                          ]),
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                props.item
+                                                                  .fechaFin
+                                                              )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ])
+                                                  ]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card-actions",
+                                      [
+                                        _c("strong", [
+                                          _vm._v("Numero de Reserva:  ")
+                                        ]),
+                                        _vm._v(
+                                          " 00000" +
+                                            _vm._s(props.item.nreserva) +
+                                            "\r\n              "
+                                        ),
+                                        _c("v-spacer"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              small: "",
+                                              color: "primary"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.confirmar(props.item)
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("confirmar")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  }
+                }
+              ])
+            },
+            [
+              _c(
+                "template",
+                { slot: "no-data" },
+                [
+                  _c(
+                    "v-alert",
+                    { attrs: { value: true, color: "red", icon: "warning" } },
+                    [
+                      _vm._v(
+                        "\r\n          Lo siento no hay datos que cargar :(\r\n        "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-xs-center pt-2" },
+            [
+              _c("v-pagination", {
+                attrs: { length: _vm.pagination.page },
+                model: {
+                  value: _vm.pagination.page,
+                  callback: function($$v) {
+                    _vm.$set(_vm.pagination, "page", $$v)
+                  },
+                  expression: "pagination.page"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -126969,24 +126525,24 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0b7dd728", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7968da7c", module.exports)
   }
 }
 
 /***/ }),
-/* 478 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(479)
+  __webpack_require__(458)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(481)
+var __vue_script__ = __webpack_require__(460)
 /* template */
-var __vue_template__ = __webpack_require__(482)
+var __vue_template__ = __webpack_require__(461)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -127025,17 +126581,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 479 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(480);
+var content = __webpack_require__(459);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("317631d2", content, false, {});
+var update = __webpack_require__(4)("317631d2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -127051,10 +126607,10 @@ if(false) {
 }
 
 /***/ }),
-/* 480 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -127065,12 +126621,12 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 
 /***/ }),
-/* 481 */
+/* 460 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -127340,7 +126896,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 482 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -127899,6 +127455,434 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-c5548696", module.exports)
   }
 }
+
+/***/ }),
+/* 462 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(463)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(465)
+/* template */
+var __vue_template__ = __webpack_require__(466)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/reservas/ReservaEdit.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9e11cdf6", Component.options)
+  } else {
+    hotAPI.reload("data-v-9e11cdf6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 463 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(464);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("35f800e0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 464 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s infinite;\n            animation: loader 1s infinite;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n@-webkit-keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n@keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 465 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['cliente', 'user', 'close', 'carga'],
+    data: function data() {
+        return {
+            loader: null,
+            agregado: "",
+            agregado_id: "",
+            abono_id: "",
+            loading: false,
+            loading2: false,
+            loading3: false,
+            loading4: false,
+            formType: true,
+            //                serverResponse: false,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
+    },
+
+    watch: {
+        loader: function loader() {
+            var _this = this;
+
+            var l = this.loader;
+            this[l] = !this[l];
+
+            setTimeout(function () {
+                return _this[l] = false;
+            }, 3000);
+
+            this.loader = null;
+        }
+    },
+    methods: {
+        update: function update() {
+            console.log("aqui id para ipdate");
+            console.log(this.cliente.id);
+            //                alert('Enviando Form')
+            //                this.snackbar= true
+            var form = document.getElementById('ContactForm');
+            var formData = new FormData(form);
+            var jsonObject = {};
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _ref = _step.value;
+
+                    var _ref2 = _slicedToArray(_ref, 2);
+
+                    var key = _ref2[0];
+                    var value = _ref2[1];
+
+                    jsonObject[key] = value;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            console.log(jsonObject);
+            axios({
+                method: 'put',
+                url: '/v1.0/cliente/' + this.cliente.id,
+                data: jsonObject
+            }).then(function (response) {
+                response.data;
+                console.log(response.data);
+            });
+            this.close();
+            this.carga();
+        },
+
+        preciono: function preciono() {
+            console.log("preciono el boton");
+        }
+    }
+});
+
+/***/ }),
+/* 466 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12", attrs: { id: "" } }, [
+        _c(
+          "form",
+          {
+            attrs: { id: "ContactForm" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.update($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    autofocus: "",
+                    name: "nombres",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.nombre }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "telf" } }, [_vm._v("DNI")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "vigencia",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.vigencia }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "direccion" } }, [
+                  _vm._v("Direccion")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "dias_pagados",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.dias_pagados }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "dni" } }, [_vm._v("Telf")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "dias_libres",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.dias_libres }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "v-flex",
+              { staticClass: "form-group col-md-12" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: {
+                      loading: _vm.loading,
+                      disabled: _vm.loading,
+                      color: "green",
+                      type: "submit",
+                      black: "",
+                      dark: "",
+                      small: ""
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\r\n                                Guardar\r\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: {
+                      black: "",
+                      small: "",
+                      color: "red darken-1",
+                      dark: ""
+                    },
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.close($event)
+                      }
+                    }
+                  },
+                  [_vm._v("Cancel")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9e11cdf6", module.exports)
+  }
+}
+
+/***/ }),
+/* 467 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/reservas/ReservaShow.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 468 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

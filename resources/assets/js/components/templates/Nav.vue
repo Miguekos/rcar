@@ -10,6 +10,7 @@
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>{{ user.name }}</v-list-tile-title>
+            v1.1
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -55,8 +56,6 @@
       </v-list>
     </v-menu>
   </v-toolbar>
-
-
 </div>
 </template>
 
