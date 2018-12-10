@@ -125,8 +125,8 @@ select:-webkit-autofill:focus {
               console.log(jsonObject);
               axios.post('/v1.0/promo',jsonObject)
                   .then(response => {
-                      console.log(response)
-                      // window.location.href = '/promo';
+                      console.log(response);
+                      window.location.href = '/promo';
                   })
                   .catch(error => {
                       alert("Surgio un error al guardar tu cliente");
