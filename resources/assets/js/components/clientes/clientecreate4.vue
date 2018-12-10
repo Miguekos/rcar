@@ -216,7 +216,7 @@ select:-webkit-autofill:focus {
         <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
     </v-container>
   </v-card>
-  <pre>{{ $data }}</pre>
+  <!-- <pre>{{ $data }}</pre> -->
     </div>
 </template>
 
@@ -320,7 +320,7 @@ select:-webkit-autofill:focus {
         this.errorMessages = ''
       }
     },
-    
+
 
   }
 </script>

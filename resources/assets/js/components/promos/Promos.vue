@@ -270,7 +270,7 @@
     <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
       <span class="mdc-fab__icon material-icons">add</span>
     </button>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre> -->
   </div>
 </template>
 

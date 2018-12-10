@@ -36,7 +36,6 @@
     </v-list>
   </v-navigation-drawer>
 
-
   <v-toolbar dark color="black lighten-1">
     <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
     <!-- <img src="loginnew/images/logo.png" alt="logo" width="2%"> -->

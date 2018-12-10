@@ -5,15 +5,15 @@
         <v-toolbar flat color="white">
             <v-toolbar-title>Clientes </v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
-            
-            
+
+
                 <v-btn color="green"  small dark class="mb-2">Nuevo Cliente</v-btn>
-                
+
                 <v-spacer></v-spacer>
-                
-            <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>    
-                
-            
+
+            <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+
+
             <!-- Dialog para editar -->
             <v-dialog v-model="dialog1" max-width="700px">
                 <v-card>
@@ -24,10 +24,10 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <cliente-edit 
-                                    :cliente="editCliente" 
-                                    :user="user" 
-                                    :close="close" 
+                                    <cliente-edit
+                                    :cliente="editCliente"
+                                    :user="user"
+                                    :close="close"
                                     :carga="getDataCliente"
                                     ></cliente-edit>
                                 </div>
@@ -63,7 +63,7 @@
                 </v-alert>
             </template>
         </v-data-table>
-        <pre>{{ $data }}</pre>
+        <!-- <pre>{{ $data }}</pre> -->
     <!-- </v-flex>
         </v-layout> -->
     </div>
@@ -92,7 +92,7 @@
                     text: '#',
                     align: 'left',
                     value: 'id',
-                    
+
                 },
                 {
                     text: 'Nombre',
@@ -119,10 +119,10 @@
             desserts: [],
             editedIndex: -1,
             editedItem: {
-                
+
             },
             defaultItem: {
-                
+
             },
         }),
 
@@ -277,4 +277,3 @@
         }
     }
 </style>
-

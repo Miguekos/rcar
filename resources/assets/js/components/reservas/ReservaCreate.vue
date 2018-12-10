@@ -256,7 +256,7 @@ table.v-table tbody th {
     <v-btn color="error">Cancelar</v-btn>
   </v-container>
   </form>
-  <pre>{{ $data }}</pre>
+  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 

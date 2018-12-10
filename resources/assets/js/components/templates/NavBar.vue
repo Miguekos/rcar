@@ -118,7 +118,7 @@
 
     </div>
 </template>
-<pre>{{ $data }}</pre>
+<!-- <pre>{{ $data }}</pre> -->
 
 <script>
     export default {
