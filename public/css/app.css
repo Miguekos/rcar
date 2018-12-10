@@ -316,5 +316,9 @@
   z-index: 1;
 }
 
-
+.nuevo {
+  padding: 10px 10px 0px 10px;
+  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */
+  border-radius: 10px 10px 10px 10px;
+}
 

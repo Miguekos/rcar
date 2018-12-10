@@ -266,7 +266,7 @@ export default {
                 .then(function (response) {
                     response.data
                     console.log(response.data);
-                    window.location.href = '/cliente';
+                    window.location.href = '/reserva';
                 });
             },
     close() {

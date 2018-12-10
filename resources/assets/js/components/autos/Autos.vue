@@ -6,7 +6,7 @@
 }
 
 .v-card__title--primary {
-  padding: 0px 0px 0px 0px;
+  padding-top: 0px;
 }
 
 .v-card__tit le {
@@ -118,66 +118,49 @@ button:hover {
   </v-dialog>
 
   <v-container grid-list-md fluid text-xs-justify>
-    <v-container fluid grid-list-md>
-      <v-layout row wrap justify-center align-center>
-        <v-flex d-flex xs12 sm6 md4 elevation-2>
-          <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" width="344">
-              <v-card-title style="padding: 0px;" class="title">
-                <v-avatar>
-                  <v-icon color="orange" size="150%">perm_identity</v-icon>
-                </v-avatar>
-                <v-layout>
-                  <v-flex xs9>
-                    <v-card-text class="px-0">Total Autos</v-card-text>
-                  </v-flex>
-                  <v-flex xs3>
-                    <v-card-text class="px-0">{{ total }}</v-card-text>
-                  </v-flex>
-                </v-layout>
-              </v-card-title>
-              <!-- <span class="caption"> Total Clientes </span>&nbsp;<span> {{ total }}</span> </v-card-title> -->
-              <!-- <v-card-text></v-card-text> -->
-            </v-card>
-          </v-hover>
+    <v-container grid-list-xs>
+      <v-layout align-center justify-space-around row wrap fill-height>
+        <v-flex elevation-3 lg3 class="nuevo">
+          <v-card light hover ripple class="nuevo">
+            <v-card-title primary-title>
+              <v-avatar>
+                <v-icon color="orange" size="250%">perm_identity</v-icon>
+              </v-avatar>
+              <span>Cliente Total</span>
+              <v-spacer></v-spacer>
+              <div class="text-lg-justify">
+                <div class="headline">{{ total }}</div>
+              </div>
+            </v-card-title>
+          </v-card>
         </v-flex>
-        <v-flex d-flex xs12 sm6 md4 elevation-2>
-          <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" width="344">
-              <v-card-title style="padding: 0px;" class="title">
-                <v-avatar row wrap>
-                  <v-icon color="blue" size="150%">person_add</v-icon>
-                </v-avatar>
-                <v-layout>
-                  <v-flex xs9>
-                    <v-card-text class="px-0">Nuevos Autos</v-card-text>
-                  </v-flex>
-                  <v-flex xs3>
-                    <v-card-text class="px-0">{{ clienten }}</v-card-text>
-                  </v-flex>
-                </v-layout>
-              </v-card-title>
-            </v-card>
-          </v-hover>
+        <v-flex elevation-3 lg3 class="nuevo">
+          <v-card light hover ripple class="nuevo">
+            <v-card-title primary-title>
+              <v-avatar>
+                <v-icon color="blue" size="250%">person_add</v-icon>
+              </v-avatar>
+              <span>Clientes Nuevos</span>
+              <v-spacer></v-spacer>
+              <div class="text-lg-justify">
+                <div class="headline">{{ clienten }}</div>
+              </div>
+            </v-card-title>
+          </v-card>
         </v-flex>
-        <v-flex d-flex xs12 sm6 md4 elevation-2>
-          <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" width="344">
-              <v-card-title style="padding: 0px;" class="title">
-                <v-avatar>
-                  <v-icon color="green" size="150%">call_missed_outgoing</v-icon>
-                </v-avatar>
-                <v-layout>
-                  <v-flex xs8>
-                    <v-card-text class="px-0">Aumento</v-card-text>
-                  </v-flex>
-                  <v-flex xs4>
-                    <v-card-text class="px-0">{{ fecha }}%</v-card-text>
-                  </v-flex>
-                </v-layout>
-              </v-card-title>
-            </v-card>
-          </v-hover>
+        <v-flex elevation-3 lg3 class="nuevo">
+          <v-card light hover ripple class="nuevo">
+            <v-card-title primary-title>
+              <v-avatar>
+                <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
+              </v-avatar>
+              <span>Aumento</span>
+              <v-spacer></v-spacer>
+              <div class="text-lg-justify">
+                <div class="headline">{{ fecha }}%</div>
+              </div>
+            </v-card-title>
+          </v-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -190,7 +173,7 @@ button:hover {
       <br>
     </v-flex>
 
-    <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap class="elevation-5" hide-actions>
+    <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
       <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
         <!-- <v-card

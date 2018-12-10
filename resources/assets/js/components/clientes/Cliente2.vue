@@ -1,9 +1,10 @@
 <style scope>
+
 .v-card__title--primary {
   padding-top: 0px;
 }
 
-.v-card__tit  le {
+.v-card__tit le {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -14,402 +15,342 @@
   flex-wrap: wrap;
   padding: 0px;
 }
+
 html {
-    font-size: 12px;
-    overflow-x: hidden;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-size: 12px;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 .custom-ripple {
-    user-select: none
-  }
+  user-select: none
+}
 
+.app-fab--absolute {
+  position: fixed;
+  /*z-index: 3;*/
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: green;
+  right: 0;
+  bottom: 0;
+  /*position: absolute;*/
+  margin-right: 13px;
+  margin-bottom: 13px;
+  border: none;
+  outline: none;
+  color: #FFF;
+  font-size: 32px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: .3s;
+}
+
+@media(min-width: 1024px) {
   .app-fab--absolute {
-    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
     /*z-index: 3;*/
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    background: green;
-    right: 0;
-    bottom: 0;
-    /*position: absolute;*/
-    margin-right: 13px;
-    margin-bottom: 13px;
-    border: none;
-    outline: none;
-    color: #FFF;
-    font-size: 32px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    transition: .3s;
   }
+}
 
-  @media(min-width: 1024px) {
-    .app-fab--absolute {
-      bottom: 2.5rem;
-      right: 2.5rem;
-      /*z-index: 3;*/
-    }
-  }
-
-  button:hover {
-    /*background: grey;
+button:hover {
+  /*background: grey;
     color: white;
     color: #3a7999;
     box-shadow: inset 0 0 0 3px #F44336;*/
+}
+
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
 
-  @-webkit-keyframes hvr-pulse {
-    25% {
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-    }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
 
-    75% {
-      -webkit-transform: scale(0.9);
-      transform: scale(0.9);
-    }
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
 
-  @keyframes hvr-pulse {
-    25% {
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-    }
-
-    75% {
-      -webkit-transform: scale(0.9);
-      transform: scale(0.9);
-    }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
   }
+}
 
-  .hvr-pulse {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  }
+.hvr-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
 
-  .hvr-pulse:hover,
-  .hvr-pulse:focus,
-  .hvr-pulse:active {
-    -webkit-animation-name: hvr-pulse;
-    animation-name: hvr-pulse;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-  }
-
+.hvr-pulse:hover,
+.hvr-pulse:focus,
+.hvr-pulse:active {
+  -webkit-animation-name: hvr-pulse;
+  animation-name: hvr-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
 </style>
 <template>
-  <div id="cartas">
-<v-dialog v-model="dialog3" persistent max-width="690">
-      <v-card>
-        <v-card-title class="headline">Enviar Correo</v-card-title>
-        <v-card-text>
-          <v-textarea
-          name="input-7-1"
-          label="Escribe tu correo"
-          value=""
-          hint="Escribe aqui el correo"
-        ></v-textarea>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-1" flat @click="dialog3 = false">Cancelar</v-btn>
-          <v-btn color="green darken-1" flat @click="eliminar = 1">Enviar</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+<div id="cartas">
+  <v-dialog v-model="dialog3" persistent max-width="690">
+    <v-card>
+      <v-card-title class="headline">Enviar Correo</v-card-title>
+      <v-card-text>
+        <v-textarea name="input-7-1" label="Escribe tu correo" value="" hint="Escribe aqui el correo"></v-textarea>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="green darken-1" flat @click="dialog3 = false">Cancelar</v-btn>
+        <v-btn color="green darken-1" flat @click="eliminar = 1">Enviar</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 
-    <v-container grid-list-md fluid text-xs-justify>
-      <v-container fluid grid-list-md>
-        <v-layout row wrap justify-center align-center>
-          <v-flex d-flex xs12 sm4 md4 elevation-2>
-            <v-hover>
-            <v-card
-            hover
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
-            class="mx-auto"
-            width="344">
-            <v-card-title style="padding: 0px;" class="title">
+  <v-container grid-list-md fluid text-xs-justify>
+    <v-container grid-list-xs>
+      <v-layout align-center justify-space-around row wrap fill-height>
+        <v-flex elevation-3 lg3 class="nuevo">
+          <v-card light hover ripple class="nuevo">
+            <v-card-title primary-title>
               <v-avatar>
-                <v-icon color="orange" size="150%">perm_identity</v-icon>
+                <v-icon color="orange" size="250%">perm_identity</v-icon>
               </v-avatar>
-              <v-layout>
-                <v-flex xs9>
-                  <v-card-text class="px-0">Total</v-card-text>
-                </v-flex>
-                <v-flex xs3>
-                  <v-card-text class="px-0">{{ total }}</v-card-text>
-                </v-flex>
-              </v-layout>
+              <span>Cliente Total</span>
+              <v-spacer></v-spacer>
+              <div class="text-lg-justify">
+                <div class="headline">{{ total }}</div>
+              </div>
             </v-card-title>
-            <!-- <span class="caption"> Total Clientes </span>&nbsp;<span> {{ total }}</span> </v-card-title> -->
-            <!-- <v-card-text></v-card-text> -->
-            </v-card>
-            </v-hover>
-          </v-flex>
-          <v-flex d-flex xs12 sm4 md4 elevation-2>
-            <v-hover>
-            <v-card
-            hover
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
-            class="mx-auto"
-            width="344">
-            <v-card-title style="padding: 0px;" class="title">
-              <v-avatar row wrap>
-                <v-icon color="blue" size="150%">person_add</v-icon>
-              </v-avatar>
-              <v-layout>
-                <v-flex xs9>
-                  <v-card-text class="px-0">Nuevos</v-card-text>
-                </v-flex>
-                <v-flex xs3>
-                  <v-card-text class="px-0">{{ clienten }}</v-card-text>
-                </v-flex>
-              </v-layout>
-            </v-card-title>
-            </v-card>
-            </v-hover>
-          </v-flex>
-          <v-flex d-flex xs12 sm4 md4 elevation-2>
-            <v-hover>
-            <v-card
-            hover
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
-            class="mx-auto"
-            width="344">
-            <v-card-title style="padding: 0px;" class="title">
-              <v-avatar>
-                <v-icon color="green" size="150%">call_missed_outgoing</v-icon>
-              </v-avatar>
-              <v-layout>
-                <v-flex xs8>
-                  <v-card-text class="px-0">Aumento</v-card-text>
-                </v-flex>
-                <v-flex xs4>
-                  <v-card-text class="px-0">{{ fecha }}%</v-card-text>
-                </v-flex>
-              </v-layout>
-            </v-card-title>
-            </v-card>
-            </v-hover>
-          </v-flex>
-        </v-layout>
-      </v-container>
-
-      <hr>
-      <br>
-      <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
-          <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-        <v-flex>
-        <br>
-        </v-flex>
-
-      <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search"
-        content-tag="v-layout" row wrap hide-actions>
-
-        <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
-          <!-- <v-hover> -->
-            <!-- <v-card
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 1}`"
-            class="mx-auto custom-ripple"
-            ripple
-            :color="colors[color]"
-            @click="color = (color + 1) % colors.length"
-            > -->
-            <v-card
-            class="mx-auto"
-            hover
-            ripple
-            tile
-            >
-            <!-- <v-card color="cyan darken-2" class="white--text"> -->
-            <v-layout align-center justify-center row fill-height>
-              <v-flex xs1>
-              </v-flex>
-              <v-flex xs3>
-                <v-avatar size="70%">
-                  <!-- <v-img :src="props.item.image"></v-img> -->
-                  <v-img src="loginnew/images/logo.png"></v-img>
-                </v-avatar>
-              </v-flex>
-              <v-flex xs8>
-                <v-flex text-xs-right text-lg-right text-sm-right>
-                  <v-icon small class="mr-2" @click="editItem(props.item)">
-                    edit
-                  </v-icon>
-                  <v-icon small @click="deleteItem(props.item)">
-                    close
-                  </v-icon>
-                </v-flex>
-
-                <v-card-title primary-title>
-
-                  <div>
-                    <div><h2>{{ props.item.nombres }}</h2></div>
-                    <div class="text-xs-left">{{ props.item.ciudad }}</div>
-                    <div>{{ props.item.celular }}</div>
-                    <v-spacer></v-spacer>
-                    <v-flex align-content-end>
-                      <v-icon small class="mr-2" @click="dialog3 = true">
-                        mail_outline
-                      </v-icon>
-                    </v-flex>
-                  </div>
-                </v-card-title>
-              </v-flex>
-            </v-layout>
-            <!-- <v-divider dense light></v-divider> -->
-            <!-- <v-card-actions> -->
-              <!-- <v-btn flat >Listen now</v-btn> -->
-            <!-- </v-card-actions> -->
           </v-card>
-          <!-- </v-hover> -->
-          <hr>
-          <v-divider ></v-divider>
-
         </v-flex>
-        <template slot="no-data">
-          <v-alert :value="true" color="red" icon="warning">
-            Lo siento no hay datos que cargar :(
-          </v-alert>
-        </template>
-
-      </v-data-iterator>
-      <div class="text-xs-center pt-2">
-        <v-pagination v-model="pagination.page" :length="page"></v-pagination>
-      </div>
+        <v-flex elevation-3 lg3 class="nuevo">
+          <v-card light hover ripple class="nuevo">
+            <v-card-title primary-title>
+              <v-avatar>
+                <v-icon color="blue" size="250%">person_add</v-icon>
+              </v-avatar>
+              <span>Clientes Nuevos</span>
+              <v-spacer></v-spacer>
+              <div class="text-lg-justify">
+                <div class="headline">{{ clienten }}</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+        <v-flex elevation-3 lg3 class="nuevo">
+          <v-card light hover ripple class="nuevo">
+            <v-card-title primary-title>
+              <v-avatar>
+                <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
+              </v-avatar>
+              <span>Aumento</span>
+              <v-spacer></v-spacer>
+              <div class="text-lg-justify">
+                <div class="headline">{{ fecha }}%</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
 
-    <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
-      <span class="mdc-fab__icon material-icons">add</span>
-    </button>
-    <!-- <pre>{{ $data }}</pre> -->
-  </div>
+    <hr>
+    <br>
+    <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
+    <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+    <v-flex>
+      <br>
+    </v-flex>
+
+    <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
+
+      <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
+        <v-card class="mx-auto" hover ripple tile>
+          <v-layout align-center justify-center row fill-height>
+            <v-flex xs1>
+            </v-flex>
+            <v-flex xs3>
+              <v-avatar size="70%">
+                <v-img src="loginnew/images/logo.png"></v-img>
+              </v-avatar>
+            </v-flex>
+            <v-flex xs8>
+              <v-flex text-xs-right text-lg-right text-sm-right>
+                <v-icon small class="mr-2" @click="editItem(props.item)">
+                  edit
+                </v-icon>
+                <v-icon small @click="deleteItem(props.item)">
+                  close
+                </v-icon>
+              </v-flex>
+              <v-card-title primary-title>
+                <div>
+                  <div>
+                    <h2>{{ props.item.nombres }}</h2>
+                  </div>
+                  <div class="text-xs-left">{{ props.item.ciudad }}</div>
+                  <div>{{ props.item.celular }}</div>
+                  <v-spacer></v-spacer>
+                  <v-flex align-content-end>
+                    <v-icon small class="mr-2" @click="dialog3 = true">
+                      mail_outline
+                    </v-icon>
+                  </v-flex>
+                </div>
+              </v-card-title>
+            </v-flex>
+          </v-layout>
+        </v-card>
+        <hr>
+        <v-divider></v-divider>
+
+      </v-flex>
+      <template slot="no-data">
+        <v-alert :value="true" color="red" icon="warning">
+          Lo siento no hay datos que cargar :(
+        </v-alert>
+      </template>
+
+    </v-data-iterator>
+    <div class="text-xs-center pt-2">
+      <v-pagination v-model="pagination.page" :length="page"></v-pagination>
+    </div>
+  </v-container>
+
+  <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+    <span class="mdc-fab__icon material-icons">add</span>
+  </button>
+  <!-- <pre>{{ $data }}</pre> -->
+</div>
 </template>
 
 <script>
-  import axios from 'axios';
-  export default {
-    props: ['user'],
-    data: () => ({
-      color: 0,
-          colors: [
-            'red',
-            'pink',
-            'purple',
-            'deep-purple',
-            'indigo',
-            'blue',
-            'light-blue',
-            'cyan',
-            'teal',
-            'green',
-            'light-green',
-            'lime',
-            'yellow',
-            'amber',
-            'orange',
-            'deep-orange',
-            'brown',
-            'blue-grey',
-            'grey'
-          ],
-      // boton inicio
-      // boton fin
-      // pagination: {},
-      title:"Clientes",
-      page: "",
-      reviews: 413,
-      value: 4.5,
-      eliminar: "",
-      dialog3: false,
-      pagination: {},
-      slider: 56,
-      tile: false,
-      search: "",
-      total: "",
-      fecha: "",
-      clienten: "",
-      editCliente: "",
-      idedit: "",
-      dialog: false,
-      dialog1: false,
-      rowsPerPageItems: [8, 12],
-      pagination: {
-      },
-      items: [],
-      editedIndex: -1,
-      editedItem: {
-      },
-      defaultItem: {
-
-      },
-    }),
-    created() {
-      this.getDataCliente();
-    },
-    computed: {
+import axios from 'axios';
+export default {
+  props: ['user'],
+  data: () => ({
+    color: 0,
+    colors: [
+      'red',
+      'pink',
+      'purple',
+      'deep-purple',
+      'indigo',
+      'blue',
+      'light-blue',
+      'cyan',
+      'teal',
+      'green',
+      'light-green',
+      'lime',
+      'yellow',
+      'amber',
+      'orange',
+      'deep-orange',
+      'brown',
+      'blue-grey',
+      'grey'
+    ],
+    // boton inicio
+    // boton fin
+    // pagination: {},
+    title: "Clientes",
+    page: "",
+    reviews: 413,
+    value: 4.5,
+    eliminar: "",
+    dialog3: false,
+    pagination: {},
+    slider: 56,
+    tile: false,
+    search: "",
+    total: "",
+    fecha: "",
+    clienten: "",
+    editCliente: "",
+    idedit: "",
+    dialog: false,
+    dialog1: false,
+    rowsPerPageItems: [8, 12],
+    pagination: {},
+    items: [],
+    editedIndex: -1,
+    editedItem: {},
+    defaultItem: {
 
     },
-    methods: {
-      crear() {
-        window.location.href = '/cliente/create';
-      },
-      getDataCliente() {
-        console.log("en get data nuew");
-        axios
-          .get(`/v1.0/clientes`)
-          .then(response => {
-            this.items = response.data.cliente;
-            this.total = response.data.clientec;
-            this.fecha = response.data.fecha;
-            this.clienten = response.data.clienten;
-            console.log(response.data.fecha);
-            var paginas =  Math.ceil(response.data.clientec / 8);
-            this.page = paginas;
-          })
-          .catch(e => {
-            this.errors.push(e);
-          });
-      },
-      editItem(item) {
-        window.location.href = `/cliente/${item.id}/edit`;
-        // this.editedIndex = this.desserts.indexOf(item)
-        // this.editedItem = Object.assign({}, item)
-        // this.dialog1 = true
-        // this.idedit = item.id
-        // console.log(item.id);
-        // axios
-          // .get(`/v1.0/cliente/${item.id}`)
-          // .then(response => {
-            // this.editCliente = response.data;
-            // console.log(response.data);
-          // })
-          // .catch(e => {
-            // this.errors.push(e);
-          // });
-      },
-      deleteItem(item) {
-        // const index = this.desserts.indexOf(item)
-        console.log("Aqui abajo");
-        console.log(item.id);
-        var borrar = confirm('Esta seguro que desea borrar este Cliente?')
-        if (!borrar) {
-          alert("Se cancelo");
-        }else{
+  }),
+  created() {
+    this.getDataCliente();
+  },
+  computed: {
+
+  },
+  methods: {
+    crear() {
+      window.location.href = '/cliente/create';
+    },
+    getDataCliente() {
+      console.log("en get data nuew");
+      axios
+        .get(`/v1.0/clientes`)
+        .then(response => {
+          this.items = response.data.cliente;
+          this.total = response.data.clientec;
+          this.fecha = response.data.fecha;
+          this.clienten = response.data.clienten;
+          console.log(response.data.fecha);
+          var paginas = Math.ceil(response.data.clientec / 8);
+          this.page = paginas;
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+    editItem(item) {
+      window.location.href = `/cliente/${item.id}/edit`;
+      // this.editedIndex = this.desserts.indexOf(item)
+      // this.editedItem = Object.assign({}, item)
+      // this.dialog1 = true
+      // this.idedit = item.id
+      // console.log(item.id);
+      // axios
+      // .get(`/v1.0/cliente/${item.id}`)
+      // .then(response => {
+      // this.editCliente = response.data;
+      // console.log(response.data);
+      // })
+      // .catch(e => {
+      // this.errors.push(e);
+      // });
+    },
+    deleteItem(item) {
+      // const index = this.desserts.indexOf(item)
+      console.log("Aqui abajo");
+      console.log(item.id);
+      var borrar = confirm('Esta seguro que desea borrar este Cliente?')
+      if (!borrar) {
+        alert("Se cancelo");
+      } else {
         axios
           .delete(`/v1.0/cliente/${item.id}`, {
             _token: this.csrf
@@ -424,20 +365,20 @@ html {
           .catch(e => {
             //                        this.errors.push(e);
           });
-          this.getDataCliente();
-        }
-      },
-      close() {
-        this.dialog1 = false
-        this.dialog = false
-        console.log("entro seguo que si");
-
-        // setTimeout(() => {
-        // this.editedItem = Object.assign({}, this.defaultItem)
-        // this.editedIndex = -1
-        // }, 300)
-      },
+        this.getDataCliente();
+      }
     },
+    close() {
+      this.dialog1 = false
+      this.dialog = false
+      console.log("entro seguo que si");
 
-  }
+      // setTimeout(() => {
+      // this.editedItem = Object.assign({}, this.defaultItem)
+      // this.editedIndex = -1
+      // }, 300)
+    },
+  },
+
+}
 </script>

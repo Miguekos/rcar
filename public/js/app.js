@@ -115176,19 +115176,15 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(385)
-}
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(387)
+var __vue_script__ = null
 /* template */
 var __vue_template__ = __webpack_require__(388)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -115223,78 +115219,9 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 385 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(386);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("1433bf8f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68a3b61e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Prueba.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68a3b61e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Prueba.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 386 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 387 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
+/* 385 */,
+/* 386 */,
+/* 387 */,
 /* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -115303,51 +115230,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
-    { attrs: { "grid-list-xs,sm,md,lg,xl": "" } },
+    "v-form",
     [
       _c(
-        "v-layout",
-        { attrs: { row: "", wrap: "" } },
+        "v-container",
+        { attrs: { "grid-list-xs,sm,md,lg,xl": "" } },
         [
+          _c("v-layout", {
+            attrs: {
+              "align-start": "",
+              "justify-space-around": "",
+              "fill-height": ""
+            }
+          }),
+          _vm._v(" "),
           _c(
             "v-flex",
-            { attrs: { xs12: "" } },
-            [
-              _c(
-                "v-card",
-                {
-                  staticClass: "white--text",
-                  attrs: { color: "blue-grey darken-2" }
-                },
-                [
-                  _c("v-card-title", { attrs: { "primary-title": "" } }, [
-                    _c("div", [
-                      _c("div", { staticClass: "headline" }, [
-                        _vm._v("Unlimited music now")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", [
-                        _vm._v(
-                          "Listen to your favorite artists and albums whenever and wherever, online and offline."
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c("v-btn", { attrs: { flat: "", dark: "" } }, [
-                        _vm._v("Listen now")
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
+            { attrs: { xs12: "", sm4: "", md4: "" } },
+            [_c("v-text-field", { attrs: { label: "Solo", solo: "" } })],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", sm4: "", md4: "" } },
+            [_c("v-text-field", { attrs: { label: "Solo", solo: "" } })],
             1
           )
         ],
@@ -115453,7 +115360,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n.v-card__tit  le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml {\r\n    font-size: 12px;\r\n    overflow-x: hidden;\r\n    text-rendering: optimizeLegibility;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    -webkit-tap-highlight-color: rgba(0,0,0,0);\n}\n.custom-ripple {\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none\n}\n.app-fab--absolute {\r\n    position: fixed;\r\n    /*z-index: 3;*/\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 100%;\r\n    background: green;\r\n    right: 0;\r\n    bottom: 0;\r\n    /*position: absolute;*/\r\n    margin-right: 13px;\r\n    margin-bottom: 13px;\r\n    border: none;\r\n    outline: none;\r\n    color: #FFF;\r\n    font-size: 32px;\r\n    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n    -webkit-transition: .3s;\r\n    transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute {\r\n      bottom: 2.5rem;\r\n      right: 2.5rem;\r\n      /*z-index: 3;*/\n}\n}\nbutton:hover {\r\n    /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse {\n25% {\r\n      -webkit-transform: scale(1.1);\r\n      transform: scale(1.1);\n}\n75% {\r\n      -webkit-transform: scale(0.9);\r\n      transform: scale(0.9);\n}\n}\n.hvr-pulse {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    -webkit-transform: perspective(1px) translateZ(0);\r\n    transform: perspective(1px) translateZ(0);\r\n    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n            box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse:hover,\r\n  .hvr-pulse:focus,\r\n  .hvr-pulse:active {\r\n    -webkit-animation-name: hvr-pulse;\r\n    animation-name: hvr-pulse;\r\n    -webkit-animation-duration: 1s;\r\n    animation-duration: 1s;\r\n    -webkit-animation-timing-function: linear;\r\n    animation-timing-function: linear;\r\n    -webkit-animation-iteration-count: infinite;\r\n    animation-iteration-count: infinite;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml {\r\n  font-size: 12px;\r\n  overflow-x: hidden;\r\n  text-rendering: optimizeLegibility;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.custom-ripple {\r\n  -webkit-user-select: none;\r\n     -moz-user-select: none;\r\n      -ms-user-select: none;\r\n          user-select: none\n}\n.app-fab--absolute {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse:hover,\r\n.hvr-pulse:focus,\r\n.hvr-pulse:active {\r\n  -webkit-animation-name: hvr-pulse;\r\n  animation-name: hvr-pulse;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -115468,63 +115375,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -115974,110 +115824,67 @@ var render = function() {
         [
           _c(
             "v-container",
-            { attrs: { fluid: "", "grid-list-md": "" } },
+            { attrs: { "grid-list-xs": "" } },
             [
               _c(
                 "v-layout",
                 {
                   attrs: {
+                    "align-center": "",
+                    "justify-space-around": "",
                     row: "",
                     wrap: "",
-                    "justify-center": "",
-                    "align-center": ""
+                    "fill-height": ""
                   }
                 },
                 [
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm4: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { hover: "", width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
+                                    "v-icon",
                                     {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
+                                      attrs: { color: "orange", size: "250%" }
                                     },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "orange",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("perm_identity")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs9: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Total")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs3: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v(_vm._s(_vm.total))]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    [_vm._v("perm_identity")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Cliente Total")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.total))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -116085,95 +115892,48 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm4: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { hover: "", width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
-                                    {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        { attrs: { row: "", wrap: "" } },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "blue",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("person_add")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs9: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Nuevos")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs3: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v(_vm._s(_vm.clienten))]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    "v-icon",
+                                    { attrs: { color: "blue", size: "250%" } },
+                                    [_vm._v("person_add")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Clientes Nuevos")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.clienten))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -116181,98 +115941,48 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm4: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { hover: "", width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
-                                    {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "green",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("call_missed_outgoing")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs8: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Aumento")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs4: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(_vm.fecha) + "%"
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    "v-icon",
+                                    { attrs: { color: "green", size: "250%" } },
+                                    [_vm._v("call_missed_outgoing")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Aumento")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.fecha) + "%")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -116402,7 +116112,7 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                    edit\n                  "
+                                              "\r\n                  edit\r\n                "
                                             )
                                           ]
                                         ),
@@ -116419,7 +116129,7 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                    close\n                  "
+                                              "\r\n                  close\r\n                "
                                             )
                                           ]
                                         )
@@ -116479,7 +116189,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                        mail_outline\n                      "
+                                                      "\r\n                      mail_outline\r\n                    "
                                                     )
                                                   ]
                                                 )
@@ -116521,7 +116231,7 @@ var render = function() {
                     { attrs: { value: true, color: "red", icon: "warning" } },
                     [
                       _vm._v(
-                        "\n            Lo siento no hay datos que cargar :(\n          "
+                        "\r\n          Lo siento no hay datos que cargar :(\r\n        "
                       )
                     ]
                   )
@@ -119296,14 +119006,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -120345,23 +120047,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -122921,7 +122606,6 @@ var _this = this;
     },
     sendForm: function sendForm(e) {
       console.log("entro a guardar");
-      console.log(this.formulario);
       axios.post('/v1.0/reserva', {
         nreserva: '0000' + this.reservastotal,
         fechasInicio: this.fecha1,
@@ -122955,7 +122639,7 @@ var _this = this;
       });
     },
     cancelar: function cancelar() {
-      window.location.href = '/cliente';
+      window.location.href = '/reserva';
     },
     verAuto: function verAuto() {
       var _this3 = this;
@@ -125250,7 +124934,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         response.data;
         console.log(response.data);
-        window.location.href = '/cliente';
+        window.location.href = '/reserva';
       });
     },
     close: function close() {
@@ -126301,7 +125985,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small[data-v-d3fc9ef0] {\n    font-size: 10px;\n    height: 18px;\n    padding: 0 8px;\n}\n.v-card__title--primary[data-v-d3fc9ef0] {\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit  le[data-v-d3fc9ef0] {\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n  padding: 0px;\n}\n.app-fab--absolute[data-v-d3fc9ef0] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-d3fc9ef0] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-d3fc9ef0]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-d3fc9ef0] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-d3fc9ef0]:hover,\r\n.hvr-pulse[data-v-d3fc9ef0]:focus,\r\n.hvr-pulse[data-v-d3fc9ef0]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-d3fc9ef0;\r\n  animation-name: hvr-pulse-data-v-d3fc9ef0;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
+exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\n  padding: 10px 10px 0px 10px;\n  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */\n  border-radius: 10px 10px 10px 10px;\n}\n.v-btn--small[data-v-d3fc9ef0] {\n  font-size: 10px;\n  height: 18px;\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-d3fc9ef0] {\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-d3fc9ef0] {\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n  padding: 0px;\n}\n.app-fab--absolute[data-v-d3fc9ef0] {\n  position: fixed;\n  /*z-index: 3;*/\n  width: 50px;\n  height: 50px;\n  border-radius: 100%;\n  background: green;\n  right: 0;\n  bottom: 0;\n  /*position: absolute;*/\n  margin-right: 13px;\n  margin-bottom: 13px;\n  border: none;\n  outline: none;\n  color: #FFF;\n  font-size: 32px;\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n  -webkit-transition: .3s;\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-d3fc9ef0] {\n    bottom: 2.5rem;\n    right: 2.5rem;\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-d3fc9ef0]:hover {\n  /*background: grey;\n    color: white;\n    color: #3a7999;\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n75% {\n    -webkit-transform: scale(0.9);\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n75% {\n    -webkit-transform: scale(0.9);\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-d3fc9ef0] {\n  display: inline-block;\n  vertical-align: middle;\n  -webkit-transform: perspective(1px) translateZ(0);\n  transform: perspective(1px) translateZ(0);\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-d3fc9ef0]:hover,\n.hvr-pulse[data-v-d3fc9ef0]:focus,\n.hvr-pulse[data-v-d3fc9ef0]:active {\n  -webkit-animation-name: hvr-pulse-data-v-d3fc9ef0;\n  animation-name: hvr-pulse-data-v-d3fc9ef0;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-timing-function: linear;\n  animation-timing-function: linear;\n  -webkit-animation-iteration-count: infinite;\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -126393,169 +126077,122 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "700px" },
+          model: {
+            value: _vm.dialog1,
+            callback: function($$v) {
+              _vm.dialog1 = $$v
+            },
+            expression: "dialog1"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [
+                _c("span", { staticClass: "headline" }, [
+                  _vm._v("Editar Cliente")
+                ])
+              ]),
+              _vm._v(" "),
+              [
+                _c("div", { staticClass: "container-fluid" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12" },
+                      [
+                        _c("cliente-edit", {
+                          attrs: {
+                            cliente: _vm.editCliente,
+                            user: _vm.user,
+                            close: _vm.close,
+                            carga: _vm.getDataCliente
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ]
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "v-container",
         { attrs: { "grid-list-md": "", fluid: "", "text-xs-justify": "" } },
         [
           _c(
-            "v-dialog",
-            {
-              attrs: { "max-width": "700px" },
-              model: {
-                value: _vm.dialog1,
-                callback: function($$v) {
-                  _vm.dialog1 = $$v
-                },
-                expression: "dialog1"
-              }
-            },
-            [
-              _c(
-                "v-card",
-                [
-                  _c("v-card-title", [
-                    _c("span", { staticClass: "headline" }, [
-                      _vm._v("Editar Cliente")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  [
-                    _c("div", { staticClass: "container-fluid" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12" },
-                          [
-                            _c("cliente-edit", {
-                              attrs: {
-                                cliente: _vm.editCliente,
-                                user: _vm.user,
-                                close: _vm.close,
-                                carga: _vm.getDataCliente
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ])
-                    ])
-                  ]
-                ],
-                2
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
             "v-container",
-            { attrs: { fluid: "", "grid-list-md": "" } },
+            { attrs: { "grid-list-xs": "" } },
             [
               _c(
                 "v-layout",
                 {
                   attrs: {
+                    "align-center": "",
+                    "justify-space-around": "",
                     row: "",
                     wrap: "",
-                    "justify-center": "",
-                    "align-center": ""
+                    "fill-height": ""
                   }
                 },
                 [
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
+                                    "v-icon",
                                     {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
+                                      attrs: { color: "orange", size: "250%" }
                                     },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "orange",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("perm_identity")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs9: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [
-                                                  _vm._v(
-                                                    "Total " + _vm._s(_vm.title)
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs3: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v(_vm._s(_vm.total))]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    [_vm._v("perm_identity")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Cliente Total")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.total))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -126563,100 +126200,48 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
-                                    {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        { attrs: { row: "", wrap: "" } },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "blue",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("person_add")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs9: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [
-                                                  _vm._v(
-                                                    "Nuevas " +
-                                                      _vm._s(_vm.title)
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs3: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v(_vm._s(_vm.clienten))]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    "v-icon",
+                                    { attrs: { color: "blue", size: "250%" } },
+                                    [_vm._v("person_add")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Clientes Nuevos")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.clienten))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -126664,98 +126249,48 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
-                                    {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "green",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("call_missed_outgoing")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs8: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Aumento")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs4: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(_vm.fecha) + "%"
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    "v-icon",
+                                    { attrs: { color: "green", size: "250%" } },
+                                    [_vm._v("call_missed_outgoing")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Aumento")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.fecha) + "%")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -127103,7 +126638,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-0f91e292] {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit le[data-v-0f91e292] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-0f91e292] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0f91e292] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-0f91e292]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0f91e292] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0f91e292]:hover,\r\n.hvr-pulse[data-v-0f91e292]:focus,\r\n.hvr-pulse[data-v-0f91e292]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-0f91e292;\r\n  animation-name: hvr-pulse-data-v-0f91e292;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
+exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-0f91e292] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-0f91e292] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-0f91e292] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0f91e292] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-0f91e292]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0f91e292] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0f91e292]:hover,\r\n.hvr-pulse[data-v-0f91e292]:focus,\r\n.hvr-pulse[data-v-0f91e292]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-0f91e292;\r\n  animation-name: hvr-pulse-data-v-0f91e292;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -127200,110 +126735,67 @@ var render = function() {
         [
           _c(
             "v-container",
-            { attrs: { fluid: "", "grid-list-md": "" } },
+            { attrs: { "grid-list-xs": "" } },
             [
               _c(
                 "v-layout",
                 {
                   attrs: {
+                    "align-center": "",
+                    "justify-space-around": "",
                     row: "",
                     wrap: "",
-                    "justify-center": "",
-                    "align-center": ""
+                    "fill-height": ""
                   }
                 },
                 [
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
+                                    "v-icon",
                                     {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
+                                      attrs: { color: "orange", size: "250%" }
                                     },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "orange",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("perm_identity")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs9: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Total Autos")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs3: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v(_vm._s(_vm.total))]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    [_vm._v("perm_identity")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Cliente Total")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.total))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -127311,95 +126803,48 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
-                                    {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        { attrs: { row: "", wrap: "" } },
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "blue",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("person_add")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs9: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Nuevos Autos")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs3: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v(_vm._s(_vm.clienten))]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    "v-icon",
+                                    { attrs: { color: "blue", size: "250%" } },
+                                    [_vm._v("person_add")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Clientes Nuevos")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.clienten))
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -127407,98 +126852,48 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      attrs: {
-                        "d-flex": "",
-                        xs12: "",
-                        sm6: "",
-                        md4: "",
-                        "elevation-2": ""
-                      }
+                      staticClass: "nuevo",
+                      attrs: { "elevation-3": "", lg3: "" }
                     },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  class: "elevation-" + (hover ? 12 : 2),
-                                  attrs: { width: "344" }
-                                },
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "nuevo",
+                          attrs: { light: "", hover: "", ripple: "" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c(
+                                "v-avatar",
                                 [
                                   _c(
-                                    "v-card-title",
-                                    {
-                                      staticClass: "title",
-                                      staticStyle: { padding: "0px" }
-                                    },
-                                    [
-                                      _c(
-                                        "v-avatar",
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            {
-                                              attrs: {
-                                                color: "green",
-                                                size: "150%"
-                                              }
-                                            },
-                                            [_vm._v("call_missed_outgoing")]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs8: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [_vm._v("Aumento")]
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs4: "" } },
-                                            [
-                                              _c(
-                                                "v-card-text",
-                                                { staticClass: "px-0" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(_vm.fecha) + "%"
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
+                                    "v-icon",
+                                    { attrs: { color: "green", size: "250%" } },
+                                    [_vm._v("call_missed_outgoing")]
                                   )
                                 ],
                                 1
-                              )
-                            }
-                          }
-                        ])
-                      })
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Aumento")]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-lg-justify" }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(_vm._s(_vm.fecha) + "%")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -127538,7 +126933,6 @@ var render = function() {
           _c(
             "v-data-iterator",
             {
-              staticClass: "elevation-5",
               attrs: {
                 items: _vm.items,
                 "rows-per-page-items": _vm.rowsPerPageItems,

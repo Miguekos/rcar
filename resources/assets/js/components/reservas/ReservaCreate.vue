@@ -417,7 +417,6 @@ export default {
     },
     sendForm(e) {
       console.log("entro a guardar");
-      console.log(this.formulario);
       axios.post('/v1.0/reserva',
         {
           nreserva: `0000${this.reservastotal}`,
@@ -455,7 +454,7 @@ export default {
         })
     },
     cancelar() {
-      window.location.href = '/cliente';
+      window.location.href = '/reserva';
     },
     verAuto() {
       console.log("aqui esta");
