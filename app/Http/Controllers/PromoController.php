@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Promo;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,21 @@ class PromoController extends Controller
 
     public function indexapi()
     {
+      $dias = Carbon::now()->subDay(30);
       $promos = Promo::all();
-      return $promos;
+      $total = Promo::count();
+      $totaln = Promo::where([
+        ['created_at', '>=', $dias],
+        ])->count();
+      $num1 = $total / 100;
+      $totalp = $num1 * $totaln;
+
+      return json_encode([
+        'promo' => $promos,
+        'total' => $total,
+        'totaln' => $totaln,
+        'totalp' => $totalp,
+      ]); ;
     }
 
     /**
@@ -64,8 +78,9 @@ class PromoController extends Controller
 
     public function showapi(Promo $promo)
     {
-      $promos = Cliente::findOrFail($promo);
-      return $promos;
+      // $promos = Promo::findOrFail($promo);
+      // return $promos;
+      return $promo;
     }
 
     /**
@@ -76,7 +91,9 @@ class PromoController extends Controller
      */
     public function edit(Promo $promo)
     {
-        //
+      $info = $promo->id;
+      // return $info;
+      return view('promos.edit',compact('info'));
     }
 
     /**
@@ -91,14 +108,10 @@ class PromoController extends Controller
         //
     }
 
-    public function updateapi(Request $request, Promo $promo)
+    public function updateapi(Request $request, $promo)
     {
       $clientes = Promo::find($promo);
-      $clientes ->nombre = $request->nombre;
-      $clientes ->vigencia = $request->vigencia;
-      $clientes ->direccion = $request->dias_pagados;
-      $clientes ->celular = $request->dias_libres;
-      $clientes ->save();
+      $clientes->update($request->all());
       return $clientes;
     }
 

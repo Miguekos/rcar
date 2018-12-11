@@ -3252,7 +3252,7 @@ if (typeof dev === 'undefined') {
 
 var __DEV__ = dev;
 exports.__DEV__ = __DEV__;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }),
 /* 11 */
@@ -3931,6 +3931,12 @@ module.exports = _default;
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(151);
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports) {
 
 var g;
@@ -3955,12 +3961,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(151);
 
 /***/ }),
 /* 15 */
@@ -26369,7 +26369,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13), __webpack_require__(169).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(169).setImmediate))
 
 /***/ }),
 /* 75 */
@@ -35156,7 +35156,7 @@ module.exports = setMonth
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(145);
-module.exports = __webpack_require__(465);
+module.exports = __webpack_require__(470);
 
 
 /***/ }),
@@ -35247,9 +35247,9 @@ Vue.component('comp-reservas', __webpack_require__(439));
 Vue.component('reserva-create', __webpack_require__(444));
 Vue.component('pre-reserva', __webpack_require__(449));
 Vue.component('evapendiente-reserva', __webpack_require__(454));
-Vue.component('reservaapro-reserva', __webpack_require__(477));
-Vue.component('reserva-edit', __webpack_require__(459));
-Vue.component('reserva-show', __webpack_require__(464));
+Vue.component('reservaapro-reserva', __webpack_require__(459));
+Vue.component('reserva-edit', __webpack_require__(464));
+Vue.component('reserva-show', __webpack_require__(469));
 
 var app = new Vue({
   el: '#app'
@@ -35280,7 +35280,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(14);
+window.axios = __webpack_require__(13);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -52426,7 +52426,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13), __webpack_require__(148)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(148)(module)))
 
 /***/ }),
 /* 148 */
@@ -66162,7 +66162,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }),
 /* 170 */
@@ -66355,7 +66355,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13), __webpack_require__(69)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(69)))
 
 /***/ }),
 /* 171 */
@@ -89204,6 +89204,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 });
 //# sourceMappingURL=vuetify.js.map
 
+
 /***/ }),
 /* 172 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -93913,7 +93914,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }),
 /* 173 */
@@ -108732,7 +108733,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }),
 /* 255 */
@@ -113912,6 +113913,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'titulo'],
@@ -114159,16 +114162,16 @@ var render = function() {
           }),
           _vm._v(" "),
           _c(
-            "span",
+            "v-list-tile",
             {
-              staticClass: "font-weight-light",
               on: {
                 click: function($event) {
                   _vm.atras()
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.titulo))]
+            [_c("v-list-tile-title", [_vm._v(_vm._s(_vm.titulo))])],
+            1
           ),
           _vm._v(" "),
           _c("v-spacer"),
@@ -115376,7 +115379,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml {\r\n  font-size: 12px;\r\n  overflow-x: hidden;\r\n  text-rendering: optimizeLegibility;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.custom-ripple {\r\n  -webkit-user-select: none;\r\n     -moz-user-select: none;\r\n      -ms-user-select: none;\r\n          user-select: none\n}\n.app-fab--absolute {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse:hover,\r\n.hvr-pulse:focus,\r\n.hvr-pulse:active {\r\n  -webkit-animation-name: hvr-pulse;\r\n  animation-name: hvr-pulse;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\nhtml {\r\n  font-size: 12px;\r\n  overflow-x: hidden;\r\n  text-rendering: optimizeLegibility;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.custom-ripple {\r\n  -webkit-user-select: none;\r\n     -moz-user-select: none;\r\n      -ms-user-select: none;\r\n          user-select: none\n}\n.app-fab--absolute {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse:hover,\r\n.hvr-pulse:focus,\r\n.hvr-pulse:active {\r\n  -webkit-animation-name: hvr-pulse;\r\n  animation-name: hvr-pulse;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -115387,10 +115390,11 @@ exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -115856,10 +115860,7 @@ var render = function() {
                 [
                   _c(
                     "v-flex",
-                    {
-                      staticClass: "nuevo",
-                      attrs: { "elevation-3": "", lg3: "" }
-                    },
+                    { staticClass: "nuevo", attrs: { lg3: "" } },
                     [
                       _c(
                         "v-card",
@@ -115907,16 +115908,18 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-flex",
-                    {
-                      staticClass: "nuevo",
-                      attrs: { "elevation-3": "", lg3: "" }
-                    },
+                    { staticClass: "nuevo", attrs: { lg3: "" } },
                     [
                       _c(
                         "v-card",
                         {
                           staticClass: "nuevo",
-                          attrs: { light: "", hover: "", ripple: "" }
+                          attrs: {
+                            light: "",
+                            "elevation-2": "",
+                            hover: "",
+                            ripple: ""
+                          }
                         },
                         [
                           _c(
@@ -115956,10 +115959,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-flex",
-                    {
-                      staticClass: "nuevo",
-                      attrs: { "elevation-3": "", lg3: "" }
-                    },
+                    { staticClass: "nuevo", attrs: { lg3: "" } },
                     [
                       _c(
                         "v-card",
@@ -116065,7 +116065,7 @@ var render = function() {
                           "v-card",
                           {
                             staticClass: "mx-auto",
-                            attrs: { hover: "", ripple: "", tile: "" }
+                            attrs: { hover: "", tile: "" }
                           },
                           [
                             _c(
@@ -116090,9 +116090,7 @@ var render = function() {
                                       { attrs: { size: "70%" } },
                                       [
                                         _c("v-img", {
-                                          attrs: {
-                                            src: "loginnew/images/logo.png"
-                                          }
+                                          attrs: { src: props.item.image }
                                         })
                                       ],
                                       1
@@ -116408,8 +116406,24 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -116603,21 +116617,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['token'],
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
       apellidoPaterno: "",
       apellidoMaterno: "",
       nombres: "",
       dni: "",
-      photo: "",
-      menu: "",
-      date: ""
-    }, _defineProperty(_ref, "date", ""), _defineProperty(_ref, "correo", ""), _defineProperty(_ref, "celular", ""), _defineProperty(_ref, "direccion", ""), _defineProperty(_ref, "ciudad", ""), _defineProperty(_ref, "cci", ""), _defineProperty(_ref, "banco", ""), _defineProperty(_ref, "nombreTitularCuenta", ""), _defineProperty(_ref, "numeroBrevete", ""), _defineProperty(_ref, "menu1", ""), _defineProperty(_ref, "date1", ""), _defineProperty(_ref, "date1", ""), _defineProperty(_ref, "fotoDni", ""), _defineProperty(_ref, "calificacionCliente", ""), _defineProperty(_ref, "comentariosAdicionales", ""), _defineProperty(_ref, "date", null), _defineProperty(_ref, "date1", null), _defineProperty(_ref, "menu", false), _defineProperty(_ref, "menu1", false), _defineProperty(_ref, "csrf", document.querySelector('meta[name="csrf-token"]').getAttribute('content')), _defineProperty(_ref, "rules", {
-      required: function required(value) {
-        return !!value || 'Obligatorio.';
+      image: "",
+      correo: "",
+      celular: "",
+      direccion: "",
+      ciudad: "",
+      cci: "",
+      banco: "",
+      nombreTitularCuenta: "",
+      numeroBrevete: "",
+      fotoDni: "",
+      calificacionCliente: "",
+      comentariosAdicionales: "",
+      date: "",
+      date1: "",
+      menu: false,
+      menu1: false,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      rules: {
+        required: function required(value) {
+          return !!value || 'Obligatorio.';
+        }
       }
-    }), _ref;
+    };
   },
   watch: {
     menu: function menu(val) {
@@ -116645,10 +116672,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (item == 'photo') {
         axios.post('/foto', formData).then(function (response) {
           console.log(response);
-          _this3.photo = "/images/" + response.data;
+          _this3.image = "/images/" + response.data;
         }).catch(function (error) {
           console.log(error);
-          alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+          // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
         });
       } else {
         axios.post('/foto', formData).then(function (response) {
@@ -116656,7 +116683,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this3.fotoDni = "/images/" + response.data;
         }).catch(function (error) {
           console.log(error);
-          alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+          // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
         });
       }
     },
@@ -116667,22 +116694,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$refs.menu1.save(date);
     },
     sendForm: function sendForm(e) {
-      var _axios$post;
-
-      axios.post('/v1.0/cliente', (_axios$post = {
+      axios.post('/v1.0/cliente', {
         apellidoPaterno: this.apellidoPaterno,
         apellidoMaterno: this.apellidoMaterno,
         nombres: this.nombres,
         dni: this.dni,
-        photo: this.photo,
-        menu: this.menu,
-        date: this.date
-      }, _defineProperty(_axios$post, "date", this.date), _defineProperty(_axios$post, "correo", this.correo), _defineProperty(_axios$post, "celular", this.celular), _defineProperty(_axios$post, "direccion", this.direccion), _defineProperty(_axios$post, "ciudad", this.ciudad), _defineProperty(_axios$post, "cci", this.cci), _defineProperty(_axios$post, "banco", this.banco), _defineProperty(_axios$post, "nombreTitularCuenta", this.nombreTitularCuenta), _defineProperty(_axios$post, "numeroBrevete", this.numeroBrevete), _defineProperty(_axios$post, "menu1", this.menu1), _defineProperty(_axios$post, "date1", this.date1), _defineProperty(_axios$post, "date1", this.date1), _defineProperty(_axios$post, "fotoDni", this.fotoDni), _defineProperty(_axios$post, "calificacionCliente", this.calificacionCliente), _defineProperty(_axios$post, "comentariosAdicionales", this.comentariosAdicionales), _defineProperty(_axios$post, "_token", this.csrf), _axios$post)).then(function (response) {
+        image: this.image,
+        fechaNacimiento: this.date,
+        correo: this.correo,
+        celular: this.celular,
+        direccion: this.direccion,
+        ciudad: this.ciudad,
+        cci: this.cci,
+        banco: this.banco,
+        nombreTitularCuenta: this.nombreTitularCuenta,
+        numeroBrevete: this.numeroBrevete,
+        fechaVencimientoBrevete: this.date1,
+        fotoDni: this.fotoDni,
+        calificacionCliente: this.calificacionCliente,
+        comentariosAdicionales: this.comentariosAdicionales,
+        _token: this.csrf
+      }).then(function (response) {
         console.log(response);
         window.location.href = '/cliente';
       }).catch(function (error) {
         console.log(error);
-        alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+        // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
       });
     },
     cancelar: function cancelar() {
@@ -116700,591 +116737,615 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-form",
-        {
-          attrs: { id: "ContactForm" },
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.sendForm($event)
-            }
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { id: "ContactForm", method: "post" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.sendForm()
           }
-        },
-        [
-          _c(
-            "v-container",
-            [
-              _c("h2", [_vm._v("Informacion Basica")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Apellido Paterno")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { autofocus: "", solo: "" },
-                        model: {
-                          value: _vm.apellidoPaterno,
-                          callback: function($$v) {
-                            _vm.apellidoPaterno = $$v
-                          },
-                          expression: "apellidoPaterno"
+        }
+      },
+      [
+        _c(
+          "v-container",
+          [
+            _c(
+              "v-flex",
+              { attrs: { xs12: "", lg12: "", "text-lg-left": "" } },
+              [_c("h2", [_vm._v("Informacion Basica")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Apellido Paterno")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", autofocus: "", solo: "" },
+                      model: {
+                        value: _vm.apellidoPaterno,
+                        callback: function($$v) {
+                          _vm.apellidoPaterno = $$v
+                        },
+                        expression: "apellidoPaterno"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Apellido Materno")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.apellidoMaterno,
+                        callback: function($$v) {
+                          _vm.apellidoMaterno = $$v
+                        },
+                        expression: "apellidoMaterno"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Nombres")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.nombres,
+                        callback: function($$v) {
+                          _vm.nombres = $$v
+                        },
+                        expression: "nombres"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("DNI/C.E")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.dni,
+                        callback: function($$v) {
+                          _vm.dni = $$v
+                        },
+                        expression: "dni"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Imagen del Cliente")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-form",
+                      {
+                        attrs: { id: "subir" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            _vm.subir("photo")
+                          }
                         }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Apellido Materno")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.apellidoMaterno,
-                          callback: function($$v) {
-                            _vm.apellidoMaterno = $$v
+                      },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            required: "",
+                            type: "file",
+                            name: "photo",
+                            solo: ""
                           },
-                          expression: "apellidoMaterno"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Nombres")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.nombres,
-                          callback: function($$v) {
-                            _vm.nombres = $$v
-                          },
-                          expression: "nombres"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("DNI")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.dni,
-                          callback: function($$v) {
-                            _vm.dni = $$v
-                          },
-                          expression: "dni"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Imagen del Cliente")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-form",
-                        {
-                          attrs: { id: "subir" },
                           on: {
-                            submit: function($event) {
-                              $event.preventDefault()
+                            change: function($event) {
                               _vm.subir("photo")
                             }
                           }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Fecha de Nacimiento")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-menu",
+                      {
+                        ref: "menu",
+                        attrs: {
+                          "close-on-content-click": false,
+                          "nudge-right": 40,
+                          lazy: "",
+                          transition: "scale-transition",
+                          "offset-y": "",
+                          "full-width": "",
+                          "min-width": "290px"
                         },
-                        [
-                          _c("v-text-field", {
-                            attrs: { type: "file", name: "photo", solo: "" },
-                            on: {
-                              change: function($event) {
-                                _vm.subir("photo")
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Fecha de Nacimiento")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-menu",
-                        {
-                          ref: "menu",
+                        model: {
+                          value: _vm.menu,
+                          callback: function($$v) {
+                            _vm.menu = $$v
+                          },
+                          expression: "menu"
+                        }
+                      },
+                      [
+                        _c("v-text-field", {
                           attrs: {
-                            "close-on-content-click": false,
-                            "nudge-right": 40,
-                            lazy: "",
-                            transition: "scale-transition",
-                            "offset-y": "",
-                            "full-width": "",
-                            "min-width": "290px"
-                          },
-                          model: {
-                            value: _vm.menu,
-                            callback: function($$v) {
-                              _vm.menu = $$v
-                            },
-                            expression: "menu"
-                          }
-                        },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              slot: "activator",
-                              "prepend-icon": "event",
-                              readonly: ""
-                            },
                             slot: "activator",
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-date-picker", {
-                            ref: "picker",
-                            attrs: {
-                              max: new Date().toISOString().substr(0, 10),
-                              min: "1950-01-01"
+                            required: "",
+                            "prepend-icon": "event",
+                            readonly: ""
+                          },
+                          slot: "activator",
+                          model: {
+                            value: _vm.date,
+                            callback: function($$v) {
+                              _vm.date = $$v
                             },
-                            on: { change: _vm.save },
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { attrs: { light: "" } }),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Informacion de Contacto")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Correo")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.correo,
-                          callback: function($$v) {
-                            _vm.correo = $$v
-                          },
-                          expression: "correo"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Celular")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.celular,
-                          callback: function($$v) {
-                            _vm.celular = $$v
-                          },
-                          expression: "celular"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Direccion")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.direccion,
-                          callback: function($$v) {
-                            _vm.direccion = $$v
-                          },
-                          expression: "direccion"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Ciudad")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.ciudad,
-                          callback: function($$v) {
-                            _vm.ciudad = $$v
-                          },
-                          expression: "ciudad"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { attrs: { light: "" } }),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Informacion Bancaria")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("CCi")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "", type: "number" },
-                        model: {
-                          value: _vm.cci,
-                          callback: function($$v) {
-                            _vm.cci = $$v
-                          },
-                          expression: "cci"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Banco")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.banco,
-                          callback: function($$v) {
-                            _vm.banco = $$v
-                          },
-                          expression: "banco"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Nombre Titutar")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.nombreTitularCuenta,
-                          callback: function($$v) {
-                            _vm.nombreTitularCuenta = $$v
-                          },
-                          expression: "nombreTitularCuenta"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { attrs: { light: "" } }),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Documentos")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("N° Brevete")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.numeroBrevete,
-                          callback: function($$v) {
-                            _vm.numeroBrevete = $$v
-                          },
-                          expression: "numeroBrevete"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Fecha de Vencimiento Brevete")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-menu",
-                        {
-                          ref: "menu1",
+                            expression: "date"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-date-picker", {
+                          ref: "picker",
                           attrs: {
-                            "close-on-content-click": false,
-                            "nudge-right": 40,
-                            lazy: "",
-                            transition: "scale-transition",
-                            "offset-y": "",
-                            "full-width": "",
-                            "min-width": "290px"
+                            max: new Date().toISOString().substr(0, 10),
+                            min: "1950-01-01"
                           },
+                          on: { change: _vm.save },
                           model: {
-                            value: _vm.menu1,
+                            value: _vm.date,
                             callback: function($$v) {
-                              _vm.menu1 = $$v
+                              _vm.date = $$v
                             },
-                            expression: "menu1"
+                            expression: "date"
                           }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-flex",
+              { attrs: { xs12: "", lg12: "", "text-lg-left": "" } },
+              [_c("h2", [_vm._v("Informacion de Contacto")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Correo")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.correo,
+                        callback: function($$v) {
+                          _vm.correo = $$v
                         },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              slot: "activator",
-                              "prepend-icon": "event",
-                              readonly: ""
-                            },
+                        expression: "correo"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Celular")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.celular,
+                        callback: function($$v) {
+                          _vm.celular = $$v
+                        },
+                        expression: "celular"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Direccion")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.direccion,
+                        callback: function($$v) {
+                          _vm.direccion = $$v
+                        },
+                        expression: "direccion"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Ciudad")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.ciudad,
+                        callback: function($$v) {
+                          _vm.ciudad = $$v
+                        },
+                        expression: "ciudad"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-flex",
+              { attrs: { xs12: "", lg12: "", "text-lg-left": "" } },
+              [_c("h2", [_vm._v("Informacion Bancaria")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("CCi")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "", type: "number" },
+                      model: {
+                        value: _vm.cci,
+                        callback: function($$v) {
+                          _vm.cci = $$v
+                        },
+                        expression: "cci"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Banco")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.banco,
+                        callback: function($$v) {
+                          _vm.banco = $$v
+                        },
+                        expression: "banco"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Nombre Titutar")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.nombreTitularCuenta,
+                        callback: function($$v) {
+                          _vm.nombreTitularCuenta = $$v
+                        },
+                        expression: "nombreTitularCuenta"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-flex",
+              { attrs: { xs12: "", lg12: "", "text-lg-left": "" } },
+              [_c("h2", [_vm._v("Documentos")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("N° Brevete")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.numeroBrevete,
+                        callback: function($$v) {
+                          _vm.numeroBrevete = $$v
+                        },
+                        expression: "numeroBrevete"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Fecha de Vencimiento Brevete")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-menu",
+                      {
+                        ref: "menu1",
+                        attrs: {
+                          "close-on-content-click": false,
+                          "nudge-right": 40,
+                          lazy: "",
+                          transition: "scale-transition",
+                          "offset-y": "",
+                          "full-width": "",
+                          "min-width": "290px"
+                        },
+                        model: {
+                          value: _vm.menu1,
+                          callback: function($$v) {
+                            _vm.menu1 = $$v
+                          },
+                          expression: "menu1"
+                        }
+                      },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
                             slot: "activator",
-                            model: {
-                              value: _vm.date1,
-                              callback: function($$v) {
-                                _vm.date1 = $$v
-                              },
-                              expression: "date1"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-date-picker", {
-                            ref: "picker1",
-                            attrs: {
-                              max: new Date().toISOString().substr(0, 10),
-                              min: "1950-01-01"
+                            required: "",
+                            "prepend-icon": "event",
+                            readonly: ""
+                          },
+                          slot: "activator",
+                          model: {
+                            value: _vm.date1,
+                            callback: function($$v) {
+                              _vm.date1 = $$v
                             },
-                            on: { change: _vm.save1 },
-                            model: {
-                              value: _vm.date1,
-                              callback: function($$v) {
-                                _vm.date1 = $$v
-                              },
-                              expression: "date1"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Foto Dni")]),
-                      _vm._v(" "),
-                      _c(
-                        "v-form",
-                        {
-                          attrs: { id: "subir" },
+                            expression: "date1"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-date-picker", {
+                          ref: "picker1",
+                          attrs: {
+                            max: new Date().toISOString().substr(0, 10),
+                            min: "1950-01-01"
+                          },
+                          on: { change: _vm.save1 },
+                          model: {
+                            value: _vm.date1,
+                            callback: function($$v) {
+                              _vm.date1 = $$v
+                            },
+                            expression: "date1"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Foto Dni")]),
+                    _vm._v(" "),
+                    _c(
+                      "v-form",
+                      {
+                        attrs: { id: "subir" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            _vm.subir()
+                          }
+                        }
+                      },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            required: "",
+                            type: "file",
+                            name: "photo",
+                            solo: ""
+                          },
                           on: {
-                            submit: function($event) {
-                              $event.preventDefault()
+                            change: function($event) {
                               _vm.subir()
                             }
                           }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Clasificacion Cliente")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.calificacionCliente,
+                        callback: function($$v) {
+                          _vm.calificacionCliente = $$v
                         },
-                        [
-                          _c("v-text-field", {
-                            attrs: { type: "file", name: "photo", solo: "" },
-                            on: {
-                              change: function($event) {
-                                _vm.subir()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Clasificacion Cliente")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: { solo: "" },
-                        model: {
-                          value: _vm.calificacionCliente,
-                          callback: function($$v) {
-                            _vm.calificacionCliente = $$v
-                          },
-                          expression: "calificacionCliente"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Comentarios")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-textarea", {
-                        attrs: { value: "", hint: "Comentarios" },
-                        model: {
-                          value: _vm.comentariosAdicionales,
-                          callback: function($$v) {
-                            _vm.comentariosAdicionales = $$v
-                          },
-                          expression: "comentariosAdicionales"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { type: "submit", color: "green", dark: "", black: "" }
-                },
-                [_vm._v("Guardar")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "red", dark: "", black: "" },
-                  on: { click: _vm.cancelar }
-                },
-                [_vm._v("Cancelar")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("pre", [_vm._v(_vm._s(_vm.$data))])
-    ],
-    1
-  )
+                        expression: "calificacionCliente"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Comentarios")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-textarea", {
+                      attrs: { value: "", hint: "Comentarios" },
+                      model: {
+                        value: _vm.comentariosAdicionales,
+                        callback: function($$v) {
+                          _vm.comentariosAdicionales = $$v
+                        },
+                        expression: "comentariosAdicionales"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-flex",
+              { attrs: { xs12: "", lg12: "", "text-lg-center": "" } },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: {
+                      type: "submit",
+                      color: "green",
+                      dark: "",
+                      black: ""
+                    }
+                  },
+                  [_vm._v("Guardar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { color: "red", dark: "", black: "" },
+                    on: { click: _vm.cancelar }
+                  },
+                  [_vm._v("Cancelar")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -117393,8 +117454,6 @@ exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s in
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 //
 //
 //
@@ -117527,6 +117586,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     props: ['info'],
     data: function data() {
         return {
+            clienteedit: [],
             date: new Date().toISOString().substr(0, 10),
             menu2: false,
             menu3: false,
@@ -117548,7 +117608,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             }
         };
     },
-    created: function created() {},
+    created: function created() {
+        this.getClienteEdit();
+    },
 
     watch: {
         loader: function loader() {
@@ -117567,51 +117629,25 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     methods: {
         update: function update() {
             console.log("aqui id para ipdate");
-            // console.log(this.cliente.id);
-            //                alert('Enviando Form')
-            //                this.snackbar= true
-            var form = document.getElementById('ContactForm');
-            var formData = new FormData(form);
-            var jsonObject = {};
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var _ref = _step.value;
-
-                    var _ref2 = _slicedToArray(_ref, 2);
-
-                    var key = _ref2[0];
-                    var value = _ref2[1];
-
-                    jsonObject[key] = value;
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            console.log(jsonObject);
             axios({
                 method: 'put',
-                url: "/v1.0/cliente/" + this.info.id,
-                data: jsonObject
+                url: "/v1.0/cliente/" + this.clienteedit.id,
+                data: this.clienteedit
             }).then(function (response) {
-                response.data;
+                // response.data
                 console.log(response.data);
                 window.location.href = '/cliente';
+            });
+        },
+        getClienteEdit: function getClienteEdit() {
+            var _this2 = this;
+
+            axios({
+                method: 'get',
+                url: "/v1.0/cliente/" + this.info
+            }).then(function (response) {
+                console.log(response.data);
+                _this2.clienteedit = response.data;
             });
         },
 
@@ -117632,535 +117668,558 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-form",
-        {
-          attrs: { id: "ContactForm" },
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.update($event)
-            }
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { id: "ContactForm", method: "post" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.update()
           }
-        },
-        [
-          _c(
-            "v-container",
-            [
-              _c("h2", [_vm._v("Informacion Basica")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Apellido Paterno")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
+        }
+      },
+      [
+        _c(
+          "v-container",
+          [
+            _c("h2", [_vm._v("Informacion Basica")]),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Apellido Paterno")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", autofocus: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.apellidoPaterno,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "apellidoPaterno", $$v)
+                        },
+                        expression: "clienteedit.apellidoPaterno"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Apellido Materno")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.apellidoMaterno,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "apellidoMaterno", $$v)
+                        },
+                        expression: "clienteedit.apellidoMaterno"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Nombres")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.nombres,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "nombres", $$v)
+                        },
+                        expression: "clienteedit.nombres"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("DNI")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.dni,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "dni", $$v)
+                        },
+                        expression: "clienteedit.dni"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Imagen")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.image,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "image", $$v)
+                        },
+                        expression: "clienteedit.image"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Fecha")]),
+                    _vm._v(" "),
+                    _c(
+                      "v-menu",
+                      {
                         attrs: {
-                          autofocus: "",
-                          value: _vm.info.apellidoPaterno,
-                          name: "apellidoPaterno",
-                          solo: "",
-                          rules: [_vm.rules.required]
+                          "close-on-content-click": false,
+                          "nudge-right": 40,
+                          lazy: "",
+                          transition: "scale-transition",
+                          "offset-y": "",
+                          "full-width": "",
+                          "min-width": "290px"
+                        },
+                        model: {
+                          value: _vm.menu2,
+                          callback: function($$v) {
+                            _vm.menu2 = $$v
+                          },
+                          expression: "menu2"
                         }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Apellido Materno")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.apellidoMaterno,
-                          name: "apellidoMaterno",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Nombres")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.nombres,
-                          name: "nombres",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("DNI")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.dni,
-                          name: "dni",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Imagen")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.image,
-                          name: "image",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Fecha")]),
-                      _vm._v(" "),
-                      _c(
-                        "v-menu",
-                        {
+                      },
+                      [
+                        _c("v-text-field", {
                           attrs: {
-                            "close-on-content-click": false,
-                            "nudge-right": 40,
-                            lazy: "",
-                            transition: "scale-transition",
-                            "offset-y": "",
-                            "full-width": "",
-                            "min-width": "290px"
+                            slot: "activator",
+                            required: "",
+                            label: "Fecha de Nacimiento",
+                            "prepend-icon": "event",
+                            readonly: ""
+                          },
+                          slot: "activator",
+                          model: {
+                            value: _vm.clienteedit.fechaNacimiento,
+                            callback: function($$v) {
+                              _vm.$set(_vm.clienteedit, "fechaNacimiento", $$v)
+                            },
+                            expression: "clienteedit.fechaNacimiento"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-date-picker", {
+                          on: {
+                            input: function($event) {
+                              _vm.menu2 = false
+                            }
                           },
                           model: {
-                            value: _vm.menu2,
+                            value: _vm.date,
                             callback: function($$v) {
-                              _vm.menu2 = $$v
+                              _vm.date = $$v
                             },
-                            expression: "menu2"
+                            expression: "date"
                           }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("h2", [_vm._v("Informacion de Contacto")]),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Correo")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.correo,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "correo", $$v)
                         },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              slot: "activator",
-                              value: _vm.info.fechaNacimiento,
-                              name: "fechaNacimiento",
-                              label: "Fecha de Nacimiento",
-                              "prepend-icon": "event",
-                              readonly: ""
-                            },
-                            slot: "activator",
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-date-picker", {
-                            on: {
-                              input: function($event) {
-                                _vm.menu2 = false
-                              }
-                            },
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { attrs: { light: "" } }),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Informacion de Contacto")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Correo")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
+                        expression: "clienteedit.correo"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Celular")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.celular,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "celular", $$v)
+                        },
+                        expression: "clienteedit.celular"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Direccion")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.direccion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "direccion", $$v)
+                        },
+                        expression: "clienteedit.direccion"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Ciudad")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.ciudad,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "ciudad", $$v)
+                        },
+                        expression: "clienteedit.ciudad"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("h2", [_vm._v("Informacion Bancaria")]),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("CCi")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "", type: "number" },
+                      model: {
+                        value: _vm.clienteedit.cci,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "cci", $$v)
+                        },
+                        expression: "clienteedit.cci"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Banco")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.banco,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "banco", $$v)
+                        },
+                        expression: "clienteedit.banco"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Nombre Titutar")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.nombreTitularCuenta,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "nombreTitularCuenta", $$v)
+                        },
+                        expression: "clienteedit.nombreTitularCuenta"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("h2", [_vm._v("Documentos")]),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("N° Brevete")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.numeroBrevete,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "numeroBrevete", $$v)
+                        },
+                        expression: "clienteedit.numeroBrevete"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Fecha de Vencimiento Brevete")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-menu",
+                      {
                         attrs: {
-                          value: _vm.info.correo,
-                          name: "correo",
-                          solo: "",
-                          rules: [_vm.rules.required]
+                          "close-on-content-click": false,
+                          "nudge-right": 40,
+                          lazy: "",
+                          transition: "scale-transition",
+                          "offset-y": "",
+                          "full-width": "",
+                          "min-width": "290px"
+                        },
+                        model: {
+                          value: _vm.menu3,
+                          callback: function($$v) {
+                            _vm.menu3 = $$v
+                          },
+                          expression: "menu3"
                         }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Celular")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.celular,
-                          name: "celular",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Direccion")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.direccion,
-                          name: "direccion",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Ciudad")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.ciudad,
-                          name: "ciudad",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { attrs: { light: "" } }),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Informacion Bancaria")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("CCi")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.cci,
-                          name: "cci",
-                          solo: "",
-                          rules: [_vm.rules.required],
-                          type: "number"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Banco")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.banco,
-                          name: "banco",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Nombre Titutar")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.nombreTitularCuenta,
-                          name: "nombreTitularCuenta",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { attrs: { light: "" } }),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Documentos")]),
-              _vm._v(" "),
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("N° Brevete")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.numeroBrevete,
-                          name: "numeroBrevete",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Fecha de Vencimiento Brevete")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-menu",
-                        {
+                      },
+                      [
+                        _c("v-text-field", {
                           attrs: {
-                            "close-on-content-click": false,
-                            "nudge-right": 40,
-                            lazy: "",
-                            transition: "scale-transition",
-                            "offset-y": "",
-                            "full-width": "",
-                            "min-width": "290px"
+                            slot: "activator",
+                            required: "",
+                            label: "Fecha de Nacimiento",
+                            "prepend-icon": "event",
+                            readonly: ""
+                          },
+                          slot: "activator",
+                          model: {
+                            value: _vm.clienteedit.fechaVencimientoBrevete,
+                            callback: function($$v) {
+                              _vm.$set(
+                                _vm.clienteedit,
+                                "fechaVencimientoBrevete",
+                                $$v
+                              )
+                            },
+                            expression: "clienteedit.fechaVencimientoBrevete"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-date-picker", {
+                          on: {
+                            input: function($event) {
+                              _vm.menu3 = false
+                            }
                           },
                           model: {
-                            value: _vm.menu3,
+                            value: _vm.date,
                             callback: function($$v) {
-                              _vm.menu3 = $$v
+                              _vm.date = $$v
                             },
-                            expression: "menu3"
+                            expression: "date"
                           }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Foto Dni")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.fotoDni,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "fotoDni", $$v)
                         },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              slot: "activator",
-                              value: _vm.info.fechaVencimientoBrevete,
-                              name: "fechaVencimientoBrevete",
-                              label: "Fecha de Nacimiento",
-                              "prepend-icon": "event",
-                              readonly: ""
-                            },
-                            slot: "activator",
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-date-picker", {
-                            on: {
-                              input: function($event) {
-                                _vm.menu3 = false
-                              }
-                            },
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Foto Dni")]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.fotoDni,
-                          name: "fotoDni",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Clasificacion Cliente")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          value: _vm.info.calificacionCliente,
-                          name: "calificacionCliente",
-                          solo: "",
-                          rules: [_vm.rules.required]
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm6: "" } },
-                    [
-                      _c("label", { attrs: { for: "" } }, [
-                        _vm._v("Comentarios")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-textarea", {
-                        attrs: {
-                          hint: "Comentarios",
-                          value: _vm.info.comentariosAdicionales,
-                          name: "comentariosAdicionales"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: { type: "hidden", name: "_token" },
-                        domProps: { value: _vm.csrf }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { type: "submit", color: "green", dark: "", black: "" }
-                },
-                [_vm._v("Guardar")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "red", dark: "", black: "" },
-                  on: { click: _vm.cancelar }
-                },
-                [_vm._v("Cancelar")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+                        expression: "clienteedit.fotoDni"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Clasificacion Cliente")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { required: "", solo: "" },
+                      model: {
+                        value: _vm.clienteedit.calificacionCliente,
+                        callback: function($$v) {
+                          _vm.$set(_vm.clienteedit, "calificacionCliente", $$v)
+                        },
+                        expression: "clienteedit.calificacionCliente"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Comentarios")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-textarea", {
+                      attrs: { hint: "Comentarios" },
+                      model: {
+                        value: _vm.clienteedit.comentariosAdicionales,
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.clienteedit,
+                            "comentariosAdicionales",
+                            $$v
+                          )
+                        },
+                        expression: "clienteedit.comentariosAdicionales"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                attrs: { type: "submit", color: "green", dark: "", black: "" }
+              },
+              [_vm._v("Guardar")]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                attrs: { color: "red", dark: "", black: "" },
+                on: { click: _vm.cancelar }
+              },
+              [_vm._v("Cancelar")]
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -118818,7 +118877,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\r\n  padding: 10px 10px 0px 10px;\r\n  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */\r\n  border-radius: 10px 10px 10px 10px;\n}\n.v-btn--small[data-v-d3fc9ef0] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-d3fc9ef0] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-d3fc9ef0] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-d3fc9ef0] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-d3fc9ef0] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-d3fc9ef0]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-d3fc9ef0] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-d3fc9ef0]:hover,\r\n.hvr-pulse[data-v-d3fc9ef0]:focus,\r\n.hvr-pulse[data-v-d3fc9ef0]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-d3fc9ef0;\r\n  animation-name: hvr-pulse-data-v-d3fc9ef0;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\r\n", ""]);
+exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\n  padding: 10px 10px 0px 10px;\n  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */\n  border-radius: 10px 10px 10px 10px;\n}\n.v-btn--small[data-v-d3fc9ef0] {\n  font-size: 10px;\n  height: 18px;\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-d3fc9ef0] {\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-d3fc9ef0] {\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n  padding: 0px;\n}\n.app-fab--absolute[data-v-d3fc9ef0] {\n  position: fixed;\n  /*z-index: 3;*/\n  width: 50px;\n  height: 50px;\n  border-radius: 100%;\n  background: green;\n  right: 0;\n  bottom: 0;\n  /*position: absolute;*/\n  margin-right: 13px;\n  margin-bottom: 13px;\n  border: none;\n  outline: none;\n  color: #FFF;\n  font-size: 32px;\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n  -webkit-transition: .3s;\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-d3fc9ef0] {\n    bottom: 2.5rem;\n    right: 2.5rem;\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-d3fc9ef0]:hover {\n  /*background: grey;\n    color: white;\n    color: #3a7999;\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n75% {\n    -webkit-transform: scale(0.9);\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n75% {\n    -webkit-transform: scale(0.9);\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-d3fc9ef0] {\n  display: inline-block;\n  vertical-align: middle;\n  -webkit-transform: perspective(1px) translateZ(0);\n  transform: perspective(1px) translateZ(0);\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-d3fc9ef0]:hover,\n.hvr-pulse[data-v-d3fc9ef0]:focus,\n.hvr-pulse[data-v-d3fc9ef0]:active {\n  -webkit-animation-name: hvr-pulse-data-v-d3fc9ef0;\n  animation-name: hvr-pulse-data-v-d3fc9ef0;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-timing-function: linear;\n  animation-timing-function: linear;\n  -webkit-animation-iteration-count: infinite;\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -118829,40 +118888,10 @@ exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\r\n  padding: 10px 10px 0px
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -119097,6 +119126,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
+      total: "",
+      totaln: "",
+      totalp: "",
       // boton inicio
       // boton fin
       // pagination: {},
@@ -119110,16 +119142,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       pagination: {},
       slider: 56,
       tile: false,
-      search: "",
-      total: "",
-      fecha: "",
-      clienten: "",
-      editCliente: "",
-      idedit: "",
-      dialog: false,
-      dialog1: false,
-      rowsPerPageItems: [8, 12]
-    }, _defineProperty(_ref, 'pagination', {
+      search: ""
+    }, _defineProperty(_ref, 'total', ""), _defineProperty(_ref, 'fecha', ""), _defineProperty(_ref, 'clienten', ""), _defineProperty(_ref, 'editCliente', ""), _defineProperty(_ref, 'idedit', ""), _defineProperty(_ref, 'dialog', false), _defineProperty(_ref, 'dialog1', false), _defineProperty(_ref, 'rowsPerPageItems', [8, 12]), _defineProperty(_ref, 'pagination', {
       // rowsPerPage: 8
     }), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
   },
@@ -119137,11 +119161,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       console.log("en get data nuew");
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/promos').then(function (response) {
-        _this.items = response.data;
-        // this.total = response.data.clientec;
-        // this.fecha = response.data.fecha;
-        // this.clienten = response.data.clienten;
-        // console.log(response.data.fecha);
+        console.log(response.data);
+        _this.items = response.data.promo;
+        _this.total = response.data.total;
+        _this.totaln = response.data.totaln;
+        _this.totalp = response.data.totalp;
       }).catch(function (e) {
         _this.errors.push(e);
       });
@@ -119183,7 +119207,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }).catch(function (e) {
           //                        this.errors.push(e);
         });
-        this.getDataCliente();
+        // this.getDataCliente();
       }
     },
     close: function close() {
@@ -119212,131 +119236,6 @@ var render = function() {
     "div",
     [
       _c(
-        "v-dialog",
-        {
-          attrs: { persistent: "", "max-width": "690" },
-          model: {
-            value: _vm.dialog3,
-            callback: function($$v) {
-              _vm.dialog3 = $$v
-            },
-            expression: "dialog3"
-          }
-        },
-        [
-          _c(
-            "v-card",
-            [
-              _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Enviar Correo")
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c("v-textarea", {
-                    attrs: {
-                      name: "input-7-1",
-                      label: "Escribe tu correo",
-                      value: "",
-                      hint: "Escribe aqui el correo"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green darken-1", flat: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog3 = false
-                        }
-                      }
-                    },
-                    [_vm._v("Cancelar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green darken-1", flat: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.eliminar = 1
-                        }
-                      }
-                    },
-                    [_vm._v("Enviar")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-dialog",
-        {
-          attrs: { "max-width": "700px" },
-          model: {
-            value: _vm.dialog1,
-            callback: function($$v) {
-              _vm.dialog1 = $$v
-            },
-            expression: "dialog1"
-          }
-        },
-        [
-          _c(
-            "v-card",
-            [
-              _c("v-card-title", [
-                _c("span", { staticClass: "headline" }, [
-                  _vm._v("Editar Cliente")
-                ])
-              ]),
-              _vm._v(" "),
-              [
-                _c("div", { staticClass: "container-fluid" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-12" },
-                      [
-                        _c("cliente-edit", {
-                          attrs: {
-                            cliente: _vm.editCliente,
-                            user: _vm.user,
-                            close: _vm.close,
-                            carga: _vm.getDataCliente
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                ])
-              ]
-            ],
-            2
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
         "v-container",
         { attrs: { "grid-list-md": "", fluid: "", "text-xs-justify": "" } },
         [
@@ -119358,10 +119257,7 @@ var render = function() {
                 [
                   _c(
                     "v-flex",
-                    {
-                      staticClass: "nuevo",
-                      attrs: { "elevation-3": "", lg3: "" }
-                    },
+                    { staticClass: "nuevo", attrs: { lg3: "" } },
                     [
                       _c(
                         "v-card",
@@ -119409,10 +119305,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-flex",
-                    {
-                      staticClass: "nuevo",
-                      attrs: { "elevation-3": "", lg3: "" }
-                    },
+                    { staticClass: "nuevo", attrs: { lg3: "" } },
                     [
                       _c(
                         "v-card",
@@ -119443,7 +119336,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "text-lg-justify" }, [
                                 _c("div", { staticClass: "headline" }, [
-                                  _vm._v(_vm._s(_vm.clienten))
+                                  _vm._v(_vm._s(_vm.totaln))
                                 ])
                               ])
                             ],
@@ -119458,10 +119351,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-flex",
-                    {
-                      staticClass: "nuevo",
-                      attrs: { "elevation-3": "", lg3: "" }
-                    },
+                    { staticClass: "nuevo", attrs: { lg3: "" } },
                     [
                       _c(
                         "v-card",
@@ -119492,7 +119382,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "text-lg-justify" }, [
                                 _c("div", { staticClass: "headline" }, [
-                                  _vm._v(_vm._s(_vm.fecha) + "%")
+                                  _vm._v(_vm._s(_vm.totalp) + "%")
                                 ])
                               ])
                             ],
@@ -119695,6 +119585,11 @@ var render = function() {
                                                           "text-xs-left"
                                                       },
                                                       [
+                                                        _c("strong", [
+                                                          _vm._v(
+                                                            "Fecha Inicio: "
+                                                          )
+                                                        ]),
                                                         _vm._v(
                                                           _vm._s(
                                                             props.item.vigencia
@@ -119704,6 +119599,9 @@ var render = function() {
                                                     ),
                                                     _vm._v(" "),
                                                     _c("div", [
+                                                      _c("strong", [
+                                                        _vm._v("Dias pagados: ")
+                                                      ]),
                                                       _vm._v(
                                                         _vm._s(
                                                           props.item
@@ -119912,6 +119810,8 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+//
+//
 //
 //
 //
@@ -120222,20 +120122,32 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "v-btn",
-                {
-                  attrs: { type: "submit", color: "green", dark: "", black: "" }
-                },
-                [_vm._v("Guardar")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "red", dark: "", black: "" },
-                  on: { click: _vm.cancelar }
-                },
-                [_vm._v("Cancelar")]
+                "v-flex",
+                { attrs: { xs12: "", lg12: "", "text-lg-center": "" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        type: "submit",
+                        color: "green",
+                        dark: "",
+                        black: ""
+                      }
+                    },
+                    [_vm._v("Guardar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red", dark: "", black: "" },
+                      on: { click: _vm.cancelar }
+                    },
+                    [_vm._v("Cancelar")]
+                  )
+                ],
+                1
               )
             ],
             1
@@ -120343,7 +120255,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s infinite;\n            animation: loader 1s infinite;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n@-webkit-keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n@keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus\r\ntextarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover\r\ntextarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\r\n", ""]);
 
 // exports
 
@@ -120354,150 +120266,133 @@ exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s in
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['cliente', 'user', 'close', 'carga'],
-    data: function data() {
-        return {
-            loader: null,
-            agregado: "",
-            agregado_id: "",
-            abono_id: "",
-            loading: false,
-            loading2: false,
-            loading3: false,
-            loading4: false,
-            formType: true,
-            //                serverResponse: false,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        };
+  props: ['info'],
+  data: function data() {
+    return {
+      promoedit: [],
+      date: new Date().toISOString().substr(0, 10),
+      menu2: false,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
+  },
+  created: function created() {
+    this.getClienteEdit();
+  },
+
+  methods: {
+    update: function update() {
+      console.log("aqui id para ipdate");
+      axios({
+        method: 'put',
+        url: '/v1.0/promo/' + this.promoedit.id,
+        data: this.promoedit
+      }).then(function (response) {
+        // response.data
+        console.log(response.data);
+        window.location.href = '/promo';
+      });
     },
+    getClienteEdit: function getClienteEdit() {
+      var _this = this;
 
-    watch: {
-        loader: function loader() {
-            var _this = this;
-
-            var l = this.loader;
-            this[l] = !this[l];
-
-            setTimeout(function () {
-                return _this[l] = false;
-            }, 3000);
-
-            this.loader = null;
-        }
+      axios({
+        method: 'get',
+        url: '/v1.0/promo/' + this.info
+      }).then(function (response) {
+        console.log(response.data);
+        _this.promoedit = response.data;
+      });
     },
-    methods: {
-        update: function update() {
-            console.log("aqui id para ipdate");
-            console.log(this.cliente.id);
-            //                alert('Enviando Form')
-            //                this.snackbar= true
-            var form = document.getElementById('ContactForm');
-            var formData = new FormData(form);
-            var jsonObject = {};
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var _ref = _step.value;
-
-                    var _ref2 = _slicedToArray(_ref, 2);
-
-                    var key = _ref2[0];
-                    var value = _ref2[1];
-
-                    jsonObject[key] = value;
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            console.log(jsonObject);
-            axios({
-                method: 'put',
-                url: '/v1.0/cliente/' + this.cliente.id,
-                data: jsonObject
-            }).then(function (response) {
-                response.data;
-                console.log(response.data);
-            });
-            this.close();
-            this.carga();
-        },
-
-        preciono: function preciono() {
-            console.log("preciono el boton");
-        }
+    cancelar: function cancelar() {
+      window.location.href = '/promo';
     }
+  }
+
 });
 
 /***/ }),
@@ -120508,126 +120403,188 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12", attrs: { id: "" } }, [
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { id: "ContactForm", method: "post" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.update()
+          }
+        }
+      },
+      [
         _c(
-          "form",
-          {
-            attrs: { id: "ContactForm" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.update($event)
-              }
-            }
-          },
+          "v-container",
           [
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
+            _c("h2", [_vm._v("Informacion Basica")]),
+            _vm._v(" "),
+            _c(
+              "v-layout",
+              { attrs: { row: "", wrap: "" } },
+              [
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Nombre")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { autofocus: "", solo: "" },
+                      model: {
+                        value: _vm.promoedit.nombre,
+                        callback: function($$v) {
+                          _vm.$set(_vm.promoedit, "nombre", $$v)
+                        },
+                        expression: "promoedit.nombre"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "", md4: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Vigencia")]),
+                    _vm._v(" "),
+                    _c(
+                      "v-menu",
+                      {
+                        attrs: {
+                          "close-on-content-click": false,
+                          "nudge-right": 40,
+                          lazy: "",
+                          transition: "scale-transition",
+                          "offset-y": "",
+                          "full-width": "",
+                          "min-width": "290px"
+                        },
+                        model: {
+                          value: _vm.menu2,
+                          callback: function($$v) {
+                            _vm.menu2 = $$v
+                          },
+                          expression: "menu2"
+                        }
+                      },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            slot: "activator",
+                            "prepend-icon": "event",
+                            readonly: ""
+                          },
+                          slot: "activator",
+                          model: {
+                            value: _vm.promoedit.vigencia,
+                            callback: function($$v) {
+                              _vm.$set(_vm.promoedit, "vigencia", $$v)
+                            },
+                            expression: "promoedit.vigencia"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-date-picker", {
+                          on: {
+                            input: function($event) {
+                              _vm.menu2 = false
+                            }
+                          },
+                          model: {
+                            value: _vm.date,
+                            callback: function($$v) {
+                              _vm.date = $$v
+                            },
+                            expression: "date"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Dias Pagados")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { solo: "" },
+                      model: {
+                        value: _vm.promoedit.dias_pagados,
+                        callback: function($$v) {
+                          _vm.$set(_vm.promoedit, "dias_pagados", $$v)
+                        },
+                        expression: "promoedit.dias_pagados"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-flex",
+                  { attrs: { xs12: "", sm6: "" } },
+                  [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Dias Libres")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: { solo: "" },
+                      model: {
+                        value: _vm.promoedit.dias_libres,
+                        callback: function($$v) {
+                          _vm.$set(_vm.promoedit, "dias_libres", $$v)
+                        },
+                        expression: "promoedit.dias_libres"
+                      }
+                    })
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    autofocus: "",
-                    name: "nombres",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.nombre }
+                  attrs: { type: "hidden", name: "_token" },
+                  domProps: { value: _vm.csrf }
                 })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "telf" } }, [_vm._v("DNI")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "vigencia",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.vigencia }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "direccion" } }, [
-                  _vm._v("Direccion")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "dias_pagados",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.dias_pagados }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "dni" } }, [_vm._v("Telf")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "dias_libres",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.dias_libres }
-                })
-              ])
-            ]),
+              ],
+              1
+            ),
             _vm._v(" "),
             _c(
               "v-flex",
-              { staticClass: "form-group col-md-12" },
+              { attrs: { xs12: "", lg12: "", "text-lg-center": "" } },
               [
                 _c(
                   "v-btn",
                   {
                     attrs: {
-                      loading: _vm.loading,
-                      disabled: _vm.loading,
-                      color: "green",
                       type: "submit",
-                      black: "",
+                      color: "green",
                       dark: "",
-                      small: ""
+                      black: ""
                     }
                   },
-                  [
-                    _vm._v(
-                      "\r\n                                Guardar\r\n                            "
-                    )
-                  ]
+                  [_vm._v("Guardar")]
                 ),
                 _vm._v(" "),
                 _c(
                   "v-btn",
                   {
-                    attrs: {
-                      black: "",
-                      small: "",
-                      color: "red darken-1",
-                      dark: ""
-                    },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.close($event)
-                      }
-                    }
+                    attrs: { color: "red", dark: "", black: "" },
+                    on: { click: _vm.cancelar }
                   },
-                  [_vm._v("Cancel")]
+                  [_vm._v("Cancelar")]
                 )
               ],
               1
@@ -120635,8 +120592,9 @@ var render = function() {
           ],
           1
         )
-      ])
-    ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -120765,7 +120723,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-0f91e292] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-0f91e292] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-0f91e292] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0f91e292] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-0f91e292]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0f91e292] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0f91e292]:hover,\r\n.hvr-pulse[data-v-0f91e292]:focus,\r\n.hvr-pulse[data-v-0f91e292]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-0f91e292;\r\n  animation-name: hvr-pulse-data-v-0f91e292;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-0f91e292] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-0f91e292] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-0f91e292] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0f91e292] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-0f91e292]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0f91e292] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0f91e292]:hover,\r\n.hvr-pulse[data-v-0f91e292]:focus,\r\n.hvr-pulse[data-v-0f91e292]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-0f91e292;\r\n  animation-name: hvr-pulse-data-v-0f91e292;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -120776,7 +120734,7 @@ exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -123018,7 +122976,7 @@ exports.push([module.i, "\n.v-btn--small[data-v-0b7dd728] {\r\n    font-size: 10
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -123494,7 +123452,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\n.font {\r\n  font-family: Roboto, sans-serif;\n}\r\n\r\n/* table.v-table tbody td,\r\ntable.v-table tbody th {\r\n  height: 18px;\r\n} */\r\n", ""]);
+exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\n.font {\r\n  font-family: Roboto, sans-serif;\n}\r\n\r\n/* table.v-table tbody td,\r\ntable.v-table tbody th {\r\n  height: 18px;\r\n} */\n", ""]);
 
 // exports
 
@@ -125051,7 +125009,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n", ""]);
 
 // exports
 
@@ -125062,7 +125020,7 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -125989,7 +125947,7 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -126969,445 +126927,6 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/reservas/ReservaEdit.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9e11cdf6", Component.options)
-  } else {
-    hotAPI.reload("data-v-9e11cdf6", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 460 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(461);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("35f800e0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 461 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s infinite;\n            animation: loader 1s infinite;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n@-webkit-keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n@keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 462 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['cliente', 'user', 'close', 'carga'],
-    data: function data() {
-        return {
-            loader: null,
-            agregado: "",
-            agregado_id: "",
-            abono_id: "",
-            loading: false,
-            loading2: false,
-            loading3: false,
-            loading4: false,
-            formType: true,
-            //                serverResponse: false,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        };
-    },
-
-    watch: {
-        loader: function loader() {
-            var _this = this;
-
-            var l = this.loader;
-            this[l] = !this[l];
-
-            setTimeout(function () {
-                return _this[l] = false;
-            }, 3000);
-
-            this.loader = null;
-        }
-    },
-    methods: {
-        update: function update() {
-            console.log("aqui id para ipdate");
-            console.log(this.cliente.id);
-            //                alert('Enviando Form')
-            //                this.snackbar= true
-            var form = document.getElementById('ContactForm');
-            var formData = new FormData(form);
-            var jsonObject = {};
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var _ref = _step.value;
-
-                    var _ref2 = _slicedToArray(_ref, 2);
-
-                    var key = _ref2[0];
-                    var value = _ref2[1];
-
-                    jsonObject[key] = value;
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            console.log(jsonObject);
-            axios({
-                method: 'put',
-                url: '/v1.0/cliente/' + this.cliente.id,
-                data: jsonObject
-            }).then(function (response) {
-                response.data;
-                console.log(response.data);
-            });
-            this.close();
-            this.carga();
-        },
-
-        preciono: function preciono() {
-            console.log("preciono el boton");
-        }
-    }
-});
-
-/***/ }),
-/* 463 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12", attrs: { id: "" } }, [
-        _c(
-          "form",
-          {
-            attrs: { id: "ContactForm" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.update($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    autofocus: "",
-                    name: "nombres",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.nombre }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "telf" } }, [_vm._v("DNI")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "vigencia",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.vigencia }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "direccion" } }, [
-                  _vm._v("Direccion")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "dias_pagados",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.dias_pagados }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", { attrs: { for: "dni" } }, [_vm._v("Telf")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    name: "dias_libres",
-                    placeholder: ""
-                  },
-                  domProps: { value: _vm.cliente.dias_libres }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "v-flex",
-              { staticClass: "form-group col-md-12" },
-              [
-                _c(
-                  "v-btn",
-                  {
-                    attrs: {
-                      loading: _vm.loading,
-                      disabled: _vm.loading,
-                      color: "green",
-                      type: "submit",
-                      black: "",
-                      dark: "",
-                      small: ""
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\r\n                                Guardar\r\n                            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  {
-                    attrs: {
-                      black: "",
-                      small: "",
-                      color: "red darken-1",
-                      dark: ""
-                    },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.close($event)
-                      }
-                    }
-                  },
-                  [_vm._v("Cancel")]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9e11cdf6", module.exports)
-  }
-}
-
-/***/ }),
-/* 464 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/reservas/ReservaShow.vue"
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 465 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(478)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(480)
-/* template */
-var __vue_template__ = __webpack_require__(481)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
 Component.options.__file = "resources/assets/js/components/reservas/ReservaApro.vue"
 
 /* hot reload */
@@ -127430,13 +126949,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 478 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(479);
+var content = __webpack_require__(461);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -127456,7 +126975,7 @@ if(false) {
 }
 
 /***/ }),
-/* 479 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -127470,12 +126989,12 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 
 /***/ }),
-/* 480 */
+/* 462 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -127774,7 +127293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 481 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -128407,6 +127926,434 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-c95b56b2", module.exports)
   }
 }
+
+/***/ }),
+/* 464 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(465)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(467)
+/* template */
+var __vue_template__ = __webpack_require__(468)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/reservas/ReservaEdit.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9e11cdf6", Component.options)
+  } else {
+    hotAPI.reload("data-v-9e11cdf6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 465 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(466);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("35f800e0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9e11cdf6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ReservaEdit.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 466 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s infinite;\n            animation: loader 1s infinite;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n@-webkit-keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n@keyframes loader {\nfrom {\n        -webkit-transform: rotate(0);\n                transform: rotate(0);\n}\nto {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 467 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['cliente', 'user', 'close', 'carga'],
+    data: function data() {
+        return {
+            loader: null,
+            agregado: "",
+            agregado_id: "",
+            abono_id: "",
+            loading: false,
+            loading2: false,
+            loading3: false,
+            loading4: false,
+            formType: true,
+            //                serverResponse: false,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
+    },
+
+    watch: {
+        loader: function loader() {
+            var _this = this;
+
+            var l = this.loader;
+            this[l] = !this[l];
+
+            setTimeout(function () {
+                return _this[l] = false;
+            }, 3000);
+
+            this.loader = null;
+        }
+    },
+    methods: {
+        update: function update() {
+            console.log("aqui id para ipdate");
+            console.log(this.cliente.id);
+            //                alert('Enviando Form')
+            //                this.snackbar= true
+            var form = document.getElementById('ContactForm');
+            var formData = new FormData(form);
+            var jsonObject = {};
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _ref = _step.value;
+
+                    var _ref2 = _slicedToArray(_ref, 2);
+
+                    var key = _ref2[0];
+                    var value = _ref2[1];
+
+                    jsonObject[key] = value;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            console.log(jsonObject);
+            axios({
+                method: 'put',
+                url: '/v1.0/cliente/' + this.cliente.id,
+                data: jsonObject
+            }).then(function (response) {
+                response.data;
+                console.log(response.data);
+            });
+            this.close();
+            this.carga();
+        },
+
+        preciono: function preciono() {
+            console.log("preciono el boton");
+        }
+    }
+});
+
+/***/ }),
+/* 468 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12", attrs: { id: "" } }, [
+        _c(
+          "form",
+          {
+            attrs: { id: "ContactForm" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.update($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    autofocus: "",
+                    name: "nombres",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.nombre }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "telf" } }, [_vm._v("DNI")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "vigencia",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.vigencia }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "direccion" } }, [
+                  _vm._v("Direccion")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "dias_pagados",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.dias_pagados }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "dni" } }, [_vm._v("Telf")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "dias_libres",
+                    placeholder: ""
+                  },
+                  domProps: { value: _vm.cliente.dias_libres }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "v-flex",
+              { staticClass: "form-group col-md-12" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: {
+                      loading: _vm.loading,
+                      disabled: _vm.loading,
+                      color: "green",
+                      type: "submit",
+                      black: "",
+                      dark: "",
+                      small: ""
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\r\n                                Guardar\r\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: {
+                      black: "",
+                      small: "",
+                      color: "red darken-1",
+                      dark: ""
+                    },
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.close($event)
+                      }
+                    }
+                  },
+                  [_vm._v("Cancel")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9e11cdf6", module.exports)
+  }
+}
+
+/***/ }),
+/* 469 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/reservas/ReservaShow.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 470 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

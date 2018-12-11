@@ -80,8 +80,10 @@ select:-webkit-autofill:focus {
 
           <input type="hidden" name="_token" :value="csrf">
       </v-layout>
+      <v-flex xs12 lg12 text-lg-center>
         <v-btn type="submit" color="green" dark black>Guardar</v-btn>
         <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
+      </v-flex>
     </v-container>
   </v-form>
     </div>

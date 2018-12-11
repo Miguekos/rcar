@@ -111,40 +111,10 @@ button:hover {
 <template id="promos">
 <div>
 
-  <v-dialog v-model="dialog3" persistent max-width="690">
-    <v-card>
-      <v-card-title class="headline">Enviar Correo</v-card-title>
-      <v-card-text>
-        <v-textarea name="input-7-1" label="Escribe tu correo" value="" hint="Escribe aqui el correo"></v-textarea>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="green darken-1" flat @click="dialog3 = false">Cancelar</v-btn>
-        <v-btn color="green darken-1" flat @click="eliminar = 1">Enviar</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-  <v-dialog v-model="dialog1" max-width="700px">
-    <v-card>
-      <v-card-title>
-        <span class="headline">Editar Cliente</span>
-      </v-card-title>
-      <template>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <cliente-edit :cliente="editCliente" :user="user" :close="close" :carga="getDataCliente"></cliente-edit>
-            </div>
-          </div>
-        </div>
-      </template>
-    </v-card>
-  </v-dialog>
-
   <v-container grid-list-md fluid text-xs-justify>
     <v-container grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -158,7 +128,7 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -167,12 +137,12 @@ button:hover {
               <span>Clientes Nuevos</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ clienten }}</div>
+                <div class="headline">{{ totaln }}</div>
               </div>
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -181,7 +151,7 @@ button:hover {
               <span>Aumento</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ fecha }}%</div>
+                <div class="headline">{{ totalp }}%</div>
               </div>
             </v-card-title>
           </v-card>
@@ -221,8 +191,8 @@ button:hover {
                 <v-card-title primary-title>
                   <div>
                     <div class="headline">{{ props.item.nombre }}</div>
-                    <div class="text-xs-left">{{ props.item.vigencia }}</div>
-                    <div>{{ props.item.dias_pagados }}</div>
+                    <div class="text-xs-left"><strong>Fecha Inicio: </strong>{{ props.item.vigencia }}</div>
+                    <div><strong>Dias pagados: </strong>{{ props.item.dias_pagados }}</div>
                     <v-spacer></v-spacer>
                   </div>
                 </v-card-title>
@@ -259,6 +229,9 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    total: "",
+    totaln: "",
+    totalp: "",
     // boton inicio
     // boton fin
     // pagination: {},
@@ -309,11 +282,11 @@ export default {
       axios
         .get(`/v1.0/promos`)
         .then(response => {
-          this.items = response.data;
-          // this.total = response.data.clientec;
-          // this.fecha = response.data.fecha;
-          // this.clienten = response.data.clienten;
-          // console.log(response.data.fecha);
+          console.log(response.data);
+          this.items = response.data.promo;
+          this.total = response.data.total;
+          this.totaln = response.data.totaln;
+          this.totalp = response.data.totalp;
         })
         .catch(e => {
           this.errors.push(e);
@@ -359,7 +332,7 @@ export default {
           .catch(e => {
             //                        this.errors.push(e);
           });
-        this.getDataCliente();
+        // this.getDataCliente();
       }
     },
     close() {

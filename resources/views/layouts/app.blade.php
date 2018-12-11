@@ -42,9 +42,9 @@ html {
 <body class="white-content">
     <div id="app" data-app>
         <v-app>
-
+                        @yield('nav')
                         @yield('content')
-            
+
         </v-app>
     </div>
 </body>

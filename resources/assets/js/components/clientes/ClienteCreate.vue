@@ -17,37 +17,43 @@ html {
     font-size: 14px;
 }
 </style>
-
+vContainer
 <template>
+  <!-- <v-container fluid grid-list-xl> -->
+
+
   <div>
-    <v-form id="ContactForm" @submit.prevent="sendForm">
+    <form id="ContactForm" method="post" @submit.prevent="sendForm()">
       <v-container>
+        <v-flex xs12 lg12 text-lg-left>
         <h2>Informacion Basica</h2>
+        </v-flex>
+
         <v-layout row wrap>
           <v-flex xs12 sm6>
             <label for="">Apellido Paterno</label>
-            <v-text-field autofocus v-model="apellidoPaterno" solo></v-text-field>
+            <v-text-field required autofocus v-model="apellidoPaterno" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Apellido Materno</label>
-            <v-text-field v-model="apellidoMaterno" solo></v-text-field>
+            <v-text-field required v-model="apellidoMaterno" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Nombres</label>
-            <v-text-field v-model="nombres" solo></v-text-field>
+            <v-text-field required v-model="nombres" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
-            <label for="">DNI</label>
-            <v-text-field v-model="dni" solo></v-text-field>
+            <label for="">DNI/C.E</label>
+            <v-text-field required v-model="dni" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Imagen del Cliente</label>
             <v-form id="subir" @submit.prevent="subir('photo')">
-                <v-text-field type="file" name="photo" @change="subir('photo')" solo></v-text-field>
+                <v-text-field required type="file" name="photo" @change="subir('photo')" solo></v-text-field>
             </V-form>
           </v-flex>
 
@@ -64,7 +70,7 @@ html {
               full-width
               min-width="290px"
             >
-              <v-text-field
+              <v-text-field required
                 slot="activator"
                 v-model="date"
 
@@ -81,55 +87,63 @@ html {
             </v-menu>
           </v-flex>
         </v-layout>
-        <v-divider light></v-divider>
+        <!-- <v-divider light></v-divider> -->
+        <v-flex xs12 lg12 text-lg-left>
         <h2>Informacion de Contacto</h2>
+        </v-flex>
+
         <v-layout row wrap>
 
           <v-flex xs12 sm6>
             <label for="">Correo</label>
-            <v-text-field v-model="correo" solo></v-text-field>
+            <v-text-field required v-model="correo" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Celular</label>
-            <v-text-field v-model="celular" solo></v-text-field>
+            <v-text-field required v-model="celular" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Direccion</label>
-            <v-text-field v-model="direccion" solo></v-text-field>
+            <v-text-field required v-model="direccion" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Ciudad</label>
-            <v-text-field v-model="ciudad" solo></v-text-field>
+            <v-text-field required v-model="ciudad" solo></v-text-field>
           </v-flex>
         </v-layout>
-        <v-divider light></v-divider>
+        <!-- <v-divider light></v-divider> -->
+        <v-flex xs12 lg12 text-lg-left>
         <h2>Informacion Bancaria</h2>
+        </v-flex>
 
         <v-layout row wrap>
           <v-flex xs12 sm6>
             <label for="">CCi</label>
-            <v-text-field v-model="cci" solo type="number"></v-text-field>
+            <v-text-field required v-model="cci" solo type="number"></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Banco</label>
-            <v-text-field v-model="banco" solo></v-text-field>
+            <v-text-field required v-model="banco" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Nombre Titutar</label>
-            <v-text-field v-model="nombreTitularCuenta" solo></v-text-field>
+            <v-text-field required v-model="nombreTitularCuenta" solo></v-text-field>
           </v-flex>
         </v-layout>
-        <v-divider light></v-divider>
+        <!-- <v-divider light></v-divider> -->
+        <v-flex xs12 lg12 text-lg-left>
         <h2>Documentos</h2>
+        </v-flex>
+
         <v-layout row wrap>
           <v-flex xs12 sm6>
             <label for="">N° Brevete</label>
-            <v-text-field v-model="numeroBrevete" solo></v-text-field>
+            <v-text-field required v-model="numeroBrevete" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6 md4>
@@ -145,7 +159,7 @@ html {
               full-width
               min-width="290px"
             >
-              <v-text-field
+              <v-text-field required
                 slot="activator"
                 v-model="date1"
 
@@ -165,13 +179,13 @@ html {
           <v-flex xs12 sm6>
             <label for="">Foto Dni</label>
             <v-form id="subir" @submit.prevent="subir()">
-                <v-text-field type="file" name="photo" @change="subir()" solo></v-text-field>
+                <v-text-field required type="file" name="photo" @change="subir()" solo></v-text-field>
             </V-form>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Clasificacion Cliente</label>
-            <v-text-field v-model="calificacionCliente" solo></v-text-field>
+            <v-text-field required v-model="calificacionCliente" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
@@ -179,12 +193,16 @@ html {
             <v-textarea value="" hint="Comentarios" v-model="comentariosAdicionales"></v-textarea>
           </v-flex>
         </v-layout>
-        <v-btn type="submit" color="green" dark black>Guardar</v-btn>
-        <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
+        <v-flex xs12 lg12 text-lg-center>
+          <v-btn type="submit" color="green" dark black>Guardar</v-btn>
+          <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
+        </v-flex>
+
       </v-container>
-    </v-form>
-    <pre>{{ $data }}</pre>
+    </form>
+    <!-- <pre>{{ $data }}</pre> -->
   </div>
+  <!-- </v-container> -->
 </template>
 
 <script>
@@ -195,10 +213,7 @@ html {
       apellidoMaterno: "",
       nombres: "",
       dni: "",
-      photo: "",
-      menu: "",
-      date: "",
-      date: "",
+      image: "",
       correo: "",
       celular: "",
       direccion: "",
@@ -207,14 +222,11 @@ html {
       banco: "",
       nombreTitularCuenta: "",
       numeroBrevete: "",
-      menu1: "",
-      date1: "",
-      date1: "",
       fotoDni: "",
       calificacionCliente: "",
       comentariosAdicionales: "",
-      date: null,
-      date1: null,
+      date: "",
+      date1: "",
       menu: false,
       menu1: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -239,11 +251,11 @@ html {
           axios.post('/foto', formData)
             .then(response => {
               console.log(response)
-              this.photo = `/images/${response.data}`;
+              this.image = `/images/${response.data}`;
             })
             .catch(error => {
               console.log(error)
-              alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+              // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
             })
         }else{
           axios.post('/foto', formData)
@@ -253,7 +265,7 @@ html {
             })
             .catch(error => {
               console.log(error)
-              alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+              // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
             })
         }
         },
@@ -270,10 +282,8 @@ html {
             apellidoMaterno: this.apellidoMaterno,
             nombres: this.nombres,
             dni: this.dni,
-            photo: this.photo,
-            menu: this.menu,
-            date: this.date,
-            date: this.date,
+            image: this.image,
+            fechaNacimiento: this.date,
             correo: this.correo,
             celular: this.celular,
             direccion: this.direccion,
@@ -282,9 +292,7 @@ html {
             banco: this.banco,
             nombreTitularCuenta: this.nombreTitularCuenta,
             numeroBrevete: this.numeroBrevete,
-            menu1: this.menu1,
-            date1: this.date1,
-            date1: this.date1,
+            fechaVencimientoBrevete: this.date1,
             fotoDni: this.fotoDni,
             calificacionCliente: this.calificacionCliente,
             comentariosAdicionales: this.comentariosAdicionales,
@@ -297,7 +305,7 @@ html {
           })
           .catch(error => {
             console.log(error)
-            alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+            // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
           })
       },
       cancelar() {

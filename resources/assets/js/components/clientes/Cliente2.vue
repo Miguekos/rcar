@@ -128,7 +128,7 @@ button:hover {
   <v-container grid-list-md fluid text-xs-justify>
     <v-container grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -142,8 +142,8 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex elevation-3 lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg3 class="nuevo">
+          <v-card light elevation-2 hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="blue" size="250%">person_add</v-icon>
@@ -156,7 +156,7 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -184,13 +184,14 @@ button:hover {
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
       <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
-        <v-card class="mx-auto" hover ripple tile>
+        <v-card class="mx-auto" hover tile>
           <v-layout align-center justify-center row fill-height>
             <v-flex xs1>
             </v-flex>
             <v-flex xs3>
               <v-avatar size="70%">
-                <v-img src="loginnew/images/logo.png"></v-img>
+                <v-img :src="props.item.image"></v-img>
+                <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
               </v-avatar>
             </v-flex>
             <v-flex xs8>

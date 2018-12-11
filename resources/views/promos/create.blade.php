@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
-@section('content')
-<nav-bar titulo="Cliente" :user="{{ auth()->user() }}"></nav-bar>
-  <promo-create
-  :user="{{ auth()->user() }}"
-  ></promo-create>
+@section('nav')
+  <nav-bar titulo="Promo" :user="{{ auth()->user() }}"></nav-bar>
+@endsection
 
+@section('content')
+  <v-container>
+    <promo-create
+    :user="{{ auth()->user() }}"
+    ></promo-create>
+  </v-container>
 @endsection

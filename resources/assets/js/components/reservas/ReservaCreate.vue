@@ -1,4 +1,4 @@
-<style scope>
+  <style scope>
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus textarea:-webkit-autofill,

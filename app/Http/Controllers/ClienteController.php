@@ -11,6 +11,7 @@ use App\Cliente;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\ClassLike;
 
 
 class ClienteController extends Controller
@@ -105,7 +106,8 @@ class ClienteController extends Controller
     {
         // $info = Cliente::find($cliente);
         // return $clientes;
-        $info = $cliente;
+        $info = $cliente->id;
+        // return $info;
         return view('clientes.edit',compact('info'));
     }
 
@@ -125,19 +127,9 @@ class ClienteController extends Controller
     {
 
                 $clientes = Cliente::find($cliente);
-                $clientes ->nombres = $request->nombres;
-                $clientes ->dni = $request->dni;
-                $clientes ->direccion = $request->direccion;
-                $clientes ->celular = $request->celular;
-                $clientes ->save();
-                return $clientes;
-    //   $clientes  = Cliente::find($cliente);
-    //   return $clientes;
-    //   $input = $request->all();
-    //   return $input;
-    //   $clientes->fill($input)->save();
-    // Cliente::findOrFail($cliente)->first()->update($request->all())->save();
-        // return $request->all();
+                $clientes->update($request->all());
+                return "actualizo bien";
+
     }
 
     /**
