@@ -117,8 +117,7 @@
             <v-card-actions>
               <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
               <v-spacer></v-spacer>
-              <v-btn @click="aprobo(props.item)" small color="primary">Aprobo</v-btn>
-              <v-btn @click="rechazo(props.item)" small color="error">Rechazo</v-btn>
+              <v-btn @click="activar(props.item)" small color="primary">Activar</v-btn>
 
               <!-- <v-btn  small color="error">cancelar</v-btn> -->
             </v-card-actions>
@@ -220,8 +219,8 @@ export default {
       axios
         .get(`/v1.0/reservastotales`)
         .then(response => {
-          this.items = response.data.pendientee;
-          console.log(response.data.pendientee);
+          this.items = response.data.reservaapr;
+          console.log(response.data.reservaapr);
         })
         .catch(e => {
           this.errors.push(e);

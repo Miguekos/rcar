@@ -41,25 +41,64 @@ class DashboardController extends Controller
 
     public function updatePhoto(Request $request)
     {
-        $this->validate($request, [
-            'photo' => 'required|image'
-        ]);
+      // if ($request->hasFile('archivo')){
+    $file = $request->file('photo');
+    $name = time().$file->getClientOriginalName();
+    $file->move(public_path().'/images/', $name);
+    return $name;
+    // $validator = Validator::make($request->all(), [
+    // 'namedb' => 'unique:campas',
 
-        $file = $request->file('photo');
-        $extension = $file->getClientOriginalExtension();
-        $fileName = auth()->id() . '.' . $extension;
-        $path = public_path('images/users/'.$fileName);
+    // if ($validator->passes()) {
+    //     $namedb1 = mb_strtolower($request->namedb);
+    //     $campa = new Campa;
+    //     $campa->namedb = $namedb1;
+    //     $campa->archivo = $name;
+    //     $campa->save();
+    //     $namedb = $request->get("namedb");
+    //     $nametb = $request->get("namedb");
+    //     $namedb = mb_strtolower($namedb);
+    //     $nametb = mb_strtolower($namedb);
+    //     PGSchema::create($schemaName = $namedb, $databaseName = null);
+    //     Schema::create($namedb.".".$nametb, function (Blueprint $table) {
+    //         $table->string('dni');
+    //         $table->integer('telefono');
+    //     });
+    //     Excel::load(public_path()."/csv/".$name, function($reader) use ($nametb, $namedb) {
+    //       foreach ($reader->get() as $asterisk) {
+    //             $campa = DB::insert('insert into '.$namedb.".".$nametb.' ("dni", "telefono") values (?, ?)',["$asterisk->dni", "$asterisk->telefono"]);
+    //         }
+    //     });
+    //     return redirect()->route('lista');
+    // }else{
+    //     return redirect('home')
+    //         ->withErrors($validator)
+    //         ->withInput();
+    // }
+// }else{
+//     return "No es un archivo";
+// }
 
-        Image::make($file)->fit(144, 144)->save($path);
+        // $this->validate($request, [
+        //     'photo' => 'required|image'
+        // ]);
+
+        // $file = $request->file('photo');
+        // return $file;
+        // $extension = $file->getClientOriginalExtension();
+        // $fileName = auth()->id() . '.' . $extension;
+        // $path = public_path('\images\car'.$fileName);
+
+        // Image::make($file)->fit(144, 144)->save($path);
 
         // $user = auth()->user();
         // $user->photo_extension = $extension;
         // $saved = $user->save();
 
         // $data['success'] = $saved;
-        $data['path'] = $user->getAvatarUrl() . '?' . uniqid();
+        // $data['path'] = $user->getAvatarUrl() . '?' . uniqid();
 
-        return $data;
+        // return $path;
     }
 
     public function prueba()

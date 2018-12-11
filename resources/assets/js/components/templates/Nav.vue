@@ -41,7 +41,7 @@
     <!-- <img src="loginnew/images/logo.png" alt="logo" width="2%"> -->
     <v-toolbar-title>SCHETTINI&nbsp;</v-toolbar-title>
     <v-divider class="mx-3" inset vertical></v-divider>
-    <span class="font-weight-light">RENT A CAR </span>
+    <span @click="atras()" class="font-weight-light">{{ titulo }}</span>
     <v-spacer></v-spacer>
     <v-menu offset-x offset-y transition="scale-transition">
       <v-btn icon slot="activator">
@@ -60,9 +60,10 @@
 
 <script>
 export default {
-  props: ['user'],
+  props: ['user','titulo'],
   data: () => ({
     drawer: null,
+    back: "",
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     items: [{
         icon: 'lightbulb_outline',
@@ -126,6 +127,11 @@ export default {
       }
     ]
   }),
+  created () {
+    var cadena = new String(this.titulo);
+    cadena = cadena.toLowerCase();
+    this.back = cadena;
+  },
   methods: {
     logout: function() {
       console.log("entro a al logout");
@@ -146,6 +152,9 @@ export default {
       } else {
         this.logout();
       }
+    },
+    atras () {
+      window.location.href = `/${this.back}`;
     },
   },
 }

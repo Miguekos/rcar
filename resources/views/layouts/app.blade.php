@@ -42,14 +42,9 @@ html {
 <body class="white-content">
     <div id="app" data-app>
         <v-app>
-            <nav-bar :user="{{ auth()->user() }}"></nav-bar>
-            <!-- <v-content> -->
-                <v-container>
-                    {{-- <v-layout> --}}
+
                         @yield('content')
-                    {{-- </v-layout> --}}
-                </v-container>
-            <!-- </v-content> -->
+            
         </v-app>
     </div>
 </body>

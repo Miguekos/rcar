@@ -74,8 +74,10 @@ Vue.component('comp-reservas', require('./components/reservas/Reservas.vue'));
 Vue.component('reserva-create', require('./components/reservas/ReservaCreate.vue'));
 Vue.component('pre-reserva', require('./components/reservas/PreReserva.vue'));
 Vue.component('evapendiente-reserva', require('./components/reservas/EvaPendiente.vue'));
+Vue.component('reservaapro-reserva', require('./components/reservas/ReservaApro.vue'));
 Vue.component('reserva-edit', require('./components/reservas/ReservaEdit.vue'));
 Vue.component('reserva-show', require('./components/reservas/ReservaShow.vue'));
+
 
 
 const app = new Vue({

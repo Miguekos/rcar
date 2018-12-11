@@ -1,17 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<nav-bar titulo="Cliente" :user="{{ auth()->user() }}"></nav-bar>
 
-{{-- <div class="row"> --}}
-        {{-- <div id="sombra" class="col-md-12"> --}}
-            {{-- <div class="panel panel-default"> --}}
+<comp-cliente
+:user="{{ auth()->user() }}"
+></comp-cliente>
 
-                <comp-cliente 
-                :user="{{ auth()->user() }}"
-                ></comp-cliente>
-
-            {{-- </div> --}}
-        {{-- </div> --}}
-    {{-- </div> --}}
-    
 @endsection

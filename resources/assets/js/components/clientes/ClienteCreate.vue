@@ -26,28 +26,28 @@ html {
         <v-layout row wrap>
           <v-flex xs12 sm6>
             <label for="">Apellido Paterno</label>
-            <v-text-field autofocus name="apellidoPaterno" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field autofocus v-model="apellidoPaterno" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Apellido Materno</label>
-            <v-text-field name="apellidoMaterno" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="apellidoMaterno" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Nombres</label>
-            <v-text-field name="nombres" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="nombres" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">DNI</label>
-            <v-text-field name="dni" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="dni" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Imagen del Cliente</label>
-            <v-form id="subir" @submit.prevent="subir">
-                <v-text-field type="file" name="photo" @change="subir()" solo :rules="[rules.required]"></v-text-field>
+            <v-form id="subir" @submit.prevent="subir('photo')">
+                <v-text-field type="file" name="photo" @change="subir('photo')" solo></v-text-field>
             </V-form>
           </v-flex>
 
@@ -87,22 +87,22 @@ html {
 
           <v-flex xs12 sm6>
             <label for="">Correo</label>
-            <v-text-field name="correo" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="correo" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Celular</label>
-            <v-text-field name="celular" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="celular" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Direccion</label>
-            <v-text-field name="direccion" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="direccion" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Ciudad</label>
-            <v-text-field name="ciudad" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="ciudad" solo></v-text-field>
           </v-flex>
         </v-layout>
         <v-divider light></v-divider>
@@ -111,17 +111,17 @@ html {
         <v-layout row wrap>
           <v-flex xs12 sm6>
             <label for="">CCi</label>
-            <v-text-field name="cci" solo :rules="[rules.required]" type="number"></v-text-field>
+            <v-text-field v-model="cci" solo type="number"></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Banco</label>
-            <v-text-field name="banco" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="banco" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Nombre Titutar</label>
-            <v-text-field name="nombreTitularCuenta" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="nombreTitularCuenta" solo></v-text-field>
           </v-flex>
         </v-layout>
         <v-divider light></v-divider>
@@ -129,7 +129,7 @@ html {
         <v-layout row wrap>
           <v-flex xs12 sm6>
             <label for="">N° Brevete</label>
-            <v-text-field name="numeroBrevete" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="numeroBrevete" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6 md4>
@@ -164,26 +164,26 @@ html {
 
           <v-flex xs12 sm6>
             <label for="">Foto Dni</label>
-            <v-text-field type="file" name="fotoDni" solo :rules="[rules.required]"></v-text-field>
+            <v-form id="subir" @submit.prevent="subir()">
+                <v-text-field type="file" name="photo" @change="subir()" solo></v-text-field>
+            </V-form>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Clasificacion Cliente</label>
-            <v-text-field name="calificacionCliente" solo :rules="[rules.required]"></v-text-field>
+            <v-text-field v-model="calificacionCliente" solo></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm6>
             <label for="">Comentarios</label>
-            <v-textarea value="" hint="Comentarios" name="comentariosAdicionales"></v-textarea>
-
-            <input type="hidden" name="_token" :value="csrf">
+            <v-textarea value="" hint="Comentarios" v-model="comentariosAdicionales"></v-textarea>
           </v-flex>
         </v-layout>
         <v-btn type="submit" color="green" dark black>Guardar</v-btn>
         <v-btn @click="cancelar" color="red" dark black>Cancelar</v-btn>
       </v-container>
-
     </v-form>
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -191,6 +191,28 @@ html {
   export default {
     props: ['token'],
     data: () => ({
+      apellidoPaterno: "",
+      apellidoMaterno: "",
+      nombres: "",
+      dni: "",
+      photo: "",
+      menu: "",
+      date: "",
+      date: "",
+      correo: "",
+      celular: "",
+      direccion: "",
+      ciudad: "",
+      cci: "",
+      banco: "",
+      nombreTitularCuenta: "",
+      numeroBrevete: "",
+      menu1: "",
+      date1: "",
+      date1: "",
+      fotoDni: "",
+      calificacionCliente: "",
+      comentariosAdicionales: "",
       date: null,
       date1: null,
       menu: false,
@@ -209,23 +231,31 @@ html {
       }
     },
     methods: {
-      subir () {
+      subir (item) {
         let form = document.getElementById('subir');
         const formData = new FormData(form);
-        let jsonObject = {};
-        // for (const [key, value] of formData.entries()) {
-        //   jsonObject[key] = value;
-        // }
-        console.log(jsonObject);
-        axios.post('/foto', jsonObject)
-          .then(response => {
-            console.log(response)
-            // window.location.href = '/cliente';
-          })
-          .catch(error => {
-            console.log(error)
-            alert("Surgio un error, verifique los campos e intente nuevamente..!!");
-          })
+        console.log(item);
+        if (item == 'photo') {
+          axios.post('/foto', formData)
+            .then(response => {
+              console.log(response)
+              this.photo = `/images/${response.data}`;
+            })
+            .catch(error => {
+              console.log(error)
+              alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+            })
+        }else{
+          axios.post('/foto', formData)
+            .then(response => {
+              console.log(response)
+              this.fotoDni = `/images/${response.data}`;
+            })
+            .catch(error => {
+              console.log(error)
+              alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+            })
+        }
         },
       save (date) {
         this.$refs.menu.save(date)
@@ -234,19 +264,33 @@ html {
         this.$refs.menu1.save(date)
       },
       sendForm(e) {
-        let form = document.getElementById('ContactForm');
-        const formData = new FormData(form);
-        let jsonObject = {};
-        for (const [key, value] of formData.entries()) {
-          jsonObject[key] = value;
-          if (value == null) {
-            console.log("datos vacios");
-          } else {
-            console.log("paso normal");
+        axios.post('/v1.0/cliente',
+          {
+            apellidoPaterno: this.apellidoPaterno,
+            apellidoMaterno: this.apellidoMaterno,
+            nombres: this.nombres,
+            dni: this.dni,
+            photo: this.photo,
+            menu: this.menu,
+            date: this.date,
+            date: this.date,
+            correo: this.correo,
+            celular: this.celular,
+            direccion: this.direccion,
+            ciudad: this.ciudad,
+            cci: this.cci,
+            banco: this.banco,
+            nombreTitularCuenta: this.nombreTitularCuenta,
+            numeroBrevete: this.numeroBrevete,
+            menu1: this.menu1,
+            date1: this.date1,
+            date1: this.date1,
+            fotoDni: this.fotoDni,
+            calificacionCliente: this.calificacionCliente,
+            comentariosAdicionales: this.comentariosAdicionales,
+            _token: this.csrf,
           }
-        }
-        console.log(jsonObject);
-        axios.post('/v1.0/cliente', jsonObject)
+        )
           .then(response => {
             console.log(response)
             window.location.href = '/cliente';

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
-  <comp-autos 
+<nav-bar titulo="Autos" :user="{{ auth()->user() }}"></nav-bar>
+  <comp-autos
   :user="{{ auth()->user() }}"
   ></comp-autos>
 

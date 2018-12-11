@@ -175,7 +175,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <!-- <pre-reserva></pre-reserva> -->
+              <reservaapro-reserva></reservaapro-reserva>
             </v-card-text>
           </v-card>
         </v-tab-item>
