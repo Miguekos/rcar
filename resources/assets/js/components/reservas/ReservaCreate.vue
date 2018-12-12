@@ -47,7 +47,7 @@ table.v-table tbody th {
         <label>Vehiculo</label>
         <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
         <label>Cliente</label>
-        <v-autocomplete :items="cliente" item-text="nombres" item-value="nombres" v-model="clientes" placeholder="Select..." required solo></v-autocomplete>
+        <v-autocomplete :items="cliente" item-text="nombres" item-value="id" @change="verCliente()" v-model="clienteId" placeholder="Select..." required solo></v-autocomplete>
         <label>Producto</label>
         <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
         <label>Paquete</label>
@@ -61,7 +61,7 @@ table.v-table tbody th {
         <v-layout align-center justify-space-between row fill-height>
           <v-flex xs12 sm3 lg3>
             <label>Puntos Disponibles</label>
-            <v-text-field v-model="puntosd" solo-inverted></v-text-field>
+            <v-text-field readonly v-model="clienteData.puntos" solo-inverted></v-text-field>
           </v-flex>
           <v-flex xs12 sm3 lg3>
             <label>Puntos a Canjear</label>
@@ -220,7 +220,7 @@ table.v-table tbody th {
                 <td colspan="2" class="v-datatable__expand-col"></td>
               </tr>
               <tr>
-                <td>Seguro Tipo A</td>
+                <td>Seguro</td>
                 <td class="text-xs-right">{{ seguro }}</td>
               </tr>
               <tr class="v-datatable__expand-row">
@@ -256,7 +256,7 @@ table.v-table tbody th {
     <v-btn color="error">Cancelar</v-btn>
   </v-container>
   </form>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 
@@ -295,16 +295,18 @@ export default {
     fecha2: new Date().toISOString().substr(0, 10),
     menu1: false,
     menu2: false,
-    puntosd: 600,
-    puntosc: 300,
-    diasd: 1,
+    puntosd: "",
+    puntosc: "",
+    diasd: "",
     puntocanjear: "",
     errors: [],
     vehiculoId: "",
+    clienteId: "",
     vehiculoPrecio: 0,
     clientes: "",
     productos: 0,
     paquetes: 0,
+    clienteData: {},
     vehiculoData: {},
     promo: [],
     cliente: [],
@@ -458,7 +460,6 @@ export default {
     },
     verAuto() {
       console.log("aqui esta");
-      // console.log(this.vehiculoData.value);
       axios
         .get(`/v1.0/auto/${this.vehiculoId}`)
         .then(response => {
@@ -469,6 +470,23 @@ export default {
           this.fechafinauto = response.data[0].fechafinauto;
           console.log(response.data[0]);
           console.log(response.data[0].precio_por_dia);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+    verCliente() {
+      console.log("aqui esta");
+      axios
+        .get(`/v1.0/cliente/${this.clienteId}`)
+        .then(response => {
+          this.clienteData = response.data;
+          // this.preciov = response.data[0].precio_por_dia;
+          // this.autoSeleccionado = response.data[0].marca;
+          // this.fechainicioauto = response.data[0].fechainicioauto;
+          // this.fechafinauto = response.data[0].fechafinauto;
+          console.log(response.data);
+          // console.log(response.data[0].precio_por_dia);
         })
         .catch(e => {
           this.errors.push(e);

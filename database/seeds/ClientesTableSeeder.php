@@ -36,6 +36,7 @@ class ClientesTableSeeder extends Seeder
                 'fotoDni' => $faker->name,
                 'calificacionCliente' => $faker->randomNumber(1),
                 'comentariosAdicionales' => $faker->text,
+                'puntos' => $faker->randomNumber(3),
             ]);
         }
     }

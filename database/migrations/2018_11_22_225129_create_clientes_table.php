@@ -33,6 +33,8 @@ class CreateClientesTable extends Migration
             $table->string("fotoDni")->nullable();
             $table->string("calificacionCliente")->nullable();
             $table->text("comentariosAdicionales")->nullable();
+            $table->integer("puntos")->nullable();
+            $table->integer("disdisponible")->nullable();
             $table->timestamps();
         });
     }

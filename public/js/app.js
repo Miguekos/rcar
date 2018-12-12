@@ -89204,6 +89204,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 });
 //# sourceMappingURL=vuetify.js.map
 
+
 /***/ }),
 /* 172 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -118874,7 +118875,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\r\n  padding: 10px 10px 0px 10px;\r\n  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */\r\n  border-radius: 10px 10px 10px 10px;\n}\n.v-btn--small[data-v-d3fc9ef0] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-d3fc9ef0] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-d3fc9ef0] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-d3fc9ef0] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-d3fc9ef0] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-d3fc9ef0]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-d3fc9ef0] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-d3fc9ef0]:hover,\r\n.hvr-pulse[data-v-d3fc9ef0]:focus,\r\n.hvr-pulse[data-v-d3fc9ef0]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-d3fc9ef0;\r\n  animation-name: hvr-pulse-data-v-d3fc9ef0;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\r\n", ""]);
+exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\n  padding: 10px 10px 0px 10px;\n  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */\n  border-radius: 10px 10px 10px 10px;\n}\n.v-btn--small[data-v-d3fc9ef0] {\n  font-size: 10px;\n  height: 18px;\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-d3fc9ef0] {\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-d3fc9ef0] {\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n  padding: 0px;\n}\n.app-fab--absolute[data-v-d3fc9ef0] {\n  position: fixed;\n  /*z-index: 3;*/\n  width: 50px;\n  height: 50px;\n  border-radius: 100%;\n  background: green;\n  right: 0;\n  bottom: 0;\n  /*position: absolute;*/\n  margin-right: 13px;\n  margin-bottom: 13px;\n  border: none;\n  outline: none;\n  color: #FFF;\n  font-size: 32px;\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n  -webkit-transition: .3s;\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-d3fc9ef0] {\n    bottom: 2.5rem;\n    right: 2.5rem;\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-d3fc9ef0]:hover {\n  /*background: grey;\n    color: white;\n    color: #3a7999;\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n75% {\n    -webkit-transform: scale(0.9);\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-d3fc9ef0 {\n25% {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n75% {\n    -webkit-transform: scale(0.9);\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-d3fc9ef0] {\n  display: inline-block;\n  vertical-align: middle;\n  -webkit-transform: perspective(1px) translateZ(0);\n  transform: perspective(1px) translateZ(0);\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-d3fc9ef0]:hover,\n.hvr-pulse[data-v-d3fc9ef0]:focus,\n.hvr-pulse[data-v-d3fc9ef0]:active {\n  -webkit-animation-name: hvr-pulse-data-v-d3fc9ef0;\n  animation-name: hvr-pulse-data-v-d3fc9ef0;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-timing-function: linear;\n  animation-timing-function: linear;\n  -webkit-animation-iteration-count: infinite;\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -119397,8 +119398,6 @@ var render = function() {
             ],
             1
           ),
-          _vm._v(" "),
-          _c("hr"),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -120720,7 +120719,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-0f91e292] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-0f91e292] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-0f91e292] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0f91e292] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-0f91e292]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0f91e292] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0f91e292]:hover,\r\n.hvr-pulse[data-v-0f91e292]:focus,\r\n.hvr-pulse[data-v-0f91e292]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-0f91e292;\r\n  animation-name: hvr-pulse-data-v-0f91e292;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-btn--small[data-v-0f91e292] {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary[data-v-0f91e292] {\r\n  padding-top: 0px;\n}\n.v-card__tit le[data-v-0f91e292] {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.app-fab--absolute[data-v-0f91e292] {\r\n  position: fixed;\r\n  /*z-index: 3;*/\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  background: green;\r\n  right: 0;\r\n  bottom: 0;\r\n  /*position: absolute;*/\r\n  margin-right: 13px;\r\n  margin-bottom: 13px;\r\n  border: none;\r\n  outline: none;\r\n  color: #FFF;\r\n  font-size: 32px;\r\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\r\n  -webkit-transition: .3s;\r\n  transition: .3s;\n}\n@media(min-width: 1024px) {\n.app-fab--absolute[data-v-0f91e292] {\r\n    bottom: 2.5rem;\r\n    right: 2.5rem;\r\n    /*z-index: 3;*/\n}\n}\nbutton[data-v-0f91e292]:hover {\r\n  /*background: grey;\r\n    color: white;\r\n    color: #3a7999;\r\n    box-shadow: inset 0 0 0 3px #F44336;*/\n}\n@-webkit-keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n@keyframes hvr-pulse-data-v-0f91e292 {\n25% {\r\n    -webkit-transform: scale(1.1);\r\n    transform: scale(1.1);\n}\n75% {\r\n    -webkit-transform: scale(0.9);\r\n    transform: scale(0.9);\n}\n}\n.hvr-pulse[data-v-0f91e292] {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  -webkit-transform: perspective(1px) translateZ(0);\r\n  transform: perspective(1px) translateZ(0);\r\n  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);\r\n          box-shadow: 0 0 1px rgba(0, 0, 0, 0);\n}\n.hvr-pulse[data-v-0f91e292]:hover,\r\n.hvr-pulse[data-v-0f91e292]:focus,\r\n.hvr-pulse[data-v-0f91e292]:active {\r\n  -webkit-animation-name: hvr-pulse-data-v-0f91e292;\r\n  animation-name: hvr-pulse-data-v-0f91e292;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-timing-function: linear;\r\n  animation-timing-function: linear;\r\n  -webkit-animation-iteration-count: infinite;\r\n  animation-iteration-count: infinite;\n}\n", ""]);
 
 // exports
 
@@ -123449,7 +123448,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\n.font {\r\n  font-family: Roboto, sans-serif;\n}\r\n\r\n/* table.v-table tbody td,\r\ntable.v-table tbody th {\r\n  height: 18px;\r\n} */\r\n", ""]);
+exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hover,\r\ninput:-webkit-autofill:focus textarea:-webkit-autofill,\r\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\r\nselect:-webkit-autofill,\r\nselect:-webkit-autofill:hover,\r\nselect:-webkit-autofill:focus {\r\n  /*border: 1px solid #d2d2d2;*/\r\n  -webkit-text-fill-color: 1px #606060;\r\n  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;\r\n  -webkit-transition: background-color 5000s ease-in-out 0s;\r\n  transition: background-color 5000s ease-in-out 0s;\n}\n.date-range__pickers[data-v-a39c29f4] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: block;\n}\n.font {\r\n  font-family: Roboto, sans-serif;\n}\r\n\r\n/* table.v-table tbody td,\r\ntable.v-table tbody th {\r\n  height: 18px;\r\n} */\n", ""]);
 
 // exports
 
@@ -123762,16 +123761,18 @@ var _this = this;
       fecha2: new Date().toISOString().substr(0, 10),
       menu1: false,
       menu2: false,
-      puntosd: 600,
-      puntosc: 300,
-      diasd: 1,
+      puntosd: "",
+      puntosc: "",
+      diasd: "",
       puntocanjear: "",
       errors: [],
       vehiculoId: "",
+      clienteId: "",
       vehiculoPrecio: 0,
       clientes: "",
       productos: 0,
       paquetes: 0,
+      clienteData: {},
       vehiculoData: {},
       promo: [],
       cliente: [],
@@ -123908,7 +123909,6 @@ var _this = this;
       var _this3 = this;
 
       console.log("aqui esta");
-      // console.log(this.vehiculoData.value);
       axios.get('/v1.0/auto/' + this.vehiculoId).then(function (response) {
         _this3.vehiculoData = response.data[0];
         _this3.preciov = response.data[0].precio_por_dia;
@@ -123919,6 +123919,22 @@ var _this = this;
         console.log(response.data[0].precio_por_dia);
       }).catch(function (e) {
         _this3.errors.push(e);
+      });
+    },
+    verCliente: function verCliente() {
+      var _this4 = this;
+
+      console.log("aqui esta");
+      axios.get('/v1.0/cliente/' + this.clienteId).then(function (response) {
+        _this4.clienteData = response.data;
+        // this.preciov = response.data[0].precio_por_dia;
+        // this.autoSeleccionado = response.data[0].marca;
+        // this.fechainicioauto = response.data[0].fechainicioauto;
+        // this.fechafinauto = response.data[0].fechafinauto;
+        console.log(response.data);
+        // console.log(response.data[0].precio_por_dia);
+      }).catch(function (e) {
+        _this4.errors.push(e);
       });
     }
   }
@@ -124109,17 +124125,22 @@ var render = function() {
                       attrs: {
                         items: _vm.cliente,
                         "item-text": "nombres",
-                        "item-value": "nombres",
+                        "item-value": "id",
                         placeholder: "Select...",
                         required: "",
                         solo: ""
                       },
+                      on: {
+                        change: function($event) {
+                          _vm.verCliente()
+                        }
+                      },
                       model: {
-                        value: _vm.clientes,
+                        value: _vm.clienteId,
                         callback: function($$v) {
-                          _vm.clientes = $$v
+                          _vm.clienteId = $$v
                         },
-                        expression: "clientes"
+                        expression: "clienteId"
                       }
                     }),
                     _vm._v(" "),
@@ -124230,13 +124251,13 @@ var render = function() {
                             _c("label", [_vm._v("Puntos Disponibles")]),
                             _vm._v(" "),
                             _c("v-text-field", {
-                              attrs: { "solo-inverted": "" },
+                              attrs: { readonly: "", "solo-inverted": "" },
                               model: {
-                                value: _vm.puntosd,
+                                value: _vm.clienteData.puntos,
                                 callback: function($$v) {
-                                  _vm.puntosd = $$v
+                                  _vm.$set(_vm.clienteData, "puntos", $$v)
                                 },
-                                expression: "puntosd"
+                                expression: "clienteData.puntos"
                               }
                             })
                           ],
@@ -124810,7 +124831,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c("tr", [
-                                _c("td", [_vm._v("Seguro Tipo A")]),
+                                _c("td", [_vm._v("Seguro")]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-xs-right" }, [
                                   _vm._v(_vm._s(_vm.seguro))
@@ -124907,7 +124928,9 @@ var render = function() {
         )
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("pre", [_vm._v(_vm._s(_vm.$data))])
   ])
 }
 var staticRenderFns = []
@@ -125006,7 +125029,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 0px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n", ""]);
 
 // exports
 

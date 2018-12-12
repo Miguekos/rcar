@@ -159,7 +159,7 @@ button:hover {
       </v-layout>
     </v-container>
 
-    <hr>
+    <!-- <hr> -->
     <br>
     <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
     <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
