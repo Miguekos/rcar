@@ -25,37 +25,37 @@
 <div class="">
 
   <v-dialog v-model="dialog4" persistent max-width="60%">
-    <v-card style="border-radius: 0px 10px 0px 10px">
-      <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
-      <v-card-text>
-        <v-container fluid grid-list-xl>
-          <v-layout row wrap>
+    <form method="post" @submit.prevent="update()">
+      <v-card style="border-radius: 0px 10px 0px 10px">
+        <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
+        <v-card-text>
+          <v-container fluid grid-list-xl>
+            <v-layout row wrap>
+              <v-flex xs12 sm6 md3>
+                <v-select required :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+              </v-flex>
 
-            <v-flex xs12 sm6 md3>
-              <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
-            </v-flex>
+              <v-flex xs12 sm6 md3>
+                <v-select required :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+              </v-flex>
 
-            <v-flex xs12 sm6 md3>
-              <v-select :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
-            </v-flex>
+              <v-flex xs12 sm6 md3>
+                <v-text-field required label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+              </v-flex>
 
-            <v-flex xs12 sm6 md3>
-              <v-text-field label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md3>
-              <v-text-field label="Monto Depositado" v-model="montodepositado"></v-text-field>
-            </v-flex>
-
-          </v-layout>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="green darken-1" round dark @click="update(), dialog4 = false">Guardar</v-btn>
-        <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
-      </v-card-actions>
-    </v-card>
+              <v-flex xs12 sm6 md3>
+                <v-text-field required label="Monto Depositado" v-model="montodepositado"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" round dark type="submit">Guardar</v-btn>
+          <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </form>
   </v-dialog>
 
   <v-container grid-list-md fluid text-xs-justify>
@@ -128,7 +128,7 @@ export default {
   props: ['user'],
   data: () => ({
     codigodepago: "",
-    montodepositado: "",
+    montodepositado: "50",
     Tipopagovalue: "",
     Bancovalue: "",
     Tipopago: [{
@@ -240,43 +240,29 @@ export default {
         this.getDataCliente();
       }
     },
-    update () {
-        console.log("aqui id para ipdate");
-        // console.log(this.cliente.id);
-//                alert('Enviando Form')
-//                this.snackbar= true
-            // let form = document.getElementById('ContactForm');
-            // const formData = new FormData(form);
-            // let jsonObject = {};
-            // for (const [key, value]  of formData.entries()) {
-                // jsonObject[key] = value;
-            // }
-            // console.log(jsonObject);
-            axios({
-                method: 'put',
-                url: `/v1.0/reserva/${this.idupdate}`,
-                data: {
-                  codigodepago: this.codigodepago,
-                  montodepositado: this.montodepositado,
-                  Tipopagovalue: this.Tipopagovalue,
-                  Bancovalue: this.Bancovalue,
-                  estado: 2,
-                }
-            })
-                .then(function (response) {
-                    response.data
-                    console.log(response.data);
-                    window.location.href = '/reservas';
-                });
-            },
+    update() {
+      console.log("aqui id para ipdate");
+      axios({
+          method: 'put',
+          url: `/v1.0/reserva/${this.idupdate}`,
+          data: {
+            codigodepago: this.codigodepago,
+            montodepositado: this.montodepositado,
+            Tipopagovalue: this.Tipopagovalue,
+            Bancovalue: this.Bancovalue,
+            estado: 2,
+          }
+        })
+        .then(function(response) {
+          response.data
+          console.log(response.data);
+          window.location.href = '/reserva';
+        });
+    },
     close() {
       this.dialog1 = false
       this.dialog = false
       console.log("entro seguo que si");
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     },
   },
 

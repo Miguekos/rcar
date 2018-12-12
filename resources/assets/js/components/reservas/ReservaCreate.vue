@@ -51,7 +51,7 @@ table.v-table tbody th {
         <label>Producto</label>
         <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
         <label>Paquete</label>
-        <v-autocomplete :items="promo" item-text="nombre" item-value="value" v-model="paquetes" placeholder="Select..." required solo></v-autocomplete>
+        <v-autocomplete :items="promo" item-text="nombre" item-value="id" @change="verPromo()" v-model="promoId" placeholder="Select..." required solo></v-autocomplete>
         <label>Zona de Entrega</label>
         <v-select :items="zonaItem" item-text="name" item-value="value" v-model="zonas" placeholder="Select..." solo></v-select>
         <label>Direccion de Entrega</label>
@@ -312,6 +312,8 @@ export default {
     cliente: [],
     auto: [],
     promocion: "",
+    promoId: "",
+    promoData: {},
     picker: new Date().toISOString().substr(0, 10),
     landscape: false,
     reactive: false,
@@ -410,7 +412,7 @@ export default {
           this.promo = response.data.promo;
           this.cliente = response.data.cliente;
           this.auto = response.data.auto;
-          this.reservastotal = response.data.reserva;
+          this.reservastotal = response.data.reserva + 1;
           console.log(response.data);
         })
         .catch(e => {
@@ -425,7 +427,7 @@ export default {
           fechasInicio: this.fecha1,
           fechaFin: this.fecha2,
           vehiculo: this.vehiculoId,
-          cliente: this.clientes,
+          cliente: this.clienteData.nombres,
           producto: this.productos,
           promo: this.paquetes,
           zonaDeEntrega: this.zonas,
@@ -481,12 +483,19 @@ export default {
         .get(`/v1.0/cliente/${this.clienteId}`)
         .then(response => {
           this.clienteData = response.data;
-          // this.preciov = response.data[0].precio_por_dia;
-          // this.autoSeleccionado = response.data[0].marca;
-          // this.fechainicioauto = response.data[0].fechainicioauto;
-          // this.fechafinauto = response.data[0].fechafinauto;
           console.log(response.data);
-          // console.log(response.data[0].precio_por_dia);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+    verPromo() {
+      console.log("aqui esta");
+      axios
+        .get(`/v1.0/promo/${this.promoId}`)
+        .then(response => {
+          this.promoData = response.data;
+          console.log(response.data);
         })
         .catch(e => {
           this.errors.push(e);

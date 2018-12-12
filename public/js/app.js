@@ -123778,6 +123778,8 @@ var _this = this;
       cliente: [],
       auto: [],
       promocion: "",
+      promoId: "",
+      promoData: {},
       picker: new Date().toISOString().substr(0, 10),
       landscape: false,
       reactive: false,
@@ -123862,7 +123864,7 @@ var _this = this;
         _this2.promo = response.data.promo;
         _this2.cliente = response.data.cliente;
         _this2.auto = response.data.auto;
-        _this2.reservastotal = response.data.reserva;
+        _this2.reservastotal = response.data.reserva + 1;
         console.log(response.data);
       }).catch(function (e) {
         _this2.errors.push(e);
@@ -123875,7 +123877,7 @@ var _this = this;
         fechasInicio: this.fecha1,
         fechaFin: this.fecha2,
         vehiculo: this.vehiculoId,
-        cliente: this.clientes,
+        cliente: this.clienteData.nombres,
         producto: this.productos,
         promo: this.paquetes,
         zonaDeEntrega: this.zonas,
@@ -123927,14 +123929,20 @@ var _this = this;
       console.log("aqui esta");
       axios.get('/v1.0/cliente/' + this.clienteId).then(function (response) {
         _this4.clienteData = response.data;
-        // this.preciov = response.data[0].precio_por_dia;
-        // this.autoSeleccionado = response.data[0].marca;
-        // this.fechainicioauto = response.data[0].fechainicioauto;
-        // this.fechafinauto = response.data[0].fechafinauto;
         console.log(response.data);
-        // console.log(response.data[0].precio_por_dia);
       }).catch(function (e) {
         _this4.errors.push(e);
+      });
+    },
+    verPromo: function verPromo() {
+      var _this5 = this;
+
+      console.log("aqui esta");
+      axios.get('/v1.0/promo/' + this.promoId).then(function (response) {
+        _this5.promoData = response.data;
+        console.log(response.data);
+      }).catch(function (e) {
+        _this5.errors.push(e);
       });
     }
   }
@@ -124169,17 +124177,22 @@ var render = function() {
                       attrs: {
                         items: _vm.promo,
                         "item-text": "nombre",
-                        "item-value": "value",
+                        "item-value": "id",
                         placeholder: "Select...",
                         required: "",
                         solo: ""
                       },
+                      on: {
+                        change: function($event) {
+                          _vm.verPromo()
+                        }
+                      },
                       model: {
-                        value: _vm.paquetes,
+                        value: _vm.promoId,
                         callback: function($$v) {
-                          _vm.paquetes = $$v
+                          _vm.promoId = $$v
                         },
-                        expression: "paquetes"
+                        expression: "promoId"
                       }
                     }),
                     _vm._v(" "),
@@ -125177,7 +125190,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return _ref = {
       codigodepago: "",
-      montodepositado: "",
+      montodepositado: "50",
       Tipopagovalue: "",
       Bancovalue: "",
       Tipopago: [{
@@ -125270,16 +125283,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     update: function update() {
       console.log("aqui id para ipdate");
-      // console.log(this.cliente.id);
-      //                alert('Enviando Form')
-      //                this.snackbar= true
-      // let form = document.getElementById('ContactForm');
-      // const formData = new FormData(form);
-      // let jsonObject = {};
-      // for (const [key, value]  of formData.entries()) {
-      // jsonObject[key] = value;
-      // }
-      // console.log(jsonObject);
       __WEBPACK_IMPORTED_MODULE_0_axios___default()({
         method: 'put',
         url: '/v1.0/reserva/' + this.idupdate,
@@ -125293,17 +125296,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         response.data;
         console.log(response.data);
-        window.location.href = '/reservas';
+        window.location.href = '/reserva';
       });
     },
     close: function close() {
       this.dialog1 = false;
       this.dialog = false;
       console.log("entro seguo que si");
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     }
   }
 
@@ -125335,102 +125334,125 @@ var render = function() {
         },
         [
           _c(
-            "v-card",
-            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.update()
+                }
+              }
+            },
             [
-              _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Registro de confirmacion de reserva")
-              ]),
-              _vm._v(" "),
               _c(
-                "v-card-text",
+                "v-card",
+                { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
                 [
+                  _c("v-card-title", { staticClass: "headline" }, [
+                    _vm._v("Registro de confirmacion de reserva")
+                  ]),
+                  _vm._v(" "),
                   _c(
-                    "v-container",
-                    { attrs: { fluid: "", "grid-list-xl": "" } },
+                    "v-card-text",
                     [
                       _c(
-                        "v-layout",
-                        { attrs: { row: "", wrap: "" } },
+                        "v-container",
+                        { attrs: { fluid: "", "grid-list-xl": "" } },
                         [
                           _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            "v-layout",
+                            { attrs: { row: "", wrap: "" } },
                             [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.Tipopago,
-                                  "item-text": "text",
-                                  "item-value": "text",
-                                  label: "Tipo de Pago"
-                                },
-                                model: {
-                                  value: _vm.Tipopagovalue,
-                                  callback: function($$v) {
-                                    _vm.Tipopagovalue = $$v
-                                  },
-                                  expression: "Tipopagovalue"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.Banco,
-                                  "item-text": "text",
-                                  "item-value": "text",
-                                  label: "Banco"
-                                },
-                                model: {
-                                  value: _vm.Bancovalue,
-                                  callback: function($$v) {
-                                    _vm.Bancovalue = $$v
-                                  },
-                                  expression: "Bancovalue"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Codigo de Deposito" },
-                                model: {
-                                  value: _vm.codigodepago,
-                                  callback: function($$v) {
-                                    _vm.codigodepago = $$v
-                                  },
-                                  expression: "codigodepago"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Monto Depositado" },
-                                model: {
-                                  value: _vm.montodepositado,
-                                  callback: function($$v) {
-                                    _vm.montodepositado = $$v
-                                  },
-                                  expression: "montodepositado"
-                                }
-                              })
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm6: "", md3: "" } },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      required: "",
+                                      items: _vm.Tipopago,
+                                      "item-text": "text",
+                                      "item-value": "text",
+                                      label: "Tipo de Pago"
+                                    },
+                                    model: {
+                                      value: _vm.Tipopagovalue,
+                                      callback: function($$v) {
+                                        _vm.Tipopagovalue = $$v
+                                      },
+                                      expression: "Tipopagovalue"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm6: "", md3: "" } },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      required: "",
+                                      items: _vm.Banco,
+                                      "item-text": "text",
+                                      "item-value": "text",
+                                      label: "Banco"
+                                    },
+                                    model: {
+                                      value: _vm.Bancovalue,
+                                      callback: function($$v) {
+                                        _vm.Bancovalue = $$v
+                                      },
+                                      expression: "Bancovalue"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm6: "", md3: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      required: "",
+                                      label: "Codigo de Deposito"
+                                    },
+                                    model: {
+                                      value: _vm.codigodepago,
+                                      callback: function($$v) {
+                                        _vm.codigodepago = $$v
+                                      },
+                                      expression: "codigodepago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm6: "", md3: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      required: "",
+                                      label: "Monto Depositado"
+                                    },
+                                    model: {
+                                      value: _vm.montodepositado,
+                                      callback: function($$v) {
+                                        _vm.montodepositado = $$v
+                                      },
+                                      expression: "montodepositado"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
                             ],
                             1
                           )
@@ -125439,40 +125461,40 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green darken-1", round: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.update(), (_vm.dialog4 = false)
-                        }
-                      }
-                    },
-                    [_vm._v("Guardar")]
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "red darken-1", round: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog4 = false
-                        }
-                      }
-                    },
-                    [_vm._v("Cancelar")]
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            color: "green darken-1",
+                            round: "",
+                            dark: "",
+                            type: "submit"
+                          }
+                        },
+                        [_vm._v("Guardar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "red darken-1", round: "", dark: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.dialog4 = false
+                            }
+                          }
+                        },
+                        [_vm._v("Cancelar")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -125480,8 +125502,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -126172,6 +126193,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   computed: {},
   methods: {
+    rechazo: function rechazo() {},
     crear: function crear() {
       window.location.href = '/reserva/create';
     },
@@ -126499,7 +126521,7 @@ var render = function() {
                       attrs: { color: "red darken-1", round: "", dark: "" },
                       on: {
                         click: function($event) {
-                          _vm.dialog5 = false
+                          _vm.rechazo(), (_vm.dialog5 = false)
                         }
                       }
                     },

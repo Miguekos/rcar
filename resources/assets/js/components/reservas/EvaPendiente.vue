@@ -70,7 +70,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="green darken-1" round dark @click="update1(), dialog4 = false">Guardar</v-btn>
-        <v-btn color="red darken-1" round dark @click="dialog5 = false">Cancelar</v-btn>
+        <v-btn color="red darken-1" round dark @click="rechazo(),dialog5 = false">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -212,6 +212,9 @@ export default {
 
   },
   methods: {
+    rechazo () {
+
+    },
     crear() {
       window.location.href = '/reserva/create';
     },
