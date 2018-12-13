@@ -1,9 +1,4 @@
 <style scoped="autos">
-.v-btn--small {
-  font-size: 10px;
-  height: 18px;
-  padding: 0 8px;
-}
 
 .v-card__title--primary {
   padding-top: 0px;
@@ -120,7 +115,7 @@ button:hover {
   <v-container grid-list-md fluid text-xs-justify>
     <v-container grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -134,8 +129,8 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex elevation-3 lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg3 class="nuevo">
+          <v-card light elevation-2 hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="blue" size="250%">person_add</v-icon>
@@ -143,12 +138,12 @@ button:hover {
               <span>Clientes Nuevos</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ clienten }}</div>
+                <div class="headline">{{ totaln }}</div>
               </div>
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex elevation-3 lg3 class="nuevo">
+        <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
             <v-card-title primary-title>
               <v-avatar>
@@ -157,7 +152,7 @@ button:hover {
               <span>Aumento</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ fecha }}%</div>
+                <div class="headline">{{ totalp }}%</div>
               </div>
             </v-card-title>
           </v-card>
@@ -165,9 +160,9 @@ button:hover {
       </v-layout>
     </v-container>
 
-    <hr>
+    <!-- <hr> -->
     <br>
-    <h1 class="font-weight-black text-lg-center">{{ title }}</h1>
+    <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
     <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
     <v-flex>
       <br>
@@ -236,7 +231,7 @@ button:hover {
   <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
     <span class="mdc-fab__icon material-icons">add</span>
   </button>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 
@@ -260,6 +255,8 @@ export default {
     tile: false,
     search: "",
     total: "",
+    totaln: "",
+    totalp: "",
     fecha: "",
     auton: "",
     editCliente: "",
@@ -299,16 +296,18 @@ export default {
       axios
         .get(`/v1.0/autos`)
         .then(response => {
-          this.items = response.data.autos;
-          this.total = response.data.autost;
-          var paginas = Math.ceil(response.data.autost / 8);
+          this.items = response.data.auto;
+          this.total = response.data.total;
+          this.totaln = response.data.totaln;
+          this.totalp = response.data.totalp;
+          var paginas = Math.ceil(response.data.total / 8);
           this.page = paginas;
           // this.fecha = response.data.fecha;
           // this.clienten = response.data.clienten;
           // console.log(response.data.fecha);
         })
         .catch(e => {
-          this.errors.push(e);
+          // this.errors.push(e);
         });
       this.paginas();
       console.log("aqui");

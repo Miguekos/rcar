@@ -7,7 +7,7 @@
 @section('content')
   <v-container>
     <comp-promos
-    :user="{{ auth()->user() }}"
+      :user="{{ auth()->user() }}"
     ></comp-promos>
   </v-container>
 @endsection

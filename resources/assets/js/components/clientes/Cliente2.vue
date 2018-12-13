@@ -16,14 +16,14 @@
   padding: 0px;
 }
 
-html {
+/* html {
   font-size: 12px;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+} */
 
 .custom-ripple {
   user-select: none

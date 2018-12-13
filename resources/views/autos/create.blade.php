@@ -6,8 +6,8 @@
 
 @section('content')
   <v-container>
-    <comp-autos
+    <auto-create
     :user="{{ auth()->user() }}"
-    ></comp-autos>
+    ></auto-create>
   </v-container>
 @endsection

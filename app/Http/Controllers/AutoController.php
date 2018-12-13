@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Auto;
 use Illuminate\Http\Request;
 
@@ -19,12 +20,28 @@ class AutoController extends Controller
 
     public function indexapi()
     {
+      $dias = Carbon::now()->subDay(30);
       $autos = Auto::all();
-      $autost = Auto::count();
+      $total = Auto::count();
+      $totaln = Auto::where([
+        ['created_at', '>=', $dias],
+        ])->count();
+      $num1 = $total / 100;
+      $totalp = $num1 * $totaln;
+
       return json_encode([
-          "autos" => $autos,
-          "autost" => $autost,
-      ]);
+        'auto' => $autos,
+        'total' => $total,
+        'totaln' => $totaln,
+        'totalp' => $totalp,
+      ]); ;
+
+      // $autos = Auto::all();
+      // $autost = Auto::count();
+      // return json_encode([
+      //     "autos" => $autos,
+      //     "autost" => $autost,
+      // ]);
     }
 
     /**
@@ -34,7 +51,7 @@ class AutoController extends Controller
      */
     public function create()
     {
-        //
+        return view('autos.create');
     }
 
     /**
@@ -73,7 +90,7 @@ class AutoController extends Controller
      */
     public function edit(Auto $auto)
     {
-        //
+        return view(autos.edit);
     }
 
     /**
