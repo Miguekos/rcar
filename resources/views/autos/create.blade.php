@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('nav')
-  <nav-bar titulo="Autos" :user="{{ auth()->user() }}"></nav-bar>
+  <nav-bar titulo="Auto / Create" :user="{{ auth()->user() }}"></nav-bar>
 @endsection
 
 @section('content')

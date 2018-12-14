@@ -17,7 +17,7 @@
     </v-toolbar>
     <v-divider></v-divider>
 
-    <v-list dense class="grey lighten-3">
+    <v-list dense>
       <template v-for="(item, i) in items">
         <v-layout v-if="item.heading" :key="i" row align-center>
         </v-layout>
@@ -27,7 +27,7 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="grey--text">
+            <v-list-tile-title>
               {{ item.text }}
             </v-list-tile-title>
           </v-list-tile-content>
@@ -36,7 +36,7 @@
     </v-list>
   </v-navigation-drawer>
 
-  <v-toolbar dark color="black lighten-1">
+  <v-toolbar class="titulos-2">
     <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
     <!-- <img src="loginnew/images/logo.png" alt="logo" width="2%"> -->
     <v-toolbar-title>SCHETTINI&nbsp;</v-toolbar-title>
@@ -44,6 +44,7 @@
     <v-list-tile @click="atras()">
       <v-list-tile-title>{{ titulo }}</v-list-tile-title>
     </v-list-tile>
+
     <v-spacer></v-spacer>
     <v-menu offset-x offset-y transition="scale-transition">
       <v-btn icon slot="activator">

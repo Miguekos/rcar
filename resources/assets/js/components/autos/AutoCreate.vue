@@ -12,6 +12,7 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
 </style>
 
 <template>
@@ -20,8 +21,8 @@ select:-webkit-autofill:focus {
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex lg12>
-        <v-card hover dark color="grey darken-1">
-          <v-card-text>
+        <v-card hover>
+          <v-card-text class="titulos">
             <h2>Informacion Basica</h2>
           </v-card-text>
         </v-card>
@@ -88,7 +89,7 @@ select:-webkit-autofill:focus {
           </v-flex>
         </v-layout>
 
-<!-- <v-flex text-lg-center lg12>
+        <!-- <v-flex text-lg-center lg12>
   <v-btn color="success">Guardar</v-btn>
   <v-btn color="error">Cancelar</v-btn>
 </v-flex> -->
@@ -100,8 +101,8 @@ select:-webkit-autofill:focus {
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex lg12>
-        <v-card hover dark color="grey darken-1">
-          <v-card-text>
+        <v-card hover>
+          <v-card-text class="titulos">
             <h2>Informacion Financiera</h2>
           </v-card-text>
         </v-card>
@@ -123,7 +124,7 @@ select:-webkit-autofill:focus {
 
         </v-layout>
 
-  <!-- <v-flex text-lg-center lg12>
+        <!-- <v-flex text-lg-center lg12>
   <v-btn color="success">Guardar</v-btn>
   <v-btn color="error">Cancelar</v-btn>
   </v-flex> -->
@@ -136,60 +137,74 @@ select:-webkit-autofill:focus {
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex lg12>
-        <v-card hover dark color="grey darken-1">
-          <v-card-text>
+        <v-card hover>
+          <v-card-text class="titulos">
             <h2>Registros de documentos</h2>
           </v-card-text>
         </v-card>
 
-        <v-layout align-center justify row wrap fill-height>
+        <v-layout align-center justify-center row wrap fill-height>
 
           <v-flex text-lg-center lg3>
-            Renovcion de SOAT
 
-            <v-menu
-          ref="menu1"
-          :close-on-content-click="false"
-          v-model="menu1"
-          :nudge-right="40"
-          lazy
-          transition="scale-transition"
-          offset-y
-          full-width
-          max-width="290px"
-          min-width="290px"
-        >
-          <v-text-field
-            slot="activator"
-            v-model="dateFormatted"
-            label="Date"
-            hint="MM/DD/YYYY format"
-            persistent-hint
-            prepend-icon="event"
-            @blur="date = parseDate(dateFormatted)"
-          ></v-text-field>
+            <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" :return-value.sync="date" lazy transition="scale-transition" offset-y full-width min-width="290px">
+              <v-text-field slot="activator" v-model="date" label="Renovcion de SOAT" prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
+
 
           </v-flex>
 
           <v-flex text-lg-center lg3>
-          Lunas Polariza
+            <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" :return-value.sync="date" lazy transition="scale-transition" offset-y full-width min-width="290px">
+              <v-text-field slot="activator" v-model="date" label="Lunas Polariza" prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
           </v-flex>
 
           <v-flex text-lg-center lg3>
-          GPS
+            <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" :return-value.sync="date" lazy transition="scale-transition" offset-y full-width min-width="290px">
+              <v-text-field slot="activator" v-model="date" label="GPS" prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
           </v-flex>
 
-          <v-flex text-lg-center lg3>
-            Inspeccion Tecnica
+          <v-flex text-lg-center lg4>
+            <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" :return-value.sync="date" lazy transition="scale-transition" offset-y full-width min-width="290px">
+              <v-text-field slot="activator" v-model="date" label="Inspeccion Tecnica" prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
           </v-flex>
 
-          <v-flex text-lg-center lg3>
-            Poliza de goades
+          <v-flex text-lg-center lg4>
+            <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" :return-value.sync="date" lazy transition="scale-transition" offset-y full-width min-width="290px">
+              <v-text-field slot="activator" v-model="date" label="Poliza de goades" prepend-icon="event" readonly></v-text-field>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
           </v-flex>
-
         </v-layout>
 
-  <!-- <v-flex text-lg-center lg12>
+        <!-- <v-flex text-lg-center lg12>
   <v-btn color="success">Guardar</v-btn>
   <v-btn color="error">Cancelar</v-btn>
   </v-flex> -->
@@ -201,8 +216,8 @@ select:-webkit-autofill:focus {
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex lg12>
-        <v-card hover dark color="grey darken-1">
-          <v-card-text>
+        <v-card hover>
+          <v-card-text class="titulos">
             <h2>Registros de documentos</h2>
           </v-card-text>
         </v-card>
@@ -226,16 +241,39 @@ select:-webkit-autofill:focus {
           </v-flex>
 
         </v-layout>
+
+      </v-flex>
+    </v-layout>
+  </v-container>
+
+<br>
+
+<v-container grid-list-xl text-xs-center>
+
+    <v-layout align-center justify-center row wrap fill-height>
+<v-flex text-lg-left lg12>
+
+<label >Comentarios adicionales</label>
+      <v-text-field
+        label=""
+        name="name"
+          solo
+
+        textarea
+      ></v-text-field>
+
+
+</v-flex>
+    </v-layout>
+
+</v-container>
+
 
 <v-flex text-lg-center lg12>
 
   <v-btn color="success">Guardar</v-btn>
   <v-btn color="error">Cancelar</v-btn>
-  </v-flex> -->
-
-      </v-flex>
-    </v-layout>
-  </v-container>
+</v-flex>
 
 
 </div>
@@ -295,15 +333,15 @@ export default {
     },
   },
   computed: {
-      computedDateFormatted () {
-        return this.formatDate(this.date)
-      }
-    },
+    computedDateFormatted() {
+      return this.formatDate(this.date)
+    }
+  },
 
-    watch: {
-      date (val) {
-        this.dateFormatted = this.formatDate(this.date)
-      }
-    },
-  }
+  watch: {
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date)
+    }
+  },
+}
 </script>
