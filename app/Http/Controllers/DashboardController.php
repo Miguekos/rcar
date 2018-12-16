@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Roles;
+use App\Reserva;
+use App\Auto;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -104,6 +106,25 @@ class DashboardController extends Controller
     public function prueba()
     {
       return view('prueba');
+    }
+
+
+    public function disponible(Request $request)
+    {
+      // $disponi = Reserva::whereBetween('fecha',[$request->fechaIni,$request->fechaFin])
+                  // ->where('estado', 0)
+                  // ->get();
+      // return $request->all();
+      $disponi = Reserva::where([
+        // ['agregado_id','=',$id],
+        ['fechasInicio', '<', $request->fechaIni],
+        ['fechaFin', '>', $request->fechaFin],
+        // ['estado', '==', 0],
+        // ['abono_id','=',0],
+        // ['deuda','!=',0],
+      ])->get();
+
+      return $disponi;
     }
 
 

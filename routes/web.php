@@ -45,6 +45,11 @@ Route::group(['prefix' => 'v1.0'], function () {
     Route::put('reserva/{reserva}', 'ReservaController@updateapi');
     Route::delete('reserva/{reserva}', 'ReservaController@destroyapi');
 
+
+//  Disponible Api
+    Route::post('disponible', 'DashboardController@disponible');
+
+
 });
 
 Route::get('/', 'Auth\LoginController@showLoginForm');

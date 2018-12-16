@@ -160,6 +160,8 @@ button:hover {
 
     <!-- <hr> -->
     <br>
+
+    {{ dispo }}
     <!-- <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
     <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
     <v-flex>
@@ -191,7 +193,7 @@ button:hover {
               <v-card-title primary-title>
                 <div>
                   <div>
-                    <h2>{{ props.item.nombres }}</h2>
+                    <h2>{{ props.item.autoSeleccionado }}</h2>
                   </div>
                   <div class="text-xs-left">{{ props.item.ciudad }}</div>
                   <div>{{ props.item.celular }}</div>
@@ -225,14 +227,14 @@ button:hover {
   <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
     <span class="mdc-fab__icon material-icons">add</span>
   </button>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-  props: ['user'],
+  props: ['user','dispo'],
   data: () => ({
     color: 0,
     colors: [
@@ -282,11 +284,11 @@ export default {
     editedIndex: -1,
     editedItem: {},
     defaultItem: {
-
     },
   }),
   created() {
-    this.getDataCliente();
+    // this.getDataCliente();
+    this.items = this.props.dispo[0];
   },
   computed: {
 
