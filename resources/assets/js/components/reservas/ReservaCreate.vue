@@ -306,6 +306,11 @@ export default {
     clientes: "",
     productos: 0,
     paquetes: 0,
+    placa: "",
+    color: "",
+    anio: "",
+    precio: "",
+    image: "",
     clienteData: {},
     vehiculoData: {},
     promo: [],
@@ -444,7 +449,11 @@ export default {
           preciovihiculo: this.preciovihiculo,
           diaadicional: this.diaadicional,
           totalF: this.totalF,
-          diasdisponible: this.fechadiferencia,
+          placa: this.placa,
+          color: this.color,
+          anio: this.anio,
+          precio: this.precio,
+          image: this.image,
         }
       )
         .then(response => {
@@ -470,6 +479,11 @@ export default {
           this.autoSeleccionado = response.data[0].marca;
           this.fechainicioauto = response.data[0].fechainicioauto;
           this.fechafinauto = response.data[0].fechafinauto;
+          this.placa = response.data[0].placa;
+          this.color = response.data[0].color;
+          this.anio = response.data[0].anio;
+          this.precio_por_dia = response.data[0].precio_por_dia;
+          this.image = response.data[0].imagen1;
           console.log(response.data[0]);
           console.log(response.data[0].precio_por_dia);
         })

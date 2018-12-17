@@ -1,8 +1,8 @@
 <template>
 <div>
-  <v-navigation-drawer v-model="drawer" temporary fixed clipped class="grey lighten-3" app>
-    <v-divider></v-divider>
-    <v-toolbar flat class="transparent">
+  <v-navigation-drawer v-model="drawer" temporary fixed clipped app>
+    <!-- <v-divider></v-divider> -->
+    <v-toolbar class="titulos">
       <v-list class="pa-0">
         <v-list-tile avatar>
           <v-list-tile-avatar>
@@ -10,19 +10,19 @@
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>{{ user.name }}</v-list-tile-title>
-            v1.1
+            v1.2
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-toolbar>
-    <v-divider></v-divider>
+    <!-- <v-divider></v-divider> -->
 
     <v-list dense>
       <template v-for="(item, i) in items">
         <v-layout v-if="item.heading" :key="i" row align-center>
         </v-layout>
         <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-        <v-list-tile :ripple="{ class: 'info--text' }" v-else :key="i" @click="link(item.link)">
+        <v-list-tile :ripple="{ class: 'darken-1' }" v-else :key="i" @click="link(item.link)">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -68,12 +68,19 @@ export default {
     drawer: null,
     back: "",
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    items: [{
-        icon: 'lightbulb_outline',
+    items: [
+      {
+        icon: 'dashboard',
         text: 'Dasboard',
         link: '/'
-      }, {
-        icon: 'touch_app',
+      },
+      {
+        icon: 'add',
+        text: 'Disponibilidad',
+        link: '/prueba'
+      },
+      {
+        icon: 'group',
         text: 'Clientes',
         link: '/cliente'
       },
@@ -84,7 +91,7 @@ export default {
         heading: 'Labels'
       },
       {
-        icon: 'favorite_border',
+        icon: 'card_giftcard',
         text: 'Promos',
         link: '/promo'
       },
@@ -104,22 +111,23 @@ export default {
       // {
       //     divider: false
       // },
-      {
-        icon: 'settings',
-        text: 'Settings',
-        link: '/'
-      }, {
-        icon: 'chat_bubble',
-        text: 'Trash',
-        link: '/'
-      }, {
-        icon: 'help',
-        text: 'Help'
-      }, {
-        icon: 'phonelink',
-        text: 'App downloads',
-        link: '/'
-      }, {
+      // {
+      //   icon: 'settings',
+      //   text: 'Settings',
+      //   link: '/'
+      // }, {
+      //   icon: 'chat_bubble',
+      //   text: 'Trash',
+      //   link: '/'
+      // }, {
+      //   icon: 'help',
+      //   text: 'Help'
+      // }, {
+      //   icon: 'phonelink',
+      //   text: 'App downloads',
+      //   link: '/'
+      // },
+       {
         icon: 'keyboard',
         text: 'Limpiar Cache',
         link: '/clear-cache'

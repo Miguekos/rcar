@@ -161,14 +161,14 @@ button:hover {
     <!-- <hr> -->
     <br>
 
-    {{ dispo }}
+    <!-- {{ dispo.data }} -->
     <!-- <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
     <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
     <v-flex>
       <br>
     </v-flex> -->
 
-    <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
+    <v-data-iterator :items="dispo" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
       <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
         <v-card class="mx-auto" hover tile>
@@ -195,14 +195,16 @@ button:hover {
                   <div>
                     <h2>{{ props.item.autoSeleccionado }}</h2>
                   </div>
-                  <div class="text-xs-left">{{ props.item.ciudad }}</div>
-                  <div>{{ props.item.celular }}</div>
+                  <div class="text-xs-left">{{ props.item.placa }}</div>
+                  <div>{{ props.item.color }}</div>
                   <v-spacer></v-spacer>
-                  <v-flex align-content-end>
-                    <v-icon small class="mr-2" @click="dialog3 = true">
-                      mail_outline
-                    </v-icon>
-                  </v-flex>
+                  <div class="text-xs-left">{{ props.item.anio }}</div>
+                  <div>{{ props.item.precio }}</div>
+                  <!-- <v-flex align-content-end> -->
+                    <!-- <v-icon small class="mr-2" @click="dialog3 = true"> -->
+                      <!-- mail_outline -->
+                    <!-- </v-icon> -->
+                  <!-- </v-flex> -->
                 </div>
               </v-card-title>
             </v-flex>
@@ -220,13 +222,14 @@ button:hover {
 
     </v-data-iterator>
     <div class="text-xs-center pt-2">
-      <v-pagination v-model="pagination.page" :length="page"></v-pagination>
+      <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
     </div>
   </v-container>
 
   <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
     <span class="mdc-fab__icon material-icons">add</span>
   </button>
+
   <pre>{{ $data }}</pre>
 </div>
 </template>
@@ -280,7 +283,7 @@ export default {
     dialog1: false,
     rowsPerPageItems: [8, 12],
     pagination: {},
-    items: [],
+    items: {},
     editedIndex: -1,
     editedItem: {},
     defaultItem: {
@@ -288,7 +291,7 @@ export default {
   }),
   created() {
     // this.getDataCliente();
-    this.items = this.props.dispo[0];
+    // this.items = this.dispo.data;
   },
   computed: {
 
@@ -297,23 +300,23 @@ export default {
     crear() {
       window.location.href = '/cliente/create';
     },
-    getDataCliente() {
-      console.log("en get data nuew");
-      axios
-        .get(`/v1.0/clientes`)
-        .then(response => {
-          this.items = response.data.cliente;
-          this.total = response.data.clientec;
-          this.fecha = response.data.fecha;
-          this.clienten = response.data.clienten;
-          console.log(response.data.fecha);
-          var paginas = Math.ceil(response.data.clientec / 8);
-          this.page = paginas;
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
-    },
+    // getDataCliente() {
+    //   console.log("en get data nuew");
+    //   axios
+    //     .get(`/v1.0/clientes`)
+    //     .then(response => {
+    //       this.items = response.data.cliente;
+    //       this.total = response.data.clientec;
+    //       this.fecha = response.data.fecha;
+    //       this.clienten = response.data.clienten;
+    //       console.log(response.data.fecha);
+    //       var paginas = Math.ceil(response.data.clientec / 8);
+    //       this.page = paginas;
+    //     })
+    //     .catch(e => {
+    //       this.errors.push(e);
+    //     });
+    // },
     editItem(item) {
       window.location.href = `/cliente/${item.id}/edit`;
       // this.editedIndex = this.desserts.indexOf(item)

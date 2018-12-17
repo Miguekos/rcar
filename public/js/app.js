@@ -113925,11 +113925,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       back: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       items: [{
-        icon: 'lightbulb_outline',
+        icon: 'dashboard',
         text: 'Dasboard',
         link: '/'
       }, {
-        icon: 'touch_app',
+        icon: 'add',
+        text: 'Disponibilidad',
+        link: '/prueba'
+      }, {
+        icon: 'group',
         text: 'Clientes',
         link: '/cliente'
       },
@@ -113939,7 +113943,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       {
         heading: 'Labels'
       }, {
-        icon: 'favorite_border',
+        icon: 'card_giftcard',
         text: 'Promos',
         link: '/promo'
       },
@@ -113958,22 +113962,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // {
       //     divider: false
       // },
+      // {
+      //   icon: 'settings',
+      //   text: 'Settings',
+      //   link: '/'
+      // }, {
+      //   icon: 'chat_bubble',
+      //   text: 'Trash',
+      //   link: '/'
+      // }, {
+      //   icon: 'help',
+      //   text: 'Help'
+      // }, {
+      //   icon: 'phonelink',
+      //   text: 'App downloads',
+      //   link: '/'
+      // },
       {
-        icon: 'settings',
-        text: 'Settings',
-        link: '/'
-      }, {
-        icon: 'chat_bubble',
-        text: 'Trash',
-        link: '/'
-      }, {
-        icon: 'help',
-        text: 'Help'
-      }, {
-        icon: 'phonelink',
-        text: 'App downloads',
-        link: '/'
-      }, {
         icon: 'keyboard',
         text: 'Limpiar Cache',
         link: '/clear-cache'
@@ -114028,7 +114033,6 @@ var render = function() {
       _c(
         "v-navigation-drawer",
         {
-          staticClass: "grey lighten-3",
           attrs: { temporary: "", fixed: "", clipped: "", app: "" },
           model: {
             value: _vm.drawer,
@@ -114039,11 +114043,9 @@ var render = function() {
           }
         },
         [
-          _c("v-divider"),
-          _vm._v(" "),
           _c(
             "v-toolbar",
-            { staticClass: "transparent", attrs: { flat: "" } },
+            { staticClass: "titulos" },
             [
               _c(
                 "v-list",
@@ -114063,7 +114065,7 @@ var render = function() {
                           _c("v-list-tile-title", [
                             _vm._v(_vm._s(_vm.user.name))
                           ]),
-                          _vm._v("\r\n            v1.1\r\n          ")
+                          _vm._v("\r\n            v1.2\r\n          ")
                         ],
                         1
                       )
@@ -114076,8 +114078,6 @@ var render = function() {
             ],
             1
           ),
-          _vm._v(" "),
-          _c("v-divider"),
           _vm._v(" "),
           _c(
             "v-list",
@@ -114100,7 +114100,7 @@ var render = function() {
                         "v-list-tile",
                         {
                           key: i,
-                          attrs: { ripple: { class: "info--text" } },
+                          attrs: { ripple: { class: "darken-1" } },
                           on: {
                             click: function($event) {
                               _vm.link(item.link)
@@ -115419,6 +115419,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -115450,11 +115453,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dialog: false,
       dialog1: false,
       rowsPerPageItems: [8, 12]
-    }, _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
+    }, _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'items', {}), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
   },
   created: function created() {
     // this.getDataCliente();
-    this.items = this.props.dispo[0];
+    // this.items = this.dispo.data;
   },
 
   computed: {},
@@ -115462,22 +115465,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     crear: function crear() {
       window.location.href = '/cliente/create';
     },
-    getDataCliente: function getDataCliente() {
-      var _this = this;
 
-      console.log("en get data nuew");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/clientes').then(function (response) {
-        _this.items = response.data.cliente;
-        _this.total = response.data.clientec;
-        _this.fecha = response.data.fecha;
-        _this.clienten = response.data.clienten;
-        console.log(response.data.fecha);
-        var paginas = Math.ceil(response.data.clientec / 8);
-        _this.page = paginas;
-      }).catch(function (e) {
-        _this.errors.push(e);
-      });
-    },
+    // getDataCliente() {
+    //   console.log("en get data nuew");
+    //   axios
+    //     .get(`/v1.0/clientes`)
+    //     .then(response => {
+    //       this.items = response.data.cliente;
+    //       this.total = response.data.clientec;
+    //       this.fecha = response.data.fecha;
+    //       this.clienten = response.data.clienten;
+    //       console.log(response.data.fecha);
+    //       var paginas = Math.ceil(response.data.clientec / 8);
+    //       this.page = paginas;
+    //     })
+    //     .catch(e => {
+    //       this.errors.push(e);
+    //     });
+    // },
     editItem: function editItem(item) {
       window.location.href = '/cliente/' + item.id + '/edit';
       // this.editedIndex = this.desserts.indexOf(item)
@@ -115749,13 +115754,12 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("br"),
-          _vm._v("\r\n\r\n    " + _vm._s(_vm.dispo) + "\r\n    "),
           _vm._v(" "),
           _c(
             "v-data-iterator",
             {
               attrs: {
-                items: _vm.items,
+                items: _vm.dispo,
                 "rows-per-page-items": _vm.rowsPerPageItems,
                 pagination: _vm.pagination,
                 search: _vm.search,
@@ -115887,47 +115891,24 @@ var render = function() {
                                             _c(
                                               "div",
                                               { staticClass: "text-xs-left" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(props.item.ciudad)
-                                                )
-                                              ]
+                                              [_vm._v(_vm._s(props.item.placa))]
                                             ),
                                             _vm._v(" "),
                                             _c("div", [
-                                              _vm._v(_vm._s(props.item.celular))
+                                              _vm._v(_vm._s(props.item.color))
                                             ]),
                                             _vm._v(" "),
                                             _c("v-spacer"),
                                             _vm._v(" "),
                                             _c(
-                                              "v-flex",
-                                              {
-                                                attrs: {
-                                                  "align-content-end": ""
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-icon",
-                                                  {
-                                                    staticClass: "mr-2",
-                                                    attrs: { small: "" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.dialog3 = true
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\r\n                      mail_outline\r\n                    "
-                                                    )
-                                                  ]
-                                                )
-                                              ],
-                                              1
-                                            )
+                                              "div",
+                                              { staticClass: "text-xs-left" },
+                                              [_vm._v(_vm._s(props.item.anio))]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("div", [
+                                              _vm._v(_vm._s(props.item.precio))
+                                            ])
                                           ],
                                           1
                                         )
@@ -115979,7 +115960,7 @@ var render = function() {
             { staticClass: "text-xs-center pt-2" },
             [
               _c("v-pagination", {
-                attrs: { length: _vm.page },
+                attrs: { length: _vm.pagination.page },
                 model: {
                   value: _vm.pagination.page,
                   callback: function($$v) {
@@ -116165,7 +116146,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fechaFin: this.date1,
         _token: this.csrf
       }).then(function (response) {
-        console.log(response);
+        console.log("dasddssda");
+        console.log(response.data);
         _this.disponi = response.data;
         // window.location.href = '/';
       }).catch(function (e) {
@@ -116451,14 +116433,7 @@ var render = function() {
           _c(
             "v-container",
             { attrs: { "grid-list-lg": "" } },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [_c("comp-disponibilidad", { attrs: { dispo: _vm.disponi } })],
-                1
-              )
-            ],
+            [_c("comp-disponibilidad", { attrs: { dispo: _vm.disponi } })],
             1
           )
         ],
@@ -116577,8 +116552,6 @@ exports.push([module.i, "\n.v-card__title--primary {\r\n  padding-top: 0px;\n}\n
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -116830,21 +116803,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
       color: 0,
       colors: ['red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue', 'cyan', 'teal', 'green', 'light-green', 'lime', 'yellow', 'amber', 'orange', 'deep-orange', 'brown', 'blue-grey', 'grey'],
       // boton inicio
       // boton fin
       // pagination: {},
       title: "Clientes",
-      page: "",
+      page: null,
       reviews: 413,
       value: 4.5,
       eliminar: "",
       dialog3: false,
-      pagination: {},
+      // pagination: {},
       slider: 56,
       tile: false,
       search: "",
@@ -116855,8 +116826,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       idedit: "",
       dialog: false,
       dialog1: false,
-      rowsPerPageItems: [8, 12]
-    }, _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
+      rowsPerPageItems: [8, 12],
+      pagination: {},
+      items: [],
+      editedIndex: -1,
+      editedItem: {},
+      defaultItem: {}
+    };
   },
   created: function created() {
     this.getDataCliente();
@@ -120317,7 +120293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // pagination: {},
       title: "Promos",
       registros: "",
-      page: "",
+      page: null,
       reviews: 413,
       value: 4.5,
       eliminar: "",
@@ -120845,7 +120821,7 @@ var render = function() {
             { staticClass: "text-xs-center pt-2" },
             [
               _c("v-pagination", {
-                attrs: { length: _vm.pagination.page },
+                attrs: { length: _vm.page },
                 model: {
                   value: _vm.pagination.page,
                   callback: function($$v) {
@@ -122169,7 +122145,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // pagination: {},
       title: "Vehiculo",
       registros: "",
-      page: "",
+      page: null,
       reviews: 413,
       value: 4.5,
       eliminar: "",
@@ -125728,6 +125704,11 @@ var _this = this;
       clientes: "",
       productos: 0,
       paquetes: 0,
+      placa: "",
+      color: "",
+      anio: "",
+      precio: "",
+      image: "",
       clienteData: {},
       vehiculoData: {},
       promo: [],
@@ -125850,7 +125831,11 @@ var _this = this;
         preciovihiculo: this.preciovihiculo,
         diaadicional: this.diaadicional,
         totalF: this.totalF,
-        diasdisponible: this.fechadiferencia
+        placa: this.placa,
+        color: this.color,
+        anio: this.anio,
+        precio: this.precio,
+        image: this.image
       }).then(function (response) {
         console.log("SI PASO");
         console.log(response);
@@ -125873,6 +125858,11 @@ var _this = this;
         _this3.autoSeleccionado = response.data[0].marca;
         _this3.fechainicioauto = response.data[0].fechainicioauto;
         _this3.fechafinauto = response.data[0].fechafinauto;
+        _this3.placa = response.data[0].placa;
+        _this3.color = response.data[0].color;
+        _this3.anio = response.data[0].anio;
+        _this3.precio_por_dia = response.data[0].precio_por_dia;
+        _this3.image = response.data[0].imagen1;
         console.log(response.data[0]);
         console.log(response.data[0].precio_por_dia);
       }).catch(function (e) {
@@ -127946,8 +127936,28 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+var _methods;
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -128120,6 +128130,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       dialog4: false,
       dialog5: false,
+      dialog6: false,
       idupdate: "",
       registros: "",
       page: "",
@@ -128148,7 +128159,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
 
   computed: {},
-  methods: {
+  methods: (_methods = {
     rechazo: function rechazo() {},
     crear: function crear() {
       window.location.href = '/reserva/create';
@@ -128165,6 +128176,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       // this.paginas();
       console.log("aqui");
+    },
+    noPaso: function noPaso(item) {
+      console.log(item);
+      this.dialog6 = true;
+      this.idupdate = item.id;
+      // window.location.href = `/reserva/${item.id}/edit`;
     },
     aprobo: function aprobo(item) {
       console.log(item);
@@ -128197,50 +128214,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         this.getDataCliente();
       }
-    },
-    update: function update() {
-      console.log("aqui id para ipdate");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'put',
-        url: '/v1.0/reserva/' + this.idupdate,
-        data: {
-          codigodepago: this.codigodepago,
-          montodepositado: this.montodepositado,
-          Tipopagovalue: this.Tipopagovalue,
-          Bancovalue: this.Bancovalue,
-          estado: 2
-        }
-      }).then(function (response) {
-        response.data;
-        console.log(response.data);
-        window.location.href = '/reserva';
-      });
-    },
-    update1: function update1() {
-      console.log("aqui id para ipdate");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'put',
-        url: '/v1.0/reserva/' + this.idupdate,
-        data: {
-          estado: 3
-
-        }
-      }).then(function (response) {
-        response.data;
-        console.log(response.data);
-        window.location.href = '/reserva';
-      });
-    },
-    close: function close() {
-      this.dialog1 = false;
-      this.dialog = false;
-      console.log("entro seguo que si");
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     }
-  }
+  }, _defineProperty(_methods, 'rechazo', function rechazo() {
+    console.log("aqui id para ipdate");
+    __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+      method: 'put',
+      url: '/v1.0/reserva/' + this.idupdate,
+      data: {
+        estado: 0
+
+      }
+    }).then(function (response) {
+      response.data;
+      console.log(response.data);
+      window.location.href = '/reserva';
+    });
+  }), _defineProperty(_methods, 'update', function update() {
+    console.log("aqui id para ipdate");
+    __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+      method: 'put',
+      url: '/v1.0/reserva/' + this.idupdate,
+      data: {
+        codigodepago: this.codigodepago,
+        montodepositado: this.montodepositado,
+        Tipopagovalue: this.Tipopagovalue,
+        Bancovalue: this.Bancovalue,
+        estado: 2
+      }
+    }).then(function (response) {
+      response.data;
+      console.log(response.data);
+      window.location.href = '/reserva';
+    });
+  }), _defineProperty(_methods, 'update1', function update1() {
+    console.log("aqui id para ipdate");
+    __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+      method: 'put',
+      url: '/v1.0/reserva/' + this.idupdate,
+      data: {
+        estado: 3
+
+      }
+    }).then(function (response) {
+      response.data;
+      console.log(response.data);
+      window.location.href = '/reserva';
+    });
+  }), _defineProperty(_methods, 'update2', function update2() {
+    console.log("aqui id para ipdate");
+    __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+      method: 'put',
+      url: '/v1.0/reserva/' + this.idupdate,
+      data: {
+        estado: 0
+
+      }
+    }).then(function (response) {
+      response.data;
+      console.log(response.data);
+      window.location.href = '/reserva';
+    });
+  }), _defineProperty(_methods, 'close', function close() {
+    this.dialog1 = false;
+    this.dialog = false;
+    console.log("entro seguo que si");
+    // setTimeout(() => {
+    // this.editedItem = Object.assign({}, this.defaultItem)
+    // this.editedIndex = -1
+    // }, 300)
+  }), _methods)
 
 });
 
@@ -128446,6 +128488,84 @@ var render = function() {
                   _c(
                     "v-container",
                     { attrs: { fluid: "", "grid-list-xl": "" } },
+                    [
+                      _c("v-layout", { attrs: { row: "", wrap: "" } }, [
+                        _vm._v("\r\n            Pasar?\r\n          ")
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.update1(), (_vm.dialog5 = false)
+                        }
+                      }
+                    },
+                    [_vm._v("Si")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red darken-1", round: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog5 = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancelar")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "60%" },
+          model: {
+            value: _vm.dialog6,
+            callback: function($$v) {
+              _vm.dialog6 = $$v
+            },
+            expression: "dialog6"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("Esta seguro?")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { fluid: "", "grid-list-xl": "" } },
                     [_c("v-layout", { attrs: { row: "", wrap: "" } })],
                     1
                   )
@@ -128464,11 +128584,11 @@ var render = function() {
                       attrs: { color: "green darken-1", round: "", dark: "" },
                       on: {
                         click: function($event) {
-                          _vm.update1(), (_vm.dialog4 = false)
+                          _vm.update2(), (_vm.dialog6 = false)
                         }
                       }
                     },
-                    [_vm._v("Guardar")]
+                    [_vm._v("Si")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -128477,7 +128597,7 @@ var render = function() {
                       attrs: { color: "red darken-1", round: "", dark: "" },
                       on: {
                         click: function($event) {
-                          _vm.rechazo(), (_vm.dialog5 = false)
+                          _vm.dialog6 = false
                         }
                       }
                     },
@@ -128817,7 +128937,7 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                _vm.rechazo(props.item)
+                                                _vm.noPaso(props.item)
                                               }
                                             }
                                           },

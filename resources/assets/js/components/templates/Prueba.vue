@@ -35,12 +35,12 @@
   </v-container>
 
   <v-container grid-list-lg>
-    <v-layout row wrap>
+    <!-- <v-layout row wrap> -->
       <comp-disponibilidad
       :dispo="disponi"
       >
       </comp-disponibilidad>
-    </v-layout>
+    <!-- </v-layout> -->
   </v-container>
 
 </v-form>
@@ -78,7 +78,8 @@ export default {
           _token: this.csrf
         })
         .then(response => {
-          console.log(response);
+          console.log("dasddssda");
+          console.log(response.data);
           this.disponi = response.data;
           // window.location.href = '/';
         })

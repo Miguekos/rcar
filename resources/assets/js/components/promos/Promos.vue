@@ -213,7 +213,7 @@ button:hover {
 
     </v-data-iterator>
     <div class="text-xs-center pt-2">
-      <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
+      <v-pagination v-model="pagination.page" :length="page"></v-pagination>
     </div>
   </v-container>
 
@@ -237,7 +237,7 @@ export default {
     // pagination: {},
     title: "Promos",
     registros: "",
-    page: "",
+    page: null,
     reviews: 413,
     value: 4.5,
     eliminar: "",

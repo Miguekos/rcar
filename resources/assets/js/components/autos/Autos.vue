@@ -245,7 +245,7 @@ export default {
     // pagination: {},
     title: "Vehiculo",
     registros: "",
-    page: "",
+    page: null,
     reviews: 413,
     value: 4.5,
     eliminar: "",

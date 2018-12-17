@@ -64,13 +64,31 @@
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout row wrap>
+            Pasar?
           </v-layout>
         </v-container>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="green darken-1" round dark @click="update1(), dialog4 = false">Guardar</v-btn>
-        <v-btn color="red darken-1" round dark @click="rechazo(),dialog5 = false">Cancelar</v-btn>
+        <v-btn color="green darken-1" round dark @click="update1(), dialog5 = false">Si</v-btn>
+        <v-btn color="red darken-1" round dark @click="dialog5 = false">Cancelar</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
+  <v-dialog v-model="dialog6" persistent max-width="60%">
+    <v-card style="border-radius: 0px 10px 0px 10px">
+      <v-card-title class="headline">Esta seguro?</v-card-title>
+      <v-card-text>
+        <v-container fluid grid-list-xl>
+          <v-layout row wrap>
+          </v-layout>
+        </v-container>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="green darken-1" round dark @click="update2(), dialog6 = false">Si</v-btn>
+        <v-btn color="red darken-1" round dark @click="dialog6 = false">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -118,7 +136,7 @@
               <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
               <v-spacer></v-spacer>
               <v-btn @click="aprobo(props.item)" small color="primary">Aprobo</v-btn>
-              <v-btn @click="rechazo(props.item)" small color="error">Rechazo</v-btn>
+              <v-btn @click="noPaso(props.item)" small color="error">Rechazo</v-btn>
 
               <!-- <v-btn  small color="error">cancelar</v-btn> -->
             </v-card-actions>
@@ -174,6 +192,7 @@ export default {
     ],
     dialog4: false,
     dialog5: false,
+    dialog6: false,
     idupdate: "",
     registros: "",
     page: "",
@@ -233,6 +252,12 @@ export default {
       console.log("aqui");
 
     },
+    noPaso(item) {
+      console.log(item);
+      this.dialog6 = true;
+      this.idupdate = item.id;
+      // window.location.href = `/reserva/${item.id}/edit`;
+    },
     aprobo(item) {
       console.log(item);
       this.dialog5 = true;
@@ -268,6 +293,22 @@ export default {
         this.getDataCliente();
       }
     },
+    rechazo () {
+      console.log("aqui id para ipdate");
+          axios({
+              method: 'put',
+              url: `/v1.0/reserva/${this.idupdate}`,
+              data: {
+                estado: 0
+                ,
+              }
+          })
+              .then(function (response) {
+                  response.data
+                  console.log(response.data);
+                  window.location.href = '/reserva';
+              });
+          },
     update () {
         console.log("aqui id para ipdate");
             axios({
@@ -303,6 +344,22 @@ export default {
                             window.location.href = '/reserva';
                         });
                     },
+                    update2 () {
+                        console.log("aqui id para ipdate");
+                            axios({
+                                method: 'put',
+                                url: `/v1.0/reserva/${this.idupdate}`,
+                                data: {
+                                  estado: 0
+                                  ,
+                                }
+                            })
+                                .then(function (response) {
+                                    response.data
+                                    console.log(response.data);
+                                    window.location.href = '/reserva';
+                                });
+                            },
     close() {
       this.dialog1 = false
       this.dialog = false

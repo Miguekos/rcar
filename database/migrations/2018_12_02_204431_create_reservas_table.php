@@ -42,6 +42,11 @@ class CreateReservasTable extends Migration
             $table->string('banco')->nullable();
             $table->integer('codigodepago')->nullable();
             $table->float('montodepositado')->nullable();
+            $table->string('placa')->nullable();
+            $table->string('color')->nullable();
+            $table->string('anio')->nullable();
+            $table->string('precio')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
