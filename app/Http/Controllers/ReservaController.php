@@ -30,7 +30,7 @@ class ReservaController extends Controller
     {
       $promo = Promo::all();
       $cliente = Cliente::all();
-      $auto = Auto::all();
+      $auto = Auto::where('estado', '=', 0)->get();
       $reserva = Reserva::count();
         return json_encode([
           'promo' => $promo,

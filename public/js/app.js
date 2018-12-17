@@ -116113,6 +116113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'titulo'],
@@ -116125,6 +116126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       modal: false,
       modal1: false,
       drawer: null,
+      dialog7: false,
       disponi: "",
       back: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -116146,12 +116148,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fechaFin: this.date1,
         _token: this.csrf
       }).then(function (response) {
-        console.log("dasddssda");
-        console.log(response.data);
-        _this.disponi = response.data;
+        if (response.data == "") {
+          // alert("No se consigue data");
+          _this.dialog7 = false;
+        } else {
+          console.log("dasddssda");
+          console.log(response.data);
+          _this.disponi = response.data;
+          _this.dialog7 = false;
+        }
         // window.location.href = '/';
       }).catch(function (e) {
         console.log(e);
+        _this.dialog7 = false;
       });
     },
     link: function link(_link) {
@@ -116164,6 +116173,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     atras: function atras() {
       window.location.href = '/' + this.back;
     }
+  },
+  watch: {
+    // dialog7 (val) {
+    //   if (!val) return
+    //
+    //   setTimeout(() => (this.dialog7 = false), 4000)
+    // }
   }
 });
 
@@ -116178,6 +116194,41 @@ var render = function() {
   return _c(
     "div",
     [
+      _c(
+        "v-dialog",
+        {
+          attrs: { "hide-overlay": "", persistent: "", width: "300" },
+          model: {
+            value: _vm.dialog7,
+            callback: function($$v) {
+              _vm.dialog7 = $$v
+            },
+            expression: "dialog7"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            { attrs: { color: "darken-1", dark: "" } },
+            [
+              _c(
+                "v-card-text",
+                [
+                  _vm._v("\r\n        Buscando...\r\n        "),
+                  _c("v-progress-linear", {
+                    staticClass: "mb-0",
+                    attrs: { indeterminate: "", color: "white" }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "v-form",
         {
@@ -116213,21 +116264,14 @@ var render = function() {
                       _c(
                         "v-menu",
                         {
-                          ref: "menu",
                           attrs: {
                             "close-on-content-click": false,
                             "nudge-right": 40,
-                            "return-value": _vm.date,
                             lazy: "",
                             transition: "scale-transition",
                             "offset-y": "",
                             "full-width": "",
                             "min-width": "290px"
-                          },
-                          on: {
-                            "update:returnValue": function($event) {
-                              _vm.date = $event
-                            }
                           },
                           model: {
                             value: _vm.menu,
@@ -116255,49 +116299,21 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c(
-                            "v-date-picker",
-                            {
-                              attrs: { "no-title": "", scrollable: "" },
-                              model: {
-                                value: _vm.date,
-                                callback: function($$v) {
-                                  _vm.date = $$v
-                                },
-                                expression: "date"
+                          _c("v-date-picker", {
+                            attrs: { locale: "Es-es" },
+                            on: {
+                              input: function($event) {
+                                _vm.menu = false
                               }
                             },
-                            [
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", color: "primary" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.menu = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Cancel")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", color: "primary" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.$refs.menu.save(_vm.date)
-                                    }
-                                  }
-                                },
-                                [_vm._v("OK")]
-                              )
-                            ],
-                            1
-                          )
+                            model: {
+                              value: _vm.date,
+                              callback: function($$v) {
+                                _vm.date = $$v
+                              },
+                              expression: "date"
+                            }
+                          })
                         ],
                         1
                       )
@@ -116314,21 +116330,14 @@ var render = function() {
                       _c(
                         "v-menu",
                         {
-                          ref: "menu1",
                           attrs: {
                             "close-on-content-click": false,
                             "nudge-right": 40,
-                            "return-value": _vm.date1,
                             lazy: "",
                             transition: "scale-transition",
                             "offset-y": "",
                             "full-width": "",
                             "min-width": "290px"
-                          },
-                          on: {
-                            "update:returnValue": function($event) {
-                              _vm.date1 = $event
-                            }
                           },
                           model: {
                             value: _vm.menu1,
@@ -116356,49 +116365,21 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c(
-                            "v-date-picker",
-                            {
-                              attrs: { "no-title": "", scrollable: "" },
-                              model: {
-                                value: _vm.date1,
-                                callback: function($$v) {
-                                  _vm.date1 = $$v
-                                },
-                                expression: "date1"
+                          _c("v-date-picker", {
+                            attrs: { locale: "Es-es" },
+                            on: {
+                              input: function($event) {
+                                _vm.menu1 = false
                               }
                             },
-                            [
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", color: "primary" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.menu1 = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Cancel")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", color: "primary" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.$refs.menu1.save(_vm.date1)
-                                    }
-                                  }
-                                },
-                                [_vm._v("OK")]
-                              )
-                            ],
-                            1
-                          )
+                            model: {
+                              value: _vm.date1,
+                              callback: function($$v) {
+                                _vm.date1 = $$v
+                              },
+                              expression: "date1"
+                            }
+                          })
                         ],
                         1
                       )
@@ -116414,15 +116395,33 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-container",
-            { attrs: { "grid-list-xs,sm,md,lg,xl": "" } },
+            { staticClass: "pa-0", attrs: { "grid-list-xs,sm,md,lg,xl": "" } },
             [
               _c(
                 "v-flex",
-                { attrs: { "text-lg-center": "", lg12: "" } },
+                {
+                  staticClass: "pa-0",
+                  attrs: { "text-lg-center": "", lg12: "" }
+                },
                 [
-                  _c("v-btn", { attrs: { type: "submit", color: "primary" } }, [
-                    _vm._v("Buscar")
-                  ])
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: {
+                        disabled: _vm.dialog7,
+                        loading: _vm.dialog7,
+                        type: "submit",
+                        color: "primary"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog7 = true
+                        }
+                      }
+                    },
+                    [_vm._v("Buscar")]
+                  )
                 ],
                 1
               )
@@ -125645,18 +125644,6 @@ var _this = this;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -125785,7 +125772,7 @@ var _this = this;
   },
   created: function created() {
     console.log(moment().format());
-    this.getDataCliente();
+    this.getData();
     console.log(this.formulario);
   },
 
@@ -125793,7 +125780,7 @@ var _this = this;
     onDateRangeChange: function onDateRangeChange(range) {
       this.range = range;
     },
-    getDataCliente: function getDataCliente() {
+    getData: function getData() {
       var _this2 = this;
 
       console.log("OpteniandoDatosDeeserva");
@@ -125890,6 +125877,12 @@ var _this = this;
       }).catch(function (e) {
         _this5.errors.push(e);
       });
+    },
+    agregarCliente: function agregarCliente() {
+      window.location.href = '/cliente/create';
+    },
+    agregarPromo: function agregarPromo() {
+      window.location.href = '/promo/create';
     }
   }
 });
@@ -126077,6 +126070,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("v-autocomplete", {
                       attrs: {
+                        "append-outer-icon": "add",
                         items: _vm.cliente,
                         "item-text": "nombres",
                         "item-value": "id",
@@ -126085,6 +126079,9 @@ var render = function() {
                         solo: ""
                       },
                       on: {
+                        "click:append-outer": function($event) {
+                          _vm.agregarCliente()
+                        },
                         change: function($event) {
                           _vm.verCliente()
                         }
@@ -126121,6 +126118,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("v-autocomplete", {
                       attrs: {
+                        "append-outer-icon": "add",
                         items: _vm.promo,
                         "item-text": "nombre",
                         "item-value": "id",
@@ -126129,6 +126127,9 @@ var render = function() {
                         solo: ""
                       },
                       on: {
+                        "click:append-outer": function($event) {
+                          _vm.agregarPromo()
+                        },
                         change: function($event) {
                           _vm.verPromo()
                         }
@@ -126269,7 +126270,7 @@ var render = function() {
                     _c("v-divider"),
                     _vm._v(" "),
                     _c("v-card-title", { attrs: { "primary-title": "" } }, [
-                      _vm._v("\r\n          Adicionales\r\n        ")
+                      _vm._v("\r\n            Adicionales\r\n          ")
                     ]),
                     _vm._v(" "),
                     _c(

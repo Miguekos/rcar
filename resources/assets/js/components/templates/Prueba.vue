@@ -1,50 +1,51 @@
 <template>
-  <div>
+<div>
+  <v-dialog v-model="dialog7" hide-overlay persistent width="300">
+    <v-card color="darken-1" dark>
+      <v-card-text>
+        Buscando...
+        <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
   <v-form method="post" @submit.prevent="disponible()">
-  <v-container grid-list-lg>
-    <v-layout align-center justify-center fill-height>
-      <v-flex xs12 sm4 md4>
-        <label>Fecha Inicio</label>
-        <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" :return-value.sync="date" lazy transition="scale-transition" offset-y full-width min-width="290px">
-          <v-text-field solo slot="activator" v-model="date" prepend-icon="event" readonly></v-text-field>
-          <v-date-picker v-model="date" no-title scrollable>
-            <v-spacer></v-spacer>
-            <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-            <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-          </v-date-picker>
-        </v-menu>
-      </v-flex>
+    <v-container grid-list-lg>
+      <v-layout align-center justify-center fill-height>
+        <v-flex xs12 sm4 md4>
+          <label>Fecha Inicio</label>
+          <v-menu :close-on-content-click="false" v-model="menu" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
+            <v-text-field slot="activator" v-model="date" solo prepend-icon="event" readonly></v-text-field>
+            <v-date-picker locale="Es-es" v-model="date" @input="menu = false"></v-date-picker>
+          </v-menu>
+        </v-flex>
 
-      <v-flex xs12 sm4 md4>
-        <label>Fecha Fin</label>
-        <v-menu ref="menu1" :close-on-content-click="false" v-model="menu1" :nudge-right="40" :return-value.sync="date1" lazy transition="scale-transition" offset-y full-width min-width="290px">
-          <v-text-field solo slot="activator" v-model="date1" prepend-icon="event" readonly></v-text-field>
-          <v-date-picker v-model="date1" no-title scrollable>
-            <v-spacer></v-spacer>
-            <v-btn flat color="primary" @click="menu1 = false">Cancel</v-btn>
-            <v-btn flat color="primary" @click="$refs.menu1.save(date1)">OK</v-btn>
-          </v-date-picker>
-        </v-menu>
+        <v-flex xs12 sm4 md4>
+          <label>Fecha Fin</label>
+          <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
+            <v-text-field slot="activator" v-model="date1" solo prepend-icon="event" readonly></v-text-field>
+            <v-date-picker locale="Es-es" v-model="date1" @input="menu1 = false"></v-date-picker>
+          </v-menu>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-container class="pa-0" grid-list-xs,sm,md,lg,xl>
+      <v-flex class="pa-0" text-lg-center lg12>
+        <v-btn :disabled="dialog7"
+      :loading="dialog7"
+      class="white--text"
+      @click="dialog7 = true" type="submit" color="primary">Buscar</v-btn>
       </v-flex>
-    </v-layout>
-  </v-container>
-  <v-container grid-list-xs,sm,md,lg,xl>
-    <v-flex text-lg-center lg12>
-      <v-btn type="submit" color="primary">Buscar</v-btn>
-    </v-flex>
-  </v-container>
+    </v-container>
 
-  <v-container grid-list-lg>
-    <!-- <v-layout row wrap> -->
-      <comp-disponibilidad
-      :dispo="disponi"
-      >
+    <v-container grid-list-lg>
+      <!-- <v-layout row wrap> -->
+      <comp-disponibilidad :dispo="disponi">
       </comp-disponibilidad>
-    <!-- </v-layout> -->
-  </v-container>
+      <!-- </v-layout> -->
+    </v-container>
 
-</v-form>
-<!-- <pre>{{ $data }}</pre> -->
+  </v-form>
+  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 
@@ -59,6 +60,7 @@ export default {
     modal: false,
     modal1: false,
     drawer: null,
+    dialog7: false,
     disponi: "",
     back: "",
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -78,13 +80,21 @@ export default {
           _token: this.csrf
         })
         .then(response => {
-          console.log("dasddssda");
-          console.log(response.data);
-          this.disponi = response.data;
+          if (response.data == "") {
+            // alert("No se consigue data");
+            this.dialog7 = false;
+          } else {
+            console.log("dasddssda");
+            console.log(response.data);
+            this.disponi = response.data;
+            this.dialog7 = false;
+          }
           // window.location.href = '/';
         })
         .catch(e => {
           console.log(e);
+          this.dialog7 = false;
+
         });
     },
     link(link) {
@@ -98,5 +108,12 @@ export default {
       window.location.href = `/${this.back}`;
     },
   },
+  watch: {
+      // dialog7 (val) {
+      //   if (!val) return
+      //
+      //   setTimeout(() => (this.dialog7 = false), 4000)
+      // }
+    }
 }
 </script>
