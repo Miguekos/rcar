@@ -88,6 +88,13 @@ class ReservaController extends Controller
         return view('reservas.create');
     }
 
+    public function createredirect($auto)
+    {
+      $autos = Auto::find($auto);
+      return view('reservas.create',compact('autos'));
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

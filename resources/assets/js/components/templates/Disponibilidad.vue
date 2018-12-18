@@ -171,42 +171,49 @@ button:hover {
     <v-data-iterator :items="dispo" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
       <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
-        <v-card class="mx-auto" hover tile>
-          <v-layout align-center justify-center row fill-height>
-            <v-flex xs1>
-            </v-flex>
-            <v-flex xs3>
-              <v-avatar size="70%">
-                <v-img :src="props.item.image"></v-img>
-                <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
-              </v-avatar>
-            </v-flex>
-            <v-flex xs8>
-              <v-flex text-xs-right text-lg-right text-sm-right>
-                <v-icon small class="mr-2" @click="editItem(props.item)">
-                  edit
-                </v-icon>
-                <v-icon small @click="deleteItem(props.item)">
-                  close
-                </v-icon>
-              </v-flex>
-              <v-card-title primary-title>
-                <div>
-                  <div>
-                    <h2>{{ props.item.autoSeleccionado }}</h2>
-                  </div>
-                  <div class="text-xs-left">{{ props.item.placa }}</div>
-                  <div>{{ props.item.color }}</div>
-                  <v-spacer></v-spacer>
-                  <div class="text-xs-left">{{ props.item.anio }}</div>
-                  <div>{{ props.item.precio }}</div>
-                  <!-- <v-flex align-content-end> -->
-                    <!-- <v-icon small class="mr-2" @click="dialog3 = true"> -->
-                      <!-- mail_outline -->
-                    <!-- </v-icon> -->
-                  <!-- </v-flex> -->
-                </div>
-              </v-card-title>
+                <v-card @click="reservarAuto(props.item)" ripple hover>
+                  <v-layout align-center justify-center row fill-height>
+                    <v-flex xs1></v-flex>
+                    <v-flex xs3>
+                      <v-avatar size="70%">
+                        <v-img src="loginnew/images/logo.png"></v-img>
+                      </v-avatar>
+                    </v-flex>
+                    <v-flex xs8>
+                      <v-flex text-xs-right text-lg-right text-sm-right>
+                        <!-- <v-icon small class="mr-2" @click="editItem(props.item)">
+                          edit
+                        </v-icon>
+                        <v-icon small @click="deleteItem(props.item)">
+                          close
+                        </v-icon> -->
+                      </v-flex>
+                      <v-card-title primary-title>
+                        <v-layout align-center justify-space-around row fill-height>
+
+                          <div>
+                            <div class="headline">{{ props.item.autoSeleccionado }}</div>
+                            <div class="text-xs-left"><strong>Placa:</strong> {{ props.item.placa }}$</div>
+                            <div class="text-xs-left"><strong>Color:</strong> {{ props.item.color }}</div>
+                          </div>
+                          <div>
+                            <div class="text-xs-right"><strong>Año:</strong> {{ props.item.anio }}</div>
+                            <div class="text-xs-right"><strong>Precio:</strong> {{ props.item.precio }}</div>
+                            <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechaFin }}</div>
+                          </div>
+                        </v-layout>
+                      </v-card-title>
+                    </v-flex>
+                  </v-layout>
+                  <!-- <v-divider dense light></v-divider> -->
+                  <v-card-actions>
+                    <!-- <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
+                    <v-spacer></v-spacer>
+                    <v-btn @click="confirmar(props.item)" small color="primary">confirmar</v-btn> -->
+
+                    <!-- <v-btn  small color="error">cancelar</v-btn> -->
+                  </v-card-actions>
+                </v-card>
             </v-flex>
           </v-layout>
         </v-card>
@@ -241,23 +248,6 @@ export default {
   data: () => ({
     color: 0,
     colors: [
-      'red',
-      'pink',
-      'purple',
-      'deep-purple',
-      'indigo',
-      'blue',
-      'light-blue',
-      'cyan',
-      'teal',
-      'green',
-      'light-green',
-      'lime',
-      'yellow',
-      'amber',
-      'orange',
-      'deep-orange',
-      'brown',
       'blue-grey',
       'grey'
     ],
@@ -300,39 +290,10 @@ export default {
     crear() {
       window.location.href = '/cliente/create';
     },
-    // getDataCliente() {
-    //   console.log("en get data nuew");
-    //   axios
-    //     .get(`/v1.0/clientes`)
-    //     .then(response => {
-    //       this.items = response.data.cliente;
-    //       this.total = response.data.clientec;
-    //       this.fecha = response.data.fecha;
-    //       this.clienten = response.data.clienten;
-    //       console.log(response.data.fecha);
-    //       var paginas = Math.ceil(response.data.clientec / 8);
-    //       this.page = paginas;
-    //     })
-    //     .catch(e => {
-    //       this.errors.push(e);
-    //     });
-    // },
-    editItem(item) {
-      window.location.href = `/cliente/${item.id}/edit`;
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
-      // this.dialog1 = true
-      // this.idedit = item.id
-      // console.log(item.id);
-      // axios
-      // .get(`/v1.0/cliente/${item.id}`)
-      // .then(response => {
-      // this.editCliente = response.data;
-      // console.log(response.data);
-      // })
-      // .catch(e => {
-      // this.errors.push(e);
-      // });
+    reservarAuto(item) {
+      window.location.href = `/reserva/create/${item.id}`;
+      console.log(item);
+      alert(item);
     },
     deleteItem(item) {
       // const index = this.desserts.indexOf(item)

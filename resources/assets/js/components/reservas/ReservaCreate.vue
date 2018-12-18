@@ -262,7 +262,7 @@ import DateRange from 'vuetify-daterange-picker';
 // });
 
 export default {
-  props: ['token'],
+  props: ['token','vehiculo'],
   data: () => ({
     fechainicioauto: "",
     fechafinauto: "",

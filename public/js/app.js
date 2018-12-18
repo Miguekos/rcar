@@ -115422,6 +115422,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -115431,7 +115438,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return _ref = {
       color: 0,
-      colors: ['red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue', 'cyan', 'teal', 'green', 'light-green', 'lime', 'yellow', 'amber', 'orange', 'deep-orange', 'brown', 'blue-grey', 'grey'],
+      colors: ['blue-grey', 'grey'],
       // boton inicio
       // boton fin
       // pagination: {},
@@ -115465,40 +115472,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     crear: function crear() {
       window.location.href = '/cliente/create';
     },
-
-    // getDataCliente() {
-    //   console.log("en get data nuew");
-    //   axios
-    //     .get(`/v1.0/clientes`)
-    //     .then(response => {
-    //       this.items = response.data.cliente;
-    //       this.total = response.data.clientec;
-    //       this.fecha = response.data.fecha;
-    //       this.clienten = response.data.clienten;
-    //       console.log(response.data.fecha);
-    //       var paginas = Math.ceil(response.data.clientec / 8);
-    //       this.page = paginas;
-    //     })
-    //     .catch(e => {
-    //       this.errors.push(e);
-    //     });
-    // },
-    editItem: function editItem(item) {
-      window.location.href = '/cliente/' + item.id + '/edit';
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
-      // this.dialog1 = true
-      // this.idedit = item.id
-      // console.log(item.id);
-      // axios
-      // .get(`/v1.0/cliente/${item.id}`)
-      // .then(response => {
-      // this.editCliente = response.data;
-      // console.log(response.data);
-      // })
-      // .catch(e => {
-      // this.errors.push(e);
-      // });
+    reservarAuto: function reservarAuto(item) {
+      window.location.href = '/reserva/create/' + item.id;
+      console.log(item);
+      alert(item);
     },
     deleteItem: function deleteItem(item) {
       // const index = this.desserts.indexOf(item)
@@ -115784,8 +115761,12 @@ var render = function() {
                         _c(
                           "v-card",
                           {
-                            staticClass: "mx-auto",
-                            attrs: { hover: "", tile: "" }
+                            attrs: { ripple: "", hover: "" },
+                            on: {
+                              click: function($event) {
+                                _vm.reservarAuto(props.item)
+                              }
+                            }
                           },
                           [
                             _c(
@@ -115810,7 +115791,9 @@ var render = function() {
                                       { attrs: { size: "70%" } },
                                       [
                                         _c("v-img", {
-                                          attrs: { src: props.item.image }
+                                          attrs: {
+                                            src: "loginnew/images/logo.png"
+                                          }
                                         })
                                       ],
                                       1
@@ -115823,110 +115806,140 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs8: "" } },
                                   [
-                                    _c(
-                                      "v-flex",
-                                      {
-                                        attrs: {
-                                          "text-xs-right": "",
-                                          "text-lg-right": "",
-                                          "text-sm-right": ""
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "v-icon",
-                                          {
-                                            staticClass: "mr-2",
-                                            attrs: { small: "" },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.editItem(props.item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\r\n                  edit\r\n                "
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-icon",
-                                          {
-                                            attrs: { small: "" },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.deleteItem(props.item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\r\n                  close\r\n                "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    ),
+                                    _c("v-flex", {
+                                      attrs: {
+                                        "text-xs-right": "",
+                                        "text-lg-right": "",
+                                        "text-sm-right": ""
+                                      }
+                                    }),
                                     _vm._v(" "),
                                     _c(
                                       "v-card-title",
                                       { attrs: { "primary-title": "" } },
                                       [
                                         _c(
-                                          "div",
+                                          "v-layout",
+                                          {
+                                            attrs: {
+                                              "align-center": "",
+                                              "justify-space-around": "",
+                                              row: "",
+                                              "fill-height": ""
+                                            }
+                                          },
                                           [
                                             _c("div", [
-                                              _c("h2", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    props.item.autoSeleccionado
+                                              _c(
+                                                "div",
+                                                { staticClass: "headline" },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      props.item
+                                                        .autoSeleccionado
+                                                    )
                                                   )
-                                                )
-                                              ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "text-xs-left" },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v("Placa:")
+                                                  ]),
+                                                  _vm._v(
+                                                    " " +
+                                                      _vm._s(props.item.placa) +
+                                                      "$"
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "text-xs-left" },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v("Color:")
+                                                  ]),
+                                                  _vm._v(
+                                                    " " +
+                                                      _vm._s(props.item.color)
+                                                  )
+                                                ]
+                                              )
                                             ]),
                                             _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "text-xs-left" },
-                                              [_vm._v(_vm._s(props.item.placa))]
-                                            ),
-                                            _vm._v(" "),
                                             _c("div", [
-                                              _vm._v(_vm._s(props.item.color))
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("v-spacer"),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "text-xs-left" },
-                                              [_vm._v(_vm._s(props.item.anio))]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("div", [
-                                              _vm._v(_vm._s(props.item.precio))
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "text-xs-right"
+                                                },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v("Año:")
+                                                  ]),
+                                                  _vm._v(
+                                                    " " +
+                                                      _vm._s(props.item.anio)
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "text-xs-right"
+                                                },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v("Precio:")
+                                                  ]),
+                                                  _vm._v(
+                                                    " " +
+                                                      _vm._s(props.item.precio)
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "text-xs-right"
+                                                },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v("Fecha Fin:")
+                                                  ]),
+                                                  _vm._v(
+                                                    " " +
+                                                      _vm._s(
+                                                        props.item.fechaFin
+                                                      )
+                                                  )
+                                                ]
+                                              )
                                             ])
-                                          ],
-                                          1
+                                          ]
                                         )
-                                      ]
+                                      ],
+                                      1
                                     )
                                   ],
                                   1
                                 )
                               ],
                               1
-                            )
+                            ),
+                            _vm._v(" "),
+                            _c("v-card-actions")
                           ],
                           1
-                        ),
-                        _vm._v(" "),
-                        _c("hr"),
-                        _vm._v(" "),
-                        _c("v-divider")
+                        )
                       ],
                       1
                     )
@@ -115935,6 +115948,10 @@ var render = function() {
               ])
             },
             [
+              _c("hr"),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
               _c(
                 "template",
                 { slot: "no-data" },
@@ -125658,7 +125675,7 @@ var _this = this;
 // });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['token'],
+  props: ['token', 'vehiculo'],
   data: function data() {
     return {
       fechainicioauto: "",

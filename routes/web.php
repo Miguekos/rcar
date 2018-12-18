@@ -71,6 +71,7 @@ Route::resource('promo','PromoController')->middleware('auth');
 
 // reservas
 Route::resource('reserva','ReservaController')->middleware('auth');
+Route::get('reserva/create/{auto}', 'ReservaController@createredirect')->name('createredirect');
 
 // promos
 Route::resource('auto','AutoController')->middleware('auth');
