@@ -262,7 +262,7 @@ import DateRange from 'vuetify-daterange-picker';
 // });
 
 export default {
-  props: ['token','user'],
+  props: ['token','vehiculodis','user','fechai','fechaf'],
   data: () => ({
     fechainicioauto: "",
     fechafinauto: "",
@@ -279,8 +279,10 @@ export default {
     diaadicional: 0,
     totalF: 0,
     afacturar: null,
-    fecha1: new Date().toISOString().substr(0, 10),
-    fecha2: new Date().toISOString().substr(0, 10),
+    // fecha1: new Date().toISOString().substr(0, 10),
+    // fecha2: new Date().toISOString().substr(0, 10),
+    fecha1: "",
+    fecha2: "",
     menu1: false,
     menu2: false,
     puntosd: "",
@@ -361,7 +363,6 @@ export default {
     },
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
   }),
-
   components: {
     DateRange: DateRange
   },
@@ -384,14 +385,22 @@ export default {
         parseFloat(this.tanqueLleno) +
         parseFloat(this.zonas) +
         parseFloat(this.seguro) + totalv;
-      this.totalF = total.toFixed(2);
+        this.totalF = total.toFixed(2);
       return total.toFixed(2);
     },
   },
   created() {
     console.log(moment().format());
     this.getData();
+    this.vehiculoId = this.vehiculodis;
+    this.fecha1 = this.fechai;
+    this.fecha2 = this.fechaf;
+    console.log(this.fechai);
+    console.log(this.fechaf);
+    console.log("Abajo Vehiculo Dis");
+    console.log(this.vehiculodis);
     console.log(this.formulario);
+    this.verAuto();
   },
   methods: {
     onDateRangeChange(range) {

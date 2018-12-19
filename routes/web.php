@@ -71,7 +71,7 @@ Route::resource('promo','PromoController')->middleware('auth');
 
 // reservas
 Route::resource('reserva','ReservaController')->middleware('auth');
-Route::get('reserva/create/{auto}', 'ReservaController@createredirect')->name('createredirect');
+Route::get('reserva/createdis/{auto}/{fechaI}/{fechaF}', 'ReservaController@createredirect')->name('createredirect')->middleware('auth');
 
 // promos
 Route::resource('auto','AutoController')->middleware('auth');
@@ -87,4 +87,4 @@ Route::post('cambioclave/{empleado}', 'DashboardController@cambioclave')->name('
 Route::resource('cliente', 'ClienteController')->middleware('auth');
 
 // Generar prueba
-Route::get('prueba', 'DashboardController@prueba')->name('prueba');
+Route::get('prueba', 'DashboardController@prueba')->name('prueba')->middleware('auth');

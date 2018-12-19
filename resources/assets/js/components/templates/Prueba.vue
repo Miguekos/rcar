@@ -29,7 +29,7 @@
       </v-layout>
     </v-container>
     <v-container class="pa-0" grid-list-xs,sm,md,lg,xl>
-      <v-flex class="pa-0" text-lg-center lg12>
+      <v-flex class="pa-0" text-lg-center text-xs-center lg12>
         <v-btn :disabled="dialog7"
       :loading="dialog7"
       class="white--text"
@@ -39,7 +39,11 @@
 
     <v-container grid-list-lg>
       <!-- <v-layout row wrap> -->
-      <comp-disponibilidad :dispo="disponi">
+      <comp-disponibilidad
+      :dispo="disponi"
+      :fechaI="date"
+      :fechaF="date1"
+      >
       </comp-disponibilidad>
       <!-- </v-layout> -->
     </v-container>

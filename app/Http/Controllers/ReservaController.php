@@ -88,10 +88,14 @@ class ReservaController extends Controller
         return view('reservas.create');
     }
 
-    public function createredirect($auto)
+    public function createredirect($auto, $fechaI, $fechaF)
     {
-      $autos = Auto::find($auto);
-      return view('reservas.create',compact('autos'));
+      // return $fechaI . $fechaF . $auto;
+      $id = $auto;
+      $fechaIn = $fechaI;
+      $fechaFn = $fechaF;
+      return view('reservas.createdis',compact('id','fechaIn','fechaFn'));
+
     }
 
 
@@ -109,6 +113,12 @@ class ReservaController extends Controller
     public function storeapi(Request $request)
     {
         $reserva = Reserva::create($request->all());
+
+        Auto::where('id', $request->vehiculo)
+            ->update(['estado' => 1]);
+
+        // return $request->vehiculo;
+        // return $qwe;
         return $reserva;
     }
 

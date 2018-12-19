@@ -244,7 +244,7 @@ button:hover {
 <script>
 import axios from 'axios';
 export default {
-  props: ['user','dispo'],
+  props: ['user','dispo','fechaI','fechaF'],
   data: () => ({
     color: 0,
     colors: [
@@ -254,6 +254,8 @@ export default {
     // boton inicio
     // boton fin
     // pagination: {},
+    fechaI: "",
+    fechaF: "",
     title: "Clientes",
     page: "",
     reviews: 413,
@@ -280,6 +282,8 @@ export default {
     },
   }),
   created() {
+    // this.fechaI = this.dispo.fechaFin;
+    // this.fechaF = this.dispo.fechaFin;
     // this.getDataCliente();
     // this.items = this.dispo.data;
   },
@@ -291,9 +295,9 @@ export default {
       window.location.href = '/cliente/create';
     },
     reservarAuto(item) {
-      window.location.href = `/reserva/create/${item.id}`;
+      window.location.href = `/reserva/createdis/${item.id}/${this.fechaI}/${this.fechaF}`;
       console.log(item);
-      alert(item);
+      // alert(item);
     },
     deleteItem(item) {
       // const index = this.desserts.indexOf(item)

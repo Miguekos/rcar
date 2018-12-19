@@ -5,10 +5,8 @@
 @endsection
 
 @section('content')
-  {{ autos }}
   <v-container grid-list-xl>
     <cliente-create
-    :vehiculo="autos"
     >
     </cliente-create>
   </v-container>
