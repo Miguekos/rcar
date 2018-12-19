@@ -10,7 +10,7 @@
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>{{ user.name }}</v-list-tile-title>
-            v1.2
+            v1.3
           </v-list-tile-content>
         </v-list-tile>
       </v-list>

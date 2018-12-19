@@ -114066,7 +114066,7 @@ var render = function() {
                           _c("v-list-tile-title", [
                             _vm._v(_vm._s(_vm.user.name))
                           ]),
-                          _vm._v("\r\n            v1.2\r\n          ")
+                          _vm._v("\r\n            v1.3\r\n          ")
                         ],
                         1
                       )
