@@ -88,7 +88,7 @@ table.v-table tbody th {
             </v-flex>
           </v-layout>
         </v-card-text>
-        </v-card>
+
       </v-flex>
       <v-flex xs12 lg5 elevation-3>
         <v-flex>
@@ -151,11 +151,9 @@ table.v-table tbody th {
     <br>
     <!-- <v-container lg12> -->
     <v-layout align-center justify-center>
-
       <v-flex>
         <v-card>
           <v-card-text>
-
             <v-toolbar-title>Precio Total</v-toolbar-title>
             <table class="v-datatable v-table theme--light">
               <thead>

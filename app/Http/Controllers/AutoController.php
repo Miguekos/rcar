@@ -73,7 +73,8 @@ class AutoController extends Controller
      */
     public function show(Auto $auto)
     {
-        //
+      $autos = Auto::find($auto);
+      return view('autos.show',compact('autos'));
     }
 
     public function showapi(Auto $auto)

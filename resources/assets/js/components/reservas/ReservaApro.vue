@@ -77,7 +77,7 @@
 
   <v-container grid-list-md fluid text-xs-justify>
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
-      <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
+      <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
         <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 1}`" class="mx-auto">
             <v-layout align-center justify-center row fill-height>
@@ -98,9 +98,8 @@
                 </v-flex>
                 <v-card-title primary-title>
                   <v-layout align-center justify-space-around row fill-height>
-
                     <div>
-                      <div class="headline">{{ props.item.cliente }}</div>
+                      <div class="title">{{ props.item.cliente }}</div>
                       <div class="text-xs-left"><strong>Monto a pagar:</strong> {{ props.item.totalF }}$</div>
                       <div class="text-xs-left"><strong>Dias Disponible:</strong> {{ props.item.diasdisponible }}</div>
                     </div>
@@ -115,7 +114,7 @@
             </v-layout>
             <!-- <v-divider dense light></v-divider> -->
             <v-card-actions>
-              <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
+              <strong>N° Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
               <v-spacer></v-spacer>
               <v-btn @click="activar(props.item)" small color="primary">Activar</v-btn>
 

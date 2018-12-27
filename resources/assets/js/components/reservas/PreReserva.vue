@@ -24,66 +24,66 @@
 <template id="prereserva">
 <div class="">
 
-  <v-dialog v-model="dialog4" persistent max-width="60%">
+  <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
     <form method="post" @submit.prevent="update()">
       <v-card style="border-radius: 0px 10px 0px 10px">
         <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
         <v-card-text>
-          <v-container fluid grid-list-xl>
-            <v-layout row wrap>
-              <v-flex xs12 sm6 md3>
-                <v-select required :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+          <v-container fluid="fluid" grid-list-xl="grid-list-xl">
+            <v-layout row="row" wrap="wrap">
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-select required="required" :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
               </v-flex>
 
-              <v-flex xs12 sm6 md3>
-                <v-select required :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-select required="required" :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
               </v-flex>
 
-              <v-flex xs12 sm6 md3>
-                <v-text-field required label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-text-field required="required" label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
               </v-flex>
 
-              <v-flex xs12 sm6 md3>
-                <v-text-field required label="Monto Depositado" v-model="montodepositado"></v-text-field>
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-text-field required="required" label="Monto Depositado" v-model="montodepositado"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" round dark type="submit">Guardar</v-btn>
-          <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
+          <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn>
+          <v-btn color="red darken-1" round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
         </v-card-actions>
       </v-card>
     </form>
   </v-dialog>
 
-  <v-container grid-list-md fluid text-xs-justify>
-    <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
-      <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
+  <v-container grid-list-md="grid-list-md" fluid="fluid" text-xs-justify="text-xs-justify">
+    <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row="row" wrap="wrap" hide-actions="hide-actions">
+      <v-flex slot="item" slot-scope="props" xs12="xs12" sm12="sm12" md6="md6" lg6="lg6">
         <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 1}`" class="mx-auto">
-            <v-layout align-center justify-center row fill-height>
-              <v-flex xs1></v-flex>
-              <v-flex xs3>
+            <v-layout align-center="align-center" justify-center="justify-center" row="row" fill-height="fill-height">
+              <v-flex xs1="xs1"></v-flex>
+              <v-flex xs3="xs3">
                 <v-avatar size="70%">
                   <v-img src="loginnew/images/logo.png"></v-img>
                 </v-avatar>
               </v-flex>
-              <v-flex xs8>
-                <v-flex text-xs-right text-lg-right text-sm-right>
-                  <v-icon small class="mr-2" @click="editItem(props.item)">
+              <v-flex xs8="xs8">
+
+                <v-flex text-xs-right="text-xs-right" text-lg-right="text-lg-right" text-sm-right="text-sm-right">
+                  <v-icon small="small" class="mr-2" @click="editItem(props.item)">
                     edit
                   </v-icon>
-                  <v-icon small @click="deleteItem(props.item)">
+                  <v-icon small="small" @click="deleteItem(props.item)">
                     close
                   </v-icon>
                 </v-flex>
                 <v-card-title primary-title>
                   <v-layout align-center justify-space-around row fill-height>
-
                     <div>
-                      <div class="headline">{{ props.item.cliente }}</div>
+                      <div class="title">{{ props.item.cliente }}</div>
                       <div class="text-xs-left"><strong>Monto a pagar:</strong> {{ props.item.totalF }}$</div>
                       <div class="text-xs-left"><strong>Dias Disponible:</strong> {{ props.item.diasdisponible }}</div>
                     </div>
@@ -98,11 +98,13 @@
             </v-layout>
             <!-- <v-divider dense light></v-divider> -->
             <v-card-actions>
-              <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
+              <strong>N° Reserva:&nbsp
+              </strong>
+              00000{{ props.item.nreserva }}
               <v-spacer></v-spacer>
-              <v-btn @click="confirmar(props.item)" small color="primary">confirmar</v-btn>
+              <v-btn @click="confirmar(props.item)" small="small" color="primary">confirmar</v-btn>
 
-              <!-- <v-btn  small color="error">cancelar</v-btn> -->
+              <!-- <v-btn small color="error">cancelar</v-btn> -->
             </v-card-actions>
           </v-card>
         </v-hover>

@@ -72,6 +72,7 @@ Route::resource('promo','PromoController')->middleware('auth');
 // reservas
 Route::resource('reserva','ReservaController')->middleware('auth');
 Route::get('reserva/createdis/{auto}/{fechaI}/{fechaF}', 'ReservaController@createredirect')->name('createredirect')->middleware('auth');
+Route::get('cargoalquiler', 'ReservaController@cargoalquiler')->name('cargoalquiler')->middleware('auth');
 
 // promos
 Route::resource('auto','AutoController')->middleware('auth');

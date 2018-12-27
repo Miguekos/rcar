@@ -133,6 +133,10 @@ class ReservaController extends Controller
         //
     }
 
+    public function showapi(Reserva $reserva)
+    {
+        return $reserva;
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -177,5 +181,15 @@ class ReservaController extends Controller
     public function destroy(Reserva $reserva)
     {
         //
+    }
+
+    public function cargoalquiler()
+    {
+      return view('reservas.cargo');
+    }
+
+    public function generarcontrato()
+    {
+      return view('reservas.contrato');
     }
 }
