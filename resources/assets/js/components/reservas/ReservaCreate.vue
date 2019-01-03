@@ -51,7 +51,7 @@ table.v-table tbody th {
           <label>Producto</label>
           <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
           <label>Paquete</label>
-          <v-autocomplete @click:append-outer="agregarPromo()" append-outer-icon="add" :items="promo" item-text="nombre" item-value="id" @change="verPromo()" v-model="promoId" placeholder="Select..." required solo></v-autocomplete>
+          <v-autocomplete :items="promo" item-text="nombre" item-value="id" @change="verPromo()" v-model="promoId" placeholder="Select..." required solo></v-autocomplete>
           <label>Zona de Entrega</label>
           <v-select :items="zonaItem" item-text="name" item-value="value" v-model="zonas" placeholder="Select..." solo></v-select>
           <label>Direccion de Entrega</label>
@@ -65,11 +65,11 @@ table.v-table tbody th {
             </v-flex>
             <v-flex xs12 sm3 lg3>
               <label>Puntos a Canjear</label>
-              <v-text-field v-model="puntosc" solo></v-text-field>
+              <v-text-field type="number" v-model="puntosc" solo></v-text-field>
             </v-flex>
             <v-flex xs12 sm3 lg3>
               <label>Dias Disponibles</label>
-              <v-text-field v-model="diasd" solo></v-text-field>
+              <v-text-field readonly v-model="diasd" value="123" solo></v-text-field>
             </v-flex>
           </v-layout>
           <v-divider></v-divider>
@@ -243,6 +243,7 @@ table.v-table tbody th {
     </v-container>
   </form>
   <!-- <pre>{{ $data }}</pre> -->
+  {{ calcularPuntos }}
 </div>
 </template>
 
@@ -282,7 +283,7 @@ export default {
     menu1: false,
     menu2: false,
     puntosd: "",
-    puntosc: "",
+    puntosc: 300,
     diasd: "",
     puntocanjear: "",
     errors: [],
@@ -385,6 +386,13 @@ export default {
       this.totalF = total.toFixed(2);
       return total.toFixed(2);
     },
+    calcularPuntos: function() {
+      var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
+      console.log(puntosTotales);
+      var puntosT = puntosTotales.toString();
+      this.diasd = puntosT.slice(0,1);
+      // return puntosT;
+    }
   },
   created() {
     console.log(moment().format());

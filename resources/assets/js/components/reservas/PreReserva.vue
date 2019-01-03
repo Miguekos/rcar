@@ -142,6 +142,9 @@ export default {
       {
         text: 'T. Debito'
       },
+      {
+        text: 'Efectivo'
+      },
     ],
     Banco: [{
         text: 'BBVA'
@@ -154,6 +157,9 @@ export default {
       },
       {
         text: 'Interbank'
+      },
+      {
+        text: 'Efectivo'
       },
     ],
     dialog4: false,

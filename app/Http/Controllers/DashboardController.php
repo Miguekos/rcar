@@ -111,14 +111,18 @@ class DashboardController extends Controller
 
     public function disponible(Request $request)
     {
+
+      // return $request->all();
       // $disponi = Reserva::whereBetween('fecha',[$request->fechaIni,$request->fechaFin])
                   // ->where('estado', 0)
                   // ->get();
       // return $request->all();
-      $disponi = Reserva::where([
-        // ['agregado_id','=',$id],
-        ['fechasInicio', '<', $request->fechaIni],
-        ['fechaFin', '>', $request->fechaFin],
+      $disponi = Auto::where([
+        ['estado','=',0],
+        // ['fechasInicio', '<', $request->fechaIni],
+        // ['fechaFin', '>', $request->fechaFin],
+        ['fechafinauto', '<', $request->fechaIni],
+        // ['fechafinauto', '>', $request->fechaIni],
         // ['estado', '==', 0],
         // ['abono_id','=',0],
         // ['deuda','!=',0],

@@ -49,7 +49,7 @@
     </v-container>
 
   </v-form>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 
@@ -85,6 +85,7 @@ export default {
         })
         .then(response => {
           if (response.data == "") {
+            this.disponi = "";
             // alert("No se consigue data");
             this.dialog7 = false;
           } else {

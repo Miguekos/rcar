@@ -162,14 +162,11 @@ class ReservaController extends Controller
 
     public function updateapi(Request $request, $reserva)
     {
-                $reservas = Reserva::find($reserva);
-                $reservas->tipodepago = $request->Tipopagovalue;
-                $reservas->banco = $request->Bancovalue;
-                $reservas->codigodepago = $request->codigodepago;
-                $reservas->montodepositado = $request->montodepositado;
-                $reservas->estado = $request->estado;
-                $reservas ->save();
-                return $reservas;
+        // $reservas = Reserva::find($reserva);
+        $reservas = Reserva::findOrFail($reserva);
+        $input = $request->all();
+        $reservas->fill($input)->save();
+        return $reservas;
     }
 
     /**

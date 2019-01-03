@@ -46,6 +46,7 @@ class CreateReservasTable extends Migration
             $table->string('color')->nullable();
             $table->string('anio')->nullable();
             $table->string('precio')->nullable();
+            $table->string('garantia')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

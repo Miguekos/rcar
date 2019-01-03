@@ -35156,7 +35156,7 @@ module.exports = setMonth
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(145);
-module.exports = __webpack_require__(488);
+module.exports = __webpack_require__(491);
 
 
 /***/ }),
@@ -35228,31 +35228,31 @@ Vue.component('comp-cliente', __webpack_require__(390));
 Vue.component('cliente-create', __webpack_require__(395));
 Vue.component('cliente-edit', __webpack_require__(400));
 Vue.component('cliente-show', __webpack_require__(405));
-Vue.component('cliente-table', __webpack_require__(406));
+Vue.component('cliente-table', __webpack_require__(408));
 
 // Promos
-Vue.component('comp-promos', __webpack_require__(411));
-Vue.component('promo-create', __webpack_require__(416));
-Vue.component('promo-edit', __webpack_require__(421));
-Vue.component('promo-show', __webpack_require__(426));
+Vue.component('comp-promos', __webpack_require__(413));
+Vue.component('promo-create', __webpack_require__(418));
+Vue.component('promo-edit', __webpack_require__(423));
+Vue.component('promo-show', __webpack_require__(428));
 
 // Auto
-Vue.component('comp-autos', __webpack_require__(427));
-Vue.component('auto-create', __webpack_require__(432));
-Vue.component('auto-edit', __webpack_require__(437));
-Vue.component('auto-show', __webpack_require__(442));
+Vue.component('comp-autos', __webpack_require__(429));
+Vue.component('auto-create', __webpack_require__(434));
+Vue.component('auto-edit', __webpack_require__(439));
+Vue.component('auto-show', __webpack_require__(444));
 
 // Reservas
-Vue.component('comp-reservas', __webpack_require__(447));
-Vue.component('reserva-create', __webpack_require__(452));
-Vue.component('reserva-createdis', __webpack_require__(457));
-Vue.component('pre-reserva', __webpack_require__(462));
-Vue.component('evapendiente-reserva', __webpack_require__(467));
-Vue.component('reservaapro-reserva', __webpack_require__(472));
-Vue.component('cargoalquiler-reserva', __webpack_require__(477));
-Vue.component('contrato-reserva', __webpack_require__(500));
-Vue.component('reserva-edit', __webpack_require__(482));
-Vue.component('reserva-show', __webpack_require__(487));
+Vue.component('comp-reservas', __webpack_require__(449));
+Vue.component('reserva-create', __webpack_require__(454));
+Vue.component('reserva-createdis', __webpack_require__(459));
+Vue.component('pre-reserva', __webpack_require__(464));
+Vue.component('evapendiente-reserva', __webpack_require__(469));
+Vue.component('reservaapro-reserva', __webpack_require__(474));
+Vue.component('cargoalquiler-reserva', __webpack_require__(479));
+Vue.component('contrato-reserva', __webpack_require__(484));
+Vue.component('reserva-edit', __webpack_require__(485));
+Vue.component('reserva-show', __webpack_require__(490));
 
 var app = new Vue({
   el: '#app'
@@ -115864,10 +115864,7 @@ var render = function() {
                                                 { staticClass: "headline" },
                                                 [
                                                   _vm._v(
-                                                    _vm._s(
-                                                      props.item
-                                                        .autoSeleccionado
-                                                    )
+                                                    _vm._s(props.item.marca)
                                                   )
                                                 ]
                                               ),
@@ -115930,7 +115927,11 @@ var render = function() {
                                                   ]),
                                                   _vm._v(
                                                     " " +
-                                                      _vm._s(props.item.precio)
+                                                      _vm._s(
+                                                        props.item
+                                                          .precio_por_dia
+                                                      ) +
+                                                      " $"
                                                   )
                                                 ]
                                               ),
@@ -115947,7 +115948,7 @@ var render = function() {
                                                   _vm._v(
                                                     " " +
                                                       _vm._s(
-                                                        props.item.fechaFin
+                                                        props.item.fechafinauto
                                                       )
                                                   )
                                                 ]
@@ -116197,6 +116198,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _token: this.csrf
       }).then(function (response) {
         if (response.data == "") {
+          _this.disponi = "";
           // alert("No se consigue data");
           _this.dialog7 = false;
         } else {
@@ -116497,7 +116499,9 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("pre", [_vm._v(_vm._s(_vm.$data))])
     ],
     1
   )
@@ -119453,11 +119457,12 @@ if (false) {
 /* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(406)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(407)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -119476,23 +119481,488 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/assets/js/components/clientes/ClienteShow.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-767e4290", Component.options)
+  } else {
+    hotAPI.reload("data-v-767e4290", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
 /* 406 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  //
+});
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { "fill-height": "", fluid: "", "grid-list-xl": "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { "justify-center": "", wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", md8: "" } },
+            [
+              _c(
+                "material-card",
+                {
+                  attrs: {
+                    color: "green",
+                    title: "Edit Profile",
+                    text: "Complete your profile"
+                  }
+                },
+                [
+                  _c(
+                    "v-form",
+                    [
+                      _c(
+                        "v-container",
+                        { attrs: { "py-0": "" } },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { wrap: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Company (disabled)",
+                                      disabled: ""
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "User Name" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Email Address" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "First Name" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Last Name" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md12: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Adress" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "City" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: { label: "Country" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "purple-input",
+                                    attrs: {
+                                      label: "Postal Code",
+                                      type: "number"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "" } },
+                                [
+                                  _c("v-textarea", {
+                                    staticClass: "purple-input",
+                                    attrs: {
+                                      label: "About Me",
+                                      value:
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", "text-xs-right": "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "mx-0 font-weight-light",
+                                      attrs: { color: "success" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                  Update Profile\n                "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", md4: "" } },
+            [
+              _c(
+                "material-card",
+                { staticClass: "v-card-profile" },
+                [
+                  _c(
+                    "v-avatar",
+                    {
+                      staticClass: "mx-auto d-block",
+                      attrs: { slot: "offset", size: "130" },
+                      slot: "offset"
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    { staticClass: "text-xs-center" },
+                    [
+                      _c(
+                        "h6",
+                        {
+                          staticClass:
+                            "category text-gray font-weight-thin mb-3"
+                        },
+                        [_vm._v("CEO / CO-FOUNDER")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "h4",
+                        { staticClass: "card-title font-weight-light" },
+                        [_vm._v("Alec Thompson")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "card-description font-weight-light" },
+                        [
+                          _vm._v(
+                            "Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "font-weight-light",
+                          attrs: { color: "success", round: "" }
+                        },
+                        [_vm._v("Follow")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-767e4290", module.exports)
+  }
+}
+
+/***/ }),
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(407)
+  __webpack_require__(409)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(409)
+var __vue_script__ = __webpack_require__(411)
 /* template */
-var __vue_template__ = __webpack_require__(410)
+var __vue_template__ = __webpack_require__(412)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -119531,13 +120001,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 407 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(408);
+var content = __webpack_require__(410);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -119557,7 +120027,7 @@ if(false) {
 }
 
 /***/ }),
-/* 408 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -119571,7 +120041,7 @@ exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s in
 
 
 /***/ }),
-/* 409 */
+/* 411 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -119796,7 +120266,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 410 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -120010,19 +120480,19 @@ if (false) {
 }
 
 /***/ }),
-/* 411 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(412)
+  __webpack_require__(414)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(414)
+var __vue_script__ = __webpack_require__(416)
 /* template */
-var __vue_template__ = __webpack_require__(415)
+var __vue_template__ = __webpack_require__(417)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -120061,13 +120531,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 412 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(413);
+var content = __webpack_require__(415);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -120087,7 +120557,7 @@ if(false) {
 }
 
 /***/ }),
-/* 413 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -120101,7 +120571,7 @@ exports.push([module.i, "\n.nuevo[data-v-d3fc9ef0] {\n  padding: 10px 10px 0px 1
 
 
 /***/ }),
-/* 414 */
+/* 416 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -120443,7 +120913,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 415 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -120928,19 +121398,19 @@ if (false) {
 }
 
 /***/ }),
-/* 416 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(417)
+  __webpack_require__(419)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(419)
+var __vue_script__ = __webpack_require__(421)
 /* template */
-var __vue_template__ = __webpack_require__(420)
+var __vue_template__ = __webpack_require__(422)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -120979,13 +121449,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 417 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(418);
+var content = __webpack_require__(420);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -121005,7 +121475,7 @@ if(false) {
 }
 
 /***/ }),
-/* 418 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -121019,7 +121489,7 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 
 /***/ }),
-/* 419 */
+/* 421 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121198,7 +121668,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 });
 
 /***/ }),
-/* 420 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -121386,19 +121856,19 @@ if (false) {
 }
 
 /***/ }),
-/* 421 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(422)
+  __webpack_require__(424)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(424)
+var __vue_script__ = __webpack_require__(426)
 /* template */
-var __vue_template__ = __webpack_require__(425)
+var __vue_template__ = __webpack_require__(427)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -121437,13 +121907,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 422 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(423);
+var content = __webpack_require__(425);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -121463,7 +121933,7 @@ if(false) {
 }
 
 /***/ }),
-/* 423 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -121477,7 +121947,7 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 
 /***/ }),
-/* 424 */
+/* 426 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121612,7 +122082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 425 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -121824,7 +122294,7 @@ if (false) {
 }
 
 /***/ }),
-/* 426 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(2)
@@ -121854,19 +122324,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 427 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(428)
+  __webpack_require__(430)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(430)
+var __vue_script__ = __webpack_require__(432)
 /* template */
-var __vue_template__ = __webpack_require__(431)
+var __vue_template__ = __webpack_require__(433)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -121905,13 +122375,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 428 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(429);
+var content = __webpack_require__(431);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -121931,7 +122401,7 @@ if(false) {
 }
 
 /***/ }),
-/* 429 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -121945,7 +122415,7 @@ exports.push([module.i, "\n.v-card__title--primary[data-v-0f91e292] {\r\n  paddi
 
 
 /***/ }),
-/* 430 */
+/* 432 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -122315,7 +122785,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 431 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -122878,19 +123348,19 @@ if (false) {
 }
 
 /***/ }),
-/* 432 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(433)
+  __webpack_require__(435)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(435)
+var __vue_script__ = __webpack_require__(437)
 /* template */
-var __vue_template__ = __webpack_require__(436)
+var __vue_template__ = __webpack_require__(438)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -122929,13 +123399,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 433 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(434);
+var content = __webpack_require__(436);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -122955,7 +123425,7 @@ if(false) {
 }
 
 /***/ }),
-/* 434 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -122969,7 +123439,7 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 
 /***/ }),
-/* 435 */
+/* 437 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -123332,7 +123802,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 436 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -124443,19 +124913,19 @@ if (false) {
 }
 
 /***/ }),
-/* 437 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(438)
+  __webpack_require__(440)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(440)
+var __vue_script__ = __webpack_require__(442)
 /* template */
-var __vue_template__ = __webpack_require__(441)
+var __vue_template__ = __webpack_require__(443)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -124494,13 +124964,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 438 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(439);
+var content = __webpack_require__(441);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -124520,7 +124990,7 @@ if(false) {
 }
 
 /***/ }),
-/* 439 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -124534,7 +125004,7 @@ exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s in
 
 
 /***/ }),
-/* 440 */
+/* 442 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -124686,7 +125156,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 });
 
 /***/ }),
-/* 441 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -124835,19 +125305,19 @@ if (false) {
 }
 
 /***/ }),
-/* 442 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(443)
+  __webpack_require__(445)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(445)
+var __vue_script__ = __webpack_require__(447)
 /* template */
-var __vue_template__ = __webpack_require__(446)
+var __vue_template__ = __webpack_require__(448)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -124886,13 +125356,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 443 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(444);
+var content = __webpack_require__(446);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -124912,7 +125382,7 @@ if(false) {
 }
 
 /***/ }),
-/* 444 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -124926,7 +125396,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 445 */
+/* 447 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -125121,7 +125591,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 446 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -125677,19 +126147,19 @@ if (false) {
 }
 
 /***/ }),
-/* 447 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(448)
+  __webpack_require__(450)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(450)
+var __vue_script__ = __webpack_require__(452)
 /* template */
-var __vue_template__ = __webpack_require__(451)
+var __vue_template__ = __webpack_require__(453)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -125728,13 +126198,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 448 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(449);
+var content = __webpack_require__(451);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -125754,7 +126224,7 @@ if(false) {
 }
 
 /***/ }),
-/* 449 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -125768,7 +126238,7 @@ exports.push([module.i, "\n.v-btn--small[data-v-0b7dd728] {\r\n    font-size: 10
 
 
 /***/ }),
-/* 450 */
+/* 452 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -126029,7 +126499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 451 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -126164,19 +126634,19 @@ if (false) {
 }
 
 /***/ }),
-/* 452 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(453)
+  __webpack_require__(455)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(455)
+var __vue_script__ = __webpack_require__(457)
 /* template */
-var __vue_template__ = __webpack_require__(456)
+var __vue_template__ = __webpack_require__(458)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -126215,13 +126685,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 453 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(454);
+var content = __webpack_require__(456);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -126241,7 +126711,7 @@ if(false) {
 }
 
 /***/ }),
-/* 454 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -126255,7 +126725,7 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 
 /***/ }),
-/* 455 */
+/* 457 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -126264,6 +126734,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker__);
 var _this = this;
 
+//
 //
 //
 //
@@ -126549,7 +127020,7 @@ var _this = this;
       menu1: false,
       menu2: false,
       puntosd: "",
-      puntosc: "",
+      puntosc: 300,
       diasd: "",
       puntocanjear: "",
       errors: [],
@@ -126636,6 +127107,13 @@ var _this = this;
       var total = parseFloat(this.productos) + parseFloat(this.sillabebeP) + parseFloat(this.doblePiloto) + parseFloat(this.tanqueLleno) + parseFloat(this.zonas) + parseFloat(this.seguro) + totalv;
       this.totalF = total.toFixed(2);
       return total.toFixed(2);
+    },
+    calcularPuntos: function calcularPuntos() {
+      var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
+      console.log(puntosTotales);
+      var puntosT = puntosTotales.toString();
+      this.diasd = puntosT.slice(0, 1);
+      // return puntosT;
     }
   },
   created: function created() {
@@ -126756,7 +127234,7 @@ var _this = this;
 });
 
 /***/ }),
-/* 456 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -126986,7 +127464,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("v-autocomplete", {
                       attrs: {
-                        "append-outer-icon": "add",
                         items: _vm.promo,
                         "item-text": "nombre",
                         "item-value": "id",
@@ -126995,9 +127472,6 @@ var render = function() {
                         solo: ""
                       },
                       on: {
-                        "click:append-outer": function($event) {
-                          _vm.agregarPromo()
-                        },
                         change: function($event) {
                           _vm.verPromo()
                         }
@@ -127099,7 +127573,7 @@ var render = function() {
                             _c("label", [_vm._v("Puntos a Canjear")]),
                             _vm._v(" "),
                             _c("v-text-field", {
-                              attrs: { solo: "" },
+                              attrs: { type: "number", solo: "" },
                               model: {
                                 value: _vm.puntosc,
                                 callback: function($$v) {
@@ -127119,7 +127593,7 @@ var render = function() {
                             _c("label", [_vm._v("Dias Disponibles")]),
                             _vm._v(" "),
                             _c("v-text-field", {
-                              attrs: { solo: "" },
+                              attrs: { readonly: "", value: "123", solo: "" },
                               model: {
                                 value: _vm.diasd,
                                 callback: function($$v) {
@@ -127756,7 +128230,9 @@ var render = function() {
         )
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _vm._v("\r\n  " + _vm._s(_vm.calcularPuntos) + "\r\n")
   ])
 }
 var staticRenderFns = []
@@ -127770,19 +128246,19 @@ if (false) {
 }
 
 /***/ }),
-/* 457 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(458)
+  __webpack_require__(460)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(460)
+var __vue_script__ = __webpack_require__(462)
 /* template */
-var __vue_template__ = __webpack_require__(461)
+var __vue_template__ = __webpack_require__(463)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -127821,13 +128297,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 458 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(459);
+var content = __webpack_require__(461);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -127847,7 +128323,7 @@ if(false) {
 }
 
 /***/ }),
-/* 459 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -127861,7 +128337,7 @@ exports.push([module.i, "\ninput:-webkit-autofill,\r\ninput:-webkit-autofill:hov
 
 
 /***/ }),
-/* 460 */
+/* 462 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -127870,6 +128346,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetify_daterange_picker__);
 var _this = this;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -128137,6 +128652,33 @@ var _this = this;
   props: ['token', 'vehiculodis', 'user', 'fechai', 'fechaf'],
   data: function data() {
     return {
+      codigodepago: "",
+      montodepositado: "50",
+      Tipopagovalue: "",
+      Bancovalue: "",
+      Tipopago: [{
+        text: 'D. Bancario'
+      }, {
+        text: 'T. Credito'
+      }, {
+        text: 'T. Debito'
+      }, {
+        text: 'Efectivo'
+      }],
+      Banco: [{
+        text: 'BBVA'
+      }, {
+        text: 'Scotiabank'
+      }, {
+        text: 'BCP'
+      }, {
+        text: 'Interbank'
+      }, {
+        text: 'Efectivo'
+      }],
+      dialog4: false,
+      idupdate: "",
+      garantia: 0,
       fechainicioauto: "",
       fechafinauto: "",
       reservastotal: "",
@@ -128242,9 +128784,16 @@ var _this = this;
     suma: function suma() {
       var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
       this.preciovihiculo = totalv;
-      var total = parseFloat(this.productos) + parseFloat(this.sillabebeP) + parseFloat(this.doblePiloto) + parseFloat(this.tanqueLleno) + parseFloat(this.zonas) + parseFloat(this.seguro) + totalv;
+      var total = parseFloat(this.productos) + parseFloat(this.sillabebeP) + parseFloat(this.doblePiloto) + parseFloat(this.tanqueLleno) + parseFloat(this.zonas) + parseFloat(this.vehiculoData.garantia) + parseFloat(this.seguro) + totalv;
       this.totalF = total.toFixed(2);
       return total.toFixed(2);
+    },
+    calcularPuntos: function calcularPuntos() {
+      var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
+      console.log(puntosTotales);
+      var puntosT = puntosTotales.toString();
+      this.diasd = puntosT.slice(0, 1);
+      // return puntosT;
     }
   },
   created: function created() {
@@ -128262,6 +128811,13 @@ var _this = this;
   },
 
   methods: {
+    confirmar: function confirmar() {
+      console.log();
+      this.dialog4 = true;
+      // this.idupdate = item.id;
+      console.log("SE PRECOINO BOTON CONFIRMAR");
+      // window.location.href = `/reserva/${item.id}/edit`;
+    },
     onDateRangeChange: function onDateRangeChange(range) {
       this.range = range;
     },
@@ -128307,7 +128863,51 @@ var _this = this;
         color: this.color,
         anio: this.anio,
         precio: this.precio,
-        image: this.image
+        image: this.image,
+        garantia: this.vehiculoData.garantia
+      }).then(function (response) {
+        console.log("SI PASO");
+        console.log(response);
+        window.location.href = '/reserva';
+      }).catch(function (error) {
+        console.log(error);
+        alert("Surgio un error al guardar tu cliente");
+      });
+    },
+    sendFormConfirmar: function sendFormConfirmar(e) {
+      console.log("entro a guardar");
+      axios.post('/v1.0/reserva', {
+        nreserva: '0000' + this.reservastotal,
+        fechasInicio: this.fecha1,
+        fechaFin: this.fecha2,
+        vehiculo: this.vehiculoId,
+        cliente: this.clienteData.nombres,
+        producto: this.productos,
+        promo: this.paquetes,
+        zonaDeEntrega: this.zonas,
+        direccionEntrega: this.direccionEntrega,
+        seguro: this.seguro,
+        puntosDisponible: this.puntosd,
+        PuntosCanjear: this.puntosc,
+        diaAdicionales: this.diasd,
+        sillaBebe: this.sillabebeP,
+        doblePiloto: this.doblePiloto,
+        tanqueLleno: this.tanqueLleno,
+        autoSeleccionado: this.autoSeleccionado,
+        estado: 2,
+        preciovihiculo: this.preciovihiculo,
+        diaadicional: this.diaadicional,
+        totalF: this.totalF,
+        placa: this.placa,
+        color: this.color,
+        anio: this.anio,
+        precio: this.precio,
+        image: this.image,
+        garantia: this.vehiculoData.garantia,
+        codigodepago: this.codigodepago,
+        montodepositado: this.montodepositado,
+        tipodepago: this.Tipopagovalue,
+        banco: this.Bancovalue
       }).then(function (response) {
         console.log("SI PASO");
         console.log(response);
@@ -128335,6 +128935,7 @@ var _this = this;
         _this3.anio = response.data[0].anio;
         _this3.precio_por_dia = response.data[0].precio_por_dia;
         _this3.image = response.data[0].imagen1;
+        _this3.garantia = response.data[0].garantia;
         console.log(response.data[0]);
         console.log(response.data[0].precio_por_dia);
       }).catch(function (e) {
@@ -128373,1008 +128974,1262 @@ var _this = this;
 });
 
 /***/ }),
-/* 461 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        attrs: { method: "post" },
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.sendForm()
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "persistent", "max-width": "60%" },
+          model: {
+            value: _vm.dialog4,
+            callback: function($$v) {
+              _vm.dialog4 = $$v
+            },
+            expression: "dialog4"
           }
-        }
-      },
-      [
-        _c(
-          "v-layout",
-          {
-            attrs: {
-              "align-start": "",
-              "justify-space-between": "",
-              row: "",
-              wrap: "",
-              "fill-height": ""
+        },
+        [
+          _c(
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.sendFormConfirmar()
+                }
+              }
+            },
+            [
+              _c(
+                "v-card",
+                { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
+                [
+                  _c("v-card-title", { staticClass: "headline" }, [
+                    _vm._v("Registro de confirmacion de reserva")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-container",
+                        {
+                          attrs: {
+                            fluid: "fluid",
+                            "grid-list-xl": "grid-list-xl"
+                          }
+                        },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "row", wrap: "wrap" } },
+                            [
+                              _c(
+                                "v-flex",
+                                {
+                                  attrs: {
+                                    xs12: "xs12",
+                                    sm6: "sm6",
+                                    md3: "md3"
+                                  }
+                                },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      required: "required",
+                                      items: _vm.Tipopago,
+                                      "item-text": "text",
+                                      "item-value": "text",
+                                      label: "Tipo de Pago"
+                                    },
+                                    model: {
+                                      value: _vm.Tipopagovalue,
+                                      callback: function($$v) {
+                                        _vm.Tipopagovalue = $$v
+                                      },
+                                      expression: "Tipopagovalue"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                {
+                                  attrs: {
+                                    xs12: "xs12",
+                                    sm6: "sm6",
+                                    md3: "md3"
+                                  }
+                                },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      required: "required",
+                                      items: _vm.Banco,
+                                      "item-text": "text",
+                                      "item-value": "text",
+                                      label: "Banco"
+                                    },
+                                    model: {
+                                      value: _vm.Bancovalue,
+                                      callback: function($$v) {
+                                        _vm.Bancovalue = $$v
+                                      },
+                                      expression: "Bancovalue"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                {
+                                  attrs: {
+                                    xs12: "xs12",
+                                    sm6: "sm6",
+                                    md3: "md3"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      required: "required",
+                                      label: "Codigo de Deposito"
+                                    },
+                                    model: {
+                                      value: _vm.codigodepago,
+                                      callback: function($$v) {
+                                        _vm.codigodepago = $$v
+                                      },
+                                      expression: "codigodepago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                {
+                                  attrs: {
+                                    xs12: "xs12",
+                                    sm6: "sm6",
+                                    md3: "md3"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      required: "required",
+                                      label: "Monto Depositado"
+                                    },
+                                    model: {
+                                      value: _vm.montodepositado,
+                                      callback: function($$v) {
+                                        _vm.montodepositado = $$v
+                                      },
+                                      expression: "montodepositado"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            color: "green darken-1",
+                            round: "round",
+                            dark: "dark",
+                            type: "submit"
+                          }
+                        },
+                        [_vm._v("Guardar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            color: "red darken-1",
+                            round: "round",
+                            dark: "dark"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.dialog4 = false
+                            }
+                          }
+                        },
+                        [_vm._v("Cancelar")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          attrs: { method: "post" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.sendForm()
             }
-          },
-          [
-            _c(
-              "v-flex",
-              { attrs: { xs12: "", lg6: "", "elevation-3": "" } },
-              [
-                _c(
-                  "v-card-text",
-                  [
-                    _c("label", [_vm._v("Fecha Inicio")]),
-                    _vm._v(" "),
-                    _c(
-                      "v-menu",
-                      {
+          }
+        },
+        [
+          _c(
+            "v-layout",
+            {
+              attrs: {
+                "align-start": "",
+                "justify-space-between": "",
+                row: "",
+                wrap: "",
+                "fill-height": ""
+              }
+            },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", lg6: "", "elevation-3": "" } },
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c("label", [_vm._v("Fecha Inicio")]),
+                      _vm._v(" "),
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: {
+                            "close-on-content-click": false,
+                            "nudge-right": 40,
+                            lazy: "",
+                            transition: "scale-transition",
+                            "offset-y": "",
+                            "full-width": "",
+                            "min-width": "290px"
+                          },
+                          model: {
+                            value: _vm.menu1,
+                            callback: function($$v) {
+                              _vm.menu1 = $$v
+                            },
+                            expression: "menu1"
+                          }
+                        },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              slot: "activator",
+                              "prepend-icon": "event",
+                              readonly: ""
+                            },
+                            slot: "activator",
+                            model: {
+                              value: _vm.fecha1,
+                              callback: function($$v) {
+                                _vm.fecha1 = $$v
+                              },
+                              expression: "fecha1"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-date-picker", {
+                            on: {
+                              input: function($event) {
+                                _vm.menu1 = false
+                              }
+                            },
+                            model: {
+                              value: _vm.fecha1,
+                              callback: function($$v) {
+                                _vm.fecha1 = $$v
+                              },
+                              expression: "fecha1"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Fecha Fin")]),
+                      _vm._v(" "),
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: {
+                            "close-on-content-click": false,
+                            "nudge-right": 40,
+                            lazy: "",
+                            transition: "scale-transition",
+                            "offset-y": "",
+                            "full-width": "",
+                            "min-width": "290px"
+                          },
+                          model: {
+                            value: _vm.menu2,
+                            callback: function($$v) {
+                              _vm.menu2 = $$v
+                            },
+                            expression: "menu2"
+                          }
+                        },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              slot: "activator",
+                              "prepend-icon": "event",
+                              readonly: ""
+                            },
+                            slot: "activator",
+                            model: {
+                              value: _vm.fecha2,
+                              callback: function($$v) {
+                                _vm.fecha2 = $$v
+                              },
+                              expression: "fecha2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-date-picker", {
+                            on: {
+                              input: function($event) {
+                                _vm.menu2 = false
+                              }
+                            },
+                            model: {
+                              value: _vm.fecha2,
+                              callback: function($$v) {
+                                _vm.fecha2 = $$v
+                              },
+                              expression: "fecha2"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Vehiculo")]),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
                         attrs: {
-                          "close-on-content-click": false,
-                          "nudge-right": 40,
-                          lazy: "",
-                          transition: "scale-transition",
-                          "offset-y": "",
-                          "full-width": "",
-                          "min-width": "290px"
+                          items: _vm.auto,
+                          "item-text": "marca",
+                          "item-value": "id",
+                          placeholder: "Select...",
+                          required: "",
+                          solo: ""
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.verAuto()
+                          }
                         },
                         model: {
-                          value: _vm.menu1,
+                          value: _vm.vehiculoId,
                           callback: function($$v) {
-                            _vm.menu1 = $$v
+                            _vm.vehiculoId = $$v
                           },
-                          expression: "menu1"
+                          expression: "vehiculoId"
                         }
-                      },
-                      [
-                        _c("v-text-field", {
-                          attrs: {
-                            slot: "activator",
-                            "prepend-icon": "event",
-                            readonly: ""
-                          },
-                          slot: "activator",
-                          model: {
-                            value: _vm.fecha1,
-                            callback: function($$v) {
-                              _vm.fecha1 = $$v
-                            },
-                            expression: "fecha1"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("v-date-picker", {
-                          on: {
-                            input: function($event) {
-                              _vm.menu1 = false
-                            }
-                          },
-                          model: {
-                            value: _vm.fecha1,
-                            callback: function($$v) {
-                              _vm.fecha1 = $$v
-                            },
-                            expression: "fecha1"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Fecha Fin")]),
-                    _vm._v(" "),
-                    _c(
-                      "v-menu",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Cliente")]),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
                         attrs: {
-                          "close-on-content-click": false,
-                          "nudge-right": 40,
-                          lazy: "",
-                          transition: "scale-transition",
-                          "offset-y": "",
-                          "full-width": "",
-                          "min-width": "290px"
+                          "append-outer-icon": "add",
+                          items: _vm.cliente,
+                          "item-text": "nombres",
+                          "item-value": "id",
+                          placeholder: "Select...",
+                          required: "",
+                          solo: ""
+                        },
+                        on: {
+                          "click:append-outer": function($event) {
+                            _vm.agregarCliente()
+                          },
+                          change: function($event) {
+                            _vm.verCliente()
+                          }
                         },
                         model: {
-                          value: _vm.menu2,
+                          value: _vm.clienteId,
                           callback: function($$v) {
-                            _vm.menu2 = $$v
+                            _vm.clienteId = $$v
                           },
-                          expression: "menu2"
+                          expression: "clienteId"
                         }
-                      },
-                      [
-                        _c("v-text-field", {
-                          attrs: {
-                            slot: "activator",
-                            "prepend-icon": "event",
-                            readonly: ""
-                          },
-                          slot: "activator",
-                          model: {
-                            value: _vm.fecha2,
-                            callback: function($$v) {
-                              _vm.fecha2 = $$v
-                            },
-                            expression: "fecha2"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("v-date-picker", {
-                          on: {
-                            input: function($event) {
-                              _vm.menu2 = false
-                            }
-                          },
-                          model: {
-                            value: _vm.fecha2,
-                            callback: function($$v) {
-                              _vm.fecha2 = $$v
-                            },
-                            expression: "fecha2"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Vehiculo")]),
-                    _vm._v(" "),
-                    _c("v-autocomplete", {
-                      attrs: {
-                        items: _vm.auto,
-                        "item-text": "marca",
-                        "item-value": "id",
-                        placeholder: "Select...",
-                        required: "",
-                        solo: ""
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.verAuto()
-                        }
-                      },
-                      model: {
-                        value: _vm.vehiculoId,
-                        callback: function($$v) {
-                          _vm.vehiculoId = $$v
-                        },
-                        expression: "vehiculoId"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Cliente")]),
-                    _vm._v(" "),
-                    _c("v-autocomplete", {
-                      attrs: {
-                        "append-outer-icon": "add",
-                        items: _vm.cliente,
-                        "item-text": "nombres",
-                        "item-value": "id",
-                        placeholder: "Select...",
-                        required: "",
-                        solo: ""
-                      },
-                      on: {
-                        "click:append-outer": function($event) {
-                          _vm.agregarCliente()
-                        },
-                        change: function($event) {
-                          _vm.verCliente()
-                        }
-                      },
-                      model: {
-                        value: _vm.clienteId,
-                        callback: function($$v) {
-                          _vm.clienteId = $$v
-                        },
-                        expression: "clienteId"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Producto")]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      attrs: {
-                        items: _vm.productosItem,
-                        "item-text": "name",
-                        "item-value": "value",
-                        placeholder: "Select...",
-                        solo: ""
-                      },
-                      model: {
-                        value: _vm.productos,
-                        callback: function($$v) {
-                          _vm.productos = $$v
-                        },
-                        expression: "productos"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Paquete")]),
-                    _vm._v(" "),
-                    _c("v-autocomplete", {
-                      attrs: {
-                        "append-outer-icon": "add",
-                        items: _vm.promo,
-                        "item-text": "nombre",
-                        "item-value": "id",
-                        placeholder: "Select...",
-                        required: "",
-                        solo: ""
-                      },
-                      on: {
-                        "click:append-outer": function($event) {
-                          _vm.agregarPromo()
-                        },
-                        change: function($event) {
-                          _vm.verPromo()
-                        }
-                      },
-                      model: {
-                        value: _vm.promoId,
-                        callback: function($$v) {
-                          _vm.promoId = $$v
-                        },
-                        expression: "promoId"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Zona de Entrega")]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      attrs: {
-                        items: _vm.zonaItem,
-                        "item-text": "name",
-                        "item-value": "value",
-                        placeholder: "Select...",
-                        solo: ""
-                      },
-                      model: {
-                        value: _vm.zonas,
-                        callback: function($$v) {
-                          _vm.zonas = $$v
-                        },
-                        expression: "zonas"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Direccion de Entrega")]),
-                    _vm._v(" "),
-                    _c("v-text-field", {
-                      model: {
-                        value: _vm.direccionEntrega,
-                        callback: function($$v) {
-                          _vm.direccionEntrega = $$v
-                        },
-                        expression: "direccionEntrega"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Seguro")]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      attrs: {
-                        items: _vm.seguroItem,
-                        "item-text": "name",
-                        "item-value": "value",
-                        placeholder: "Select...",
-                        solo: ""
-                      },
-                      model: {
-                        value: _vm.seguro,
-                        callback: function($$v) {
-                          _vm.seguro = $$v
-                        },
-                        expression: "seguro"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "v-layout",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Producto")]),
+                      _vm._v(" "),
+                      _c("v-select", {
                         attrs: {
-                          "align-center": "",
-                          "justify-space-between": "",
-                          row: "",
-                          "fill-height": ""
+                          items: _vm.productosItem,
+                          "item-text": "name",
+                          "item-value": "value",
+                          placeholder: "Select...",
+                          solo: ""
+                        },
+                        model: {
+                          value: _vm.productos,
+                          callback: function($$v) {
+                            _vm.productos = $$v
+                          },
+                          expression: "productos"
                         }
-                      },
-                      [
-                        _c(
-                          "v-flex",
-                          { attrs: { xs12: "", sm3: "", lg3: "" } },
-                          [
-                            _c("label", [_vm._v("Puntos Disponibles")]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              attrs: { readonly: "", "solo-inverted": "" },
-                              model: {
-                                value: _vm.clienteData.puntos,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.clienteData, "puntos", $$v)
-                                },
-                                expression: "clienteData.puntos"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-flex",
-                          { attrs: { xs12: "", sm3: "", lg3: "" } },
-                          [
-                            _c("label", [_vm._v("Puntos a Canjear")]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              attrs: { solo: "" },
-                              model: {
-                                value: _vm.puntosc,
-                                callback: function($$v) {
-                                  _vm.puntosc = $$v
-                                },
-                                expression: "puntosc"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-flex",
-                          { attrs: { xs12: "", sm3: "", lg3: "" } },
-                          [
-                            _c("label", [_vm._v("Dias Disponibles")]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              attrs: { solo: "" },
-                              model: {
-                                value: _vm.diasd,
-                                callback: function($$v) {
-                                  _vm.diasd = $$v
-                                },
-                                expression: "diasd"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c("v-card-title", { attrs: { "primary-title": "" } }, [
-                      _vm._v("\r\n            Adicionales\r\n          ")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "v-layout",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Paquete")]),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
                         attrs: {
-                          "align-center": "",
-                          "justify-space-between": "",
-                          row: "",
-                          "fill-height": ""
-                        }
-                      },
-                      [
-                        _c(
-                          "v-flex",
-                          { attrs: { xs12: "", sm4: "" } },
-                          [
-                            _c("v-switch", {
-                              attrs: {
-                                "true-value": "50",
-                                "false-value": "0",
-                                label: "Silla Bebe",
-                                color: "success",
-                                "hide-details": ""
-                              },
-                              model: {
-                                value: _vm.sillabebeP,
-                                callback: function($$v) {
-                                  _vm.sillabebeP = $$v
-                                },
-                                expression: "sillabebeP"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-flex",
-                          { attrs: { xs12: "", sm4: "" } },
-                          [
-                            _c("v-switch", {
-                              attrs: {
-                                "true-value": "50",
-                                "false-value": "0",
-                                label: "Doble Piloto",
-                                color: "success",
-                                "hide-details": ""
-                              },
-                              model: {
-                                value: _vm.doblePiloto,
-                                callback: function($$v) {
-                                  _vm.doblePiloto = $$v
-                                },
-                                expression: "doblePiloto"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-flex",
-                          { attrs: { xs12: "", sm4: "" } },
-                          [
-                            _c("v-switch", {
-                              attrs: {
-                                "true-value": "50",
-                                "false-value": "0",
-                                label: "Tanque LLeno",
-                                color: "success",
-                                "hide-details": ""
-                              },
-                              model: {
-                                value: _vm.tanqueLleno,
-                                callback: function($$v) {
-                                  _vm.tanqueLleno = $$v
-                                },
-                                expression: "tanqueLleno"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-flex",
-              { attrs: { xs12: "", lg5: "", "elevation-3": "" } },
-              [
-                _c(
-                  "v-flex",
-                  [
-                    _c(
-                      "v-card",
-                      [
-                        _c("v-img", {
-                          attrs: {
-                            src: _vm.vehiculoData.imagen1,
-                            "aspect-ratio": "2.75"
+                          items: _vm.promo,
+                          "item-text": "nombre",
+                          "item-value": "id",
+                          placeholder: "Select...",
+                          required: "",
+                          solo: ""
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.verPromo()
                           }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "v-toolbar-title",
-                          { staticClass: "text-lg-center" },
-                          [_vm._v(_vm._s(_vm.vehiculoData.marca))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-card-title",
-                          [
-                            _c(
-                              "v-layout",
-                              {
-                                attrs: {
-                                  "align-center": "",
-                                  "justify-space-between": "",
-                                  row: "",
-                                  "fill-height": ""
+                        },
+                        model: {
+                          value: _vm.promoId,
+                          callback: function($$v) {
+                            _vm.promoId = $$v
+                          },
+                          expression: "promoId"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Zona de Entrega")]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.zonaItem,
+                          "item-text": "name",
+                          "item-value": "value",
+                          placeholder: "Select...",
+                          solo: ""
+                        },
+                        model: {
+                          value: _vm.zonas,
+                          callback: function($$v) {
+                            _vm.zonas = $$v
+                          },
+                          expression: "zonas"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Direccion de Entrega")]),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        model: {
+                          value: _vm.direccionEntrega,
+                          callback: function($$v) {
+                            _vm.direccionEntrega = $$v
+                          },
+                          expression: "direccionEntrega"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Seguro")]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.seguroItem,
+                          "item-text": "name",
+                          "item-value": "value",
+                          placeholder: "Select...",
+                          solo: ""
+                        },
+                        model: {
+                          value: _vm.seguro,
+                          callback: function($$v) {
+                            _vm.seguro = $$v
+                          },
+                          expression: "seguro"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        {
+                          attrs: {
+                            "align-center": "",
+                            "justify-space-between": "",
+                            row: "",
+                            "fill-height": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm3: "", lg3: "" } },
+                            [
+                              _c("label", [_vm._v("Puntos Disponibles")]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                attrs: { readonly: "", "solo-inverted": "" },
+                                model: {
+                                  value: _vm.clienteData.puntos,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.clienteData, "puntos", $$v)
+                                  },
+                                  expression: "clienteData.puntos"
                                 }
-                              },
-                              [
-                                _c(
-                                  "table",
-                                  {
-                                    staticClass:
-                                      "v-datatable v-table theme--light"
-                                  },
-                                  [
-                                    _c(
-                                      "tbody",
-                                      { staticStyle: { height: "18px" } },
-                                      [
-                                        _c("tr", [
-                                          _c(
-                                            "td",
-                                            { staticStyle: { height: "18px" } },
-                                            [_vm._v("Marca")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: "text-xs-right",
-                                              staticStyle: { height: "18px" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vehiculoData.marca)
-                                              )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("tr", [
-                                          _c(
-                                            "td",
-                                            { staticStyle: { height: "18px" } },
-                                            [_vm._v("Modelo:")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: "text-xs-right",
-                                              staticStyle: { height: "18px" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vehiculoData.modelo)
-                                              )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "tr",
-                                          {
-                                            staticClass:
-                                              "v-datatable__expand-row"
-                                          },
-                                          [
-                                            _c("td", {
-                                              staticClass:
-                                                "v-datatable__expand-col",
-                                              staticStyle: { height: "18px" },
-                                              attrs: { colspan: "2" }
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("tr", [
-                                          _c(
-                                            "td",
-                                            { staticStyle: { height: "18px" } },
-                                            [_vm._v("Color:")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: "text-xs-right",
-                                              staticStyle: { height: "18px" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vehiculoData.color)
-                                              )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "tr",
-                                          {
-                                            staticClass:
-                                              "v-datatable__expand-row"
-                                          },
-                                          [
-                                            _c("td", {
-                                              staticClass:
-                                                "v-datatable__expand-col",
-                                              attrs: { colspan: "2" }
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("tr", [
-                                          _c(
-                                            "td",
-                                            { staticStyle: { height: "18px" } },
-                                            [_vm._v("Precio por dia:")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: "text-xs-right",
-                                              staticStyle: { height: "18px" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.vehiculoData
-                                                    .precio_por_dia
-                                                ) + "$"
-                                              )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("tr", [
-                                          _c(
-                                            "td",
-                                            { staticStyle: { height: "18px" } },
-                                            [_vm._v("Dias alquilado:")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: "text-xs-right",
-                                              staticStyle: { height: "18px" }
-                                            },
-                                            [_vm._v(_vm._s(_vm.fechadiff))]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "tr",
-                                          {
-                                            staticClass:
-                                              "v-datatable__expand-row"
-                                          },
-                                          [
-                                            _c("td", {
-                                              staticClass:
-                                                "v-datatable__expand-col",
-                                              attrs: { colspan: "2" }
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "tr",
-                                          {
-                                            staticClass:
-                                              "v-datatable__expand-row"
-                                          },
-                                          [
-                                            _c("td", {
-                                              staticClass:
-                                                "v-datatable__expand-col",
-                                              attrs: { colspan: "2" }
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-layout",
-                          {
-                            attrs: { row: "", wrap: "", "justify-center": "" }
-                          },
-                          [
-                            _c("v-daterange", {
-                              attrs: {
-                                locale: "ES-es",
-                                "highlight-colors": "green lighten-5",
-                                options: _vm.dateRangeOptions,
-                                "no-presets": ""
-                              },
-                              on: { input: _vm.onDateRangeChange }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("v-card-actions")
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "v-layout",
-          { attrs: { "align-center": "", "justify-center": "" } },
-          [
-            _c(
-              "v-flex",
-              [
-                _c(
-                  "v-card",
-                  [
-                    _c(
-                      "v-card-text",
-                      [
-                        _c("v-toolbar-title", [_vm._v("Precio Total")]),
-                        _vm._v(" "),
-                        _c(
-                          "table",
-                          { staticClass: "v-datatable v-table theme--light" },
-                          [
-                            _c("thead", [
-                              _c("tr", [
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass: "column text-xs-left",
-                                    attrs: {
-                                      role: "columnheader",
-                                      scope: "col",
-                                      "aria-label": "Items: Not sorted.",
-                                      "aria-sort": "none"
-                                    }
-                                  },
-                                  [_vm._v("Items")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass: "column text-xs-right",
-                                    attrs: {
-                                      role: "columnheader",
-                                      scope: "col",
-                                      "aria-label": "Precio: Not sorted.",
-                                      "aria-sort": "none"
-                                    }
-                                  },
-                                  [_vm._v("Precio")]
-                                )
-                              ]),
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm3: "", lg3: "" } },
+                            [
+                              _c("label", [_vm._v("Puntos a Canjear")]),
                               _vm._v(" "),
+                              _c("v-text-field", {
+                                attrs: { type: "number", solo: "" },
+                                model: {
+                                  value: _vm.puntosc,
+                                  callback: function($$v) {
+                                    _vm.puntosc = $$v
+                                  },
+                                  expression: "puntosc"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm3: "", lg3: "" } },
+                            [
+                              _c("label", [_vm._v("Dias Disponibles")]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                attrs: { readonly: "", value: "123", solo: "" },
+                                model: {
+                                  value: _vm.diasd,
+                                  callback: function($$v) {
+                                    _vm.diasd = $$v
+                                  },
+                                  expression: "diasd"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-divider"),
+                      _vm._v(" "),
+                      _c("v-card-title", { attrs: { "primary-title": "" } }, [
+                        _vm._v("\r\n            Adicionales\r\n          ")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        {
+                          attrs: {
+                            "align-center": "",
+                            "justify-space-between": "",
+                            row: "",
+                            "fill-height": ""
+                          }
+                        },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm4: "" } },
+                            [
+                              _c("v-switch", {
+                                attrs: {
+                                  "true-value": "50",
+                                  "false-value": "0",
+                                  label: "Silla Bebe",
+                                  color: "success",
+                                  "hide-details": ""
+                                },
+                                model: {
+                                  value: _vm.sillabebeP,
+                                  callback: function($$v) {
+                                    _vm.sillabebeP = $$v
+                                  },
+                                  expression: "sillabebeP"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm4: "" } },
+                            [
+                              _c("v-switch", {
+                                attrs: {
+                                  "true-value": "50",
+                                  "false-value": "0",
+                                  label: "Doble Piloto",
+                                  color: "success",
+                                  "hide-details": ""
+                                },
+                                model: {
+                                  value: _vm.doblePiloto,
+                                  callback: function($$v) {
+                                    _vm.doblePiloto = $$v
+                                  },
+                                  expression: "doblePiloto"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "", sm4: "" } },
+                            [
+                              _c("v-switch", {
+                                attrs: {
+                                  "true-value": "50",
+                                  "false-value": "0",
+                                  label: "Tanque LLeno",
+                                  color: "success",
+                                  "hide-details": ""
+                                },
+                                model: {
+                                  value: _vm.tanqueLleno,
+                                  callback: function($$v) {
+                                    _vm.tanqueLleno = $$v
+                                  },
+                                  expression: "tanqueLleno"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", lg5: "", "elevation-3": "" } },
+                [
+                  _c(
+                    "v-flex",
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-img", {
+                            attrs: {
+                              src: _vm.vehiculoData.imagen1,
+                              "aspect-ratio": "2.75"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-toolbar-title",
+                            { staticClass: "text-lg-center" },
+                            [_vm._v(_vm._s(_vm.vehiculoData.marca))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-title",
+                            [
                               _c(
-                                "tr",
-                                { staticClass: "v-datatable__progress" },
+                                "v-layout",
+                                {
+                                  attrs: {
+                                    "align-center": "",
+                                    "justify-space-between": "",
+                                    row: "",
+                                    "fill-height": ""
+                                  }
+                                },
                                 [
-                                  _c("th", {
-                                    staticClass: "column",
-                                    attrs: { colspan: "2" }
-                                  })
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "v-datatable v-table theme--light"
+                                    },
+                                    [
+                                      _c(
+                                        "tbody",
+                                        { staticStyle: { height: "18px" } },
+                                        [
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [_vm._v("Marca")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass: "text-xs-right",
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.vehiculoData.marca)
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [_vm._v("Modelo:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass: "text-xs-right",
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.vehiculoData.modelo
+                                                  )
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tr",
+                                            {
+                                              staticClass:
+                                                "v-datatable__expand-row"
+                                            },
+                                            [
+                                              _c("td", {
+                                                staticClass:
+                                                  "v-datatable__expand-col",
+                                                staticStyle: { height: "18px" },
+                                                attrs: { colspan: "2" }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [_vm._v("Color:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass: "text-xs-right",
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.vehiculoData.color)
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tr",
+                                            {
+                                              staticClass:
+                                                "v-datatable__expand-row"
+                                            },
+                                            [
+                                              _c("td", {
+                                                staticClass:
+                                                  "v-datatable__expand-col",
+                                                attrs: { colspan: "2" }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [_vm._v("Precio por dia:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass: "text-xs-right",
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.vehiculoData
+                                                      .precio_por_dia
+                                                  ) + "$"
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [_vm._v("Dias alquilado:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass: "text-xs-right",
+                                                staticStyle: { height: "18px" }
+                                              },
+                                              [_vm._v(_vm._s(_vm.fechadiff))]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tr",
+                                            {
+                                              staticClass:
+                                                "v-datatable__expand-row"
+                                            },
+                                            [
+                                              _c("td", {
+                                                staticClass:
+                                                  "v-datatable__expand-col",
+                                                attrs: { colspan: "2" }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tr",
+                                            {
+                                              staticClass:
+                                                "v-datatable__expand-row"
+                                            },
+                                            [
+                                              _c("td", {
+                                                staticClass:
+                                                  "v-datatable__expand-col",
+                                                attrs: { colspan: "2" }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
                                 ]
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c("tbody", [
-                              _c("tr", [
-                                _c("td", [_vm._v("Vehiculo")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.preciovihiculo))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Paquete")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.productos))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Delivery")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.zonas))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Silla Bebe")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.sillabebeP))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Doble Piloto")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.doblePiloto))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Tanque LLeno")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.tanqueLleno))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Seguro")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.seguro))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [_vm._v("Dia Adicional")]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _vm._v(_vm._s(_vm.diaadicional))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                { staticClass: "v-datatable__expand-row" },
-                                [
-                                  _c("td", {
-                                    staticClass: "v-datatable__expand-col",
-                                    attrs: { colspan: "2" }
-                                  })
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("tfoot", [
-                              _c("tr", [
-                                _c("td", [_c("strong", [_vm._v("IGV 18%")])]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _c("b", [
-                                    _vm._v(
-                                      _vm._s((_vm.suma * 0.18).toFixed(2)) +
-                                        " $"
-                                    )
-                                  ])
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("strong", [_vm._v("Total a Depositar")])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-layout",
+                            {
+                              attrs: { row: "", wrap: "", "justify-center": "" }
+                            },
+                            [
+                              _c("v-daterange", {
+                                attrs: {
+                                  locale: "ES-es",
+                                  "highlight-colors": "green lighten-5",
+                                  options: _vm.dateRangeOptions,
+                                  "no-presets": ""
+                                },
+                                on: { input: _vm.onDateRangeChange }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-card-actions")
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { "align-center": "", "justify-center": "" } },
+            [
+              _c(
+                "v-flex",
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-card-text",
+                        [
+                          _c("v-toolbar-title", [_vm._v("Precio Total")]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            { staticClass: "v-datatable v-table theme--light" },
+                            [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c(
+                                    "th",
+                                    {
+                                      staticClass: "column text-xs-left",
+                                      attrs: {
+                                        role: "columnheader",
+                                        scope: "col",
+                                        "aria-label": "Items: Not sorted.",
+                                        "aria-sort": "none"
+                                      }
+                                    },
+                                    [_vm._v("Items")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    {
+                                      staticClass: "column text-xs-right",
+                                      attrs: {
+                                        role: "columnheader",
+                                        scope: "col",
+                                        "aria-label": "Precio: Not sorted.",
+                                        "aria-sort": "none"
+                                      }
+                                    },
+                                    [_vm._v("Precio")]
+                                  )
                                 ]),
                                 _vm._v(" "),
-                                _c("td", { staticClass: "text-xs-right" }, [
-                                  _c("b", [_vm._v(_vm._s(_vm.suma) + " $")])
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__progress" },
+                                  [
+                                    _c("th", {
+                                      staticClass: "column",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("td", [_vm._v("Vehiculo")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.preciovihiculo))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Paquete")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.productos))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Delivery")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.zonas))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Silla Bebe")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.sillabebeP))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Doble Piloto")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.doblePiloto))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Tanque LLeno")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.tanqueLleno))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Seguro")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.seguro))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Dia Adicional")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.diaadicional))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [_vm._v("Garantia")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _vm._v(_vm._s(_vm.vehiculoData.garantia))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tr",
+                                  { staticClass: "v-datatable__expand-row" },
+                                  [
+                                    _c("td", {
+                                      staticClass: "v-datatable__expand-col",
+                                      attrs: { colspan: "2" }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tfoot", [
+                                _c("tr", [
+                                  _c("td", [_c("strong", [_vm._v("IGV 18%")])]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _c("b", [
+                                      _vm._v(
+                                        _vm._s((_vm.suma * 0.18).toFixed(2)) +
+                                          " $"
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [
+                                    _c("strong", [_vm._v("Total a Depositar")])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-xs-right" }, [
+                                    _c("b", [_vm._v(_vm._s(_vm.suma) + " $")])
+                                  ])
                                 ])
                               ])
-                            ])
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "v-container",
-          {
-            attrs: {
-              "text-lg-center": "",
-              "text-xs-center": "",
-              "text-sm-center": ""
-            }
-          },
-          [
-            _c("v-btn", { attrs: { type: "submit", color: "success" } }, [
-              _vm._v("Guardar")
-            ]),
-            _vm._v(" "),
-            _c("v-btn", { attrs: { color: "error" } }, [_vm._v("Cancelar")])
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-container",
+            {
+              attrs: {
+                "text-lg-center": "",
+                "text-xs-center": "",
+                "text-sm-center": ""
+              }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.confirmar()
+                    }
+                  }
+                },
+                [_vm._v("confirmar")]
+              ),
+              _vm._v(" "),
+              _c("v-btn", { attrs: { type: "submit", color: "success" } }, [
+                _vm._v("Guardar")
+              ]),
+              _vm._v(" "),
+              _c("v-btn", { attrs: { color: "error" } }, [_vm._v("Cancelar")])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("pre", [_vm._v(_vm._s(_vm.$data))]),
+      _vm._v("\r\n  " + _vm._s(_vm.calcularPuntos) + "\r\n")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -129387,19 +130242,19 @@ if (false) {
 }
 
 /***/ }),
-/* 462 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(463)
+  __webpack_require__(465)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(465)
+var __vue_script__ = __webpack_require__(467)
 /* template */
-var __vue_template__ = __webpack_require__(466)
+var __vue_template__ = __webpack_require__(468)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -129438,13 +130293,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 463 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(464);
+var content = __webpack_require__(466);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -129464,7 +130319,7 @@ if(false) {
 }
 
 /***/ }),
-/* 464 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -129478,7 +130333,7 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 
 /***/ }),
-/* 465 */
+/* 467 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -129631,6 +130486,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: 'T. Credito'
       }, {
         text: 'T. Debito'
+      }, {
+        text: 'Efectivo'
       }],
       Banco: [{
         text: 'BBVA'
@@ -129640,6 +130497,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: 'BCP'
       }, {
         text: 'Interbank'
+      }, {
+        text: 'Efectivo'
       }],
       dialog4: false,
       idupdate: "",
@@ -129741,7 +130600,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 466 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -130372,19 +131231,19 @@ if (false) {
 }
 
 /***/ }),
-/* 467 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(468)
+  __webpack_require__(470)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(470)
+var __vue_script__ = __webpack_require__(472)
 /* template */
-var __vue_template__ = __webpack_require__(471)
+var __vue_template__ = __webpack_require__(473)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -130423,13 +131282,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 468 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(469);
+var content = __webpack_require__(471);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -130449,7 +131308,7 @@ if(false) {
 }
 
 /***/ }),
-/* 469 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -130463,7 +131322,7 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 
 /***/ }),
-/* 470 */
+/* 472 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -130821,7 +131680,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 471 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -131550,19 +132409,19 @@ if (false) {
 }
 
 /***/ }),
-/* 472 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(473)
+  __webpack_require__(475)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(475)
+var __vue_script__ = __webpack_require__(477)
 /* template */
-var __vue_template__ = __webpack_require__(476)
+var __vue_template__ = __webpack_require__(478)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -131601,13 +132460,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 473 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(474);
+var content = __webpack_require__(476);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -131627,7 +132486,7 @@ if(false) {
 }
 
 /***/ }),
-/* 474 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -131641,7 +132500,7 @@ exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18
 
 
 /***/ }),
-/* 475 */
+/* 477 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -131944,7 +132803,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 476 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -132576,19 +133435,19 @@ if (false) {
 }
 
 /***/ }),
-/* 477 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(478)
+  __webpack_require__(480)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(480)
+var __vue_script__ = __webpack_require__(482)
 /* template */
-var __vue_template__ = __webpack_require__(481)
+var __vue_template__ = __webpack_require__(483)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -132627,13 +133486,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 478 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(479);
+var content = __webpack_require__(481);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -132653,7 +133512,7 @@ if(false) {
 }
 
 /***/ }),
-/* 479 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -132667,7 +133526,7 @@ exports.push([module.i, "\n\n", ""]);
 
 
 /***/ }),
-/* 480 */
+/* 482 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -132926,7 +133785,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 481 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -133528,19 +134387,49 @@ if (false) {
 }
 
 /***/ }),
-/* 482 */
+/* 484 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/reservas/GenerarContrato.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(483)
+  __webpack_require__(486)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(485)
+var __vue_script__ = __webpack_require__(488)
 /* template */
-var __vue_template__ = __webpack_require__(486)
+var __vue_template__ = __webpack_require__(489)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -133579,13 +134468,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 483 */
+/* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(484);
+var content = __webpack_require__(487);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -133605,7 +134494,7 @@ if(false) {
 }
 
 /***/ }),
-/* 484 */
+/* 487 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -133619,7 +134508,7 @@ exports.push([module.i, "\n.custom-loader {\n    -webkit-animation: loader 1s in
 
 
 /***/ }),
-/* 485 */
+/* 488 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -133771,7 +134660,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 });
 
 /***/ }),
-/* 486 */
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -133920,7 +134809,7 @@ if (false) {
 }
 
 /***/ }),
-/* 487 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(2)
@@ -133950,51 +134839,10 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 488 */
+/* 491 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/reservas/GenerarContrato.vue"
-
-module.exports = Component.exports
-
 
 /***/ })
 /******/ ]);

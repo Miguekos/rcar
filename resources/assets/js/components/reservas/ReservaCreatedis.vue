@@ -30,6 +30,39 @@ table.v-table tbody th {
 
 <template>
 <div>
+  <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
+    <form method="post" @submit.prevent="sendFormConfirmar()">
+      <v-card style="border-radius: 0px 10px 0px 10px">
+        <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
+        <v-card-text>
+          <v-container fluid="fluid" grid-list-xl="grid-list-xl">
+            <v-layout row="row" wrap="wrap">
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-select required="required" :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+              </v-flex>
+
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-select required="required" :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+              </v-flex>
+
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-text-field required="required" label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+              </v-flex>
+
+              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                <v-text-field required="required" label="Monto Depositado" v-model="montodepositado"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn>
+          <v-btn color="red darken-1" round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </form>
+  </v-dialog>
   <form method="post" @submit.prevent="sendForm()">
     <v-layout align-start justify-space-between row wrap fill-height>
       <v-flex xs12 lg6 elevation-3>
@@ -51,7 +84,7 @@ table.v-table tbody th {
           <label>Producto</label>
           <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
           <label>Paquete</label>
-          <v-autocomplete @click:append-outer="agregarPromo()" append-outer-icon="add" :items="promo" item-text="nombre" item-value="id" @change="verPromo()" v-model="promoId" placeholder="Select..." required solo></v-autocomplete>
+          <v-autocomplete :items="promo" item-text="nombre" item-value="id" @change="verPromo()" v-model="promoId" placeholder="Select..." required solo></v-autocomplete>
           <label>Zona de Entrega</label>
           <v-select :items="zonaItem" item-text="name" item-value="value" v-model="zonas" placeholder="Select..." solo></v-select>
           <label>Direccion de Entrega</label>
@@ -65,11 +98,11 @@ table.v-table tbody th {
             </v-flex>
             <v-flex xs12 sm3 lg3>
               <label>Puntos a Canjear</label>
-              <v-text-field v-model="puntosc" solo></v-text-field>
+              <v-text-field type="number" v-model="puntosc" solo></v-text-field>
             </v-flex>
             <v-flex xs12 sm3 lg3>
               <label>Dias Disponibles</label>
-              <v-text-field v-model="diasd" solo></v-text-field>
+              <v-text-field readonly v-model="diasd" value="123" solo></v-text-field>
             </v-flex>
           </v-layout>
           <v-divider></v-divider>
@@ -218,6 +251,10 @@ table.v-table tbody th {
                   <td>Dia Adicional</td>
                   <td class="text-xs-right">{{ diaadicional }}</td>
                 </tr>
+                <tr>
+                  <td>Garantia</td>
+                  <td class="text-xs-right">{{ vehiculoData.garantia }}</td>
+                </tr>
                 <tr class="v-datatable__expand-row">
                   <td colspan="2" class="v-datatable__expand-col"></td>
                 </tr>
@@ -240,11 +277,13 @@ table.v-table tbody th {
     <!-- </v-container> -->
 
     <v-container text-lg-center text-xs-center text-sm-center>
+      <v-btn @click="confirmar()" color="primary">confirmar</v-btn>
       <v-btn type="submit" color="success">Guardar</v-btn>
       <v-btn color="error">Cancelar</v-btn>
     </v-container>
   </form>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
+  {{ calcularPuntos }}
 </div>
 </template>
 
@@ -264,6 +303,42 @@ import DateRange from 'vuetify-daterange-picker';
 export default {
   props: ['token','vehiculodis','user','fechai','fechaf'],
   data: () => ({
+    codigodepago: "",
+    montodepositado: "50",
+    Tipopagovalue: "",
+    Bancovalue: "",
+    Tipopago: [{
+        text: 'D. Bancario'
+      },
+      {
+        text: 'T. Credito'
+      },
+      {
+        text: 'T. Debito'
+      },
+      {
+        text: 'Efectivo'
+      },
+    ],
+    Banco: [{
+        text: 'BBVA'
+      },
+      {
+        text: 'Scotiabank'
+      },
+      {
+        text: 'BCP'
+      },
+      {
+        text: 'Interbank'
+      },
+      {
+        text: 'Efectivo'
+      },
+    ],
+    dialog4: false,
+    idupdate: "",
+    garantia: 0,
     fechainicioauto: "",
     fechafinauto: "",
     reservastotal: "",
@@ -384,9 +459,17 @@ export default {
         parseFloat(this.doblePiloto) +
         parseFloat(this.tanqueLleno) +
         parseFloat(this.zonas) +
+        parseFloat(this.vehiculoData.garantia) +
         parseFloat(this.seguro) + totalv;
         this.totalF = total.toFixed(2);
       return total.toFixed(2);
+    },
+    calcularPuntos: function() {
+      var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
+      console.log(puntosTotales);
+      var puntosT = puntosTotales.toString();
+      this.diasd = puntosT.slice(0,1);
+      // return puntosT;
     },
   },
   created() {
@@ -403,6 +486,13 @@ export default {
     this.verAuto();
   },
   methods: {
+    confirmar() {
+      console.log();
+      this.dialog4 = true;
+      // this.idupdate = item.id;
+      console.log("SE PRECOINO BOTON CONFIRMAR");
+      // window.location.href = `/reserva/${item.id}/edit`;
+    },
     onDateRangeChange(range) {
       this.range = range;
     },
@@ -450,6 +540,52 @@ export default {
           anio: this.anio,
           precio: this.precio,
           image: this.image,
+          garantia: this.vehiculoData.garantia,
+        })
+        .then(response => {
+          console.log("SI PASO");
+          console.log(response)
+          window.location.href = '/reserva';
+        })
+        .catch(error => {
+          console.log(error)
+          alert("Surgio un error al guardar tu cliente");
+        })
+    },
+    sendFormConfirmar(e) {
+      console.log("entro a guardar");
+      axios.post('/v1.0/reserva', {
+          nreserva: `0000${this.reservastotal}`,
+          fechasInicio: this.fecha1,
+          fechaFin: this.fecha2,
+          vehiculo: this.vehiculoId,
+          cliente: this.clienteData.nombres,
+          producto: this.productos,
+          promo: this.paquetes,
+          zonaDeEntrega: this.zonas,
+          direccionEntrega: this.direccionEntrega,
+          seguro: this.seguro,
+          puntosDisponible: this.puntosd,
+          PuntosCanjear: this.puntosc,
+          diaAdicionales: this.diasd,
+          sillaBebe: this.sillabebeP,
+          doblePiloto: this.doblePiloto,
+          tanqueLleno: this.tanqueLleno,
+          autoSeleccionado: this.autoSeleccionado,
+          estado: 2,
+          preciovihiculo: this.preciovihiculo,
+          diaadicional: this.diaadicional,
+          totalF: this.totalF,
+          placa: this.placa,
+          color: this.color,
+          anio: this.anio,
+          precio: this.precio,
+          image: this.image,
+          garantia: this.vehiculoData.garantia,
+          codigodepago: this.codigodepago,
+          montodepositado: this.montodepositado,
+          tipodepago: this.Tipopagovalue,
+          banco: this.Bancovalue,
         })
         .then(response => {
           console.log("SI PASO");
@@ -479,6 +615,7 @@ export default {
           this.anio = response.data[0].anio;
           this.precio_por_dia = response.data[0].precio_por_dia;
           this.image = response.data[0].imagen1;
+          this.garantia = response.data[0].garantia;
           console.log(response.data[0]);
           console.log(response.data[0].precio_por_dia);
         })

@@ -192,14 +192,14 @@ button:hover {
                         <v-layout align-center justify-space-around row fill-height>
 
                           <div>
-                            <div class="headline">{{ props.item.autoSeleccionado }}</div>
+                            <div class="headline">{{ props.item.marca }}</div>
                             <div class="text-xs-left"><strong>Placa:</strong> {{ props.item.placa }}$</div>
                             <div class="text-xs-left"><strong>Color:</strong> {{ props.item.color }}</div>
                           </div>
                           <div>
                             <div class="text-xs-right"><strong>Año:</strong> {{ props.item.anio }}</div>
-                            <div class="text-xs-right"><strong>Precio:</strong> {{ props.item.precio }}</div>
-                            <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechaFin }}</div>
+                            <div class="text-xs-right"><strong>Precio:</strong> {{ props.item.precio_por_dia }} $</div>
+                            <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechafinauto }}</div>
                           </div>
                         </v-layout>
                       </v-card-title>
@@ -288,7 +288,7 @@ export default {
     // this.items = this.dispo.data;
   },
   computed: {
-
+    
   },
   methods: {
     crear() {
