@@ -119595,65 +119595,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //
+  data: function data() {
+    return {};
+  },
+  methods: {
+    disponible: function disponible() {
+      var _this = this;
+
+      console.log("entro a al logout");
+      axios.post("/v1.0/disponible", {
+        fechaIni: this.date,
+        fechaFin: this.date1,
+        _token: this.csrf
+      }).then(function (response) {
+        if (response.data == "") {
+          _this.disponi = "";
+          // alert("No se consigue data");
+          _this.dialog7 = false;
+        } else {
+          console.log("dasddssda");
+          console.log(response.data);
+          _this.disponi = response.data;
+          _this.dialog7 = false;
+        }
+        // window.location.href = '/';
+      }).catch(function (e) {
+        console.log(e);
+        _this.dialog7 = false;
+      });
+    },
+    link: function link(_link) {
+      if (_link != 'logout') {
+        window.location.href = "" + _link;
+      } else {
+        this.logout();
+      }
+    },
+    atras: function atras() {
+      window.location.href = "/" + this.back;
+    }
+  }
 });
 
 /***/ }),
@@ -119677,10 +119660,9 @@ var render = function() {
             { attrs: { xs12: "", md8: "" } },
             [
               _c(
-                "material-card",
+                "v-card",
                 {
                   attrs: {
-                    color: "green",
                     title: "Edit Profile",
                     text: "Complete your profile"
                   }
@@ -119702,9 +119684,151 @@ var render = function() {
                                 { attrs: { xs12: "", md4: "" } },
                                 [
                                   _c("v-text-field", {
+                                    attrs: { label: "Apellido Paterno" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Apellido Materno" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Nombres" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "DNI / C.E" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Fecha de Nacimiento" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Correo" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md6: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Celular" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Direccion" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Ciudad" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "CCI" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Banco" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Nombre Titular" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "N. Bravete" }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", md4: "" } },
+                                [
+                                  _c("v-text-field", {
                                     attrs: {
-                                      label: "Company (disabled)",
-                                      disabled: ""
+                                      label: "Fecha Vencimiento Brevete"
                                     }
                                   })
                                 ],
@@ -119716,8 +119840,7 @@ var render = function() {
                                 { attrs: { xs12: "", md4: "" } },
                                 [
                                   _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "User Name" }
+                                    attrs: { label: "Foto Dni" }
                                   })
                                 ],
                                 1
@@ -119728,83 +119851,7 @@ var render = function() {
                                 { attrs: { xs12: "", md4: "" } },
                                 [
                                   _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Email Address" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md6: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "First Name" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md6: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Last Name" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md12: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Adress" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md4: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "City" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md4: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: { label: "Country" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "", md4: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "purple-input",
-                                    attrs: {
-                                      label: "Postal Code",
-                                      type: "number"
-                                    }
+                                    attrs: { label: "Clasificacion Cliente" }
                                   })
                                 ],
                                 1
@@ -119815,12 +119862,7 @@ var render = function() {
                                 { attrs: { xs12: "" } },
                                 [
                                   _c("v-textarea", {
-                                    staticClass: "purple-input",
-                                    attrs: {
-                                      label: "About Me",
-                                      value:
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                    }
+                                    attrs: { label: "Comentario" }
                                   })
                                 ],
                                 1
@@ -119838,7 +119880,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                  Update Profile\n                "
+                                        "\r\n                  Actualizar Perfil\r\n                "
                                       )
                                     ]
                                   )
@@ -119863,65 +119905,76 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-flex",
-            { attrs: { xs12: "", md4: "" } },
+            {
+              staticStyle: { "padding-top": "0px" },
+              attrs: { xs12: "", md4: "" }
+            },
             [
               _c(
-                "material-card",
-                { staticClass: "v-card-profile" },
+                "v-card",
                 [
                   _c(
-                    "v-avatar",
-                    {
-                      staticClass: "mx-auto d-block",
-                      attrs: { slot: "offset", size: "130" },
-                      slot: "offset"
-                    },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "text-xs-center" },
+                    "material-card",
+                    { staticClass: "v-card-profile" },
                     [
                       _c(
-                        "h6",
+                        "v-avatar",
                         {
-                          staticClass:
-                            "category text-gray font-weight-thin mb-3"
+                          staticClass: "mx-auto d-block",
+                          attrs: { slot: "offset", size: "130" },
+                          slot: "offset"
                         },
-                        [_vm._v("CEO / CO-FOUNDER")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "h4",
-                        { staticClass: "card-title font-weight-light" },
-                        [_vm._v("Alec Thompson")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        { staticClass: "card-description font-weight-light" },
                         [
-                          _vm._v(
-                            "Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
-                          )
+                          _c("img", {
+                            attrs: {
+                              src:
+                                "https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+                            }
+                          })
                         ]
                       ),
                       _vm._v(" "),
                       _c(
-                        "v-btn",
-                        {
-                          staticClass: "font-weight-light",
-                          attrs: { color: "success", round: "" }
-                        },
-                        [_vm._v("Follow")]
+                        "v-card-text",
+                        { staticClass: "text-xs-center" },
+                        [
+                          _c(
+                            "h6",
+                            {
+                              staticClass:
+                                "category text-gray font-weight-thin mb-3"
+                            },
+                            [_vm._v("CEO / CO-FOUNDER")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "h4",
+                            { staticClass: "card-title font-weight-light" },
+                            [_vm._v("Alec Thompson")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            {
+                              staticClass: "card-description font-weight-light"
+                            },
+                            [
+                              _vm._v(
+                                "Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "font-weight-light",
+                              attrs: { color: "success", round: "" }
+                            },
+                            [_vm._v("Cargar")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
