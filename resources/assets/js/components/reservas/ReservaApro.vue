@@ -20,33 +20,106 @@
   flex-wrap: wrap;
   padding: 0px;
 }
+
+.v-card__text {
+  padding: 2px;
+  width: 100%;
+}
 </style>
 <template id="prereserva">
 <div class="">
 
   <v-dialog v-model="dialog4" persistent max-width="60%">
-    <v-card style="border-radius: 0px 10px 0px 10px">
-      <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
+    <v-card>
+      <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
+      <v-card-title class="headline">Registro de confirmacion de Pago</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
-          <v-layout row wrap>
+          <v-layout align-center justify-space-between row fill-height>
+            <v-flex class="" xs12 lg12>
+              <v-card>
+                <v-form>
+                  <v-card>
+                    <v-card-text px-0 py-0>
+                      <v-container grid-list-xs,sm,md,lg,xl>
+                        <v-layout wrap>
+                          <table class="v-datatable v-table teme--light">
+                            <tbody>
+                              <tr>
+                                <td>Pago Por Servicios</td>
+                                <td class="text-xs-right">123</td>
+                              </tr>
+                              <tr>
+                                <td>Garantia</td>
+                                <td class="text-xs-right">123</td>
+                              </tr>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td><strong>Total por Abonar</strong></td>
+                                <td class="text-xs-right"><b>268 $</b></td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </v-layout>
+                      </v-container>
+                    </v-card-text>
+                  </v-card>
 
-            <v-flex xs12 sm6 md3>
-              <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+                  <v-divider></v-divider>
+
+                  <v-card-text>
+                    <v-container fluid grid-list-xl>
+                      <v-layout align-center justify-space-between row wrap>
+
+                        <v-flex xs12 sm6 md3>
+                          <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+                        </v-flex>
+
+                        <v-flex xs12 sm6 md3>
+                          <v-select :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+                        </v-flex>
+
+                        <v-flex xs12 sm6 md3>
+                          <v-text-field label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+                        </v-flex>
+
+                        <v-flex xs12 sm6 md2>
+                          <v-text-field label="Monto $" v-model="montodepositado"></v-text-field>
+                        </v-flex>
+
+                        <v-flex xs12 sm6 md1>
+                          <v-icon title="Agregar Abono" @click="" color="success">add</v-icon>
+                        </v-flex>
+
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+
+                  <v-divider></v-divider>
+
+                  <v-card-text>
+                    <v-container fluid grid-list-xl>
+                      <v-layout align-center justify-space-between row wrap>
+                        <v-flex lg12>
+
+                          <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers>
+                            <template slot="items" slot-scope="props">
+                              <td>{{ props.item.name }}</td>
+                              <td class="text-xs-right">{{ props.item.calories }}</td>
+                              <td class="text-xs-right">{{ props.item.fat }}</td>
+                              <td class="text-xs-right">{{ props.item.carbs }}</td>
+                              <td class="text-xs-right">{{ props.item.protein }}</td>
+                              <td class="text-xs-right">{{ props.item.iron }}</td>
+                            </template>
+                          </v-data-table>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                </v-form>
+              </v-card>
             </v-flex>
-
-            <v-flex xs12 sm6 md3>
-              <v-select :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
-            </v-flex>
-
-            <v-flex xs12 sm6 md3>
-              <v-text-field label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md3>
-              <v-text-field label="Monto Depositado" v-model="montodepositado"></v-text-field>
-            </v-flex>
-
           </v-layout>
         </v-container>
       </v-card-text>
@@ -54,23 +127,6 @@
         <v-spacer></v-spacer>
         <v-btn color="green darken-1" round dark @click="update(), dialog4 = false">Guardar</v-btn>
         <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-
-  <v-dialog v-model="dialog5" persistent max-width="60%">
-    <v-card style="border-radius: 0px 10px 0px 10px">
-      <v-card-title class="headline">Esta seguro?</v-card-title>
-      <v-card-text>
-        <v-container fluid grid-list-xl>
-          <v-layout row wrap>
-          </v-layout>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="green darken-1" round dark @click="update1(), dialog4 = false">Guardar</v-btn>
-        <v-btn color="red darken-1" round dark @click="dialog5 = false">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -156,7 +212,12 @@ export default {
       {
         text: 'T. Debito'
       },
+      {
+        text: 'Efectivo'
+      },
     ],
+    dialog4: false,
+    desserts: [],
     Banco: [{
         text: 'BBVA'
       },
@@ -168,6 +229,9 @@ export default {
       },
       {
         text: 'Interbank'
+      },
+      {
+        text: 'Efectivo'
       },
     ],
     dialog4: false,
@@ -204,6 +268,7 @@ export default {
     },
   }),
   created() {
+    this.getDataAbono();
     this.getDataCliente();
   },
   computed: {
@@ -212,6 +277,11 @@ export default {
   methods: {
     crear() {
       window.location.href = '/reserva/create';
+    },
+    activar(item) {
+      console.log(item);
+      this.dialog4 = true;
+      this.idupdate = item.id;
     },
     getDataCliente() {
       console.log("en get data nuew");
@@ -226,78 +296,22 @@ export default {
         });
       // this.paginas();
       console.log("aqui");
-
     },
-    aprobo(item) {
-      console.log(item);
-      this.dialog5 = true;
-      this.idupdate = item.id;
-      // window.location.href = `/reserva/${item.id}/edit`;
+    getDataAbono() {
+      console.log("Entro a consutar los abonos");
+      axios
+        .get(`/v1.0/abono`)
+        .then(response => {
+          this.desserts = response.data;
+          console.log("Aqui abao repsuesta de abono");
+          console.log(response);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+      // this.paginas();
+      // console.log("aqui");
     },
-    confirmar(item) {
-      console.log(item);
-      this.dialog4 = true;
-      this.idupdate = item.id;
-      // window.location.href = `/reserva/${item.id}/edit`;
-    },
-    editItem(item) {
-      window.location.href = `/reserva/${item.id}/edit`;
-    },
-    deleteItem(item) {
-      console.log("Aqui abajo");
-      console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar est reserva?')
-      if (!borrar) {
-        alert("Se cancelo");
-      } else {
-        axios
-          .delete(`/v1.0/reserva/${item.id}`, {
-            _token: this.csrf
-          })
-          .then(response => {
-            console.log("Borrado correctamente");
-          })
-          .catch(e => {
-            //                        this.errors.push(e);
-          });
-        this.getDataCliente();
-      }
-    },
-    update () {
-        console.log("aqui id para ipdate");
-            axios({
-                method: 'put',
-                url: `/v1.0/reserva/${this.idupdate}`,
-                data: {
-                  codigodepago: this.codigodepago,
-                  montodepositado: this.montodepositado,
-                  Tipopagovalue: this.Tipopagovalue,
-                  Bancovalue: this.Bancovalue,
-                  estado: 2,
-                }
-            })
-                .then(function (response) {
-                    response.data
-                    console.log(response.data);
-                    window.location.href = '/reserva';
-                });
-            },
-            update1 () {
-                console.log("aqui id para ipdate");
-                    axios({
-                        method: 'put',
-                        url: `/v1.0/reserva/${this.idupdate}`,
-                        data: {
-                          estado: 3
-                          ,
-                        }
-                    })
-                        .then(function (response) {
-                            response.data
-                            console.log(response.data);
-                            window.location.href = '/reserva';
-                        });
-                    },
     close() {
       this.dialog1 = false
       this.dialog = false

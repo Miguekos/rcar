@@ -361,8 +361,8 @@ export default {
     menu1: false,
     menu2: false,
     puntosd: "",
-    puntosc: "",
-    diasd: "",
+    puntosc: 0,
+    diasd: 0,
     puntocanjear: "",
     errors: [],
     vehiculoId: "",
@@ -392,10 +392,10 @@ export default {
         name: "Alquiler por Dia",
         value: '100'
       },
-      {
-        name: "Alquiler por Kilometros",
-        value: '200'
-      },
+      // {
+      //   name: "Alquiler por Kilometros",
+      //   value: '200'
+      // },
     ],
     zonaItem: [{
         name: "San Isidro",
@@ -447,11 +447,16 @@ export default {
       var b = moment(this.fecha2);
       var c = b.diff(a, 'days');
       console.log(c);
-      this.fechadiferencia = c;
+      this.fechadiferencia = c ;
       return c;
     },
     suma: function() {
-      var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
+      if (this.puntosc == 0) {
+          var totalv = (parseFloat(this.preciov) * parseFloat(this.fechadiferencia));
+      }else{
+          var totalv = parseFloat(this.preciov) * (parseFloat(this.fechadiferencia) - parseFloat(this.diasd));
+      }
+      // var totalv = (parseFloat(this.preciov) * parseFloat(this.fechadiferencia));
       this.preciovihiculo = totalv;
       var total =
         parseFloat(this.productos) +
@@ -466,10 +471,11 @@ export default {
     },
     calcularPuntos: function() {
       var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
-      console.log(puntosTotales);
+      var asd = parseFloat(puntosTotales);
       var puntosT = puntosTotales.toString();
       this.diasd = puntosT.slice(0,1);
-      // return puntosT;
+      // console.log(asd);
+      return asd;
     },
   },
   created() {

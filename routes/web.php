@@ -49,6 +49,9 @@ Route::group(['prefix' => 'v1.0'], function () {
 //  Disponible Api
     Route::post('disponible', 'DashboardController@disponible');
 
+//  Abono Api
+    Route::post('abono', 'AbonoController@storeapi');
+    Route::get('abono', 'AbonoController@indexapi');
 
 });
 

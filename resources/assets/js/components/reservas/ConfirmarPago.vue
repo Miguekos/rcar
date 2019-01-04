@@ -1,4 +1,4 @@
-<style id="prereserva">
+<style id="confirmarpago">
 .v-btn--small {
   font-size: 10px;
   height: 18px;
@@ -21,7 +21,7 @@
   padding: 0px;
 }
 </style>
-<template id="prereserva">
+<template id="confirmarpago">
 <div class="">
 
   <v-dialog v-model="dialog4" persistent max-width="60%">

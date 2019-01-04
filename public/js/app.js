@@ -128754,8 +128754,8 @@ var _this = this;
       menu1: false,
       menu2: false,
       puntosd: "",
-      puntosc: "",
-      diasd: "",
+      puntosc: 0,
+      diasd: 0,
       puntocanjear: "",
       errors: [],
       vehiculoId: "",
@@ -128784,9 +128784,6 @@ var _this = this;
       productosItem: [{
         name: "Alquiler por Dia",
         value: '100'
-      }, {
-        name: "Alquiler por Kilometros",
-        value: '200'
       }],
       zonaItem: [{
         name: "San Isidro",
@@ -128835,7 +128832,12 @@ var _this = this;
       return c;
     },
     suma: function suma() {
-      var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
+      if (this.puntosc == 0) {
+        var totalv = parseFloat(this.preciov) * parseFloat(this.fechadiferencia);
+      } else {
+        var totalv = parseFloat(this.preciov) * (parseFloat(this.fechadiferencia) - parseFloat(this.diasd));
+      }
+      // var totalv = (parseFloat(this.preciov) * parseFloat(this.fechadiferencia));
       this.preciovihiculo = totalv;
       var total = parseFloat(this.productos) + parseFloat(this.sillabebeP) + parseFloat(this.doblePiloto) + parseFloat(this.tanqueLleno) + parseFloat(this.zonas) + parseFloat(this.vehiculoData.garantia) + parseFloat(this.seguro) + totalv;
       this.totalF = total.toFixed(2);
@@ -128843,10 +128845,11 @@ var _this = this;
     },
     calcularPuntos: function calcularPuntos() {
       var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
-      console.log(puntosTotales);
+      var asd = parseFloat(puntosTotales);
       var puntosT = puntosTotales.toString();
       this.diasd = puntosT.slice(0, 1);
-      // return puntosT;
+      // console.log(asd);
+      return asd;
     }
   },
   created: function created() {
@@ -131546,6 +131549,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -131910,7 +131914,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "60%" },
+          attrs: { persistent: "", "max-width": "40%" },
           model: {
             value: _vm.dialog5,
             callback: function($$v) {
@@ -131925,7 +131929,7 @@ var render = function() {
             { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
             [
               _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Esta seguro?")
+                _vm._v("Aprobar?")
               ]),
               _vm._v(" "),
               _c(
@@ -131936,7 +131940,9 @@ var render = function() {
                     { attrs: { fluid: "", "grid-list-xl": "" } },
                     [
                       _c("v-layout", { attrs: { row: "", wrap: "" } }, [
-                        _vm._v("\r\n            Pasar?\r\n          ")
+                        _vm._v(
+                          "\r\n            Esta seguro de pasar la aprobacion de la SBS?\r\n          "
+                        )
                       ])
                     ],
                     1
@@ -131988,7 +131994,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "60%" },
+          attrs: { persistent: "", "max-width": "40%" },
           model: {
             value: _vm.dialog6,
             callback: function($$v) {
@@ -132003,7 +132009,7 @@ var render = function() {
             { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
             [
               _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Esta seguro?")
+                _vm._v("Rechazar?")
               ]),
               _vm._v(" "),
               _c(
@@ -132012,7 +132018,13 @@ var render = function() {
                   _c(
                     "v-container",
                     { attrs: { fluid: "", "grid-list-xl": "" } },
-                    [_c("v-layout", { attrs: { row: "", wrap: "" } })],
+                    [
+                      _c("v-layout", { attrs: { row: "", wrap: "" } }, [
+                        _vm._v(
+                          "\r\n            No paso la evaluacion de la SBS?\r\n          "
+                        )
+                      ])
+                    ],
                     1
                   )
                 ],
@@ -132547,7 +132559,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 13px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-btn--small {\r\n  font-size: 10px;\r\n  height: 18px;\r\n  padding: 0 8px;\n}\n.v-card__title--primary {\r\n  padding: 0px 13px 0px 0px;\n}\n.v-card__tit le {\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-wrap: wrap;\r\n  flex-wrap: wrap;\r\n  padding: 0px;\n}\n.v-card__text {\r\n  padding: 2px;\r\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -132562,6 +132574,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -132720,7 +132788,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: 'T. Credito'
       }, {
         text: 'T. Debito'
+      }, {
+        text: 'Efectivo'
       }],
+      dialog4: false,
+      desserts: [],
       Banco: [{
         text: 'BBVA'
       }, {
@@ -132729,33 +132801,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: 'BCP'
       }, {
         text: 'Interbank'
-      }],
-      dialog4: false,
-      dialog5: false,
-      idupdate: "",
-      registros: "",
-      page: "",
-      reviews: 413,
-      value: 4.5,
-      eliminar: "",
-      dialog3: false,
-      pagination: {},
-      slider: 56,
-      tile: false,
-      search: "",
-      total: "",
-      fecha: "",
-      clienten: "",
-      editCliente: "",
-      idedit: "",
-      dialog: false,
-      dialog1: false,
-      rowsPerPageItems: [8, 12]
-    }, _defineProperty(_ref, 'pagination', {
+      }, {
+        text: 'Efectivo'
+      }]
+    }, _defineProperty(_ref, 'dialog4', false), _defineProperty(_ref, 'dialog5', false), _defineProperty(_ref, 'idupdate', ""), _defineProperty(_ref, 'registros', ""), _defineProperty(_ref, 'page', ""), _defineProperty(_ref, 'reviews', 413), _defineProperty(_ref, 'value', 4.5), _defineProperty(_ref, 'eliminar', ""), _defineProperty(_ref, 'dialog3', false), _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'slider', 56), _defineProperty(_ref, 'tile', false), _defineProperty(_ref, 'search', ""), _defineProperty(_ref, 'total', ""), _defineProperty(_ref, 'fecha', ""), _defineProperty(_ref, 'clienten', ""), _defineProperty(_ref, 'editCliente', ""), _defineProperty(_ref, 'idedit', ""), _defineProperty(_ref, 'dialog', false), _defineProperty(_ref, 'dialog1', false), _defineProperty(_ref, 'rowsPerPageItems', [8, 12]), _defineProperty(_ref, 'pagination', {
       // rowsPerPage: 8
     }), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
   },
   created: function created() {
+    this.getDataAbono();
     this.getDataCliente();
   },
 
@@ -132763,6 +132817,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     crear: function crear() {
       window.location.href = '/reserva/create';
+    },
+    activar: function activar(item) {
+      console.log(item);
+      this.dialog4 = true;
+      this.idupdate = item.id;
     },
     getDataCliente: function getDataCliente() {
       var _this = this;
@@ -132777,70 +132836,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // this.paginas();
       console.log("aqui");
     },
-    aprobo: function aprobo(item) {
-      console.log(item);
-      this.dialog5 = true;
-      this.idupdate = item.id;
-      // window.location.href = `/reserva/${item.id}/edit`;
-    },
-    confirmar: function confirmar(item) {
-      console.log(item);
-      this.dialog4 = true;
-      this.idupdate = item.id;
-      // window.location.href = `/reserva/${item.id}/edit`;
-    },
-    editItem: function editItem(item) {
-      window.location.href = '/reserva/' + item.id + '/edit';
-    },
-    deleteItem: function deleteItem(item) {
-      console.log("Aqui abajo");
-      console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar est reserva?');
-      if (!borrar) {
-        alert("Se cancelo");
-      } else {
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/v1.0/reserva/' + item.id, {
-          _token: this.csrf
-        }).then(function (response) {
-          console.log("Borrado correctamente");
-        }).catch(function (e) {
-          //                        this.errors.push(e);
-        });
-        this.getDataCliente();
-      }
-    },
-    update: function update() {
-      console.log("aqui id para ipdate");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'put',
-        url: '/v1.0/reserva/' + this.idupdate,
-        data: {
-          codigodepago: this.codigodepago,
-          montodepositado: this.montodepositado,
-          Tipopagovalue: this.Tipopagovalue,
-          Bancovalue: this.Bancovalue,
-          estado: 2
-        }
-      }).then(function (response) {
-        response.data;
-        console.log(response.data);
-        window.location.href = '/reserva';
-      });
-    },
-    update1: function update1() {
-      console.log("aqui id para ipdate");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'put',
-        url: '/v1.0/reserva/' + this.idupdate,
-        data: {
-          estado: 3
+    getDataAbono: function getDataAbono() {
+      var _this2 = this;
 
-        }
-      }).then(function (response) {
-        response.data;
-        console.log(response.data);
-        window.location.href = '/reserva';
+      console.log("Entro a consutar los abonos");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/abono').then(function (response) {
+        _this2.desserts = response.data;
+        console.log("Aqui abao repsuesta de abono");
+        console.log(response);
+      }).catch(function (e) {
+        _this2.errors.push(e);
       });
+      // this.paginas();
+      // console.log("aqui");
     },
     close: function close() {
       this.dialog1 = false;
@@ -132882,10 +132890,9 @@ var render = function() {
         [
           _c(
             "v-card",
-            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
             [
               _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Registro de confirmacion de reserva")
+                _vm._v("Registro de confirmacion de Pago")
               ]),
               _vm._v(" "),
               _c(
@@ -132897,86 +132904,480 @@ var render = function() {
                     [
                       _c(
                         "v-layout",
-                        { attrs: { row: "", wrap: "" } },
+                        {
+                          attrs: {
+                            "align-center": "",
+                            "justify-space-between": "",
+                            row: "",
+                            "fill-height": ""
+                          }
+                        },
                         [
                           _c(
                             "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
+                            { attrs: { xs12: "", lg12: "" } },
                             [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.Tipopago,
-                                  "item-text": "text",
-                                  "item-value": "text",
-                                  label: "Tipo de Pago"
-                                },
-                                model: {
-                                  value: _vm.Tipopagovalue,
-                                  callback: function($$v) {
-                                    _vm.Tipopagovalue = $$v
-                                  },
-                                  expression: "Tipopagovalue"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.Banco,
-                                  "item-text": "text",
-                                  "item-value": "text",
-                                  label: "Banco"
-                                },
-                                model: {
-                                  value: _vm.Bancovalue,
-                                  callback: function($$v) {
-                                    _vm.Bancovalue = $$v
-                                  },
-                                  expression: "Bancovalue"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Codigo de Deposito" },
-                                model: {
-                                  value: _vm.codigodepago,
-                                  callback: function($$v) {
-                                    _vm.codigodepago = $$v
-                                  },
-                                  expression: "codigodepago"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs12: "", sm6: "", md3: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Monto Depositado" },
-                                model: {
-                                  value: _vm.montodepositado,
-                                  callback: function($$v) {
-                                    _vm.montodepositado = $$v
-                                  },
-                                  expression: "montodepositado"
-                                }
-                              })
+                              _c(
+                                "v-card",
+                                [
+                                  _c(
+                                    "v-form",
+                                    [
+                                      _c(
+                                        "v-card",
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            {
+                                              attrs: { "px-0": "", "py-0": "" }
+                                            },
+                                            [
+                                              _c(
+                                                "v-container",
+                                                {
+                                                  attrs: {
+                                                    "grid-list-xs,sm,md,lg,xl":
+                                                      ""
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-layout",
+                                                    { attrs: { wrap: "" } },
+                                                    [
+                                                      _c(
+                                                        "table",
+                                                        {
+                                                          staticClass:
+                                                            "v-datatable v-table teme--light"
+                                                        },
+                                                        [
+                                                          _c("tbody", [
+                                                            _c("tr", [
+                                                              _c("td", [
+                                                                _vm._v(
+                                                                  "Pago Por Servicios"
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "text-xs-right"
+                                                                },
+                                                                [_vm._v("123")]
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("tr", [
+                                                              _c("td", [
+                                                                _vm._v(
+                                                                  "Garantia"
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "text-xs-right"
+                                                                },
+                                                                [_vm._v("123")]
+                                                              )
+                                                            ])
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c("tfoot", [
+                                                            _c("tr", [
+                                                              _c("td", [
+                                                                _c("strong", [
+                                                                  _vm._v(
+                                                                    "Total por Abonar"
+                                                                  )
+                                                                ])
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "text-xs-right"
+                                                                },
+                                                                [
+                                                                  _c("b", [
+                                                                    _vm._v(
+                                                                      "268 $"
+                                                                    )
+                                                                  ])
+                                                                ]
+                                                              )
+                                                            ])
+                                                          ])
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-text",
+                                        [
+                                          _c(
+                                            "v-container",
+                                            {
+                                              attrs: {
+                                                fluid: "",
+                                                "grid-list-xl": ""
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-layout",
+                                                {
+                                                  attrs: {
+                                                    "align-center": "",
+                                                    "justify-space-between": "",
+                                                    row: "",
+                                                    wrap: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-flex",
+                                                    {
+                                                      attrs: {
+                                                        xs12: "",
+                                                        sm6: "",
+                                                        md3: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-select", {
+                                                        attrs: {
+                                                          items: _vm.Tipopago,
+                                                          "item-text": "text",
+                                                          "item-value": "text",
+                                                          label: "Tipo de Pago"
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.Tipopagovalue,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.Tipopagovalue = $$v
+                                                          },
+                                                          expression:
+                                                            "Tipopagovalue"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    {
+                                                      attrs: {
+                                                        xs12: "",
+                                                        sm6: "",
+                                                        md3: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-select", {
+                                                        attrs: {
+                                                          items: _vm.Banco,
+                                                          "item-text": "text",
+                                                          "item-value": "text",
+                                                          label: "Banco"
+                                                        },
+                                                        model: {
+                                                          value: _vm.Bancovalue,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.Bancovalue = $$v
+                                                          },
+                                                          expression:
+                                                            "Bancovalue"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    {
+                                                      attrs: {
+                                                        xs12: "",
+                                                        sm6: "",
+                                                        md3: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          label:
+                                                            "Codigo de Deposito"
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.codigodepago,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.codigodepago = $$v
+                                                          },
+                                                          expression:
+                                                            "codigodepago"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    {
+                                                      attrs: {
+                                                        xs12: "",
+                                                        sm6: "",
+                                                        md2: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          label: "Monto $"
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.montodepositado,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.montodepositado = $$v
+                                                          },
+                                                          expression:
+                                                            "montodepositado"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-flex",
+                                                    {
+                                                      attrs: {
+                                                        xs12: "",
+                                                        sm6: "",
+                                                        md1: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-icon",
+                                                        {
+                                                          attrs: {
+                                                            title:
+                                                              "Agregar Abono",
+                                                            color: "success"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {}
+                                                          }
+                                                        },
+                                                        [_vm._v("add")]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-text",
+                                        [
+                                          _c(
+                                            "v-container",
+                                            {
+                                              attrs: {
+                                                fluid: "",
+                                                "grid-list-xl": ""
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-layout",
+                                                {
+                                                  attrs: {
+                                                    "align-center": "",
+                                                    "justify-space-between": "",
+                                                    row: "",
+                                                    wrap: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-flex",
+                                                    { attrs: { lg12: "" } },
+                                                    [
+                                                      _c("v-data-table", {
+                                                        staticClass:
+                                                          "elevation-1",
+                                                        attrs: {
+                                                          items: _vm.desserts,
+                                                          "hide-actions": "",
+                                                          "hide-headers": ""
+                                                        },
+                                                        scopedSlots: _vm._u([
+                                                          {
+                                                            key: "items",
+                                                            fn: function(
+                                                              props
+                                                            ) {
+                                                              return [
+                                                                _c("td", [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      props.item
+                                                                        .name
+                                                                    )
+                                                                  )
+                                                                ]),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "td",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-xs-right"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        props
+                                                                          .item
+                                                                          .calories
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "td",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-xs-right"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        props
+                                                                          .item
+                                                                          .fat
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "td",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-xs-right"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        props
+                                                                          .item
+                                                                          .carbs
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "td",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-xs-right"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        props
+                                                                          .item
+                                                                          .protein
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "td",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-xs-right"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        props
+                                                                          .item
+                                                                          .iron
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            }
+                                                          }
+                                                        ])
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
                             ],
                             1
                           )
@@ -133015,80 +133416,6 @@ var render = function() {
                       on: {
                         click: function($event) {
                           _vm.dialog4 = false
-                        }
-                      }
-                    },
-                    [_vm._v("Cancelar")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-dialog",
-        {
-          attrs: { persistent: "", "max-width": "60%" },
-          model: {
-            value: _vm.dialog5,
-            callback: function($$v) {
-              _vm.dialog5 = $$v
-            },
-            expression: "dialog5"
-          }
-        },
-        [
-          _c(
-            "v-card",
-            { staticStyle: { "border-radius": "0px 10px 0px 10px" } },
-            [
-              _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Esta seguro?")
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-container",
-                    { attrs: { fluid: "", "grid-list-xl": "" } },
-                    [_c("v-layout", { attrs: { row: "", wrap: "" } })],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green darken-1", round: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.update1(), (_vm.dialog4 = false)
-                        }
-                      }
-                    },
-                    [_vm._v("Guardar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "red darken-1", round: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog5 = false
                         }
                       }
                     },
