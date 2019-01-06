@@ -114078,7 +114078,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("h6", { staticClass: "text--blue" }, [
                             _vm._v(
-                              "\n                                v1.3\n                            "
+                              "\n                                v1.4\n                            "
                             )
                           ])
                         ],
@@ -132770,6 +132770,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -132778,6 +132781,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
+      asd: {},
+      reserva: [],
       codigodepago: "",
       montodepositado: "",
       Tipopagovalue: "",
@@ -132804,13 +132809,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         text: 'Efectivo'
       }]
-    }, _defineProperty(_ref, 'dialog4', false), _defineProperty(_ref, 'dialog5', false), _defineProperty(_ref, 'idupdate', ""), _defineProperty(_ref, 'registros', ""), _defineProperty(_ref, 'page', ""), _defineProperty(_ref, 'reviews', 413), _defineProperty(_ref, 'value', 4.5), _defineProperty(_ref, 'eliminar', ""), _defineProperty(_ref, 'dialog3', false), _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'slider', 56), _defineProperty(_ref, 'tile', false), _defineProperty(_ref, 'search', ""), _defineProperty(_ref, 'total', ""), _defineProperty(_ref, 'fecha', ""), _defineProperty(_ref, 'clienten', ""), _defineProperty(_ref, 'editCliente', ""), _defineProperty(_ref, 'idedit', ""), _defineProperty(_ref, 'dialog', false), _defineProperty(_ref, 'dialog1', false), _defineProperty(_ref, 'rowsPerPageItems', [8, 12]), _defineProperty(_ref, 'pagination', {
+    }, _defineProperty(_ref, 'dialog4', false), _defineProperty(_ref, 'dialog5', false), _defineProperty(_ref, 'idupdate', ""), _defineProperty(_ref, 'registros', ""), _defineProperty(_ref, 'page', ""), _defineProperty(_ref, 'reviews', 413), _defineProperty(_ref, 'value', 4.5), _defineProperty(_ref, 'eliminar', ""), _defineProperty(_ref, 'dialog3', false), _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'slider', 56), _defineProperty(_ref, 'tile', false), _defineProperty(_ref, 'search', ""), _defineProperty(_ref, 'total', ""), _defineProperty(_ref, 'fecha', ""), _defineProperty(_ref, 'clienten', ""), _defineProperty(_ref, 'editCliente', ""), _defineProperty(_ref, 'idedit', ""), _defineProperty(_ref, 'dialog', false), _defineProperty(_ref, 'dialog1', false), _defineProperty(_ref, 'rowsPerPageItems', [8, 12]), _defineProperty(_ref, 'numeroReserva', 0), _defineProperty(_ref, 'pagination', {
       // rowsPerPage: 8
-    }), _defineProperty(_ref, 'items', []), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
+    }), _defineProperty(_ref, 'items', ""), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
   },
   created: function created() {
-    this.getDataAbono();
     this.getDataCliente();
+    // this.getDataAbono();
+    console.log("created");
+    console.log(this.items);
   },
 
   computed: {},
@@ -132819,36 +132826,88 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       window.location.href = '/reserva/create';
     },
     activar: function activar(item) {
+      var _this = this;
+
       console.log(item);
       this.dialog4 = true;
       this.idupdate = item.id;
-    },
-    getDataCliente: function getDataCliente() {
-      var _this = this;
-
-      console.log("en get data nuew");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
-        _this.items = response.data.reservaapr;
-        console.log(response.data.reservaapr);
+      this.numeroReserva = item.nreserva;
+      this.getDataAbono();
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reserva/' + item.id).then(function (response) {
+        _this.reserva = response.data;
+        console.log("log reserva.....");
+        console.log(response.data);
       }).catch(function (e) {
         _this.errors.push(e);
       });
-      // this.paginas();
-      console.log("aqui");
     },
-    getDataAbono: function getDataAbono() {
+    getDataCliente: function getDataCliente() {
       var _this2 = this;
 
-      console.log("Entro a consutar los abonos");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/abono').then(function (response) {
-        _this2.desserts = response.data;
-        console.log("Aqui abao repsuesta de abono");
-        console.log(response);
+      console.log("en get data nuew");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
+        _this2.items = response.data.reservaapr;
+        // this.asd = response.data.reservaapr[0];
+        console.log(response.data.reservaapr);
+        _this2.getDataReserva();
       }).catch(function (e) {
         _this2.errors.push(e);
       });
       // this.paginas();
+      console.log("aqui");
+    },
+    getDataReserva: function getDataReserva() {
+      var _this3 = this;
+
+      console.log("funcion reserva");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reserva/' + this.idupdate).then(function (response) {
+        _this3.reserva = response.data;
+        console.log("log reserva.....");
+        console.log(response.data);
+      }).catch(function (e) {
+        _this3.errors.push(e);
+      });
+      // this.paginas();
+      console.log("aqui");
+    },
+    createAbono: function createAbono() {
+      var _this4 = this;
+
+      console.log("Creando abono");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/v1.0/abono', {
+        nreserva: this.reserva.nreserva,
+        autoId: 0,
+        autoMarca: 0,
+        clienteId: 0,
+        clienteNombres: 0,
+        tipodepago: this.Tipopagovalue,
+        banco: this.Bancovalue,
+        codigodepago: this.codigodepago,
+        montodepositado: this.montodepositado
+      }).then(function (response) {
+        // this.desserts = response.data;
+        console.log("Aqui abao repsuesta de abono");
+        console.log(response);
+      }).catch(function (e) {
+        _this4.errors.push(e);
+      });
+      this.getDataAbono();
+      // this.paginas();
       // console.log("aqui");
+    },
+    getDataAbono: function getDataAbono() {
+      var _this5 = this;
+
+      console.log("Entro en getAbono");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/abono/' + this.numeroReserva).then(function (response) {
+        _this5.desserts = response.data;
+        console.log(response);
+      }).catch(function (e) {
+        _this5.errors.push(e);
+      });
+      // this.paginas();
+      // console.log("aqui");
+      console.log("Salio en getAbono");
     },
     close: function close() {
       this.dialog1 = false;
@@ -132892,7 +132951,10 @@ var render = function() {
             "v-card",
             [
               _c("v-card-title", { staticClass: "headline" }, [
-                _vm._v("Registro de confirmacion de Pago")
+                _vm._v(
+                  "Registro de confirmacion de Pago - N° de reserva: " +
+                    _vm._s(_vm.numeroReserva)
+                )
               ]),
               _vm._v(" "),
               _c(
@@ -133007,7 +133069,11 @@ var render = function() {
                                                                 [
                                                                   _c("b", [
                                                                     _vm._v(
-                                                                      "268 $"
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .reserva
+                                                                          .totalF
+                                                                      )
                                                                     )
                                                                   ])
                                                                 ]
@@ -133190,20 +133256,36 @@ var render = function() {
                                                     },
                                                     [
                                                       _c(
-                                                        "v-icon",
+                                                        "v-btn",
                                                         {
                                                           attrs: {
-                                                            title:
-                                                              "Agregar Abono",
-                                                            color: "success"
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {}
+                                                            fab: "",
+                                                            dark: "",
+                                                            small: "",
+                                                            color: "primary"
                                                           }
                                                         },
-                                                        [_vm._v("add")]
+                                                        [
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                title:
+                                                                  "Agregar Abono",
+                                                                dark: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  _vm.createAbono()
+                                                                }
+                                                              }
+                                                            },
+                                                            [_vm._v("add")]
+                                                          )
+                                                        ],
+                                                        1
                                                       )
                                                     ],
                                                     1
@@ -133266,7 +133348,7 @@ var render = function() {
                                                                   _vm._v(
                                                                     _vm._s(
                                                                       props.item
-                                                                        .name
+                                                                        .tipodepago
                                                                     )
                                                                   )
                                                                 ]),
@@ -133282,7 +133364,7 @@ var render = function() {
                                                                       _vm._s(
                                                                         props
                                                                           .item
-                                                                          .calories
+                                                                          .banco
                                                                       )
                                                                     )
                                                                   ]
@@ -133299,7 +133381,7 @@ var render = function() {
                                                                       _vm._s(
                                                                         props
                                                                           .item
-                                                                          .fat
+                                                                          .codigodepago
                                                                       )
                                                                     )
                                                                   ]
@@ -133316,41 +133398,7 @@ var render = function() {
                                                                       _vm._s(
                                                                         props
                                                                           .item
-                                                                          .carbs
-                                                                      )
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "td",
-                                                                  {
-                                                                    staticClass:
-                                                                      "text-xs-right"
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        props
-                                                                          .item
-                                                                          .protein
-                                                                      )
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "td",
-                                                                  {
-                                                                    staticClass:
-                                                                      "text-xs-right"
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        props
-                                                                          .item
-                                                                          .iron
+                                                                          .montodepositado
                                                                       )
                                                                     )
                                                                   ]
@@ -133402,7 +133450,7 @@ var render = function() {
                       attrs: { color: "green darken-1", round: "", dark: "" },
                       on: {
                         click: function($event) {
-                          _vm.update(), (_vm.dialog4 = false)
+                          _vm.dialog4 = false
                         }
                       }
                     },

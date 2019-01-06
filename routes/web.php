@@ -52,6 +52,7 @@ Route::group(['prefix' => 'v1.0'], function () {
 //  Abono Api
     Route::post('abono', 'AbonoController@storeapi');
     Route::get('abono', 'AbonoController@indexapi');
+    Route::get('abono/{abono}', 'AbonoController@showapi');
 
 });
 

@@ -29,10 +29,12 @@
 <template id="prereserva">
 <div class="">
 
+
+
   <v-dialog v-model="dialog4" persistent max-width="60%">
     <v-card>
       <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
-      <v-card-title class="headline">Registro de confirmacion de Pago</v-card-title>
+      <v-card-title class="headline">Registro de confirmacion de Pago - N° de reserva: {{ numeroReserva }}</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout align-center justify-space-between row fill-height>
@@ -57,7 +59,7 @@
                             <tfoot>
                               <tr>
                                 <td><strong>Total por Abonar</strong></td>
-                                <td class="text-xs-right"><b>268 $</b></td>
+                                <td class="text-xs-right"><b>{{ reserva.totalF }}</b></td>
                               </tr>
                             </tfoot>
                           </table>
@@ -89,7 +91,10 @@
                         </v-flex>
 
                         <v-flex xs12 sm6 md1>
-                          <v-icon title="Agregar Abono" @click="" color="success">add</v-icon>
+                          <v-btn fab dark small color="primary">
+                            <v-icon title="Agregar Abono" @click="createAbono()" dark>add</v-icon>
+                          </v-btn>
+                          <!-- <v-icon title="Agregar Abono" @click="createAbono()" color="success">add</v-icon> -->
                         </v-flex>
 
                       </v-layout>
@@ -105,12 +110,10 @@
 
                           <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers>
                             <template slot="items" slot-scope="props">
-                              <td>{{ props.item.name }}</td>
-                              <td class="text-xs-right">{{ props.item.calories }}</td>
-                              <td class="text-xs-right">{{ props.item.fat }}</td>
-                              <td class="text-xs-right">{{ props.item.carbs }}</td>
-                              <td class="text-xs-right">{{ props.item.protein }}</td>
-                              <td class="text-xs-right">{{ props.item.iron }}</td>
+                              <td>{{ props.item.tipodepago }}</td>
+                              <td class="text-xs-right">{{ props.item.banco }}</td>
+                              <td class="text-xs-right">{{ props.item.codigodepago }}</td>
+                              <td class="text-xs-right">{{ props.item.montodepositado }}</td>
                             </template>
                           </v-data-table>
                         </v-flex>
@@ -125,7 +128,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="green darken-1" round dark @click="update(), dialog4 = false">Guardar</v-btn>
+        <v-btn color="green darken-1" round dark @click="dialog4 = false">Guardar</v-btn>
         <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
@@ -199,6 +202,8 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    asd: {},
+    reserva: [],
     codigodepago: "",
     montodepositado: "",
     Tipopagovalue: "",
@@ -255,10 +260,11 @@ export default {
     dialog: false,
     dialog1: false,
     rowsPerPageItems: [8, 12],
+    numeroReserva: 0,
     pagination: {
       // rowsPerPage: 8
     },
-    items: [],
+    items: "",
     editedIndex: -1,
     editedItem: {
 
@@ -268,8 +274,10 @@ export default {
     },
   }),
   created() {
-    this.getDataAbono();
     this.getDataCliente();
+    // this.getDataAbono();
+    console.log("created");
+    console.log(this.items);
   },
   computed: {
 
@@ -282,6 +290,18 @@ export default {
       console.log(item);
       this.dialog4 = true;
       this.idupdate = item.id;
+      this.numeroReserva = item.nreserva;
+      this.getDataAbono();
+      axios
+        .get(`/v1.0/reserva/${item.id}`)
+        .then(response => {
+          this.reserva = response.data;
+          console.log("log reserva.....");
+          console.log(response.data);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
     },
     getDataCliente() {
       console.log("en get data nuew");
@@ -289,7 +309,9 @@ export default {
         .get(`/v1.0/reservastotales`)
         .then(response => {
           this.items = response.data.reservaapr;
+          // this.asd = response.data.reservaapr[0];
           console.log(response.data.reservaapr);
+          this.getDataReserva();
         })
         .catch(e => {
           this.errors.push(e);
@@ -297,13 +319,56 @@ export default {
       // this.paginas();
       console.log("aqui");
     },
-    getDataAbono() {
-      console.log("Entro a consutar los abonos");
+    getDataReserva() {
+      console.log("funcion reserva");
       axios
-        .get(`/v1.0/abono`)
+        .get(`/v1.0/reserva/${this.idupdate}`)
+        .then(response => {
+          this.reserva = response.data;
+          console.log("log reserva.....");
+          console.log(response.data);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+      // this.paginas();
+      console.log("aqui");
+    },
+    createAbono() {
+      console.log("Creando abono");
+      axios
+        .post(`/v1.0/abono`,
+          {
+            nreserva: this.reserva.nreserva,
+            autoId: 0,
+            autoMarca: 0,
+            clienteId: 0,
+            clienteNombres: 0,
+            tipodepago: this.Tipopagovalue,
+            banco: this.Bancovalue,
+            codigodepago: this.codigodepago,
+            montodepositado: this.montodepositado,
+          }
+        )
+        .then(response => {
+          // this.desserts = response.data;
+          console.log("Aqui abao repsuesta de abono");
+          console.log(response);
+
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+        this.getDataAbono();
+      // this.paginas();
+      // console.log("aqui");
+    },
+    getDataAbono() {
+      console.log("Entro en getAbono");
+      axios
+        .get(`/v1.0/abono/${this.numeroReserva}`)
         .then(response => {
           this.desserts = response.data;
-          console.log("Aqui abao repsuesta de abono");
           console.log(response);
         })
         .catch(e => {
@@ -311,6 +376,7 @@ export default {
         });
       // this.paginas();
       // console.log("aqui");
+      console.log("Salio en getAbono");
     },
     close() {
       this.dialog1 = false

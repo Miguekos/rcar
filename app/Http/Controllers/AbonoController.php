@@ -60,6 +60,14 @@ class AbonoController extends Controller
         //
     }
 
+    public function showapi($abono)
+    {
+        $abonos = Abono::where('nreserva', '=', $abono)->get();
+        // dd($abonos);
+        return $abonos;
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -10,7 +10,7 @@
                         <v-list-tile-content>
                             <v-list-tile-title>{{ user.name }}</v-list-tile-title>
                             <h6 class="text--blue">
-                                v1.3
+                                v1.4
                             </h6>
                         </v-list-tile-content>
                     </v-list-tile>
@@ -45,7 +45,7 @@
                 <v-list-tile-title>
                     <v-icon>arrow_back_ios</v-icon>
                 </v-list-tile-title>
-            </v-list-tile> 
+            </v-list-tile>
 
             <v-spacer></v-spacer>
             <v-menu offset-x="offset-x" offset-y="offset-y" transition="scale-transition">

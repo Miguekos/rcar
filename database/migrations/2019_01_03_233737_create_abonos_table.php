@@ -15,6 +15,7 @@ class CreateAbonosTable extends Migration
     {
         Schema::create('abonos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("nreserva")->nullable();
             $table->string("autoId")->nullable();
             $table->string("autoMarca")->nullable();
             $table->string("clienteId")->nullable();
