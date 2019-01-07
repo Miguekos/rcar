@@ -34,7 +34,7 @@
   <v-dialog v-model="dialog4" persistent max-width="60%">
     <v-card>
       <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
-      <v-card-title class="headline">Registro de Pagos - Reserva N° 0000{{ numeroReserva }}</v-card-title>
+      <v-card-title class="">Registro de Pagos - Reserva N° 0000{{ numeroReserva }}</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout align-center justify-space-between row fill-height>
@@ -203,7 +203,7 @@
       <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
     </div>
   </v-container>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 

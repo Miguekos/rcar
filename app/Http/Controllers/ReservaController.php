@@ -187,6 +187,7 @@ class ReservaController extends Controller
 
     public function generarcontrato()
     {
+      // return "lleg aui";
       return view('reservas.contrato');
     }
 }
