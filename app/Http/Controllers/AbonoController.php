@@ -63,8 +63,15 @@ class AbonoController extends Controller
     public function showapi($abono)
     {
         $abonos = Abono::where('nreserva', '=', $abono)->get();
+        $sumaAbonos = Abono::where('nreserva', '=', $abono)->sum('montodepositado');
+        // $sinDeuda = Abono::where('nreserva', '=', $abono)->orderby('created_at','DESC')->take(1)->get();
+        $sinDeuda = $abonos->last();
         // dd($abonos);
-        return $abonos;
+        return response([
+          "abono" => $abonos,
+          "sumaAbonos" => $sumaAbonos,
+          "sinDeuda" => $sinDeuda,
+        ]);
     }
 
 

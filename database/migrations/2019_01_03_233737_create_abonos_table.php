@@ -24,6 +24,8 @@ class CreateAbonosTable extends Migration
             $table->string("banco")->nullable();
             $table->string("codigodepago")->nullable();
             $table->string("montodepositado")->nullable();
+            $table->string("montorestante")->nullable();
+            $table->string("montototal")->nullable();
             $table->timestamps();
         });
     }

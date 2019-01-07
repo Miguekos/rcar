@@ -132773,6 +132773,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -132781,8 +132791,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
+      sumaAbonos: 0,
       asd: {},
-      reserva: [],
+      reserva: {},
       codigodepago: "",
       montodepositado: "",
       Tipopagovalue: "",
@@ -132809,7 +132820,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         text: 'Efectivo'
       }]
-    }, _defineProperty(_ref, 'dialog4', false), _defineProperty(_ref, 'dialog5', false), _defineProperty(_ref, 'idupdate', ""), _defineProperty(_ref, 'registros', ""), _defineProperty(_ref, 'page', ""), _defineProperty(_ref, 'reviews', 413), _defineProperty(_ref, 'value', 4.5), _defineProperty(_ref, 'eliminar', ""), _defineProperty(_ref, 'dialog3', false), _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'slider', 56), _defineProperty(_ref, 'tile', false), _defineProperty(_ref, 'search', ""), _defineProperty(_ref, 'total', ""), _defineProperty(_ref, 'fecha', ""), _defineProperty(_ref, 'clienten', ""), _defineProperty(_ref, 'editCliente', ""), _defineProperty(_ref, 'idedit', ""), _defineProperty(_ref, 'dialog', false), _defineProperty(_ref, 'dialog1', false), _defineProperty(_ref, 'rowsPerPageItems', [8, 12]), _defineProperty(_ref, 'numeroReserva', 0), _defineProperty(_ref, 'pagination', {
+    }, _defineProperty(_ref, 'dialog4', false), _defineProperty(_ref, 'dialog5', false), _defineProperty(_ref, 'idupdate', ""), _defineProperty(_ref, 'registros', ""), _defineProperty(_ref, 'page', ""), _defineProperty(_ref, 'reviews', 413), _defineProperty(_ref, 'value', 4.5), _defineProperty(_ref, 'eliminar', ""), _defineProperty(_ref, 'dialog3', false), _defineProperty(_ref, 'pagination', {}), _defineProperty(_ref, 'slider', 56), _defineProperty(_ref, 'tile', false), _defineProperty(_ref, 'search', ""), _defineProperty(_ref, 'total', ""), _defineProperty(_ref, 'fecha', ""), _defineProperty(_ref, 'clienten', ""), _defineProperty(_ref, 'editCliente', ""), _defineProperty(_ref, 'idedit', ""), _defineProperty(_ref, 'dialog', false), _defineProperty(_ref, 'dialog1', false), _defineProperty(_ref, 'rowsPerPageItems', [8, 12]), _defineProperty(_ref, 'numeroReserva', 0), _defineProperty(_ref, 'totalRestante', 0), _defineProperty(_ref, 'totalAbonado', 0), _defineProperty(_ref, 'montorestante', 0), _defineProperty(_ref, 'montototal', 0), _defineProperty(_ref, 'pagination', {
       // rowsPerPage: 8
     }), _defineProperty(_ref, 'items', ""), _defineProperty(_ref, 'editedIndex', -1), _defineProperty(_ref, 'editedItem', {}), _defineProperty(_ref, 'defaultItem', {}), _ref;
   },
@@ -132820,7 +132831,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     console.log(this.items);
   },
 
-  computed: {},
+  computed: {
+    serviciosTotal: function serviciosTotal() {
+      console.log("serviciosTotal");
+      var valor = this.reserva.totalF - this.montodepositado;
+      this.totalRestante = valor;
+      console.log(valor);
+      return valor;
+    }
+  },
   methods: {
     crear: function crear() {
       window.location.href = '/reserva/create';
@@ -132832,6 +132851,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.dialog4 = true;
       this.idupdate = item.id;
       this.numeroReserva = item.nreserva;
+      this.totalAbonado = item.totalAbonado;
       this.getDataAbono();
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reserva/' + item.id).then(function (response) {
         _this.reserva = response.data;
@@ -132841,37 +132861,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.errors.push(e);
       });
     },
-    getDataCliente: function getDataCliente() {
+    firmar: function firmar(item) {
       var _this2 = this;
 
-      console.log("en get data nuew");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
-        _this2.items = response.data.reservaapr;
-        // this.asd = response.data.reservaapr[0];
-        console.log(response.data.reservaapr);
-        _this2.getDataReserva();
+      console.log("Entro a Firmar");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/abono/' + item.nreserva).then(function (response) {
+        var data = response.data.sinDeuda;
+        console.log(response.data.sinDeuda.montorestante);
+        if (response.data.sinDeuda.montorestante == 0) {
+          alert("Sin deuda puedas Activar el contrato");
+        } else {
+          alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
+        }
+        console.log(response);
       }).catch(function (e) {
         _this2.errors.push(e);
       });
       // this.paginas();
-      console.log("aqui");
+      // console.log("aqui");
+      console.log("Salio de Firmar");
     },
-    getDataReserva: function getDataReserva() {
+    getDataCliente: function getDataCliente() {
       var _this3 = this;
 
-      console.log("funcion reserva");
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reserva/' + this.idupdate).then(function (response) {
-        _this3.reserva = response.data;
-        console.log("log reserva.....");
-        console.log(response.data);
+      console.log("en get data nuew");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reservastotales').then(function (response) {
+        _this3.items = response.data.reservaapr;
+        // this.asd = response.data.reservaapr[0];
+        console.log(response.data.reservaapr);
+        _this3.getDataReserva();
       }).catch(function (e) {
         _this3.errors.push(e);
       });
       // this.paginas();
       console.log("aqui");
     },
-    createAbono: function createAbono() {
+    getDataReserva: function getDataReserva() {
       var _this4 = this;
+
+      console.log("funcion reserva");
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/reserva/' + this.idupdate).then(function (response) {
+        _this4.reserva = response.data;
+        console.log("log reserva.....");
+        console.log(response.data);
+      }).catch(function (e) {
+        _this4.errors.push(e);
+      });
+      // this.paginas();
+      console.log("aqui");
+    },
+    createAbono: function createAbono() {
+      var _this5 = this;
 
       console.log("Creando abono");
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/v1.0/abono', {
@@ -132883,27 +132923,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         tipodepago: this.Tipopagovalue,
         banco: this.Bancovalue,
         codigodepago: this.codigodepago,
-        montodepositado: this.montodepositado
+        montodepositado: this.montodepositado,
+        montorestante: this.reserva.totalF - this.sumaAbonos - this.montodepositado,
+        montototal: this.reserva.totalF
       }).then(function (response) {
         // this.desserts = response.data;
         console.log("Aqui abao repsuesta de abono");
         console.log(response);
       }).catch(function (e) {
-        _this4.errors.push(e);
+        _this5.errors.push(e);
       });
       this.getDataAbono();
       // this.paginas();
       // console.log("aqui");
     },
     getDataAbono: function getDataAbono() {
-      var _this5 = this;
+      var _this6 = this;
 
       console.log("Entro en getAbono");
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/v1.0/abono/' + this.numeroReserva).then(function (response) {
-        _this5.desserts = response.data;
+        _this6.desserts = response.data.abono;
+        _this6.sumaAbonos = response.data.sumaAbonos;
         console.log(response);
       }).catch(function (e) {
-        _this5.errors.push(e);
+        _this6.errors.push(e);
       });
       // this.paginas();
       // console.log("aqui");
@@ -132952,7 +132995,7 @@ var render = function() {
             [
               _c("v-card-title", { staticClass: "headline" }, [
                 _vm._v(
-                  "Registro de confirmacion de Pago - N° de reserva: " +
+                  "Registro de Pagos - Reserva N° 0000" +
                     _vm._s(_vm.numeroReserva)
                 )
               ]),
@@ -132986,106 +133029,139 @@ var render = function() {
                                     "v-form",
                                     [
                                       _c(
-                                        "v-card",
+                                        "v-card-text",
+                                        { attrs: { "px-0": "", "py-0": "" } },
                                         [
                                           _c(
-                                            "v-card-text",
+                                            "v-container",
                                             {
-                                              attrs: { "px-0": "", "py-0": "" }
+                                              attrs: {
+                                                "grid-list-xs,sm,md,lg,xl": ""
+                                              }
                                             },
                                             [
                                               _c(
-                                                "v-container",
-                                                {
-                                                  attrs: {
-                                                    "grid-list-xs,sm,md,lg,xl":
-                                                      ""
-                                                  }
-                                                },
+                                                "v-layout",
+                                                { attrs: { wrap: "" } },
                                                 [
                                                   _c(
-                                                    "v-layout",
-                                                    { attrs: { wrap: "" } },
+                                                    "table",
+                                                    {
+                                                      staticClass:
+                                                        "v-datatable v-table teme--light"
+                                                    },
                                                     [
-                                                      _c(
-                                                        "table",
-                                                        {
-                                                          staticClass:
-                                                            "v-datatable v-table teme--light"
-                                                        },
-                                                        [
-                                                          _c("tbody", [
-                                                            _c("tr", [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  "Pago Por Servicios"
-                                                                )
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-xs-right"
-                                                                },
-                                                                [_vm._v("123")]
+                                                      _c("tbody", [
+                                                        _c("tr", [
+                                                          _c("td", [
+                                                            _vm._v(
+                                                              "Pago Por Servicios"
+                                                            )
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-xs-right"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.reserva
+                                                                    .totalF -
+                                                                    _vm.reserva
+                                                                      .garantia
+                                                                ) + " $"
                                                               )
-                                                            ]),
-                                                            _vm._v(" "),
-                                                            _c("tr", [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  "Garantia"
-                                                                )
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-xs-right"
-                                                                },
-                                                                [_vm._v("123")]
+                                                            ]
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("tr", [
+                                                          _c("td", [
+                                                            _vm._v("Garantia")
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-xs-right"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.reserva
+                                                                    .garantia
+                                                                ) + " $"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("tfoot", [
+                                                        _c("tr", [
+                                                          _c("td", [
+                                                            _c("strong", [
+                                                              _vm._v(
+                                                                "Total a pagar"
                                                               )
                                                             ])
                                                           ]),
                                                           _vm._v(" "),
-                                                          _c("tfoot", [
-                                                            _c("tr", [
-                                                              _c("td", [
-                                                                _c("strong", [
-                                                                  _vm._v(
-                                                                    "Total por Abonar"
-                                                                  )
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-xs-right"
-                                                                },
-                                                                [
-                                                                  _c("b", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        _vm
-                                                                          .reserva
-                                                                          .totalF
-                                                                      )
-                                                                    )
-                                                                  ])
-                                                                ]
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-xs-right"
+                                                            },
+                                                            [
+                                                              _c("b", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.reserva
+                                                                      .totalF
+                                                                  ) + " $"
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("tr", [
+                                                          _c("td", [
+                                                            _c("strong", [
+                                                              _vm._v(
+                                                                "Deuda total"
                                                               )
                                                             ])
-                                                          ])
-                                                        ]
-                                                      )
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-xs-right"
+                                                            },
+                                                            [
+                                                              _c("b", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.reserva
+                                                                      .totalF -
+                                                                      _vm.sumaAbonos
+                                                                  ) + " $"
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        ])
+                                                      ])
                                                     ]
                                                   )
-                                                ],
-                                                1
+                                                ]
                                               )
                                             ],
                                             1
@@ -133780,6 +133856,22 @@ var render = function() {
                                           {
                                             attrs: {
                                               small: "",
+                                              color: "success"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.firmar(props.item)
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Activar")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              small: "",
                                               color: "primary"
                                             },
                                             on: {
@@ -133788,7 +133880,7 @@ var render = function() {
                                               }
                                             }
                                           },
-                                          [_vm._v("Activar")]
+                                          [_vm._v("Abonar")]
                                         )
                                       ],
                                       1

@@ -34,14 +34,14 @@
   <v-dialog v-model="dialog4" persistent max-width="60%">
     <v-card>
       <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
-      <v-card-title class="headline">Registro de confirmacion de Pago - N° de reserva: {{ numeroReserva }}</v-card-title>
+      <v-card-title class="headline">Registro de Pagos - Reserva N° 0000{{ numeroReserva }}</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout align-center justify-space-between row fill-height>
             <v-flex class="" xs12 lg12>
               <v-card>
                 <v-form>
-                  <v-card>
+
                     <v-card-text px-0 py-0>
                       <v-container grid-list-xs,sm,md,lg,xl>
                         <v-layout wrap>
@@ -49,24 +49,32 @@
                             <tbody>
                               <tr>
                                 <td>Pago Por Servicios</td>
-                                <td class="text-xs-right">123</td>
+                                <td class="text-xs-right">{{ reserva.totalF - reserva.garantia }} $</td>
                               </tr>
                               <tr>
                                 <td>Garantia</td>
-                                <td class="text-xs-right">123</td>
+                                <td class="text-xs-right">{{ reserva.garantia }} $</td>
                               </tr>
                             </tbody>
                             <tfoot>
                               <tr>
-                                <td><strong>Total por Abonar</strong></td>
-                                <td class="text-xs-right"><b>{{ reserva.totalF }}</b></td>
+                                <td><strong>Total a pagar</strong></td>
+                                <td class="text-xs-right"><b>{{ reserva.totalF }} $</b></td>
                               </tr>
+                              <tr>
+                                <td><strong>Deuda total</strong></td>
+                                <td class="text-xs-right"><b>{{ reserva.totalF - sumaAbonos }} $</b></td>
+                              </tr>
+                              <!-- <tr>
+                                <td><strong>Total abonado</strong></td>
+                                <td class="text-xs-right"><b>{{ sumaAbonos }} $</b></td>
+                              </tr> -->
                             </tfoot>
                           </table>
                         </v-layout>
                       </v-container>
                     </v-card-text>
-                  </v-card>
+
 
                   <v-divider></v-divider>
 
@@ -109,6 +117,7 @@
                         <v-flex lg12>
 
                           <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers>
+                          <!-- <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers> -->
                             <template slot="items" slot-scope="props">
                               <td>{{ props.item.tipodepago }}</td>
                               <td class="text-xs-right">{{ props.item.banco }}</td>
@@ -175,7 +184,8 @@
             <v-card-actions>
               <strong>N° Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
               <v-spacer></v-spacer>
-              <v-btn @click="activar(props.item)" small color="primary">Activar</v-btn>
+              <v-btn @click="firmar(props.item)" small color="success">Activar</v-btn>
+              <v-btn @click="activar(props.item)" small color="primary">Abonar</v-btn>
 
               <!-- <v-btn  small color="error">cancelar</v-btn> -->
             </v-card-actions>
@@ -202,8 +212,9 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    sumaAbonos: 0,
     asd: {},
-    reserva: [],
+    reserva: {},
     codigodepago: "",
     montodepositado: "",
     Tipopagovalue: "",
@@ -261,6 +272,10 @@ export default {
     dialog1: false,
     rowsPerPageItems: [8, 12],
     numeroReserva: 0,
+    totalRestante: 0,
+    totalAbonado: 0,
+    montorestante: 0,
+    montototal: 0,
     pagination: {
       // rowsPerPage: 8
     },
@@ -280,7 +295,13 @@ export default {
     console.log(this.items);
   },
   computed: {
-
+    serviciosTotal: function() {
+      console.log("serviciosTotal");
+        var valor = this.reserva.totalF - this.montodepositado;
+        this.totalRestante = valor;
+        console.log(valor);
+      return valor;
+    },
   },
   methods: {
     crear() {
@@ -291,6 +312,7 @@ export default {
       this.dialog4 = true;
       this.idupdate = item.id;
       this.numeroReserva = item.nreserva;
+      this.totalAbonado = item.totalAbonado;
       this.getDataAbono();
       axios
         .get(`/v1.0/reserva/${item.id}`)
@@ -302,6 +324,27 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
+    },
+    firmar(item) {
+      console.log("Entro a Firmar");
+      axios
+        .get(`/v1.0/abono/${item.nreserva}`)
+        .then(response => {
+          var data = response.data.sinDeuda;
+          console.log(response.data.sinDeuda.montorestante);
+          if (response.data.sinDeuda.montorestante == 0) {
+            alert("Sin deuda puedas Activar el contrato");
+          }else {
+            alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
+          }
+          console.log(response);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+      // this.paginas();
+      // console.log("aqui");
+      console.log("Salio de Firmar");
     },
     getDataCliente() {
       console.log("en get data nuew");
@@ -348,6 +391,8 @@ export default {
             banco: this.Bancovalue,
             codigodepago: this.codigodepago,
             montodepositado: this.montodepositado,
+            montorestante: (this.reserva.totalF - this.sumaAbonos) - this.montodepositado,
+            montototal: this.reserva.totalF,
           }
         )
         .then(response => {
@@ -368,7 +413,8 @@ export default {
       axios
         .get(`/v1.0/abono/${this.numeroReserva}`)
         .then(response => {
-          this.desserts = response.data;
+          this.desserts = response.data.abono;
+          this.sumaAbonos = response.data.sumaAbonos;
           console.log(response);
         })
         .catch(e => {
