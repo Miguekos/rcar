@@ -52,7 +52,9 @@ Route::group(['prefix' => 'v1.0'], function () {
 //  Abono Api
     Route::post('abono', 'AbonoController@storeapi');
     Route::get('abono', 'AbonoController@indexapi');
+    Route::put('abono/{abono}', 'AbonoController@updateapi');
     Route::get('abono/{abono}', 'AbonoController@showapi');
+    Route::delete('abono/{abono}', 'AbonoController@destroyapi');
 
 });
 

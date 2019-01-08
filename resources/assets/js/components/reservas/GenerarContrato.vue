@@ -1,7 +1,5 @@
 <template>
   <div class="">
-
-
 <v-container fill-height fluid grid-list-xl>
   <v-layout justify-center wrap>
     <v-flex style="
@@ -63,8 +61,6 @@
 </v-container>
 
 <v-container fill-height fluid grid-list-xl>
-
-
 <v-layout align-center justify-center>
   <v-flex>
     <v-card>

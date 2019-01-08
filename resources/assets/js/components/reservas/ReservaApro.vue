@@ -75,13 +75,11 @@
                       </v-container>
                     </v-card-text>
 
-
                   <v-divider></v-divider>
 
                   <v-card-text>
                     <v-container fluid grid-list-xl>
                       <v-layout align-center justify-space-between row wrap>
-
                         <v-flex xs12 sm6 md3>
                           <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
                         </v-flex>
@@ -95,7 +93,7 @@
                         </v-flex>
 
                         <v-flex xs12 sm6 md2>
-                          <v-text-field label="Monto $" v-model="montodepositado"></v-text-field>
+                          <v-text-field required label="Monto $" v-model="montodepositado"></v-text-field>
                         </v-flex>
 
                         <v-flex xs12 sm6 md1>
@@ -104,7 +102,6 @@
                           </v-btn>
                           <!-- <v-icon title="Agregar Abono" @click="createAbono()" color="success">add</v-icon> -->
                         </v-flex>
-
                       </v-layout>
                     </v-container>
                   </v-card-text>
@@ -123,6 +120,7 @@
                               <td class="text-xs-right">{{ props.item.banco }}</td>
                               <td class="text-xs-right">{{ props.item.codigodepago }}</td>
                               <td class="text-xs-right">{{ props.item.montodepositado }}</td>
+                              <td @click="deleteItem(props.item)" class="text-xs-right"> <v-btn fab dark small color="red"> <v-icon>delete</v-icon> </v-btn> </td>
                             </template>
                           </v-data-table>
                         </v-flex>
@@ -307,6 +305,23 @@ export default {
     crear() {
       window.location.href = '/reserva/create';
     },
+    deleteItem(item) {
+      var borrar = confirm('Esta seguro que desea borrar este Cliente?')
+      if (!borrar) {
+        alert("Se cancelo");
+      } else {
+        axios
+          .delete(`/v1.0/abono/${item.id}`, {
+            _token: this.csrf
+          })
+          .then(response => {
+            console.log("Borrado correctamente");
+          })
+          .catch(e => {
+          });
+        this.getDataAbono();
+      }
+    },
     activar(item) {
       console.log(item);
       this.dialog4 = true;
@@ -378,6 +393,9 @@ export default {
       console.log("aqui");
     },
     createAbono() {
+      if (this.montodepositado == 0 || this.codigodepago == 0) {
+        alert("no se puede crear abono");
+      }else{
       console.log("Creando abono");
       axios
         .post(`/v1.0/abono`,
@@ -396,7 +414,6 @@ export default {
           }
         )
         .then(response => {
-          // this.desserts = response.data;
           console.log("Aqui abao repsuesta de abono");
           console.log(response);
 
@@ -405,8 +422,11 @@ export default {
           this.errors.push(e);
         });
         this.getDataAbono();
-      // this.paginas();
-      // console.log("aqui");
+        this.Tipopagovalue = "",
+        this.Bancovalue = "",
+        this.codigodepago = "",
+        this.montodepositado = ""
+      }
     },
     getDataAbono() {
       console.log("Entro en getAbono");
@@ -420,18 +440,12 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
-      // this.paginas();
-      // console.log("aqui");
       console.log("Salio en getAbono");
     },
     close() {
       this.dialog1 = false
       this.dialog = false
       console.log("entro seguo que si");
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     },
   },
 

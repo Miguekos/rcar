@@ -98,6 +98,7 @@ class AbonoController extends Controller
         //
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -107,5 +108,14 @@ class AbonoController extends Controller
     public function destroy(Abono $abono)
     {
         //
+    }
+
+    public function destroyapi(Abono $abono)
+    {
+        $abonos  = Abono::findOrFail($abono);
+        $abono->delete();
+//        return redirect()->route('cliente.index')->with('flash','Se elimino el cliente correctamente..!!');
+        return $abonos;
+
     }
 }

@@ -190,4 +190,5 @@ class ReservaController extends Controller
       // return "lleg aui";
       return view('reservas.contrato');
     }
+
 }

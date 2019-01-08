@@ -22,10 +22,10 @@ class CreateAbonosTable extends Migration
             $table->string("clienteNombres")->nullable();
             $table->string("tipodepago")->nullable();
             $table->string("banco")->nullable();
-            $table->string("codigodepago")->nullable();
-            $table->string("montodepositado")->nullable();
-            $table->string("montorestante")->nullable();
-            $table->string("montototal")->nullable();
+            $table->integer("codigodepago")->nullable();
+            $table->float("montodepositado")->nullable();
+            $table->float("montorestante")->nullable();
+            $table->float("montototal")->nullable();
             $table->timestamps();
         });
     }
