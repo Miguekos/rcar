@@ -20,6 +20,7 @@ class CreateReservasTable extends Migration
             $table->date('fechaFin')->nullable();
             $table->integer('vehiculo')->nullable();
             $table->string('cliente')->nullable();
+            $table->string('clienteId')->nullable();
             $table->integer('producto')->nullable();
             $table->string('promo')->nullable();
             $table->integer('zonaDeEntrega')->nullable();

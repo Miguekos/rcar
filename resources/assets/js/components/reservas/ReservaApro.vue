@@ -211,7 +211,6 @@ export default {
   props: ['user'],
   data: () => ({
     sumaAbonos: 0,
-    asd: {},
     reserva: {},
     codigodepago: "",
     montodepositado: "",
@@ -345,18 +344,21 @@ export default {
       axios
         .get(`/v1.0/abono/${item.nreserva}`)
         .then(response => {
+          console.log(response.data);
           var data = response.data.sinDeuda;
           console.log(response.data.sinDeuda.montorestante);
           if (response.data.sinDeuda.montorestante == 0) {
             alert("Sin deuda puedas Activar el contrato");
+            window.location.href = `/generarcontrato/`;
           }else {
             alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
           }
           console.log(response);
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
+        /generarcontrato/
       // this.paginas();
       // console.log("aqui");
       console.log("Salio de Firmar");
@@ -401,10 +403,10 @@ export default {
         .post(`/v1.0/abono`,
           {
             nreserva: this.reserva.nreserva,
-            autoId: 0,
-            autoMarca: 0,
-            clienteId: 0,
-            clienteNombres: 0,
+            autoId: this.reserva.vehiculo,
+            autoMarca: this.reserva.autoSeleccionado,
+            clienteId: this.reserva.clienteId,
+            clienteNombres: this.reserva.cliente,
             tipodepago: this.Tipopagovalue,
             banco: this.Bancovalue,
             codigodepago: this.codigodepago,

@@ -185,10 +185,14 @@ class ReservaController extends Controller
       return view('reservas.cargo');
     }
 
-    public function generarcontrato()
+    public function generarcontrato($cliente, $auto)
     {
       // return "lleg aui";
-      return view('reservas.contrato');
+      return response([
+        'clietne' => $cliente,
+        'auto' => $auto
+      ]);
+      // return view('reservas.contrato');
     }
 
 }

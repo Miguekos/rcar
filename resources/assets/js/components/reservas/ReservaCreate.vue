@@ -425,6 +425,7 @@ export default {
           fechasInicio: this.fecha1,
           fechaFin: this.fecha2,
           vehiculo: this.vehiculoId,
+          clienteId: this.clienteData.id,
           cliente: this.clienteData.nombres,
           producto: this.productos,
           promo: this.paquetes,
