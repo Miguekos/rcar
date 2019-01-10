@@ -349,7 +349,7 @@ export default {
           console.log(response.data.sinDeuda.montorestante);
           if (response.data.sinDeuda.montorestante == 0) {
             alert("Sin deuda puedas Activar el contrato");
-            window.location.href = `/generarcontrato/`;
+            window.location.href = `/generarcontrato/${item.clienteId}/${item.vehiculo}/${item.nreserva}`;
           }else {
             alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
           }
@@ -358,7 +358,6 @@ export default {
         .catch(e => {
 
         });
-        /generarcontrato/
       // this.paginas();
       // console.log("aqui");
       console.log("Salio de Firmar");

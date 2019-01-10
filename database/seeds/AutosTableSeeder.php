@@ -27,6 +27,10 @@ class AutosTableSeeder extends Seeder
             'anio' => $faker->biasedNumberBetween(1998,2017, 'sqrt'),
             'imagen1' => "/img/car/" . $i . ".jpg",
             'precio_por_dia' => $faker->randomNumber(2),
+            'estado' => 0,
+            'fechainicioauto' => '2018-12-01',
+            'fechafinauto' => '2018-12-31',
+            'garantia' => $faker->randomNumber(3),
           ]);
       }
     }

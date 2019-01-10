@@ -76,6 +76,8 @@ Vue.component('reserva-createdis', require('./components/reservas/ReservaCreated
 Vue.component('pre-reserva', require('./components/reservas/PreReserva.vue'));
 Vue.component('evapendiente-reserva', require('./components/reservas/EvaPendiente.vue'));
 Vue.component('reservaapro-reserva', require('./components/reservas/ReservaApro.vue'));
+Vue.component('entregapendiente-reserva', require('./components/reservas/EntregaPendiente.vue'));
+Vue.component('liquidacion-reserva', require('./components/reservas/Liquidacion.vue'));
 Vue.component('cargoalquiler-reserva', require('./components/reservas/CargosAlquiler.vue'));
 Vue.component('contrato-reserva', require('./components/reservas/GenerarContrato.vue'));
 Vue.component('reserva-edit', require('./components/reservas/ReservaEdit.vue'));

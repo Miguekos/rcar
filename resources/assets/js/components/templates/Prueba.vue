@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     disponible: function() {
-      console.log("entro a al logout");
+      console.log("Disponibilidad");
       axios
         .post(`/v1.0/disponible`, {
           fechaIni: this.date,

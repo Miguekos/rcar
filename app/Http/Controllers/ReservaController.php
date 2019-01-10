@@ -185,14 +185,27 @@ class ReservaController extends Controller
       return view('reservas.cargo');
     }
 
-    public function generarcontrato($cliente, $auto)
+    public function generarcontrato($cliente, $auto,  $reserva)
     {
       // return "lleg aui";
-      return response([
-        'clietne' => $cliente,
-        'auto' => $auto
-      ]);
-      // return view('reservas.contrato');
+      // return response([
+      //   'clietne' => $cliente,
+      //   'auto' => $auto
+      // ]);
+      $clientes = Cliente::find($cliente);
+      $autos = Auto::find($auto);
+      $reservas = Reserva::find($reserva);
+      return view('reservas.contrato',compact('clientes','autos','reservas'));
     }
+
+    // public function generarcontrato($cliente, $auto)
+    // {
+    //   // return "lleg aui";
+    //   return response([
+    //     'clietne' => $cliente,
+    //     'auto' => $auto
+    //   ]);
+    //   // return view('reservas.contrato');
+    // }
 
 }

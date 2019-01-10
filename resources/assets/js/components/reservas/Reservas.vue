@@ -185,7 +185,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <!-- <pre-reserva></pre-reserva> -->
+              <entregapendiente-reserva></entregapendiente-reserva>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -195,7 +195,7 @@
         >
           <v-card flat>
             <v-card-text>
-              <!-- <pre-reserva></pre-reserva> -->
+              <liquidacion-reserva></liquidacion-reserva>
             </v-card-text>
           </v-card>
         </v-tab-item>
