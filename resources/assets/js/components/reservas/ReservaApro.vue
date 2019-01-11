@@ -191,7 +191,7 @@
         </v-hover>
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black;">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>
@@ -201,7 +201,7 @@
       <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
     </div>
   </v-container>
-  <pre>{{ $data }}</pre>
+  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 

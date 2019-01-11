@@ -83,7 +83,7 @@
                 <v-card-title primary-title>
                   <v-layout align-center justify-space-around row fill-height>
                     <div>
-                      <div class="title">{{ props.item.cliente }}</div>
+                      <div class="titulos-card">{{ props.item.cliente }}</div>
                       <div class="text-xs-left"><strong>Monto a pagar:</strong> {{ props.item.totalF }}$</div>
                       <div class="text-xs-left"><strong>Dias Disponible:</strong> {{ props.item.diasdisponible }}</div>
                     </div>
@@ -110,7 +110,7 @@
         </v-hover>
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black;">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>

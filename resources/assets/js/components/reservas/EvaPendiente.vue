@@ -60,11 +60,11 @@
 
   <v-dialog v-model="dialog5" persistent max-width="40%">
     <v-card style="border-radius: 0px 10px 0px 10px">
-      <v-card-title class="headline">Aprobar?</v-card-title>
+      <v-card-title class="headline">¿Aprobar?</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout row wrap>
-            Esta seguro de pasar la aprobacion de la SBS?
+            ¿Esta seguro de pasar la aprobacion de la SBS?
           </v-layout>
         </v-container>
       </v-card-text>
@@ -78,11 +78,11 @@
 
   <v-dialog v-model="dialog6" persistent max-width="40%">
     <v-card style="border-radius: 0px 10px 0px 10px">
-      <v-card-title class="headline">Rechazar?</v-card-title>
+      <v-card-title class="headline">¿Rechazar?</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout row wrap>
-            No paso la evaluacion de la SBS?
+            ¿No paso la evaluacion de la SBS?
           </v-layout>
         </v-container>
       </v-card-text>
@@ -119,11 +119,6 @@
                   <v-layout align-center justify-space-around row fill-height>
 
                     <div>
-                      <div class="headline">{{ props.item.cliente }}</div>
-                      <div class="text-xs-left"><strong>Monto a pagar:</strong> {{ props.item.totalF }}$</div>
-                      <div class="text-xs-left"><strong>Dias Disponible:</strong> {{ props.item.diasdisponible }}</div>
-                    </div>
-                    <div>
                       <div class="text-xs-right"><strong>Auto:</strong> {{ props.item.autoSeleccionado }}</div>
                       <div class="text-xs-right"><strong>Fecha Inicio:</strong> {{ props.item.fechasInicio }}</div>
                       <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechaFin }}</div>
@@ -138,14 +133,13 @@
               <v-spacer></v-spacer>
               <v-btn @click="aprobo(props.item)" small color="primary">Aprobo</v-btn>
               <v-btn @click="noPaso(props.item)" small color="error">Rechazo</v-btn>
-
               <!-- <v-btn  small color="error">cancelar</v-btn> -->
             </v-card-actions>
           </v-card>
         </v-hover>
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black;">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>

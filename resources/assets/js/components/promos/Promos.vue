@@ -112,10 +112,10 @@ button:hover {
 <div>
 
   <v-container grid-list-md fluid text-xs-justify>
-    <v-container grid-list-xs>
+    <v-container class="py-0" grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="orange" size="250%">perm_identity</v-icon>
@@ -128,8 +128,8 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="blue" size="250%">person_add</v-icon>
@@ -137,13 +137,13 @@ button:hover {
               <span>Clientes Nuevos</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ totaln }}</div>
+                <div class="headline">{{ clienten }}</div>
               </div>
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
@@ -151,7 +151,7 @@ button:hover {
               <span>Aumento</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ totalp }}%</div>
+                <div class="headline">{{ fecha }}%</div>
               </div>
             </v-card-title>
           </v-card>
@@ -159,13 +159,28 @@ button:hover {
       </v-layout>
     </v-container>
 
-    <!-- <hr> -->
-    <br>
-    <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
-    <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-    <v-flex>
-      <br>
-    </v-flex>
+    <!-- <br> -->
+    <v-layout class="py-0" row wrap>
+
+      <v-flex xs3>
+        <v-card-text class="titulos-text px-0">{{ title }}</v-card-text>
+      </v-flex>
+
+      <v-flex xs3>
+        <v-card-text style="font-size: 22px; text-align: right;" class="">
+          <v-card class="pr-2">
+            <!-- Descarga<v-icon>cloud_download</v-icon> -->
+          </v-card>
+        </v-card-text>
+      </v-flex>
+
+      <v-flex xs2>
+      </v-flex>
+
+      <v-flex xs4>
+        <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+      </v-flex>
+    </v-layout>
 
     <v-data-iterator :disable-page-reset="true" :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
       <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
@@ -206,7 +221,7 @@ button:hover {
         </v-hover>
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black;">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>

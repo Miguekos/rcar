@@ -21,11 +21,19 @@
 .nuevo {
   padding: 10px 10px 0px 10px;
   /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */
-  border-radius: 10px 10px 10px 10px;
+  // border-radius: 10px 10px 10px 10px;
 }
 
 .titulos {
   border-bottom: 2px solid black;
+}
+
+.titulos-card {
+  font-size: 18px;
+}
+
+.titulos-text {
+  font-size: 22px;
 }
 
 .titulos-2 {

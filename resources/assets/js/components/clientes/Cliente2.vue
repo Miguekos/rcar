@@ -1,5 +1,4 @@
 <style scope>
-
 .v-card__title--primary {
   padding-top: 0px;
 }
@@ -126,10 +125,10 @@ button:hover {
   </v-dialog>
 
   <v-container grid-list-md fluid text-xs-justify>
-    <v-container grid-list-xs>
+    <v-container class="py-0" grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="orange" size="250%">perm_identity</v-icon>
@@ -142,8 +141,8 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light elevation-2 hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="blue" size="250%">person_add</v-icon>
@@ -156,8 +155,8 @@ button:hover {
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
@@ -173,16 +172,30 @@ button:hover {
       </v-layout>
     </v-container>
 
-    <!-- <hr> -->
-    <br>
-    <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
-    <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-    <v-flex>
-      <br>
-    </v-flex>
+    <!-- <br> -->
+    <v-layout class="py-0" row wrap>
+
+      <v-flex xs3>
+        <v-card-text class="titulos-text px-0">{{ title }}</v-card-text>
+      </v-flex>
+
+      <v-flex xs3>
+        <v-card-text style="font-size: 22px; text-align: right;" class="">
+          <v-card class="pr-2">
+            <!-- Descarga<v-icon>cloud_download</v-icon> -->
+          </v-card>
+        </v-card-text>
+      </v-flex>
+
+      <v-flex xs2>
+      </v-flex>
+
+      <v-flex xs4>
+        <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+      </v-flex>
+    </v-layout>
 
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
-
       <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
         <v-card class="mx-auto" hover tile>
           <v-layout align-center justify-center row fill-height>
@@ -206,7 +219,7 @@ button:hover {
               <v-card-title primary-title>
                 <div>
                   <div>
-                    <h2>{{ props.item.nombres }}</h2>
+                    <h3>{{ props.item.nombres }}</h3>
                   </div>
                   <div class="text-xs-left">{{ props.item.ciudad }}</div>
                   <div>{{ props.item.celular }}</div>
@@ -226,7 +239,7 @@ button:hover {
 
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>
@@ -329,23 +342,8 @@ export default {
     },
     editItem(item) {
       window.location.href = `/cliente/${item.id}/edit`;
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
-      // this.dialog1 = true
-      // this.idedit = item.id
-      // console.log(item.id);
-      // axios
-      // .get(`/v1.0/cliente/${item.id}`)
-      // .then(response => {
-      // this.editCliente = response.data;
-      // console.log(response.data);
-      // })
-      // .catch(e => {
-      // this.errors.push(e);
-      // });
     },
     deleteItem(item) {
-      // const index = this.desserts.indexOf(item)
       console.log("Aqui abajo");
       console.log(item.id);
       var borrar = confirm('Esta seguro que desea borrar este Cliente?')
@@ -357,14 +355,9 @@ export default {
             _token: this.csrf
           })
           .then(response => {
-            //                    window.location.href = '/';
-            // JSON responses are automatically parsed.
-            //                        this.user = response.data;
-            //                        console.log(response.data);
             console.log("Borrado correctamente");
           })
           .catch(e => {
-            //                        this.errors.push(e);
           });
         this.getDataCliente();
       }
@@ -373,13 +366,7 @@ export default {
       this.dialog1 = false
       this.dialog = false
       console.log("entro seguo que si");
-
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     },
   },
-
 }
 </script>

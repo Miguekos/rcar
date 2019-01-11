@@ -1,5 +1,4 @@
 <style scope>
-
 .v-card__title--primary {
   padding-top: 0px;
 }
@@ -171,58 +170,56 @@ button:hover {
     <v-data-iterator :items="dispo" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
       <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
-                <v-card @click="reservarAuto(props.item)" ripple hover>
-                  <v-layout align-center justify-center row fill-height>
-                    <v-flex xs1></v-flex>
-                    <v-flex xs3>
-                      <v-avatar size="70%">
-                        <v-img src="loginnew/images/logo.png"></v-img>
-                      </v-avatar>
-                    </v-flex>
-                    <v-flex xs8>
-                      <v-flex text-xs-right text-lg-right text-sm-right>
-                        <!-- <v-icon small class="mr-2" @click="editItem(props.item)">
+        <v-card @click="reservarAuto(props.item)" ripple hover>
+          <v-layout align-center justify-center row fill-height>
+            <v-flex xs1></v-flex>
+            <v-flex xs3>
+              <v-avatar size="70%">
+                <v-img src="loginnew/images/logo.png"></v-img>
+              </v-avatar>
+            </v-flex>
+            <v-flex xs8>
+              <v-flex text-xs-right text-lg-right text-sm-right>
+                <!-- <v-icon small class="mr-2" @click="editItem(props.item)">
                           edit
                         </v-icon>
                         <v-icon small @click="deleteItem(props.item)">
                           close
                         </v-icon> -->
-                      </v-flex>
-                      <v-card-title primary-title>
-                        <v-layout align-center justify-space-around row fill-height>
-
-                          <div>
-                            <div class="headline">{{ props.item.marca }}</div>
-                            <div class="text-xs-left"><strong>Placa:</strong> {{ props.item.placa }}$</div>
-                            <div class="text-xs-left"><strong>Color:</strong> {{ props.item.color }}</div>
-                          </div>
-                          <div>
-                            <div class="text-xs-right"><strong>Año:</strong> {{ props.item.anio }}</div>
-                            <div class="text-xs-right"><strong>Precio:</strong> {{ props.item.precio_por_dia }} $</div>
-                            <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechafinauto }}</div>
-                          </div>
-                        </v-layout>
-                      </v-card-title>
-                    </v-flex>
-                  </v-layout>
-                  <!-- <v-divider dense light></v-divider> -->
-                  <v-card-actions>
-                    <!-- <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
+              </v-flex>
+              <v-card-title primary-title>
+                <v-layout align-center justify-space-around row fill-height>
+                  <div>
+                    <div class="titulos-card">{{ props.item.marca }}</div>
+                    <div class="text-xs-left"><strong>Placa:</strong> {{ props.item.placa }}$</div>
+                    <div class="text-xs-left"><strong>Color:</strong> {{ props.item.color }}</div>
+                  </div>
+                  <div>
+                    <div class="text-xs-right"><strong>Año:</strong> {{ props.item.anio }}</div>
+                    <div class="text-xs-right"><strong>Precio:</strong> {{ props.item.precio_por_dia }} $</div>
+                  </div>
+                </v-layout>
+              </v-card-title>
+            </v-flex>
+          </v-layout>
+          <!-- <v-divider dense light></v-divider> -->
+          <v-card-actions>
+            <!-- <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
                     <v-spacer></v-spacer>
                     <v-btn @click="confirmar(props.item)" small color="primary">confirmar</v-btn> -->
 
-                    <!-- <v-btn  small color="error">cancelar</v-btn> -->
-                  </v-card-actions>
-                </v-card>
-            </v-flex>
-          </v-layout>
+            <!-- <v-btn  small color="error">cancelar</v-btn> -->
+          </v-card-actions>
         </v-card>
-        <hr>
-        <v-divider></v-divider>
+      </v-flex>
+      </v-layout>
+      </v-card>
+      <hr>
+      <v-divider></v-divider>
 
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" style="color: black;" icon="warning">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>
@@ -244,7 +241,7 @@ button:hover {
 <script>
 import axios from 'axios';
 export default {
-  props: ['user','dispo','fechaI','fechaF'],
+  props: ['user', 'dispo', 'fechaI', 'fechaF'],
   data: () => ({
     color: 0,
     colors: [
@@ -278,8 +275,7 @@ export default {
     items: {},
     editedIndex: -1,
     editedItem: {},
-    defaultItem: {
-    },
+    defaultItem: {},
   }),
   created() {
     // this.fechaI = this.dispo.fechaFin;
@@ -288,7 +284,7 @@ export default {
     // this.items = this.dispo.data;
   },
   computed: {
-    
+
   },
   methods: {
     crear() {

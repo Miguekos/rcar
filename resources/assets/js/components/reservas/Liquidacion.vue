@@ -34,7 +34,6 @@
             <v-flex class="" xs12 lg12>
               <v-card>
                 <v-form>
-
                     <v-card-text px-0 py-0>
                       <v-container grid-list-xs,sm,md,lg,xl>
                         <v-layout wrap>
@@ -189,7 +188,7 @@
         </v-hover>
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black;">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>

@@ -33,7 +33,7 @@
         <v-btn :disabled="dialog7"
       :loading="dialog7"
       class="white--text"
-      @click="dialog7 = true" type="submit" color="primary">Buscar</v-btn>
+      @click="dialog7 = true" type="submit" color="success">Buscar</v-btn>
       </v-flex>
     </v-container>
 
@@ -49,7 +49,7 @@
     </v-container>
 
   </v-form>
-  <pre>{{ $data }}</pre>
+  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 
