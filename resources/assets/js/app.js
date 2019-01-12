@@ -53,6 +53,7 @@ Vue.component('comp-prueba', require('./components/templates/Prueba.vue'));
 // Clientes
 Vue.component('comp-cliente', require('./components/clientes/Cliente2.vue'));
 Vue.component('cliente-create', require('./components/clientes/ClienteCreate.vue'));
+Vue.component('cliente-create2', require('./components/clientes/ClienteCreate2.vue'));
 Vue.component('cliente-edit', require('./components/clientes/ClienteEdit.vue'));
 Vue.component('cliente-show', require('./components/clientes/ClienteShow.vue'));
 Vue.component('cliente-table', require('./components/clientes/ClienteTable.vue'));

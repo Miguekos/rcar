@@ -124,8 +124,8 @@ button:hover {
     </v-card>
   </v-dialog>
 
-  <v-container grid-list-md fluid text-xs-justify>
-    <v-container grid-list-xs>
+  <v-container px-0 py-0 grid-list-md fluid text-xs-justify>
+    <!-- <v-container grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
         <v-flex lg3 class="nuevo">
           <v-card light hover ripple class="nuevo">
@@ -155,17 +155,31 @@ button:hover {
           </v-card>
         </v-flex>
       </v-layout>
-    </v-container>
+    </v-container> -->
 
     <!-- <hr> -->
-    <br>
 
-    <!-- {{ dispo.data }} -->
-    <!-- <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
-    <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-    <v-flex>
-      <br>
-    </v-flex> -->
+    <v-layout class="py-0" row wrap>
+
+      <v-flex xs3>
+        <v-card-text class="titulos-text px-0">Disponibilidad</v-card-text>
+      </v-flex>
+
+      <v-flex xs3>
+        <v-card-text style="font-size: 22px; text-align: right;" class="">
+          <v-card class="pr-2">
+            <!-- Descarga<v-icon>cloud_download</v-icon> -->
+          </v-card>
+        </v-card-text>
+      </v-flex>
+
+      <v-flex xs2>
+      </v-flex>
+
+      <v-flex xs4>
+        <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+      </v-flex>
+    </v-layout>
 
     <v-data-iterator :items="dispo" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
@@ -180,12 +194,7 @@ button:hover {
             </v-flex>
             <v-flex xs8>
               <v-flex text-xs-right text-lg-right text-sm-right>
-                <!-- <v-icon small class="mr-2" @click="editItem(props.item)">
-                          edit
-                        </v-icon>
-                        <v-icon small @click="deleteItem(props.item)">
-                          close
-                        </v-icon> -->
+
               </v-flex>
               <v-card-title primary-title>
                 <v-layout align-center justify-space-around row fill-height>
@@ -204,11 +213,7 @@ button:hover {
           </v-layout>
           <!-- <v-divider dense light></v-divider> -->
           <v-card-actions>
-            <!-- <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
-                    <v-spacer></v-spacer>
-                    <v-btn @click="confirmar(props.item)" small color="primary">confirmar</v-btn> -->
 
-            <!-- <v-btn  small color="error">cancelar</v-btn> -->
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -308,15 +313,9 @@ export default {
             _token: this.csrf
           })
           .then(response => {
-            //                    window.location.href = '/';
-            // JSON responses are automatically parsed.
-            //                        this.user = response.data;
-            //                        console.log(response.data);
             console.log("Borrado correctamente");
           })
-          .catch(e => {
-            //                        this.errors.push(e);
-          });
+          .catch(e => {});
         this.getDataCliente();
       }
     },
@@ -324,11 +323,6 @@ export default {
       this.dialog1 = false
       this.dialog = false
       console.log("entro seguo que si");
-
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     },
   },
 

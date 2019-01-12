@@ -1,4 +1,4 @@
-<style id="prereserva">
+<style scope>
 .v-btn--small {
   font-size: 10px;
   height: 18px;

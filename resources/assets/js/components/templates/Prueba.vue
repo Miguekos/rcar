@@ -9,8 +9,9 @@
     </v-card>
   </v-dialog>
   <v-form method="post" @submit.prevent="disponible()">
-    <v-container grid-list-lg>
+    <v-container px-0 pb-0 grid-list-lg>
       <v-layout align-center justify-center fill-height>
+
         <v-flex xs12 sm4 md4>
           <label>Fecha Inicio</label>
           <v-menu :close-on-content-click="false" v-model="menu" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
@@ -26,24 +27,18 @@
             <v-date-picker locale="Es-es" v-model="date1" @input="menu1 = false"></v-date-picker>
           </v-menu>
         </v-flex>
+
       </v-layout>
     </v-container>
     <v-container class="pa-0" grid-list-xs,sm,md,lg,xl>
       <v-flex class="pa-0" text-lg-center text-xs-center lg12>
-        <v-btn :disabled="dialog7"
-      :loading="dialog7"
-      class="white--text"
-      @click="dialog7 = true" type="submit" color="success">Buscar</v-btn>
+        <v-btn :disabled="dialog7" :loading="dialog7" class="white--text" @click="dialog7 = true" type="submit" color="success">Buscar</v-btn>
       </v-flex>
     </v-container>
 
     <v-container grid-list-lg>
       <!-- <v-layout row wrap> -->
-      <comp-disponibilidad
-      :dispo="disponi"
-      :fechaI="date"
-      :fechaF="date1"
-      >
+      <comp-disponibilidad :dispo="disponi" :fechaI="date" :fechaF="date1">
       </comp-disponibilidad>
       <!-- </v-layout> -->
     </v-container>
@@ -114,11 +109,7 @@ export default {
     },
   },
   watch: {
-      // dialog7 (val) {
-      //   if (!val) return
-      //
-      //   setTimeout(() => (this.dialog7 = false), 4000)
-      // }
-    }
+
+  }
 }
 </script>

@@ -30,6 +30,28 @@ table.v-table tbody th {
 
 <template>
 <div>
+  <v-dialog v-model="dialog5" persistent="persistent" max-width="60%">
+    <!-- <form method="post" @submit.prevent="sendFormPopup()"> -->
+      <v-card style="border-radius: 0px 10px 0px 10px">
+        <!-- <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title> -->
+        <!-- <v-card-text> -->
+          <v-container fluid="fluid" grid-list-xl="grid-list-xl">
+            <v-layout row="row" wrap="wrap">
+
+              <cliente-create2></cliente-create2>
+
+            </v-layout>
+          </v-container>
+        <!-- </v-card-text> -->
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <!-- <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn> -->
+          <!-- <v-btn color="red darken-1" round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn> -->
+        </v-card-actions>
+      </v-card>
+    <!-- </form> -->
+  </v-dialog>
+
   <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
     <form method="post" @submit.prevent="sendFormConfirmar()">
       <v-card style="border-radius: 0px 10px 0px 10px">
@@ -80,7 +102,7 @@ table.v-table tbody th {
           <label>Vehiculo</label>
           <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
           <label>Cliente</label>
-          <v-autocomplete @click:append-outer="agregarCliente()" append-outer-icon="add" :items="cliente" item-text="nombres" item-value="id" @change="verCliente()" v-model="clienteId" placeholder="Select..." required solo></v-autocomplete>
+          <v-autocomplete @click:append-outer="dialog5 = true" append-outer-icon="add" :items="cliente" item-text="nombres" item-value="id" @change="verCliente()" v-model="clienteId" placeholder="Select..." required solo></v-autocomplete>
           <label>Producto</label>
           <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
           <label>Paquete</label>
@@ -94,15 +116,15 @@ table.v-table tbody th {
           <v-layout align-center justify-space-between row fill-height>
             <v-flex xs12 sm3 lg3>
               <label>Puntos Disponibles</label>
-              <v-text-field readonly v-model="clienteData.puntos" solo-inverted></v-text-field>
+              <v-text-field readonly v-model="clienteData.puntos"></v-text-field>
             </v-flex>
             <v-flex xs12 sm3 lg3>
               <label>Puntos a Canjear</label>
-              <v-text-field type="number" v-model="puntosc" solo></v-text-field>
+              <v-text-field type="number" v-model="puntosc"></v-text-field>
             </v-flex>
             <v-flex xs12 sm3 lg3>
               <label>Dias Disponibles</label>
-              <v-text-field readonly v-model="diasd" value="123" solo></v-text-field>
+              <v-text-field readonly v-model="diasd" value="123"></v-text-field>
             </v-flex>
           </v-layout>
           <v-divider></v-divider>
@@ -337,6 +359,7 @@ export default {
       },
     ],
     dialog4: false,
+    dialog5: false,
     idupdate: "",
     garantia: 0,
     fechainicioauto: "",

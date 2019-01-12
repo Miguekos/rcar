@@ -125,13 +125,13 @@ button:hover {
   </v-dialog>
 
   <v-container grid-list-md fluid text-xs-justify>
-    <v-container class="py-0" grid-list-xs>
+    <v-container class="px-0 py-0" grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
         <v-flex lg4 class="nuevo">
           <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
-                <v-icon color="orange" size="250%">perm_identity</v-icon>
+                <v-icon color="green" size="250%">perm_identity</v-icon>
               </v-avatar>
               <span>Cliente Total</span>
               <v-spacer></v-spacer>
@@ -145,7 +145,7 @@ button:hover {
           <v-card light hover ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
-                <v-icon color="blue" size="250%">person_add</v-icon>
+                <v-icon color="green" size="250%">person_add</v-icon>
               </v-avatar>
               <span>Clientes Nuevos</span>
               <v-spacer></v-spacer>
