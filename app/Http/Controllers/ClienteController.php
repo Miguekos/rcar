@@ -68,6 +68,7 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::create($request->all());
         return $cliente;
+        // return $request->all();
     }
 
     /**

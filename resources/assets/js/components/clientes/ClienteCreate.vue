@@ -47,14 +47,9 @@ html {
                 </v-flex>
 
                 <v-flex xs12="xs12" sm6="sm6">
-                  <v-flex xs3>
-                    <v-avatar size="70%">
-                      <v-img :src="props.item.image"></v-img>
-                      <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
-                    </v-avatar>
-                  </v-flex>
                     <label for="">Imagen del Cliente</label>
                     <v-form id="subir" @submit.prevent="subir('photo')">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
                         <v-text-field required="required" type="file" name="photo" @change="subir('photo')" solo="solo"></v-text-field>
                     </V-form>
                 </v-flex>
@@ -85,12 +80,12 @@ html {
 
                 <v-flex xs12="xs12" sm6="sm6">
                     <label for="">Correo</label>
-                    <v-text-field type="email" name="email" title="Tu email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required="required"></v-text-field>
+                    <v-text-field type="email" v-model="correo" title="Tu email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required="required"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12="xs12" sm6="sm6">
                     <label for="">Celular</label>
-                    <v-text-field type="tel" minlength="9" maxlength="9" title="Solo numeros" pattern="^[0-9]+$" required="required"></v-text-field>
+                    <v-text-field type="tel" v-model="celular" minlength="9" maxlength="9" title="Solo numeros" pattern="^[0-9]+$" required="required"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12="xs12" sm6="sm6">
@@ -111,7 +106,7 @@ html {
             <v-layout row="row" wrap="wrap">
                 <v-flex xs12="xs12" sm6="sm6">
                     <label for="">CCi</label>
-                    <v-text-field required="required" v-model="cci" minlength="19" maxlength="20" type="number"></v-text-field>
+                    <v-text-field required="required" v-model="cci" minlength="19" maxlength="20" type="text"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12="xs12" sm6="sm6">
@@ -132,7 +127,7 @@ html {
             <v-layout row="row" wrap="wrap">
                 <v-flex xs12="xs12" sm6="sm6">
                     <label for="">N° Brevete</label>
-                    <v-text-field minlength="8" maxlength="9" type="text" pattern="^[0-9]+$" required="required" v-model="numeroBrevete"></v-text-field>
+                    <v-text-field minlength="11" maxlength="11" type="text" title="11 caracteres" required="required" v-model="numeroBrevete"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12="xs12" sm6="sm6" md4="md4">
@@ -169,7 +164,7 @@ html {
                     <v-textarea value="" hint="Comentarios" v-model="comentariosAdicionales"></v-textarea>
                 </v-flex>
             </v-layout>
-            <v-flex xs12="xs12" lg12="lg12" text-lg-center="text-lg-center">
+            <v-flex xs12="xs12" lg12="lg12">
                 <v-btn type="submit" color="green" dark="dark" black="black">Guardar</v-btn>
                 <v-btn @click="cancelar" color="red" dark="dark" black="black">Cancelar</v-btn>
             </v-flex>
@@ -318,6 +313,7 @@ export default {
         })
         .catch(error => {
           console.log(error)
+          alert("Se genero error al guardar cliente, intentelo mas tarde");
           // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
         })
     },
