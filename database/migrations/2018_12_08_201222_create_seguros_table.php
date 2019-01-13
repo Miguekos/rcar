@@ -15,6 +15,8 @@ class CreateSegurosTable extends Migration
     {
         Schema::create('seguros', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre', 50)->nulleable();
+            $table->float('precio')->nulleable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrereservasTable extends Migration
+class CreateBancoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePrereservasTable extends Migration
      */
     public function up()
     {
-        Schema::create('prereservas', function (Blueprint $table) {
+        Schema::create('banco', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreatePrereservasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prereservas');
+        Schema::dropIfExists('banco');
     }
 }

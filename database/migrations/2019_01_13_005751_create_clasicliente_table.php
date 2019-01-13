@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReservacsTable extends Migration
+class CreateClasiclienteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReservacsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservacs', function (Blueprint $table) {
+        Schema::create('clasicliente', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateReservacsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservacs');
+        Schema::dropIfExists('clasicliente');
     }
 }

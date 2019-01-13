@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Cliente;
-// use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\User;
 use App\Control;
@@ -30,25 +28,18 @@ class ClienteController extends Controller
     {
         // 30 dias menos
         $dias = Carbon::now()->subDay(30);
-        $cliente = Cliente::all();
-        $clientesc = Cliente::count();
-        $clientesn = Cliente::where([
+        $clientes = Cliente::all();
+        $clientestotal = Cliente::count();
+        $aumento = Cliente::where([
           ['created_at', '>=', $dias],
           ])->count();
-        $num1 = $clientesc / 100;
-        $fecha = $num1 * $clientesn;
-        // $fecha = Carbon::now()->subDay(2);
-        // $fecha = CarbonImmutable::now();
-        // $fecha->calendar();
-        // $fecha->sub('8 days')->calendar();
-        // par validar el auemto en % se usara el total de cliente
-        // $clienten = Cliente::where->('created-at' '>' 30 days);
-        // $clientesn = Cliente::where('deuda',0.00)->get();
+        $num1 = $clientestotal / 100;
+        $clientesnuevo = $num1 * $aumento;
         return json_encode([
-            "cliente" => $cliente,
-            "clientec" => $clientesc,
-            "fecha" => $fecha,
-            "clienten" => $clientesn,
+            "clientes" => $clientes,
+            "clientestotal" => $clientestotal,
+            "clientesnuevo" => $clientesnuevo,
+            "aumento" => $aumento,
         ]);
     }
 

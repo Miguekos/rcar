@@ -1,5 +1,4 @@
-<style scoped="autos">
-
+<style scope>
 .v-card__title--primary {
   padding-top: 0px;
 }
@@ -14,6 +13,19 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 0px;
+}
+
+/* html {
+    font-size: 12px;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  } */
+
+.custom-ripple {
+  user-select: none
 }
 
 .app-fab--absolute {
@@ -46,9 +58,9 @@
 
 button:hover {
   /*background: grey;
-    color: white;
-    color: #3a7999;
-    box-shadow: inset 0 0 0 3px #F44336;*/
+      color: white;
+      color: #3a7999;
+      box-shadow: inset 0 0 0 3px #F44336;*/
 }
 
 @-webkit-keyframes hvr-pulse {
@@ -96,8 +108,8 @@ button:hover {
   animation-iteration-count: infinite;
 }
 </style>
-<template id="autos">
-<div>
+<template>
+<div id="cartas">
   <v-dialog v-model="dialog3" persistent max-width="690">
     <v-card>
       <v-card-title class="headline">Enviar Correo</v-card-title>
@@ -113,38 +125,38 @@ button:hover {
   </v-dialog>
 
   <v-container grid-list-md fluid text-xs-justify>
-    <v-container grid-list-xs>
+    <v-container class="px-0 py-0" grid-list-xs>
       <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
-                <v-icon color="orange" size="250%">perm_identity</v-icon>
+                <v-icon color="green" size="250%">perm_identity</v-icon>
               </v-avatar>
-              <span>Cliente Total</span>
+              <span>Auto Total</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ total }}</div>
+                <div class="headline">{{ autostotal }}</div>
               </div>
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light elevation-2 hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
-                <v-icon color="blue" size="250%">person_add</v-icon>
+                <v-icon color="green" size="250%">person_add</v-icon>
               </v-avatar>
-              <span>Clientes Nuevos</span>
+              <span>Autos Nuevos</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ totaln }}</div>
+                <div class="headline">{{ aumento }}</div>
               </div>
             </v-card-title>
           </v-card>
         </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
+        <v-flex lg4 class="nuevo">
+          <v-card light ripple class="nuevo elevation-1">
             <v-card-title primary-title>
               <v-avatar>
                 <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
@@ -152,7 +164,7 @@ button:hover {
               <span>Aumento</span>
               <v-spacer></v-spacer>
               <div class="text-lg-justify">
-                <div class="headline">{{ totalp }}%</div>
+                <div class="headline">{{ autosnuevo }}%</div>
               </div>
             </v-card-title>
           </v-card>
@@ -160,64 +172,116 @@ button:hover {
       </v-layout>
     </v-container>
 
-    <!-- <hr> -->
-    <br>
-    <h1 class="font-weight-black text-xs-center">{{ title }}</h1>
-    <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-    <v-flex>
-      <br>
-    </v-flex>
+    <!-- <br> -->
+    <v-layout class="py-0" row wrap>
+
+      <v-flex xs3>
+        <v-card-text class="titulos-text px-0">{{ title }}</v-card-text>
+      </v-flex>
+
+      <v-flex xs3>
+        <v-card-text style="font-size: 22px; text-align: right;" class="">
+          <v-card class="pr-2">
+            <!-- Descarga<v-icon>cloud_download</v-icon> -->
+          </v-card>
+        </v-card-text>
+      </v-flex>
+
+      <v-flex xs2>
+      </v-flex>
+
+      <v-flex xs4>
+        <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
+      </v-flex>
+    </v-layout>
 
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
-
-      <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
-        <!-- <v-card
-                slot-scope="{ hover }"
-      :class="`elevation-${hover ? 12 : 2}`"
-      class="mx-auto"
-      width="344"> -->
-        <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 1}`" class="mx-auto">
-            <!-- <v-card color="cyan darken-2" class="white--text"> -->
-            <v-layout align-center justify-center row fill-height>
-              <v-flex xs1>
+      <v-flex slot="item" slot-scope="props" xs12 sm12 md12 lg6>
+        <v-card class="mx-auto" hover tile>
+          <v-layout align-center justify-center row fill-height>
+            <v-flex xs1>
+            </v-flex>
+            <v-flex xs3>
+              <v-avatar size="100%">
+                <v-img :src="props.item.imagen1"></v-img>
+                <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
+              </v-avatar>
+            </v-flex>
+            <v-flex xs8>
+              <v-flex text-xs-right text-lg-right text-sm-right>
+                <v-icon small class="mr-2" @click="editItem(props.item)">
+                  edit
+                </v-icon>
+                <v-icon small @click="deleteItem(props.item)">
+                  close
+                </v-icon>
               </v-flex>
-              <v-flex xs3>
-                <v-avatar size="70%">
-                  <!-- <v-img :src="props.item.imagen1"></v-img> -->
-                  <v-img src="loginnew/images/logo.png"></v-img>
-                </v-avatar>
-              </v-flex>
-              <v-flex xs8>
-                <v-flex text-xs-right text-lg-right text-sm-right>
-                  <v-icon small class="mr-2" @click="editItem(props.item)">
-                    edit
-                  </v-icon>
-                  <v-icon small @click="deleteItem(props.item)">
-                    close
-                  </v-icon>
-                </v-flex>
-
-                <v-card-title primary-title>
-
-                  <div>
-                    <div class="headline">{{ props.item.marca }}</div>
-                    <div class="text-xs-left"><strong>Modelo:</strong> {{ props.item.modelo }}</div>
-                    <div><strong>Placa:</strong> {{ props.item.placa }}</div>
-                    <v-spacer></v-spacer>
+              <v-card-title primary-title>
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="texto-18 px-0 py-0">
+                        {{ props.item.marca }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Placa: {{ props.item.placa }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Color: {{ props.item.color }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Año: {{ props.item.anio }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Precio: {{ props.item.precio_por_dia }} $
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <!-- <div>
+                    <h3>{{ props.item.marca }}</h3>
                   </div>
-                </v-card-title>
-              </v-flex>
-            </v-layout>
-            <!-- <v-divider dense light></v-divider> -->
-            <v-card-actions>
-              <!-- <v-btn flat >Listen now</v-btn> -->
-            </v-card-actions>
-          </v-card>
-        </v-hover>
+                  <div>
+                    <div class="text-xs-left">Placa: {{ props.item.placa }}</div>
+                    <div>Color: {{ props.item.color }}</div>
+                    <v-spacer></v-spacer>
+                    <v-flex align-content-end>
+                      <v-icon small class="mr-2" @click="dialog3 = true">
+                        mail_outline
+                      </v-icon>
+                    </v-flex>
+                  </div>
+                  <div class="">
+                    <div>Año: {{ props.item.anio }}</div>
+                    <div>Precio: {{ props.item.precio_por_dia }}</div>
+                  </div> -->
+                </v-layout>
+
+              </v-card-title>
+            </v-flex>
+          </v-layout>
+        </v-card>
+        <hr>
+        <v-divider></v-divider>
+
       </v-flex>
       <template slot="no-data">
-        <v-alert :value="true" color="red" icon="warning">
+        <v-alert :value="true" color="white" icon="warning" style="color: black">
           Lo siento no hay datos que cargar :(
         </v-alert>
       </template>
@@ -228,7 +292,7 @@ button:hover {
     </div>
   </v-container>
 
-  <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
+  <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
     <span class="mdc-fab__icon material-icons">add</span>
   </button>
   <!-- <pre>{{ $data }}</pre> -->
@@ -240,132 +304,110 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    color: 0,
+    colors: [
+      'red',
+      'pink',
+      'purple',
+      'deep-purple',
+      'indigo',
+      'blue',
+      'light-blue',
+      'cyan',
+      'teal',
+      'green',
+      'light-green',
+      'lime',
+      'yellow',
+      'amber',
+      'orange',
+      'deep-orange',
+      'brown',
+      'blue-grey',
+      'grey'
+    ],
     // boton inicio
     // boton fin
     // pagination: {},
-    title: "Vehiculo",
-    registros: "",
+    title: "Autos",
     page: null,
     reviews: 413,
     value: 4.5,
     eliminar: "",
     dialog3: false,
-    pagination: {},
+    // pagination: {},
     slider: 56,
     tile: false,
     search: "",
-    total: "",
-    totaln: "",
-    totalp: "",
-    fecha: "",
-    auton: "",
+    autostotal: "",
+    autosnuevo: "",
+    aumento: "",
     editCliente: "",
     idedit: "",
     dialog: false,
     dialog1: false,
     rowsPerPageItems: [8, 12],
-    pagination: {
-      // rowsPerPage: 8
-    },
+    pagination: {},
     items: [],
     editedIndex: -1,
-    editedItem: {
-
-    },
+    editedItem: {},
     defaultItem: {
 
     },
   }),
   created() {
-    this.getDataCliente();
-    // this.paginas();
+    this.getData();
   },
   computed: {
 
   },
   methods: {
-    paginas() {
-      // var paginas = (this.total / 8)
-      // this.page = paginas;
-    },
     crear() {
       window.location.href = '/auto/create';
     },
-    getDataCliente() {
+    getData() {
       console.log("en get data nuew");
       axios
         .get(`/v1.0/autos`)
         .then(response => {
-          this.items = response.data.auto;
-          this.total = response.data.total;
-          this.totaln = response.data.totaln;
-          this.totalp = response.data.totalp;
-          var paginas = Math.ceil(response.data.total / 8);
-          this.page = paginas;
-          // this.fecha = response.data.fecha;
-          // this.clienten = response.data.clienten;
+          this.items = response.data.autos;
+          this.autostotal = response.data.autostotal;
+          this.autosnuevo = response.data.autosnuevo;
+          this.aumento = response.data.aumento;
           // console.log(response.data.fecha);
+          var paginas = Math.ceil(response.data.autostotal / 8);
+          this.page = paginas;
         })
         .catch(e => {
-          // this.errors.push(e);
+          this.errors.push(e);
         });
-      this.paginas();
-      console.log("aqui");
-
     },
     editItem(item) {
       window.location.href = `/auto/${item.id}/edit`;
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
-      // this.dialog1 = true
-      // this.idedit = item.id
-      // console.log(item.id);
-      // axios
-      // .get(`/v1.0/cliente/${item.id}`)
-      // .then(response => {
-      // this.editCliente = response.data;
-      // console.log(response.data);
-      // })
-      // .catch(e => {
-      // this.errors.push(e);
-      // });
     },
     deleteItem(item) {
-      // const index = this.desserts.indexOf(item)
       console.log("Aqui abajo");
       console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar est promo?')
+      var borrar = confirm('Esta seguro que desea borrar este Cliente?')
       if (!borrar) {
         alert("Se cancelo");
       } else {
         axios
-          .delete(`/v1.0/auto/${item.id}`, {
+          .delete(`/v1.0/cliente/${item.id}`, {
             _token: this.csrf
           })
           .then(response => {
-            //                    window.location.href = '/';
-            // JSON responses are automatically parsed.
-            //                        this.user = response.data;
-            //                        console.log(response.data);
             console.log("Borrado correctamente");
           })
-          .catch(e => {
-            //                        this.errors.push(e);
-          });
-        this.getDataCliente();
+          .catch(e => {});
+        this.getData();
       }
     },
     close() {
       this.dialog1 = false
       this.dialog = false
       console.log("entro seguo que si");
-
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     },
   },
-
 }
 </script>

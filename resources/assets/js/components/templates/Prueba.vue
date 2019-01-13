@@ -68,6 +68,7 @@ export default {
     var cadena = new String(this.titulo);
     cadena = cadena.toLowerCase();
     this.back = cadena;
+    this.disponible()
   },
   methods: {
     disponible: function() {

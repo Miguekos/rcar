@@ -125,7 +125,7 @@ html {
 
           <v-flex xs12 sm6>
             <label for="">Banco</label>
-            <v-text-field required v-model="banco" solo></v-text-field>
+            <v-select :items="Banco" item-text="text" item-value="text" v-model="banco" label="Banco"></v-select>
           </v-flex>
 
           <v-flex xs12 sm6>
@@ -227,9 +227,22 @@ html {
       menu: false,
       menu1: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      rules: {
-        required: value => !!value || 'Obligatorio.',
-      },
+      Banco: [{
+          text: 'BBVA'
+        },
+        {
+          text: 'Scotiabank'
+        },
+        {
+          text: 'BCP'
+        },
+        {
+          text: 'Interbank'
+        },
+        {
+          text: 'Efectivo'
+        },
+      ],
     }),
     watch: {
       menu (val) {

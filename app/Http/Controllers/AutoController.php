@@ -20,29 +20,23 @@ class AutoController extends Controller
 
     public function indexapi()
     {
-      $dias = Carbon::now()->subDay(30);
-      $autos = Auto::all();
-      $total = Auto::count();
-      $totaln = Auto::where([
-        ['created_at', '>=', $dias],
+        // 30 dias menos
+        $dias = Carbon::now()->subDay(30);
+        $autos = Auto::all();
+        $autostotal = Auto::count();
+        $aumento = Auto::where([
+            ['created_at', '>=', $dias],
         ])->count();
-      $num1 = $total / 100;
-      $totalp = $num1 * $totaln;
-
-      return json_encode([
-        'auto' => $autos,
-        'total' => $total,
-        'totaln' => $totaln,
-        'totalp' => $totalp,
-      ]); ;
-
-      // $autos = Auto::all();
-      // $autost = Auto::count();
-      // return json_encode([
-      //     "autos" => $autos,
-      //     "autost" => $autost,
-      // ]);
+        $num1 = $autostotal / 100;
+        $autosnuevo = $num1 * $aumento;
+        return json_encode([
+            "autos" => $autos,
+            "autostotal" => $autostotal,
+            "autosnuevo" => $autosnuevo,
+            "aumento" => $aumento,
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

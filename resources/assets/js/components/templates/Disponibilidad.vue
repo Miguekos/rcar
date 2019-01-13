@@ -293,7 +293,7 @@ export default {
   },
   methods: {
     crear() {
-      window.location.href = '/cliente/create';
+      window.location.href = '/reserva/create';
     },
     reservarAuto(item) {
       window.location.href = `/reserva/createdis/${item.id}/${this.fechaI}/${this.fechaF}`;
