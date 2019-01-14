@@ -32,7 +32,7 @@
           <v-container fluid="fluid" grid-list-xl="grid-list-xl">
             <v-layout row="row" wrap="wrap">
               <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                <v-select required="required" :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+                <v-select required="required" :items="Tipopago" item-text="text" item-value="text" v-model="tipopagovalue" label="Tipo de Pago"></v-select>
               </v-flex>
 
               <v-flex xs12="xs12" sm6="sm6" md3="md3">
@@ -131,7 +131,7 @@ export default {
   data: () => ({
     codigodepago: "",
     montodepositado: "50",
-    Tipopagovalue: "",
+    tipopagovalue: "",
     Bancovalue: "",
     Tipopago: [{
         text: 'D. Bancario'
@@ -256,8 +256,8 @@ export default {
           data: {
             codigodepago: this.codigodepago,
             montodepositado: this.montodepositado,
-            Tipopagovalue: this.Tipopagovalue,
-            Bancovalue: this.Bancovalue,
+            tipodepago: this.tipopagovalue,
+            banco: this.Bancovalue,
             estado: 2,
           }
         })

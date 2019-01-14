@@ -150,14 +150,14 @@
                 </v-avatar>
               </v-flex>
               <v-flex xs8>
-                <v-flex text-xs-right text-lg-right text-sm-right>
+                <!-- <v-flex text-xs-right text-lg-right text-sm-right>
                   <v-icon small class="mr-2" @click="editItem(props.item)">
                     edit
                   </v-icon>
                   <v-icon small @click="deleteItem(props.item)">
                     close
                   </v-icon>
-                </v-flex>
+                </v-flex> -->
                 <v-card-title primary-title>
                   <v-layout align-center justify-space-around row fill-height>
 

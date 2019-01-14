@@ -51,6 +51,7 @@ table.v-table {
         <v-card-actions>
           <v-spacer></v-spacer>
           <!-- <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn> -->
+          <v-btn color="error" round="round" fat @click="dialog = false">Cancelar</v-btn>
           <v-btn round="round" fat @click="dialog = false">Enviar</v-btn>
           <v-btn color="green darken-1" round="round" dark="dark" @click="dialog = false, update()">Continuar</v-btn>
         </v-card-actions>
@@ -294,7 +295,7 @@ table.v-table {
         </v-layout>
     </v-container>
     <v-container text-lg-center text-xs-center text-sm-center>
-      <v-btn color="success">Regresar</v-btn>
+      <v-btn @click="atras()" color="success">Regresar</v-btn>
       <v-btn @click="dialog = true" color="primary">Generar Contrato</v-btn>
     </v-container>
 </div>
@@ -315,10 +316,10 @@ export default {
     console.log(this.autosc);
     console.log(this.reservasc);
     console.log(this.reservasc.nreserva);
-    
+
   },
   computed: {
-    
+
   },
   methods: {
     update () {
@@ -379,7 +380,7 @@ export default {
       }
     },
     atras() {
-      window.location.href = `/${this.back}`;
+      window.location.href = `/reserva`;
     },
   },
 }

@@ -7,6 +7,8 @@ use App\Promo;
 use App\Auto;
 use App\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ReservaController extends Controller
 {
@@ -178,6 +180,17 @@ class ReservaController extends Controller
     public function destroy(Reserva $reserva)
     {
         //
+    }
+
+    public function destroyapi(Reserva $reserva)
+    {
+      $reservas  = Reserva::findOrFail($reserva);
+      $reserva->delete();
+      DB::table('autos')
+               ->where('id', $reserva->vehiculo)
+               ->update(['estado' => 0]);
+
+      return $reservas;
     }
 
     public function cargoalquiler()

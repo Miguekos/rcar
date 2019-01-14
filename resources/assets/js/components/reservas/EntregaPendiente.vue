@@ -25,7 +25,7 @@
 <div class="">
 
 <v-dialog v-model="dialog1" persistent="persistent" max-width="60%">
-    <!-- <form method="post" @submit.prevent="entregarVehiculo()"> -->
+    <form method="post" @submit.prevent="entregarVehiculo()">
       <v-card style="">
         <v-card-title style="padding-top: 24px; padding-left: 24px; text-align: center;" class="headline">Registro de entrega del Vehiculo</v-card-title>
         <v-card-text>
@@ -38,6 +38,7 @@
                 <v-text-field
                   solo
                   suffix="km"
+                  v-model="kilometroinicial"
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -52,7 +53,7 @@
                 ripple
                 disable
                 solo
-                  value=""
+                  v-model="subircontrato"
                   append-icon="arrow_upward"
                 ></v-text-field>
               </v-flex>
@@ -67,7 +68,7 @@
                   solo
                   name="input-7-4"
                   label="Comentario aqui"
-                  value=""
+                  v-model="comentariocontrato"
                 ></v-textarea>
               </v-flex>
             </v-layout>
@@ -78,10 +79,11 @@
           <!-- <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn> -->
           <!-- <v-btn round="round" fat @click="dialog1 = false">Enviar</v-btn> -->
           <!-- <v-btn color="primary" round="round" dark="dark" type="submit">Confirmar</v-btn> -->
-          <v-btn color="primary" round="round" dark="dark" @click="update()">Confirmar</v-btn>
+          <v-btn color="error" round="round" dark="dark" @click="dialog1 = false">Cancelar</v-btn>
+          <v-btn color="primary" round="round" dark="dark" type="submit">Confirmar</v-btn>
         </v-card-actions>
       </v-card>
-    <!-- </form> -->
+    </form>
   </v-dialog>
 
   <v-container grid-list-md fluid text-xs-justify>
@@ -97,14 +99,14 @@
                 </v-avatar>
               </v-flex>
               <v-flex xs8>
-                <v-flex text-xs-right text-lg-right text-sm-right>
+                <!-- <v-flex text-xs-right text-lg-right text-sm-right>
                   <v-icon small class="mr-2" @click="editItem(props.item)">
                     edit
                   </v-icon>
                   <v-icon small @click="deleteItem(props.item)">
                     close
                   </v-icon>
-                </v-flex>
+                </v-flex> -->
                 <v-card-title primary-title>
                   <v-layout align-center justify-space-around row fill-height>
 
@@ -152,6 +154,9 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    kilometroinicial: "",
+    subircontrato: "",
+    comentariocontrato: "",
     codigodepago: "",
     montodepositado: "",
     Tipopagovalue: "",
@@ -202,6 +207,7 @@ export default {
     dialog: false,
     dialog1: false,
     rowsPerPageItems: [8, 12],
+    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     pagination: {
       // rowsPerPage: 8
     },
@@ -222,29 +228,23 @@ export default {
   },
   methods: {
     entregarVehiculo() {
-      axios
-        .post(`/v1.0/reserva`,
-          {
-            nreserva: this.reserva.nreserva,
-            autoId: this.reserva.vehiculo,
-            autoMarca: this.reserva.autoSeleccionado,
-            clienteId: this.reserva.clienteId,
-            clienteNombres: this.reserva.cliente,
-            tipodepago: this.Tipopagovalue,
-            banco: this.Bancovalue,
-            codigodepago: this.codigodepago,
-            montodepositado: this.montodepositado,
-            montorestante: (this.reserva.totalF - this.sumaAbonos) - this.montodepositado,
-            montototal: this.reserva.totalF,
-          }
-        )
-        .then(response => {
-          console.log(response);
-          this.update();
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
+      console.log("aqui id para ipdate");
+          axios({
+              method: 'put',
+              url: `/v1.0/reserva/${this.idupdate}`,
+              data: {
+                estado: 5,
+                kilometroinicial: this.kilometroinicial,
+                subircontrato: this.subircontrato,
+                comentariocontrato: this.comentariocontrato,
+                _token: this.csrf
+              }
+          })
+              .then(function (response) {
+                  response.data
+                  console.log(response.data);
+                  // window.location.href = '/reserva';
+              });
       },
     entregarV (item) {
       this.dialog1 = true;

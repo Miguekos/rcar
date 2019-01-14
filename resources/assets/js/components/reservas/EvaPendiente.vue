@@ -340,21 +340,32 @@ export default {
                         });
                     },
                     update2 () {
-                        console.log("aqui id para ipdate");
+                        console.log("No paso la SBS");
                             axios({
-                                method: 'put',
+                                method: 'delete',
                                 url: `/v1.0/reserva/${this.idupdate}`,
                                 data: {
-                                  estado: 0
-                                  ,
+                                      _token: this.csrf
                                 }
                             })
                                 .then(function (response) {
                                     response.data
                                     console.log(response.data);
-                                    window.location.href = '/reserva';
+                                    // window.location.href = '/reserva';
                                 });
+                                this.getDataCliente();
                             },
+
+                            // axios
+                            //   .delete(`/v1.0/reserva/${this.idupdate}`, {
+                            //     _token: this.csrf
+                            //   })
+                            //   .then(response => {
+                            //     console.log("Borrado correctamente");
+                            //   })
+                            //   .catch(e => {
+                            //     //                        this.errors.push(e);
+                            //   });
     close() {
       this.dialog1 = false
       this.dialog = false

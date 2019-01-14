@@ -30,282 +30,333 @@ table.v-table tbody th {
 
 <template>
 <div>
-  <v-dialog v-model="dialog5" persistent="persistent" max-width="60%">
-    <!-- <form method="post" @submit.prevent="sendFormPopup()"> -->
-      <v-card style="border-radius: 0px 10px 0px 10px">
-        <!-- <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title> -->
-        <!-- <v-card-text> -->
-          <v-container fluid="fluid" grid-list-xl="grid-list-xl">
-            <v-layout row="row" wrap="wrap">
+    <v-dialog v-model="dialog5" persistent="persistent" max-width="60%">
+        <!-- <form method="post" @submit.prevent="sendFormPopup()"> -->
+        <v-card style="border-radius: 0px 10px 0px 10px">
+            <!-- <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title> -->
+            <!-- <v-card-text> -->
+            <v-container fluid="fluid" grid-list-xl="grid-list-xl">
+                <v-layout row="row" wrap="wrap">
 
-              <cliente-create2></cliente-create2>
+                    <cliente-create2></cliente-create2>
 
-            </v-layout>
-          </v-container>
-        <!-- </v-card-text> -->
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <!-- <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn> -->
-          <!-- <v-btn color="red darken-1" round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn> -->
-        </v-card-actions>
-      </v-card>
-    <!-- </form> -->
-  </v-dialog>
-
-  <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
-    <form method="post" @submit.prevent="sendFormConfirmar()">
-      <v-card style="border-radius: 0px 10px 0px 10px">
-        <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
-        <v-card-text>
-          <v-container fluid="fluid" grid-list-xl="grid-list-xl">
-            <v-layout row="row" wrap="wrap">
-              <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                <v-select required="required" :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
-              </v-flex>
-
-              <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                <v-select required="required" :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
-              </v-flex>
-
-              <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                <v-text-field required="required" label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
-              </v-flex>
-
-              <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                <v-text-field required="required" label="Monto Depositado" v-model="montodepositado"></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn>
-          <v-btn color="red darken-1" round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
-        </v-card-actions>
-      </v-card>
-    </form>
-  </v-dialog>
-  <form method="post" @submit.prevent="sendForm()">
-    <v-layout align-start justify-space-between row wrap fill-height>
-      <v-flex xs12 lg6 elevation-3>
-        <v-card-text>
-          <label>Fecha Inicio</label>
-          <v-menu :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-            <v-text-field slot="activator" v-model="fecha1" prepend-icon="event" readonly></v-text-field>
-            <v-date-picker v-model="fecha1" @input="menu1 = false"></v-date-picker>
-          </v-menu>
-          <label>Fecha Fin</label>
-          <v-menu :close-on-content-click="false" v-model="menu2" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
-            <v-text-field slot="activator" v-model="fecha2" prepend-icon="event" readonly></v-text-field>
-            <v-date-picker v-model="fecha2" @input="menu2 = false"></v-date-picker>
-          </v-menu>
-          <label>Vehiculo</label>
-          <v-autocomplete :items="auto" item-text="marca" item-value="id" @change="verAuto()" v-model="vehiculoId" placeholder="Select..." required solo></v-autocomplete>
-          <label>Cliente</label>
-          <v-autocomplete @click:append-outer="dialog5 = true" append-outer-icon="add" :items="cliente" item-text="nombres" item-value="id" @change="verCliente()" v-model="clienteId" placeholder="Select..." required solo></v-autocomplete>
-          <label>Producto</label>
-          <v-select :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." solo></v-select>
-          <label>Paquete</label>
-          <v-autocomplete :items="promo" item-text="nombre" item-value="id" @change="verPromo()" v-model="promoId" placeholder="Select..." required solo></v-autocomplete>
-          <label>Zona de Entrega</label>
-          <v-select :items="zonaItem" item-text="name" item-value="value" v-model="zonas" placeholder="Select..." solo></v-select>
-          <label>Direccion de Entrega</label>
-          <v-text-field v-model="direccionEntrega"></v-text-field>
-          <label>Seguro</label>
-          <v-select :items="seguroItem" item-text="name" item-value="value" v-model="seguro" placeholder="Select..." solo></v-select>
-          <v-layout align-center justify-space-between row fill-height>
-            <v-flex xs12 sm3 lg3>
-              <label>Puntos Disponibles</label>
-              <v-text-field readonly v-model="clienteData.puntos"></v-text-field>
-            </v-flex>
-            <v-flex xs12 sm3 lg3>
-              <label>Puntos a Canjear</label>
-              <v-text-field type="number" v-model="puntosc"></v-text-field>
-            </v-flex>
-            <v-flex xs12 sm3 lg3>
-              <label>Dias Disponibles</label>
-              <v-text-field readonly v-model="diasd" value="123"></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-divider></v-divider>
-          <v-card-title primary-title>
-            Adicionales
-          </v-card-title>
-          <v-layout align-center justify-space-between row fill-height>
-            <v-flex xs12 sm4>
-              <v-switch v-model="sillabebeP" true-value="50" false-value="0" label="Silla Bebe" color="success" hide-details></v-switch>
-            </v-flex>
-            <v-flex xs12 sm4>
-              <v-switch v-model="doblePiloto" true-value="50" false-value="0" label="Doble Piloto" color="success" hide-details></v-switch>
-            </v-flex>
-            <v-flex xs12 sm4>
-              <v-switch v-model="tanqueLleno" true-value="50" false-value="0" label="Tanque LLeno" color="success" hide-details></v-switch>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 lg5 elevation-3>
-        <v-flex>
-          <v-card>
-            <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
-            <v-toolbar-title class="text-lg-center">{{ vehiculoData.marca }}</v-toolbar-title>
-            <!-- <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3> -->
-            <v-card-title>
-              <v-layout align-center justify-space-between row fill-height>
-                <table class="v-datatable v-table theme--light">
-                  <tbody style="height: 18px;">
-                    <tr>
-                      <td style="height: 18px">Marca</td>
-                      <td style="height: 18px" class="text-xs-right">{{ vehiculoData.marca }}</td>
-                    </tr>
-                    <tr>
-                      <td style="height: 18px">Modelo:</td>
-                      <td style="height: 18px" class="text-xs-right">{{ vehiculoData.modelo }}</td>
-                    </tr>
-                    <tr class="v-datatable__expand-row">
-                      <td style="height: 18px" colspan="2" class="v-datatable__expand-col"></td>
-                    </tr>
-                    <tr>
-                      <td style="height: 18px">Color:</td>
-                      <td style="height: 18px" class="text-xs-right">{{ vehiculoData.color }}</td>
-                    </tr>
-                    <tr class="v-datatable__expand-row">
-                      <td colspan="2" class="v-datatable__expand-col"></td>
-                    </tr>
-                    <tr>
-                      <td style="height: 18px">Precio por dia:</td>
-                      <td style="height: 18px" class="text-xs-right">{{ vehiculoData.precio_por_dia }}$</td>
-                    </tr>
-                    <tr>
-                      <td style="height: 18px">Dias alquilado:</td>
-                      <td style="height: 18px" class="text-xs-right">{{ fechadiff }}</td>
-                    </tr>
-                    <tr class="v-datatable__expand-row">
-                      <td colspan="2" class="v-datatable__expand-col"></td>
-                    </tr>
-                    <tr class="v-datatable__expand-row">
-                      <td colspan="2" class="v-datatable__expand-col"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </v-layout>
-            </v-card-title>
-            <v-layout row wrap justify-center>
-              <v-daterange locale="ES-es" highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets @input="onDateRangeChange"></v-daterange>
-            </v-layout>
+                </v-layout>
+            </v-container>
+            <!-- </v-card-text> -->
             <v-card-actions>
+                <v-spacer></v-spacer>
+                <!-- <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn> -->
+                <!-- <v-btn color="red darken-1" round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn> -->
             </v-card-actions>
-          </v-card>
+        </v-card>
+        <!-- </form> -->
+    </v-dialog>
+
+    <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
+        <form method="post" @submit.prevent="sendFormConfirmar()">
+            <v-card style="border-radius: 0px 10px 0px 10px">
+                <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
+                <v-card-text>
+                    <v-container fluid="fluid" grid-list-xl="grid-list-xl">
+                        <v-layout row="row" wrap="wrap">
+                            <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                <v-select required="required" :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+                            </v-flex>
+
+                            <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                <v-select required="required" :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+                            </v-flex>
+
+                            <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                <v-text-field required="required" type="number" label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                <v-text-field required="required" label="Monto Depositado" v-model="montodepositado"></v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn>
+                    <v-btn color="red darken-1" round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </form>
+    </v-dialog>
+    <form method="post" @submit.prevent="sendForm()">
+        <v-layout align-start="align-start" justify-space-between="justify-space-between" row="row" wrap="wrap" fill-height="fill-height">
+            <v-flex xs12="xs12" lg6="lg6" elevation-3="elevation-3">
+                <v-card-text>
+                    <label>Fecha Inicio</label>
+                    <v-menu
+                        :close-on-content-click="false"
+                        v-model="menu1"
+                        :nudge-right="40"
+                        lazy="lazy"
+                        transition="scale-transition"
+                        offset-y="offset-y"
+                        full-width="full-width"
+                        min-width="290px">
+                        <v-text-field slot="activator" v-model="fecha1" prepend-icon="event" readonly="readonly"></v-text-field>
+                        <v-date-picker v-model="fecha1" @input="menu1 = false"></v-date-picker>
+                    </v-menu>
+                    <label>Fecha Fin</label>
+                    <v-menu
+                        :close-on-content-click="false"
+                        v-model="menu2"
+                        :nudge-right="40"
+                        lazy="lazy"
+                        transition="scale-transition"
+                        offset-y="offset-y"
+                        full-width="full-width"
+                        min-width="290px">
+                        <v-text-field slot="activator" v-model="fecha2" prepend-icon="event" readonly="readonly"></v-text-field>
+                        <v-date-picker v-model="fecha2" @input="menu2 = false"></v-date-picker>
+                    </v-menu>
+                    <label>Vehiculo</label>
+                    <v-autocomplete
+                        :items="auto"
+                        item-text="marca"
+                        item-value="id"
+                        @change="verAuto()"
+                        v-model="vehiculoId"
+                        placeholder="Select..."
+                        required="required"
+                        solo="solo"></v-autocomplete>
+                    <label>Cliente</label>
+                    <v-autocomplete
+                        @click:append-outer="dialog5 = true"
+                        append-outer-icon="add"
+                        :items="cliente"
+                        item-text="nombres"
+                        item-value="id"
+                        @change="verCliente()"
+                        v-model="clienteId"
+                        placeholder="Select..."
+                        required="required"
+                        solo="solo"></v-autocomplete>
+                    <label>Producto</label>
+                    <v-autocomplete :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." required="required" solo="solo"></v-autocomplete>
+                    <label>Paquete</label>
+                    <v-autocomplete
+                        :items="promo"
+                        item-text="nombre"
+                        item-value="id"
+                        @change="verPromo()"
+                        v-model="promoId"
+                        placeholder="Select..."
+                        required="required"
+                        solo="solo"></v-autocomplete>
+                    <label>Zona de Entrega</label>
+                    <v-autocomplete :items="zonaItem" item-text="name" item-value="value" v-model="zonas" required="required" placeholder="Select..." solo="solo"></v-autocomplete>
+                    <label>Direccion de Entrega</label>
+                    <v-text-field required v-model="direccionEntrega"></v-text-field>
+                    <label>Seguro</label>
+                    <v-autocomplete :items="seguroItem" item-text="name" item-value="value" v-model="seguro" required="required" placeholder="Select..." solo="solo"></v-autocomplete>
+                    <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" fill-height="fill-height">
+                        <v-flex xs12="xs12" sm3="sm3" lg3="lg3">
+                            <label>Puntos Disponibles</label>
+                            <v-text-field readonly="readonly" v-model="clienteData.puntos"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12="xs12" sm3="sm3" lg3="lg3">
+                            <label>Puntos a Canjear</label>
+                            <v-text-field type="number" @keyup="calcularPuntos()" v-model="puntosc"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12="xs12" sm3="sm3" lg3="lg3">
+                            <label>Dias Disponibles</label>
+                            <v-text-field readonly="readonly" v-model="diasd"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-divider></v-divider>
+                    <v-card-title primary-title="primary-title">
+                        Adicionales
+                    </v-card-title>
+                    <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" fill-height="fill-height">
+                        <v-flex xs12="xs12" sm4="sm4">
+                            <v-switch v-model="sillabebeP" true-value="50" false-value="0" label="Silla Bebe" color="success" hide-details="hide-details"></v-switch>
+                        </v-flex>
+                        <v-flex xs12="xs12" sm4="sm4">
+                            <v-switch v-model="doblePiloto" true-value="50" false-value="0" label="Doble Piloto" color="success" hide-details="hide-details"></v-switch>
+                        </v-flex>
+                        <v-flex xs12="xs12" sm4="sm4">
+                            <v-switch v-model="tanqueLleno" true-value="50" false-value="0" label="Tanque LLeno" color="success" hide-details="hide-details"></v-switch>
+                        </v-flex>
+                    </v-layout>
+                </v-card-text>
+            </v-card>
         </v-flex>
+        <v-flex xs12="xs12" lg5="lg5" elevation-3="elevation-3">
+            <v-flex>
+                <v-card>
+                    <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
+                    <v-toolbar-title class="text-lg-center">{{ vehiculoData.marca }}</v-toolbar-title>
+                    <!-- <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3> -->
+                    <v-card-title>
+                        <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" fill-height="fill-height">
+                            <table class="v-datatable v-table theme--light">
+                                <tbody style="height: 18px;">
+                                    <tr>
+                                        <td style="height: 18px">Marca</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.marca }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Modelo:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.modelo }}</td>
+                                    </tr>
+                                    <tr class="v-datatable__expand-row">
+                                        <td style="height: 18px" colspan="2" class="v-datatable__expand-col"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Color:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.color }}</td>
+                                    </tr>
+                                    <tr class="v-datatable__expand-row">
+                                        <td colspan="2" class="v-datatable__expand-col"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Precio por dia:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.precio_por_dia }}$</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Dias alquilado:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ fechadiff }}</td>
+                                    </tr>
+                                    <tr class="v-datatable__expand-row">
+                                        <td colspan="2" class="v-datatable__expand-col"></td>
+                                    </tr>
+                                    <tr class="v-datatable__expand-row">
+                                        <td colspan="2" class="v-datatable__expand-col"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </v-layout>
+                    </v-card-title>
+                    <v-layout row="row" wrap="wrap" justify-center="justify-center">
+                        <v-daterange locale="ES-es" highlight-colors="green lighten-5" :options="dateRangeOptions" no-presets="no-presets" @input="onDateRangeChange"></v-daterange>
+                    </v-layout>
+                    <v-card-actions></v-card-actions>
+                </v-card>
+            </v-flex>
         </v-card>
-      </v-flex>
-    </v-layout>
+    </v-flex>
+</v-layout>
 
+<br>
     <br>
-    <br>
-    <!-- <v-container lg12> -->
-    <v-layout align-center justify-center>
+        <!-- <v-container lg12> -->
+        <v-layout align-center="align-center" justify-center="justify-center">
 
-      <v-flex>
-        <v-card>
-          <v-card-text>
+            <v-flex>
+                <v-card>
+                    <v-card-text>
 
-            <v-toolbar-title>Precio Total</v-toolbar-title>
-            <table class="v-datatable v-table theme--light">
-              <thead>
-                <tr>
-                  <th role="columnheader" scope="col" aria-label="Items: Not sorted." aria-sort="none" class="column text-xs-left">Items</th>
-                  <th role="columnheader" scope="col" aria-label="Precio: Not sorted." aria-sort="none" class="column text-xs-right">Precio</th>
-                </tr>
-                <tr class="v-datatable__progress">
-                  <th colspan="2" class="column"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Vehiculo</td>
-                  <td class="text-xs-right">{{ preciovihiculo }}</td>
-                </tr>
-                <tr>
-                  <td>Paquete</td>
-                  <td class="text-xs-right">{{ productos }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-                <tr>
-                  <td>Delivery</td>
-                  <td class="text-xs-right">{{ zonas }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-                <tr>
-                  <td>Silla Bebe</td>
-                  <td class="text-xs-right">{{ sillabebeP }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-                <tr>
-                  <td>Doble Piloto</td>
-                  <td class="text-xs-right">{{ doblePiloto }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-                <tr>
-                  <td>Tanque LLeno</td>
-                  <td class="text-xs-right">{{ tanqueLleno }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-                <tr>
-                  <td>Seguro</td>
-                  <td class="text-xs-right">{{ seguro }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-                <tr>
-                  <td>Dia Adicional</td>
-                  <td class="text-xs-right">{{ diaadicional }}</td>
-                </tr>
-                <tr>
-                  <td>Garantia</td>
-                  <td class="text-xs-right">{{ vehiculoData.garantia }}</td>
-                </tr>
-                <tr class="v-datatable__expand-row">
-                  <td colspan="2" class="v-datatable__expand-col"></td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td><strong>IGV 18%</strong></td>
-                  <td class="text-xs-right"><b>{{ (suma * 0.18).toFixed(2) }} $</b></td>
-                </tr>
-                <tr>
-                  <td><strong>Total a Depositar</strong></td>
-                  <td class="text-xs-right"><b>{{ suma }} $</b></td>
-                </tr>
-              </tfoot>
-            </table>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-    </v-layout>
-    <!-- </v-container> -->
+                        <v-toolbar-title>Precio Total</v-toolbar-title>
+                        <table class="v-datatable v-table theme--light">
+                            <thead>
+                                <tr>
+                                    <th role="columnheader" scope="col" aria-label="Items: Not sorted." aria-sort="none" class="column text-xs-left">Items</th>
+                                    <th role="columnheader" scope="col" aria-label="Precio: Not sorted." aria-sort="none" class="column text-xs-right">Precio</th>
+                                </tr>
+                                <tr class="v-datatable__progress">
+                                    <th colspan="2" class="column"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vehiculo</td>
+                                    <td class="text-xs-right">{{ preciovihiculo }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Paquete</td>
+                                    <td class="text-xs-right">{{ productos }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery</td>
+                                    <td class="text-xs-right">{{ zonas }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Silla Bebe</td>
+                                    <td class="text-xs-right">{{ sillabebeP }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Doble Piloto</td>
+                                    <td class="text-xs-right">{{ doblePiloto }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Tanque LLeno</td>
+                                    <td class="text-xs-right">{{ tanqueLleno }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Seguro</td>
+                                    <td class="text-xs-right">{{ seguro }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Dia Adicional</td>
+                                    <td class="text-xs-right">{{ diaadicional }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Garantia</td>
+                                    <td class="text-xs-right">{{ vehiculoData.garantia }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <strong>IGV 18%</strong>
+                                    </td>
+                                    <td class="text-xs-right">
+                                        <b>{{ (suma * 0.18).toFixed(2) }}
+                                            $</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Total a Depositar</strong>
+                                    </td>
+                                    <td class="text-xs-right">
+                                        <b>{{ suma }}
+                                            $</b>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+        <!-- </v-container> -->
 
-    <v-container text-lg-center text-xs-center text-sm-center>
-      <v-btn @click="confirmar()" color="primary">confirmar</v-btn>
-      <v-btn type="submit" color="success">Guardar</v-btn>
-      <v-btn color="error">Cancelar</v-btn>
-    </v-container>
-  </form>
-  <pre>{{ $data }}</pre>
-  {{ calcularPuntos }}
+        <v-container text-lg-center="text-lg-center" text-xs-center="text-xs-center" text-sm-center="text-sm-center">
+            <v-btn @click="confirmar()" color="primary">confirmar</v-btn>
+            <v-btn type="submit" color="success">Guardar</v-btn>
+            <v-btn color="error">Cancelar</v-btn>
+        </v-container>
+    </form>
+    <pre>{{ $data }}</pre>
+    {{ calcularPuntos }}
 </div>
 </template>
 
@@ -323,7 +374,7 @@ import DateRange from 'vuetify-daterange-picker';
 // });
 
 export default {
-  props: ['token','vehiculodis','user','fechai','fechaf'],
+  props: ['token', 'vehiculodis', 'user', 'fechai', 'fechaf'],
   data: () => ({
     codigodepago: "",
     montodepositado: "50",
@@ -469,15 +520,21 @@ export default {
       var a = moment(this.fecha1);
       var b = moment(this.fecha2);
       var c = b.diff(a, 'days');
-      console.log(c);
-      this.fechadiferencia = c ;
-      return c;
+      if (c == 0) {
+        var f = parseFloat(c) + parseFloat(1);
+        this.fechadiferencia = f;
+        return f;
+      } else {
+        this.fechadiferencia = c;
+        return c;
+      }
+
     },
     suma: function() {
       if (this.puntosc == 0) {
-          var totalv = (parseFloat(this.preciov) * parseFloat(this.fechadiferencia));
-      }else{
-          var totalv = parseFloat(this.preciov) * (parseFloat(this.fechadiferencia) - parseFloat(this.diasd));
+        var totalv = (parseFloat(this.preciov) * parseFloat(this.fechadiferencia));
+      } else {
+        var totalv = parseFloat(this.preciov) * (parseFloat(this.fechadiferencia) - parseFloat(this.diasd));
       }
       // var totalv = (parseFloat(this.preciov) * parseFloat(this.fechadiferencia));
       this.preciovihiculo = totalv;
@@ -489,16 +546,8 @@ export default {
         parseFloat(this.zonas) +
         parseFloat(this.vehiculoData.garantia) +
         parseFloat(this.seguro) + totalv;
-        this.totalF = total.toFixed(2);
+      this.totalF = total.toFixed(2);
       return total.toFixed(2);
-    },
-    calcularPuntos: function() {
-      var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
-      var asd = parseFloat(puntosTotales);
-      var puntosT = puntosTotales.toString();
-      this.diasd = puntosT.slice(0,1);
-      // console.log(asd);
-      return asd;
     },
   },
   created() {
@@ -515,6 +564,14 @@ export default {
     this.verAuto();
   },
   methods: {
+    calcularPuntos: function() {
+      var puntosTotales = Number(this.clienteData.puntos) / Number(this.puntosc);
+      var asd = parseFloat(puntosTotales);
+      var puntosT = puntosTotales.toString();
+      this.diasd = puntosT.slice(0, 1);
+      // console.log(asd);
+      return asd;
+    },
     confirmar() {
       console.log();
       this.dialog4 = true;
@@ -678,10 +735,10 @@ export default {
           this.errors.push(e);
         });
     },
-    agregarCliente () {
+    agregarCliente() {
       window.location.href = '/cliente/create';
     },
-    agregarPromo () {
+    agregarPromo() {
       window.location.href = '/promo/create';
     }
   }

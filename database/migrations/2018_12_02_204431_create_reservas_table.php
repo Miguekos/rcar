@@ -41,7 +41,7 @@ class CreateReservasTable extends Migration
             $table->float('diasdisponible')->nullable();
             $table->string('tipodepago')->nullable();
             $table->string('banco')->nullable();
-            $table->integer('codigodepago')->nullable();
+            $table->string('codigodepago')->nullable();
             $table->float('montodepositado')->nullable();
             $table->string('placa')->nullable();
             $table->string('color')->nullable();
@@ -49,6 +49,9 @@ class CreateReservasTable extends Migration
             $table->string('precio')->nullable();
             $table->string('garantia')->nullable();
             $table->string('image')->nullable();
+            $table->string('kilometroinicial')->nullable();
+            $table->string('subircontrato')->nullable();
+            $table->string('comentariocontrato')->nullable();
             $table->timestamps();
         });
     }
