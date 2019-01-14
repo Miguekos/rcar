@@ -32,7 +32,7 @@ class ReservaController extends Controller
     {
       $promo = Promo::all();
       $cliente = Cliente::all();
-      $auto = Auto::where('estado', '=', 0)->get();
+      $auto = Auto::where('disponible', '=', 1)->get();
       $reserva = Reserva::count();
         return json_encode([
           'promo' => $promo,
@@ -115,10 +115,8 @@ class ReservaController extends Controller
     public function storeapi(Request $request)
     {
         $reserva = Reserva::create($request->all());
-
         Auto::where('id', $request->vehiculo)
             ->update(['estado' => 1]);
-
         // return $request->vehiculo;
         // return $qwe;
         return $reserva;
@@ -188,14 +186,9 @@ class ReservaController extends Controller
       $reserva->delete();
       DB::table('autos')
                ->where('id', $reserva->vehiculo)
-               ->update(['estado' => 0]);
+               ->update(['disponible' => 1]);
 
       return $reservas;
-    }
-
-    public function cargoalquiler()
-    {
-      return view('reservas.cargo');
     }
 
     public function generarcontrato($cliente, $auto,  $reserva)
@@ -207,8 +200,17 @@ class ReservaController extends Controller
       // ]);
       $clientes = Cliente::find($cliente);
       $autos = Auto::find($auto);
-      $reservas = Reserva::find($reserva);
+      $reservas = Reserva::where('nreserva', $reserva)->get();
       return view('reservas.contrato',compact('clientes','autos','reservas'));
+    }
+
+    public function cargoalquiler($cliente, $auto,  $reserva)
+    {
+      // return $request->all();
+      $clientes = Cliente::find($cliente);
+      $autos = Auto::find($auto);
+      $reservas = Reserva::find($reserva);
+      return view('reservas.cargo',compact('clientes','autos','reservas'));
     }
 
     // public function generarcontrato($cliente, $auto)

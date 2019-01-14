@@ -7,6 +7,9 @@
 @section('content')
   <v-container>
     <cargoalquiler-reserva
+    :clientesc="{{ $clientes }}"
+    :autosc="{{ $autos }}"
+    :reservasc="{{ $reservas }}"
     :user="{{ auth()->user() }}"
     ></cargoalquiler-reserva>
   </v-container>

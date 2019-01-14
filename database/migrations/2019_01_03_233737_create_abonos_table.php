@@ -26,6 +26,8 @@ class CreateAbonosTable extends Migration
             $table->float("montodepositado")->nullable();
             $table->float("montorestante")->nullable();
             $table->float("montototal")->nullable();
+            $table->integer("abonoprereserva")->nullable();
+            $table->integer("abonoliquidacion")->nullable();
             $table->timestamps();
         });
     }

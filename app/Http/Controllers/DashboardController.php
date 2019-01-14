@@ -108,7 +108,6 @@ class DashboardController extends Controller
       return view('prueba');
     }
 
-
     public function disponible(Request $request)
     {
 
@@ -118,7 +117,7 @@ class DashboardController extends Controller
                   // ->get();
       // return $request->all();
       $disponi = Auto::where([
-        ['estado','=',0],
+        ['disponible','=',1],
         // ['fechasInicio', '<', $request->fechaIni],
         // ['fechaFin', '>', $request->fechaFin],
         ['fechafinauto', '<', $request->fechaIni],

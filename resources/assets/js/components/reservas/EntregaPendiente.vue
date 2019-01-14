@@ -310,10 +310,6 @@ export default {
       this.dialog1 = false
       this.dialog = false
       console.log("entro seguo que si");
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
     },
   },
 

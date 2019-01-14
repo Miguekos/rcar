@@ -78,7 +78,8 @@ Route::resource('promo','PromoController')->middleware('auth');
 // reservas
 Route::resource('reserva','ReservaController')->middleware('auth');
 Route::get('reserva/createdis/{auto}/{fechaI}/{fechaF}', 'ReservaController@createredirect')->name('createredirect')->middleware('auth');
-Route::get('cargoalquiler', 'ReservaController@cargoalquiler')->name('cargoalquiler')->middleware('auth');
+// Route::get('cargoalquiler', 'ReservaController@cargoalquiler')->name('cargoalquiler')->middleware('auth');
+Route::get('cargoalquiler/{cliente}/{auto}/{reserva}', 'ReservaController@cargoalquiler')->name('cargoalquiler')->middleware('auth');
 // Route::get('generarcontrato', 'ReservaController@generarcontrato')->name('generarcontrato')->middleware('auth');
 Route::get('generarcontrato/{cliente}/{auto}/{reserva}', 'ReservaController@generarcontrato')->name('generarcontrato')->middleware('auth');
 

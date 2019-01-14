@@ -27,21 +27,21 @@
                                 </tr>
                                 <tr>
                                     <td>Paquete</td>
-                                    <td class="text-xs-right">{{ reservaData.productos }}</td>
+                                    <td class="text-xs-right">{{ reservaData.producto }}</td>
                                 </tr>
                                 <tr class="v-datatable__expand-row">
                                     <td colspan="2" class="v-datatable__expand-col"></td>
                                 </tr>
                                 <tr>
                                     <td>Delivery</td>
-                                    <td class="text-xs-right">{{ reservaData.zonas }}</td>
+                                    <td class="text-xs-right">{{ reservaData.zonaDeEntrega }}</td>
                                 </tr>
                                 <tr class="v-datatable__expand-row">
                                     <td colspan="2" class="v-datatable__expand-col"></td>
                                 </tr>
                                 <tr>
                                     <td>Silla Bebe</td>
-                                    <td class="text-xs-right">{{ reservaData.sillabebeP }}</td>
+                                    <td class="text-xs-right">{{ reservaData.sillaBebe }}</td>
                                 </tr>
                                 <tr class="v-datatable__expand-row">
                                     <td colspan="2" class="v-datatable__expand-col"></td>
@@ -82,16 +82,34 @@
                                     </td>
                                     <td class="text-xs-right">
                                         <b>
-                                          <!-- {{ (suma * 0.18).toFixed(2) }} -->
+                                            <!-- {{ (reservaData.totalF * 0.18).toFixed(2) }} -->
+                                            {{ (reservaData.totalF * 0.18).toFixed(2) }}
                                             $</b>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>Total a Depositar</strong>
+                                        <strong>Total Servicios</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b>{{ reservaData.totalF }}
+                                        <b>{{ reservaData.totalF }}$</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Garantia</strong>
+                                    </td>
+                                    <td class="text-xs-right">
+                                        <b>{{ (parseFloat(reservaData.garantia)).toFixed(2) }}
+                                            $</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Total depositado</strong>
+                                    </td>
+                                    <td class="text-xs-right">
+                                        <b>{{ (parseFloat(reservaData.totalF) + parseFloat(reservaData.garantia)).toFixed(2) }}
                                             $</b>
                                     </td>
                                 </tr>
@@ -110,96 +128,202 @@
                 <v-card>
                     <v-card-text>
                         <label>Zona delivery devolucion</label>
-                        <v-autocomplete :items="zonaItem" item-text="name" solo="solo"></v-autocomplete>
+                        <v-autocomplete :items="zonaItem" item-text="name" v-model="zonadelivery" solo="solo"></v-autocomplete>
                         <label>Kilometros Iniciales</label>
-                        <v-text-field name="name" id="id" solo="solo"></v-text-field>
+                        <v-text-field id="id" v-model="reservaData.kilometroinicial" solo="solo"></v-text-field>
                         <label>Kilometros devolucion</label>
-                        <v-text-field name="name" id="id" solo="solo"></v-text-field>
+                        <v-text-field v-model="kilometrodevolucion" id="id"></v-text-field>
                     </v-card-text>
                 </v-card>
             </v-flex>
 
             <v-flex lg6="lg6" xs12="xs12">
                 <v-card>
-                    <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
-                    <v-toolbar-title class="text-lg-center">{{ vehiculoData.marca }}</v-toolbar-title>
+
                     <!-- <h3 class="headline mb-0">{{ vehiculoData.marca }}</h3> -->
-                    <v-card-title>
+                    <v-card-text>
+                        <v-img :src="vehiculoData.imagen1" aspect-ratio="2.75"></v-img>
+                        <v-toolbar-title class="text-lg-center">{{ vehiculoData.marca }}</v-toolbar-title>
                         <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" fill-height="fill-height">
                             <table class="v-datatable v-table">
-                              <tbody style="height: 18px;">
-                                <tr>
-                                  <td style="height: 18px">Marca</td>
-                                  <td style="height: 18px" class="text-xs-right">{{ vehiculoData.marca }}</td>
-                                </tr>
-                                <tr>
-                                  <td style="height: 18px">Modelo:</td>
-                                  <td style="height: 18px" class="text-xs-right">{{ vehiculoData.modelo }}</td>
-                                </tr>
-                                <tr class="v-datatable__expand-row">
-                                  <td style="height: 18px" colspan="2" class="v-datatable__expand-col"></td>
-                                </tr>
-                                <tr>
-                                  <td style="height: 18px">Color:</td>
-                                  <td style="height: 18px" class="text-xs-right">{{ vehiculoData.color }}</td>
-                                </tr>
-                                <tr class="v-datatable__expand-row">
-                                  <td colspan="2" class="v-datatable__expand-col"></td>
-                                </tr>
-                                <tr>
-                                  <td style="height: 18px">Precio por dia:</td>
-                                  <td style="height: 18px" class="text-xs-right">{{ vehiculoData.precio_por_dia }}$</td>
-                                </tr>
-                                <tr class="v-datatable__expand-row">
-                                  <td colspan="2" class="v-datatable__expand-col"></td>
-                                </tr>
-                                <tr class="v-datatable__expand-row">
-                                  <td colspan="2" class="v-datatable__expand-col"></td>
-                                </tr>
-                              </tbody>
+                                <tbody style="height: 18px;">
+                                    <tr>
+                                        <td style="height: 18px">Marca</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.marca }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Modelo:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.modelo }}</td>
+                                    </tr>
+                                    <tr class="v-datatable__expand-row">
+                                        <td style="height: 18px" colspan="2" class="v-datatable__expand-col"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Color:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.color }}</td>
+                                    </tr>
+                                    <tr class="v-datatable__expand-row">
+                                        <td colspan="2" class="v-datatable__expand-col"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 18px">Precio por dia:</td>
+                                        <td style="height: 18px" class="text-xs-right">{{ vehiculoData.precio_por_dia }}$</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </v-layout>
-                    </v-card-title>
-                    <v-card-actions></v-card-actions>
+                    </v-card-text>
+                    <!-- <v-card-actions></v-card-actions> -->
                 </v-card>
             </v-flex>
 
         </v-layout>
     </v-container>
 
-    <v-container grid-list-md="grid-list-md" text-xs-center="text-xs-center">
+    <v-container grid-list-md="grid-list-md">
         <v-layout row="row" wrap="wrap">
 
-            <v-flex>
-                <v-card dark="dark" color="secondary">
-                    <v-card-text class="px-0">
-                        6
+            <v-flex lg6="lg6">
+                <v-card>
+                    <v-card-text>
+                        <v-layout row="" wrap="">
+                            <v-flex xs12="xs12" sm6="sm6" md3="md6" lg6="lg6">
+                                <label>Kilometros Extendidos</label>
+                                <v-text-field solo-inverted="solo-inverted"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12="xs12" sm6="sm6" md3="md6" lg6="lg6">
+                                <label>Penalidad KM</label>
+                                <v-text-field solo="solo"></v-text-field>
+                            </v-flex>
+                        </v-layout>
+
+                        <label>Pago por daños</label>
+                        <v-text-field v-model="penalidadporkm" id="id" solo="solo" color="error"></v-text-field>
+                        <label>Lucro sesante</label>
+                        <v-text-field v-model="pagopord" id="id" solo="solo" color="error"></v-text-field>
+                        <label>Multa ($100)</label>
+                        <v-text-field v-model="lucrosesante" id="id" solo="solo"></v-text-field>
+                        <label>Otros cobros</label>
+                        <v-text-field v-model="multa" id="id" solo="solo"></v-text-field>
                     </v-card-text>
                 </v-card>
             </v-flex>
 
-            <v-flex>
-                <v-card dark="dark" color="secondary">
-                    <v-card-text class="px-0">
-                        6
+            <v-flex lg6="lg6">
+                <v-card>
+                    <v-card-text>
+                        <v-toolbar-title>Resumen</v-toolbar-title>
+                        <table class="v-datatable v-table theme--light">
+                            <thead>
+                                <!-- <tr> <th role="columnheader" scope="col" aria-label="Items: Not sorted." aria-sort="none" class="column text-xs-left">Items</th> <th role="columnheader"
+                                scope="col" aria-label="Precio: Not sorted." aria-sort="none" class="column text-xs-right">Precio</th> </tr> <tr class="v-datatable__progress"> <th colspan="2"
+                                class="column"></th> </tr> -->
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Garantia disponible</td>
+                                    <td class="text-xs-right">{{ reservaData.garantia }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Penalidad por KM</td>
+                                    <td class="text-xs-right">{{ penalidadporkm }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery</td>
+                                    <td class="text-xs-right">{{ zonadelivery }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pago por daños</td>
+                                    <td class="text-xs-right">{{ pagopord }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Lucro sesante</td>
+                                    <td class="text-xs-right">{{ lucrosesante }}</td>
+                                </tr>
+                                <tr class="v-datatable__expand-row">
+                                    <td colspan="2" class="v-datatable__expand-col"></td>
+                                </tr>
+                                <tr>
+                                    <td>Multa</td>
+                                    <td class="text-xs-right">{{ multa }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <strong>Por devolver</strong>
+                                    </td>
+                                    <td class="text-xs-right">
+                                        <b> {{ totaladevolver }}$</b>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </v-card-text>
                 </v-card>
             </v-flex>
 
         </v-layout>
     </v-container>
-<pre>{{ $data }}</pre>
+    <v-container>
+        <v-layout row="row" justify-space-between="justify-space-between">
+            <v-flex xs2="xs2" lg4="lg4">
+
+                <v-btn @click="atras()" color="primary">Cancelar</v-btn>
+
+            </v-flex>
+            <v-flex xs2="xs2" lg4="lg4"></v-flex>
+            <v-flex xs2="xs6" lg4="lg6">
+
+                <v-btn @click="updateRegistrar()" color="success">Regsitrar devolucion</v-btn>
+                <v-btn @click="updateLiquidar()" color="error">Liquidar</v-btn>
+
+            </v-flex>
+        </v-layout>
+
+    </v-container>
+    <v-text-field
+      dark
+      hidden
+      v-model="sumaDevolver"
+    ></v-text-field>
+    <v-text-field
+      dark
+      type="hidden"
+      v-model="suma"
+    ></v-text-field>
+    <pre>{{ $data }}</pre>
+
 </div>
 </template>
 
 <script>
 export default {
+  props: ['clientesc','autosc','reservasc'],
   data: () => ({
+    totalLiquidacion: 0,
+    totaladevolver:0,
+    kilometrodevolucion: 0,
+    zonadelivery: 0,
+    penalidadporkm: 0,
+    pagopord: 0,
+    lucrosesante: 0,
+    multa: 0,
     preciovihiculo: "",
-    suma: "",
     reservaData: {},
     vehiculoId: "",
     vehiculoData: {},
+
     zonaItem: [{
         name: "San Isidro",
         value: '100'
@@ -222,16 +346,93 @@ export default {
       },
     ],
   }),
-  created () {
+  created() {
     this.getDataR();
     this.vehiculoId = this.reservaData.vehiculo;
     this.getDataV();
   },
+  watch: {
+
+  },
+  computed: {
+    sumaDevolver: function() {
+      let totalD =
+        parseFloat(this.reservaData.garantia) -
+        parseFloat(this.totalLiquidacion);
+        // this.totalF = total.toFixed(2);
+        if (totalD < 0) {
+          alert("La cantidad a devolver no puede ser NEGATIVA, verifica los montos.");
+          this.totaladevolver = 0;
+        } else {
+          this.totaladevolver = totalD;
+          return totalD;
+        }
+        console.log("esta en la sumaDevolver");
+    },
+    suma: function() {
+      let total =
+        parseFloat(this.penalidadporkm) +
+        parseFloat(this.zonadelivery) +
+        parseFloat(this.pagopord) +
+        parseFloat(this.lucrosesante) +
+        parseFloat(this.multa);
+      // this.totalF = total.toFixed(2);
+        this.totalLiquidacion = total;
+        return total;
+        console.log("esta en la suma");
+    },
+  },
   methods: {
+    updateLiquidar() {
+      console.log("aqui id para ipdate");
+      axios({
+          method: 'put',
+          url: `/v1.0/reserva/${this.reservaData.nreserva}`,
+          data: {
+            codigodepago: this.codigodepago,
+            montodepositado: this.montodepositado,
+            Tipopagovalue: this.Tipopagovalue,
+            Bancovalue: this.Bancovalue,
+            estado: 0,
+            liquidacion: 1,
+          }
+        })
+        .then(function(response) {
+          response.data
+          console.log(response.data);
+          window.location.href = '/reserva';
+        });
+    },
+    updateRegistrar() {
+      console.log("aqui id para ipdate");
+      axios({
+          method: 'put',
+          url: `/v1.0/reserva/${this.reservaData.nreserva}`,
+          data: {
+            totaladevolver: this.totaladevolver,
+            kilometrodevolucion: this.kilometrodevolucion,
+            zonadelivery: this.zonadelivery,
+            penalidadporkm: this.penalidadporkm,
+            pagopord: this.pagopord,
+            lucrosesante: this.lucrosesante,
+            multa: this.multa,
+            estado: 5,
+            disponible: 1,
+            entrega: 1,
+            liquidacion: 0,
+            cobrosadi: this.totalLiquidacion,
+          }
+        })
+        .then(function(response) {
+          response.data
+          console.log(response.data);
+          window.location.href = '/reserva';
+        });
+    },
     getDataR() {
       console.log("ShowApiReserva");
       axios
-        .get(`/v1.0/reserva/1`)
+        .get(`/v1.0/reserva/${this.reservasc.nreserva}`)
         .then(response => {
           console.log(response.data);
           this.reservaData = response.data;
@@ -243,7 +444,7 @@ export default {
     getDataV() {
       console.log("ShowApiVehiculo");
       axios
-        .get(`/v1.0/auto/1`)
+        .get(`/v1.0/auto/${this.reservasc.vehiculo}`)
         .then(response => {
           console.log(response.data[0]);
           this.vehiculoData = response.data[0];
@@ -251,6 +452,9 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
+    },
+    atras() {
+      window.location.href = '/reserva';
     },
   }
 }

@@ -27,7 +27,7 @@
   <v-dialog v-model="dialog4" persistent max-width="60%">
     <v-card>
       <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
-      <v-card-title class="">Registro de LIQUIDACION - Reserva N° 0000{{ numeroReserva }}</v-card-title>
+      <v-card-title class="">Registro de LIQUIDACION - Reserva N° 0000{{ jsonitem.nreserva }}</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout align-center justify-space-between row fill-height>
@@ -40,26 +40,21 @@
                           <table class="v-datatable v-table teme--light">
                             <tbody>
                               <tr>
-                                <td>Pago Por Servicios</td>
-                                <!-- <td class="text-xs-right">{{ reserva.totalF - reserva.garantia }} $</td> -->
-                                <td class="text-xs-right"> $</td>
-                              </tr>
-                              <tr>
                                 <td>Garantia</td>
-                                <td class="text-xs-right">$</td>
+                                <td class="text-xs-right"> {{ jsonitem.garantia }} $</td>
                                 <!-- <td class="text-xs-right">{{ reserva.garantia }} $</td> -->
                               </tr>
                             </tbody>
                             <tfoot>
                               <tr>
-                                <td><strong>Total a pagar</strong></td>
+                                <td><strong>Cobros adicionales</strong></td>
                                 <!-- <td class="text-xs-right"><b>{{ reserva.totalF }} $</b></td> -->
-                                <td class="text-xs-right"><b> $</b></td>
+                                <td class="text-xs-right"><b> {{ jsonitem.cobrosadi }} $</b></td>
                               </tr>
                               <tr>
                                 <td><strong>Deuda total</strong></td>
                                 <!-- <td class="text-xs-right"><b>{{ reserva.totalF - sumaAbonos }} $</b></td> -->
-                                <td class="text-xs-right"><b>$</b></td>
+                                <td class="text-xs-right"><b> {{ jsonitem.totaladevolver - sumaAbonos }} $</b></td>
                               </tr>
                               <!-- <tr>
                                 <td><strong>Total abonado</strong></td>
@@ -198,7 +193,7 @@
       <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
     </div>
   </v-container>
-  <!-- <pre>{{ $data }}</pre> -->
+  <pre>{{ $data }}</pre>
 </div>
 </template>
 
@@ -207,10 +202,18 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    jsonitem: [],
+    garantia: 0,
+    cobrosadi: 0,
     codigodepago: "",
     montodepositado: "",
     Tipopagovalue: "",
     Bancovalue: "",
+    numeroReserva: "",
+    totalAbonado: "",
+    desserts: [],
+    numeroReserva: 0,
+    reservaselec: {},
     Tipopago: [{
         text: 'D. Bancario'
       },
@@ -219,6 +222,9 @@ export default {
       },
       {
         text: 'T. Debito'
+      },
+      {
+        text: 'Efectivo'
       },
     ],
     Banco: [{
@@ -232,6 +238,9 @@ export default {
       },
       {
         text: 'Interbank'
+      },
+      {
+        text: 'Efectivo'
       },
     ],
     dialog4: false,
@@ -275,6 +284,82 @@ export default {
 
   },
   methods: {
+    liquidar(item) {
+      console.log(item);
+      this.dialog4 = true;
+      this.idupdate = item.id;
+      this.jsonitem = item;
+      this.numeroReserva = item.nreserva;
+      this.totalAbonado = item.totalAbonado;
+      this.getDataAbono();
+      axios
+        .get(`/v1.0/reserva/${item.id}`)
+        .then(response => {
+          this.reserva = response.data;
+          console.log("log reserva.....");
+          console.log(response.data);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+    createAbono() {
+      if (this.montodepositado == 0 || this.codigodepago == 0) {
+        alert("no se puede crear abono");
+      } else {
+        var asd = parseFloat(this.jsonitem.totaladevolver) - parseFloat(this.sumaAbonos);
+        console.log("###################################################");
+        console.log(asd);
+        if (asd < this.montodepositado) {
+          alert("No puedes tener deuda negativa verifique el monto depositado")
+        } else {
+
+          console.log("Creando abono");
+          axios
+            .post(`/v1.0/abono`, {
+              nreserva: this.reserva.nreserva,
+              autoId: this.reserva.vehiculo,
+              autoMarca: this.reserva.autoSeleccionado,
+              clienteId: this.reserva.clienteId,
+              clienteNombres: this.reserva.cliente,
+              tipodepago: this.Tipopagovalue,
+              banco: this.Bancovalue,
+              codigodepago: this.codigodepago,
+              montodepositado: this.montodepositado,
+              montorestante: (this.jsonitem.totaladevolver - this.sumaAbonos) - this.montodepositado,
+              montototal: this.reserva.totalF,
+              abonoprereserva: 0,
+              abonoliquidacion: 1,
+            })
+            .then(response => {
+              console.log("Aqui abao repsuesta de abono");
+              console.log(response);
+            })
+            .catch(e => {
+              this.errors.push(e);
+            });
+          this.getDataAbono();
+          this.Tipopagovalue = "",
+            this.Bancovalue = "",
+            this.codigodepago = "",
+            this.montodepositado = ""
+        }
+      }
+    },
+    getDataAbono() {
+      console.log("Entro en getAbono");
+      axios
+        .get(`/v1.0/abono/${this.numeroReserva}`)
+        .then(response => {
+          this.desserts = response.data.abonoli;
+          this.sumaAbonos = response.data.sumaAbonosli;
+          console.log(response);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+      console.log("Salio en getAbono");
+    },
     rechazo () {
 
     },
@@ -296,16 +381,14 @@ export default {
       console.log("aqui");
 
     },
-    liquidar(item) {
-      console.log(item);
-      this.dialog4 = true;
-      this.idupdate = item.id;
-      // window.location.href = `/reserva/${item.id}/edit`;
-    },
+
     devolver(item) {
-      console.log(item);
-      this.dialog4 = true;
-      this.idupdate = item.id;
+      if (item.entrega == 1) {
+        alert("Ya se entrego el auto y se encuentra disponible, favor ir a liquidar.");
+      } else {
+        alert("Todavia no se realiza la entrega");
+        window.location.href = `/cargoalquiler/${item.clienteId}/${item.vehiculo}/${item.nreserva}`;
+      }
       // window.location.href = `/reserva/${item.id}/edit`;
     },
     confirmar(item) {
@@ -318,25 +401,22 @@ export default {
       window.location.href = `/reserva/${item.id}/edit`;
     },
     deleteItem(item) {
-      console.log("Aqui abajo");
-      console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar est reserva?')
-      if (!borrar) {
-        alert("Se cancelo");
-      } else {
-        axios
-          .delete(`/v1.0/reserva/${item.id}`, {
-            _token: this.csrf
-          })
-          .then(response => {
-            console.log("Borrado correctamente");
-          })
-          .catch(e => {
-            //                        this.errors.push(e);
-          });
-        this.getDataCliente();
-      }
-    },
+        var borrar = confirm('Esta seguro que desea borrar este Cliente?')
+        if (!borrar) {
+          alert("Se cancelo");
+        } else {
+          axios
+            .delete(`/v1.0/abono/${item.id}`, {
+              _token: this.csrf
+            })
+            .then(response => {
+              console.log("Borrado correctamente");
+            })
+            .catch(e => {
+            });
+          this.getDataAbono();
+        }
+      },
     rechazo () {
       console.log("aqui id para ipdate");
           axios({

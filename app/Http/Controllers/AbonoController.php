@@ -62,15 +62,37 @@ class AbonoController extends Controller
 
     public function showapi($abono)
     {
-        $abonos = Abono::where('nreserva', '=', $abono)->get();
-        $sumaAbonos = Abono::where('nreserva', '=', $abono)->sum('montodepositado');
+        // $abonos = Abono::where('nreserva', '=', $abono)->get();
+        $abonosRe = Abono::where([
+          ['nreserva', '=', $abono],
+          ['abonoprereserva', '=', 1],
+          ])->get();
+        $abonosLi = Abono::where([
+          ['nreserva', '=', $abono],
+          ['abonoliquidacion', '=', 1],
+          ])->get();
+
+        $sumaAbonosRe = Abono::where([
+          ['nreserva', '=', $abono],
+          ['abonoprereserva', '=', 1],
+          ])->sum('montodepositado');
+        $sumaAbonosLi = Abono::where([
+          ['nreserva', '=', $abono],
+          ['abonoliquidacion', '=', 1],
+          ])->sum('montodepositado');
+
+        // $sumaAbonos = Abono::where('nreserva', '=', $abono)->sum('montodepositado');
         // $sinDeuda = Abono::where('nreserva', '=', $abono)->orderby('created_at','DESC')->take(1)->get();
-        $sinDeuda = $abonos->last();
+        $sinDeudaRe = $abonosRe->last();
+        $sinDeudaLi = $abonosLi->last();
         // dd($abonos);
         return response([
-          "abono" => $abonos,
-          "sumaAbonos" => $sumaAbonos,
-          "sinDeuda" => $sinDeuda,
+          "abonore" => $abonosRe,
+          "abonoli" => $abonosLi,
+          "sumaAbonosre" => $sumaAbonosRe,
+          "sumaAbonosli" => $sumaAbonosLi,
+          "sinDeudare" => $sinDeudaRe,
+          "sinDeudali" => $sinDeudaLi,
         ]);
     }
 

@@ -50,8 +50,18 @@ class CreateReservasTable extends Migration
             $table->string('garantia')->nullable();
             $table->string('image')->nullable();
             $table->string('kilometroinicial')->nullable();
+            $table->string('kilometrodevolucion')->nullable();
             $table->string('subircontrato')->nullable();
             $table->string('comentariocontrato')->nullable();
+            $table->string('penalidadporkm')->nullable();
+            $table->string('pagopord')->nullable();
+            $table->string('lucrosesante')->nullable();
+            $table->string('multa')->nullable();
+            $table->string('zonadelivery')->nullable();
+            $table->integer('disponible')->nullable();
+            $table->integer('entrega')->nullable();
+            $table->integer('liquidacion')->nullable();
+            $table->float('cobrosadi')->nullable();            
             $table->timestamps();
         });
     }
