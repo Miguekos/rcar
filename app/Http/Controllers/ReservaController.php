@@ -116,7 +116,7 @@ class ReservaController extends Controller
     {
         $reserva = Reserva::create($request->all());
         Auto::where('id', $request->vehiculo)
-            ->update(['estado' => 1]);
+            ->update(['estado' => 0]);
         // return $request->vehiculo;
         // return $qwe;
         return $reserva;
