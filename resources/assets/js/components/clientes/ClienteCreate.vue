@@ -65,9 +65,10 @@ html {
                         transition="scale-transition"
                         offset-y="offset-y"
                         full-width="full-width"
-                        min-width="290px">
-                        <v-text-field required="required" slot="activator" v-model="date" prepend-icon="event" readonly="readonly"></v-text-field>
-                        <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
+                        min-width="290px"
+                        >
+                        <v-text-field required="required" slot="activator"  v-model="date" prepend-icon="event" readonly="readonly"></v-text-field>
+                        <v-date-picker required="required" ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
                     </v-menu>
                 </v-flex>
             </v-layout>

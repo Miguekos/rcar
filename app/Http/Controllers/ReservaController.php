@@ -193,11 +193,6 @@ class ReservaController extends Controller
 
     public function generarcontrato($cliente, $auto,  $reserva)
     {
-      // return "lleg aui";
-      // return response([
-      //   'clietne' => $cliente,
-      //   'auto' => $auto
-      // ]);
       $clientes = Cliente::find($cliente);
       $autos = Auto::find($auto);
       $reservas = Reserva::where('nreserva', $reserva)->get();
@@ -209,7 +204,7 @@ class ReservaController extends Controller
       // return $request->all();
       $clientes = Cliente::find($cliente);
       $autos = Auto::find($auto);
-      $reservas = Reserva::find($reserva);
+      $reservas = Reserva::where('nreserva', $reserva)->get();
       return view('reservas.cargo',compact('clientes','autos','reservas'));
     }
 

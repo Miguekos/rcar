@@ -222,57 +222,57 @@ table.v-table {
                           <tbody>
                             <tr>
                               <td>Vehiculo</td>
-                              <td class="text-xs-right">{{ reservasc.preciovihiculo }}</td>
+                              <td class="text-xs-right">{{ reservaData.preciovihiculo }}</td>
                             </tr>
                             <tr>
                               <td>Paquete</td>
-                              <td class="text-xs-right">{{ reservasc.producto }}</td>
+                              <td class="text-xs-right">{{ reservaData.producto }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
                             </tr>
                             <tr>
                               <td>Delivery</td>
-                              <td class="text-xs-right">{{ reservasc.zonaDeEntrega }}</td>
+                              <td class="text-xs-right">{{ reservaData.zonaDeEntrega }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
                             </tr>
                             <tr>
                               <td>Silla Bebe</td>
-                              <td class="text-xs-right">{{ reservasc.sillaBebe }}</td>
+                              <td class="text-xs-right">{{ reservaData.sillaBebe }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
                             </tr>
                             <tr>
                               <td>Doble Piloto</td>
-                              <td class="text-xs-right">{{ reservasc.doblePiloto }}</td>
+                              <td class="text-xs-right">{{ reservaData.doblePiloto }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
                             </tr>
                             <tr>
                               <td>Tanque LLeno</td>
-                              <td class="text-xs-right">{{ reservasc.tanqueLleno }}</td>
+                              <td class="text-xs-right">{{ reservaData.tanqueLleno }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
                             </tr>
                             <tr>
                               <td>Seguro</td>
-                              <td class="text-xs-right">{{ reservasc.seguro }}</td>
+                              <td class="text-xs-right">{{ reservaData.seguro }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
                             </tr>
                             <tr>
                               <td>Dia Adicional</td>
-                              <td class="text-xs-right">{{ reservasc.diaadicional }}</td>
+                              <td class="text-xs-right">{{ reservaData.diaadicional }}</td>
                             </tr>
                             <tr>
                               <td>Garantia</td>
-                              <td class="text-xs-right">{{ reservasc.garantia }}</td>
+                              <td class="text-xs-right">{{ reservaData.garantia }}</td>
                             </tr>
                             <tr class="v-datatable__expand-row">
                               <td colspan="2" class="v-datatable__expand-col"></td>
@@ -281,11 +281,11 @@ table.v-table {
                           <tfoot>
                             <tr>
                               <td><strong>IGV 18%</strong></td>
-                              <td class="text-xs-right"><b>{{ (reservasc.totalF * 0.18).toFixed(2) }} $</b></td>
+                              <td class="text-xs-right"><b>{{ (reservaData.totalF * 0.18).toFixed(2) }} $</b></td>
                             </tr>
                             <tr>
                               <td><strong>Total a Depositar</strong></td>
-                              <td class="text-xs-right"><b>{{ reservasc.totalF }} $</b></td>
+                              <td class="text-xs-right"><b>{{ reservaData.totalF }} $</b></td>
                             </tr>
                           </tfoot>
                         </table>
@@ -298,6 +298,7 @@ table.v-table {
       <v-btn @click="atras()" color="success">Regresar</v-btn>
       <v-btn @click="dialog = true" color="primary">Generar Contrato</v-btn>
     </v-container>
+    <pre>{{ $data }}</pre>
 </div>
 </template>
 
@@ -315,8 +316,8 @@ export default {
     console.log(this.clientesc);
     console.log(this.autosc);
     console.log(this.reservasc);
-    console.log(this.reservasc.nreserva);
-
+    console.log(this.reservasc[0].nreserva);
+    this.reservaData = this.reservasc[0];
   },
   computed: {
 
@@ -326,7 +327,7 @@ export default {
         console.log("aqui id para ipdate");
             axios({
                 method: 'put',
-                url: `/v1.0/reserva/${this.reservasc.nreserva}`,
+                url: `/v1.0/reserva/${this.reservaData.nreserva}`,
                 data: {
                   estado: 4,
                 }

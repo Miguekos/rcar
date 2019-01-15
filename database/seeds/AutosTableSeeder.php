@@ -31,6 +31,7 @@ class AutosTableSeeder extends Seeder
             'fechainicioauto' => '2018-12-01',
             'fechafinauto' => '2018-12-31',
             'garantia' => $faker->randomNumber(3),
+            'disponible' => 1,
           ]);
       }
     }

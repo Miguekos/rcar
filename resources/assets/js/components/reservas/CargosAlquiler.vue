@@ -407,7 +407,7 @@ export default {
       console.log("aqui id para ipdate");
       axios({
           method: 'put',
-          url: `/v1.0/reserva/${this.reservaData.nreserva}`,
+          url: `/v1.0/reserva/${this.reservaData.id}`,
           data: {
             totaladevolver: this.totaladevolver,
             kilometrodevolucion: this.kilometrodevolucion,
@@ -432,7 +432,7 @@ export default {
     getDataR() {
       console.log("ShowApiReserva");
       axios
-        .get(`/v1.0/reserva/${this.reservasc.nreserva}`)
+        .get(`/v1.0/reserva/${this.reservasc[0].id}`)
         .then(response => {
           console.log(response.data);
           this.reservaData = response.data;
@@ -444,7 +444,7 @@ export default {
     getDataV() {
       console.log("ShowApiVehiculo");
       axios
-        .get(`/v1.0/auto/${this.reservasc.vehiculo}`)
+        .get(`/v1.0/auto/${this.reservasc[0].vehiculo}`)
         .then(response => {
           console.log(response.data[0]);
           this.vehiculoData = response.data[0];

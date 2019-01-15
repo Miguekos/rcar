@@ -229,6 +229,7 @@ export default {
   methods: {
     entregarVehiculo() {
       console.log("aqui id para ipdate");
+        this.dialog1 = false;
           axios({
               method: 'put',
               url: `/v1.0/reserva/${this.idupdate}`,
@@ -243,7 +244,7 @@ export default {
               .then(function (response) {
                   response.data
                   console.log(response.data);
-                  // window.location.href = '/reserva';
+                  window.location.href = '/reserva';
               });
       },
     entregarV (item) {

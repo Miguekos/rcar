@@ -61,7 +61,8 @@ class CreateReservasTable extends Migration
             $table->integer('disponible')->nullable();
             $table->integer('entrega')->nullable();
             $table->integer('liquidacion')->nullable();
-            $table->float('cobrosadi')->nullable();            
+            $table->float('cobrosadi')->nullable();
+            $table->string('totaladevolver')->nullable();
             $table->timestamps();
         });
     }
