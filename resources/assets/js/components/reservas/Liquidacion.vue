@@ -72,15 +72,15 @@
                     <v-container fluid grid-list-xl>
                       <v-layout align-center justify-space-between row wrap>
                         <v-flex xs12 sm6 md3>
-                          <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+                          <v-autocomplete required :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-autocomplete>
                         </v-flex>
 
                         <v-flex xs12 sm6 md3>
-                          <v-select :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+                          <v-autocomplete required :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-autocomplete>
                         </v-flex>
 
                         <v-flex xs12 sm6 md3>
-                          <v-text-field label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+                          <v-text-field required label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
                         </v-flex>
 
                         <v-flex xs12 sm6 md2>
@@ -125,6 +125,7 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
+        <v-btn color="primary" round dark @click="liquidarFinal()">Liquidar</v-btn>
         <v-spacer></v-spacer>
         <v-btn color="green darken-1" round dark @click="dialog4 = false">Guardar</v-btn>
         <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
@@ -193,7 +194,7 @@
       <v-pagination v-model="pagination.page" :length="pagination.page"></v-pagination>
     </div>
   </v-container>
-  <pre>{{ $data }}</pre>
+  <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 
@@ -284,6 +285,14 @@ export default {
 
   },
   methods: {
+    liquidarFinal () {
+      if ((this.jsonitem.totaladevolver - this.sumaAbonos) == 0) {
+        alert("Puede Liquidar");
+        this.update3();
+      } else {
+        alert("Aun no puede liquidar tienes deudas");
+      }
+    },
     liquidar(item) {
       console.log(item);
       this.dialog4 = true;
@@ -474,8 +483,7 @@ export default {
                                 method: 'put',
                                 url: `/v1.0/reserva/${this.idupdate}`,
                                 data: {
-                                  estado: 0
-                                  ,
+                                  estado: 0,
                                 }
                             })
                                 .then(function (response) {
@@ -484,6 +492,22 @@ export default {
                                     window.location.href = '/reserva';
                                 });
                             },
+                            update3 () {
+                                console.log("aqui id para ipdate");
+                                    axios({
+                                        method: 'put',
+                                        url: `/v1.0/reserva/${this.idupdate}`,
+                                        data: {
+                                          estado: 0,
+                                          liquidacion: 1,
+                                        }
+                                    })
+                                        .then(function (response) {
+                                            response.data
+                                            console.log(response.data);
+                                            window.location.href = '/reserva';
+                                        });
+                                    },
     close() {
       this.dialog1 = false
       this.dialog = false

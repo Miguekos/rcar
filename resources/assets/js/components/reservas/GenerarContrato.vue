@@ -284,8 +284,8 @@ table.v-table {
                               <td class="text-xs-right"><b>{{ (reservaData.totalF * 0.18).toFixed(2) }} $</b></td>
                             </tr>
                             <tr>
-                              <td><strong>Total a Depositar</strong></td>
-                              <td class="text-xs-right"><b>{{ reservaData.totalF }} $</b></td>
+                              <td><strong>Total a depositar</strong></td>
+                              <td class="text-xs-right"><b>{{ (reservaData.totalF).toFixed(2) }} $</b></td>
                             </tr>
                           </tfoot>
                         </table>
@@ -298,7 +298,7 @@ table.v-table {
       <v-btn @click="atras()" color="success">Regresar</v-btn>
       <v-btn @click="dialog = true" color="primary">Generar Contrato</v-btn>
     </v-container>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre> -->
 </div>
 </template>
 

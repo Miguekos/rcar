@@ -352,6 +352,10 @@ export default {
       }
     },
     activar(item) {
+      if (true) {
+
+      }
+      console.log("Abajo Items");
       console.log(item);
       this.dialog4 = true;
       this.idupdate = item.id;
@@ -366,24 +370,26 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
     },
     firmar(item) {
+      // console.log(item);
       console.log("Entro a Firmar");
       axios
         .get(`/v1.0/abono/${item.nreserva}`)
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           var data = response.data.sinDeudare;
-          console.log(response.data.sinDeudare.montorestante);
-          if (response.data.sinDeudare.montorestante == 0) {
+          if (data == null) {
+            alert("Ningun Abono realizado");
+          }
+          if (response.data.sinDeudare.montorestante != 0) {
+            alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
+          } else {
             alert("Sin deuda puedas Activar el contrato");
             window.location.href = `/generarcontrato/${item.clienteId}/${item.vehiculo}/${item.nreserva}`;
-          } else {
-            alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
           }
-          console.log(response);
         })
         .catch(e => {
 
@@ -403,7 +409,7 @@ export default {
           this.getDataReserva();
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
       // this.paginas();
       console.log("aqui");
@@ -418,7 +424,7 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
       // this.paginas();
       console.log("aqui");
@@ -457,7 +463,7 @@ export default {
 
             })
             .catch(e => {
-              this.errors.push(e);
+
             });
           this.getDataAbono();
           this.Tipopagovalue = "",
@@ -477,7 +483,7 @@ export default {
           console.log(response);
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
       console.log("Salio en getAbono");
     },

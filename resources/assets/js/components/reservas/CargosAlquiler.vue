@@ -194,18 +194,18 @@
 
                             <v-flex xs12="xs12" sm6="sm6" md3="md6" lg6="lg6">
                                 <label>Penalidad KM</label>
-                                <v-text-field solo="solo"></v-text-field>
+                                <v-text-field v-model="penalidadporkm" solo="solo"></v-text-field>
                             </v-flex>
                         </v-layout>
 
                         <label>Pago por daños</label>
-                        <v-text-field v-model="penalidadporkm" id="id" solo="solo" color="error"></v-text-field>
+                        <v-text-field  v-model="pagopord" solo="solo" color="error"></v-text-field>
                         <label>Lucro sesante</label>
-                        <v-text-field v-model="pagopord" id="id" solo="solo" color="error"></v-text-field>
+                        <v-text-field v-model="lucrosesante" solo="solo" color="error"></v-text-field>
                         <label>Multa ($100)</label>
-                        <v-text-field v-model="lucrosesante" id="id" solo="solo"></v-text-field>
+                        <v-text-field v-model="multa" solo="solo"></v-text-field>
                         <label>Otros cobros</label>
-                        <v-text-field v-model="multa" id="id" solo="solo"></v-text-field>
+                        <v-text-field v-model="otroscobros" solo="solo"></v-text-field>
                     </v-card-text>
                 </v-card>
             </v-flex>
@@ -257,6 +257,10 @@
                                     <td>Multa</td>
                                     <td class="text-xs-right">{{ multa }}</td>
                                 </tr>
+                                <tr>
+                                    <td>Otros Cobros</td>
+                                    <td class="text-xs-right">{{ otroscobros }}</td>
+                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -264,7 +268,8 @@
                                         <strong>Por devolver</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b> {{ totaladevolver }}$</b>
+                                        <b>
+                                            {{ totaladevolver }}$</b>
                                     </td>
                                 </tr>
                             </tfoot>
@@ -292,27 +297,20 @@
         </v-layout>
 
     </v-container>
-    <v-text-field
-      dark
-      hidden
-      v-model="sumaDevolver"
-    ></v-text-field>
-    <v-text-field
-      dark
-      type="hidden"
-      v-model="suma"
-    ></v-text-field>
-    <pre>{{ $data }}</pre>
+    <v-text-field dark hidden v-model="sumaDevolver"></v-text-field>
+    <v-text-field dark type="hidden" v-model="suma"></v-text-field>
+    <!-- <pre>{{ $data }}</pre> -->
 
 </div>
 </template>
 
 <script>
 export default {
-  props: ['clientesc','autosc','reservasc'],
+  props: ['clientesc', 'autosc', 'reservasc'],
   data: () => ({
+    otroscobros: 0,
     totalLiquidacion: 0,
-    totaladevolver:0,
+    totaladevolver: 0,
     kilometrodevolucion: 0,
     zonadelivery: 0,
     penalidadporkm: 0,
@@ -359,15 +357,15 @@ export default {
       let totalD =
         parseFloat(this.reservaData.garantia) -
         parseFloat(this.totalLiquidacion);
-        // this.totalF = total.toFixed(2);
-        if (totalD < 0) {
-          alert("La cantidad a devolver no puede ser NEGATIVA, verifica los montos.");
-          this.totaladevolver = 0;
-        } else {
-          this.totaladevolver = totalD;
-          return totalD;
-        }
-        console.log("esta en la sumaDevolver");
+      // this.totalF = total.toFixed(2);
+      if (totalD < 0) {
+        alert("La cantidad a devolver no puede ser NEGATIVA, verifica los montos.");
+        this.totaladevolver = 0;
+      } else {
+        this.totaladevolver = totalD;
+        return totalD;
+      }
+      console.log("esta en la sumaDevolver");
     },
     suma: function() {
       let total =
@@ -375,11 +373,12 @@ export default {
         parseFloat(this.zonadelivery) +
         parseFloat(this.pagopord) +
         parseFloat(this.lucrosesante) +
+        parseFloat(this.otroscobros) +
         parseFloat(this.multa);
       // this.totalF = total.toFixed(2);
-        this.totalLiquidacion = total;
-        return total;
-        console.log("esta en la suma");
+      this.totalLiquidacion = total;
+      return total;
+      console.log("esta en la suma");
     },
   },
   methods: {
@@ -416,6 +415,7 @@ export default {
             pagopord: this.pagopord,
             lucrosesante: this.lucrosesante,
             multa: this.multa,
+            otroscobros: this.otroscobros,
             estado: 5,
             disponible: 1,
             entrega: 1,

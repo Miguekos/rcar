@@ -108,104 +108,85 @@
 
 </style>
 <template id="reservas">
-  <div>
-    <template>
-      <!-- <v-tabs
-        centered
-        color="green"
-        dark
-        icons-and-text
-      > -->
-      <v-tabs
-        centered
-      >
-        <v-tabs-slider color="green"></v-tabs-slider>
+<div>
+        <!-- <v-tabs centered color="green" dark icons-and-text > -->
+        <v-tabs centered>
+            <v-tabs-slider color="green"></v-tabs-slider>
 
-        <v-tab href="#tab-1">
-          Pre-Reserva &nbsp;
-          <h2>{{ preReserva }}</h2>
+            <v-tab href="#tab-1">
+                Pre-Reserva &nbsp;
+                <h2>{{ preReserva }}</h2>
 
-        </v-tab>
+            </v-tab>
 
-        <v-tab href="#tab-2">
-          Evaluacion Pendiente &nbsp;
-          <h2>{{ pendientee }}</h2>
+            <v-tab href="#tab-2">
+                Evaluacion Pendiente &nbsp;
+                <h2>{{ pendientee }}</h2>
 
-        </v-tab>
+            </v-tab>
 
-        <v-tab href="#tab-3">
-          Reserva Aprobada &nbsp;
-          <h2>{{ reservaapr }}</h2>
+            <v-tab href="#tab-3">
+                Reserva Aprobada &nbsp;
+                <h2>{{ reservaapr }}</h2>
 
-        </v-tab>
+            </v-tab>
 
-        <v-tab href="#tab-4">
-          Pendiente de Entrega &nbsp;
-          <h2>{{ pendiented }}</h2>
+            <v-tab href="#tab-4">
+                Pendiente de Entrega &nbsp;
+                <h2>{{ pendiented }}</h2>
 
-        </v-tab>
+            </v-tab>
 
-        <v-tab href="#tab-5">
-          Liquidacion &nbsp;
-          <h2>{{ liquidacio }}</h2>
+            <v-tab href="#tab-5">
+                Liquidacion &nbsp;
+                <h2>{{ liquidacio }}</h2>
 
-        </v-tab>
+            </v-tab>
 
-        <v-tab-item
-          id="tab-1"
-        >
-          <v-card flat>
-            <v-card-text>
-              <pre-reserva></pre-reserva>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
+            <v-tab-item value="tab-1">
+                <v-card flat>
+                    <v-card-text>
+                        <pre-reserva></pre-reserva>
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
 
-        <v-tab-item
-          id="tab-2"
-        >
-          <v-card flat>
-            <v-card-text>
-              <evapendiente-reserva></evapendiente-reserva>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item
-          id="tab-3"
-        >
-          <v-card flat>
-            <v-card-text>
-              <reservaapro-reserva></reservaapro-reserva>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
+            <v-tab-item value="tab-2">
+                <v-card flat>
+                    <v-card-text>
+                        <evapendiente-reserva></evapendiente-reserva>
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
+            <v-tab-item value="tab-3">
+                <v-card flat>
+                    <v-card-text>
+                        <reservaapro-reserva></reservaapro-reserva>
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
 
-        <v-tab-item
-          id="tab-4"
-        >
-          <v-card flat>
-            <v-card-text>
-              <entregapendiente-reserva></entregapendiente-reserva>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
+            <v-tab-item value="tab-4">
+                <v-card flat>
+                    <v-card-text>
+                        <entregapendiente-reserva></entregapendiente-reserva>
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
 
-        <v-tab-item
-          id="tab-5"
-        >
-          <v-card flat>
-            <v-card-text>
-              <liquidacion-reserva></liquidacion-reserva>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs>
-    </template>
+            <v-tab-item value="tab-5">
+                <v-card flat>
+                    <v-card-text>
+                        <liquidacion-reserva></liquidacion-reserva>
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
+        </v-tabs>
     <button v-ripple id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
-      <span class="mdc-fab__icon material-icons">add</span>
+        <span class="mdc-fab__icon material-icons">add</span>
     </button>
     <!-- <pre>{{ $data }}</pre> -->
-  </div>
+</div>
 </template>
 
 <script>
@@ -244,7 +225,7 @@
           console.log(response.data);
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
       }
     },

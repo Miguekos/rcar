@@ -48,14 +48,10 @@
                 <v-subheader>Subir Contrato</v-subheader>
               </v-flex>
               <v-flex xs8>
-                <v-text-field
-                hover
-                ripple
-                disable
-                solo
-                  v-model="subircontrato"
-                  append-icon="arrow_upward"
-                ></v-text-field>
+                <v-form id="subir" @submit.prevent="subir('photo')">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
+                    <v-text-field required="required" type="file" name="photo" @change="subir('photo')" solo="solo"></v-text-field>
+                </V-form>
               </v-flex>
             </v-layout>
 
@@ -227,6 +223,20 @@ export default {
 
   },
   methods: {
+    subir(item) {
+      let form = document.getElementById('subir');
+      const formData = new FormData(form);
+      console.log(item);
+        axios.post('/foto', formData)
+          .then(response => {
+            console.log(response)
+            // this.image = `/contratos/${response.data}`;
+          })
+          .catch(error => {
+            console.log(error)
+            // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+          })
+    },
     entregarVehiculo() {
       console.log("aqui id para ipdate");
         this.dialog1 = false;
