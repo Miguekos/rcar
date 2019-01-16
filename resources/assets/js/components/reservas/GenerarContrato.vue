@@ -285,7 +285,7 @@ table.v-table {
                             </tr>
                             <tr>
                               <td><strong>Total a depositar</strong></td>
-                              <td class="text-xs-right"><b>{{ (reservaData.totalF).toFixed(2) }} $</b></td>
+                              <td class="text-xs-right"><b>{{ reservaData.totalF }} $</b></td>
                             </tr>
                           </tfoot>
                         </table>
