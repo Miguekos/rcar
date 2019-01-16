@@ -279,10 +279,10 @@ table.v-table {
                             </tr>
                           </tbody>
                           <tfoot>
-                            <tr>
+                            <!-- <tr>
                               <td><strong>IGV 18%</strong></td>
                               <td class="text-xs-right"><b>{{ (reservaData.totalF * 0.18).toFixed(2) }} $</b></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                               <td><strong>Total a depositar</strong></td>
                               <td class="text-xs-right"><b>{{ (reservaData.totalF).toFixed(2) }} $</b></td>
