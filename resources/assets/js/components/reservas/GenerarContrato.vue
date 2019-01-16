@@ -281,11 +281,11 @@ table.v-table {
                           <tfoot>
                             <tr>
                               <td><strong>IGV 18%</strong></td>
-                              <td class="text-xs-right"><b>{{ (reservaData.totalF * 0.18) }} $</b></td>
+                              <td class="text-xs-right"><b>{{ (reservaData.totalF * 0.18).toFixed(2) }} $</b></td>
                             </tr>
                             <tr>
                               <td><strong>Total a depositar</strong></td>
-                              <td class="text-xs-right"><b>{{ reservaData.totalF }} $</b></td>
+                              <td class="text-xs-right"><b>{{ (reservaData.totalF).toFixed(2) }} $</b></td>
                             </tr>
                           </tfoot>
                         </table>
