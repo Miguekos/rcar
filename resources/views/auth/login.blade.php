@@ -51,13 +51,11 @@
 						<!-- <input class="input100" type="text" name="email"> -->
 						<!-- <span class="focus-input100"></span> -->
 						<!-- <span class="label-input100">Email</span> -->
-
+					<label for="">Email</label>
           <v-text-field
           autofocus
-          value=""
           name="email"
           type="email"
-          label="Email"
           ></v-text-field>
 
 
@@ -67,15 +65,15 @@
 						<!-- <input class="input100" type="password" name="pass">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span> -->
+						<label for="">Password</label>
             <v-text-field
-              label="Login"
               name="password"
               type="password"
             ></v-text-field>
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
+						<!-- <div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 							<label class="label-checkbox100" for="ckb1">
 								Recuerdame
@@ -86,7 +84,7 @@
 							<a href="#" class="txt1">
 								Forgot Password?
 							</a>
-						</div>
+						</div> -->
 					</div>
 
 
