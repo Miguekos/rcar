@@ -44,12 +44,34 @@ class DashboardController extends Controller
     public function updatePhoto(Request $request)
     {
       // if ($request->hasFile('archivo')){
+      // $file = $request->file('photo');
+      // // $file = Input::file('avatar');
+      // $destinationPath = '/img/';
+      // $filename = uniqid() .'-' . $file->getClientOriginalName();
+      // $file->move(public_path(). $destinationPath, $filename);
+      // $user->avatar = $destinationPath . $filename;
+
     $file = $request->file('photo');
     $name = time().$file->getClientOriginalName();
     $file->move(public_path().'/images/', $name);
     return $name;
+
     // $validator = Validator::make($request->all(), [
     // 'namedb' => 'unique:campas',
+    // $file = $request->file('photo');
+    // return $file;
+  // $file_data = $request->file('photo');
+  //  $file_name = 'image_'.time().'.png'; //generating unique file name;
+  //  @list($type, $file_data) = explode(';', $file_data);
+  //  @list(, $file_data) = explode(',', $file_data);
+  //  if($file_data!=""){ // storing image in storage/app/public Folder
+  //         \Storage::disk('public')->put($file_name,base64_decode($file_data));
+  //   }
+    // $file =Input::file('photo');
+            // $imagedata = file_get_contents($file);
+            // $base64 = base64_encode($imagedata);
+            // $oUser->avatar = $base64;
+            // $oUser->update();
 
     // if ($validator->passes()) {
     //     $namedb1 = mb_strtolower($request->namedb);

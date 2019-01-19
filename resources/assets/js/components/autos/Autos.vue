@@ -202,7 +202,7 @@ button:hover {
             <v-flex xs1>
             </v-flex>
             <v-flex xs3>
-              <v-avatar size="100%">
+              <v-avatar size="70%">
                 <v-img :src="props.item.imagen1"></v-img>
                 <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
               </v-avatar>
@@ -218,35 +218,35 @@ button:hover {
               </v-flex>
               <v-card-title primary-title>
                 <v-layout row wrap>
-                  <v-flex xs12>
+                  <v-flex xs12 lg12>
                     <!-- <v-card color=""> -->
                       <v-card-text class="texto-18 px-0 py-0">
                         {{ props.item.marca }}
                       </v-card-text>
                     <!-- </v-card> -->
                   </v-flex>
-                  <v-flex xs6>
+                  <v-flex xs12 lg6>
                     <!-- <v-card color=""> -->
                       <v-card-text class="px-0 py-0">
                         Placa: {{ props.item.placa }}
                       </v-card-text>
                     <!-- </v-card> -->
                   </v-flex>
-                  <v-flex xs6>
+                  <v-flex xs12 lg6>
                     <!-- <v-card color=""> -->
                       <v-card-text class="px-0 py-0">
                         Color: {{ props.item.color }}
                       </v-card-text>
                     <!-- </v-card> -->
                   </v-flex>
-                  <v-flex xs6>
+                  <v-flex xs12 lg6>
                     <!-- <v-card color=""> -->
                       <v-card-text class="px-0 py-0">
                         Año: {{ props.item.anio }}
                       </v-card-text>
                     <!-- </v-card> -->
                   </v-flex>
-                  <v-flex xs6>
+                  <v-flex xs12 lg6>
                     <!-- <v-card color=""> -->
                       <v-card-text class="px-0 py-0">
                         Precio: {{ props.item.precio_por_dia }} $

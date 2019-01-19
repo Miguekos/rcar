@@ -196,7 +196,7 @@ button:hover {
     </v-layout>
 
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
-      <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
+      <v-flex slot="item" slot-scope="props" xs12 sm12 md12 lg6>
         <v-card class="mx-auto" hover tile>
           <v-layout align-center justify-center row fill-height>
             <v-flex xs1>
@@ -310,7 +310,6 @@ export default {
     editedIndex: -1,
     editedItem: {},
     defaultItem: {
-
     },
   }),
   created() {

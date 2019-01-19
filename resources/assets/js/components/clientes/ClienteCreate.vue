@@ -257,7 +257,9 @@ export default {
     subir(item) {
       let form = document.getElementById('subir');
       const formData = new FormData(form);
-      console.log(item);
+      console.log("FormData");
+      console.log(formData);
+      console.log(form);
       if (item == 'photo') {
         axios.post('/foto', formData)
           .then(response => {

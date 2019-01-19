@@ -14,12 +14,14 @@ import VueMoment from 'vue-moment';
 // import moment from 'moment-timezone';
 import ECharts from 'vue-echarts/components/ECharts';
 import VDateRange from 'vuetify-daterange-picker';
+import ImageUploader from 'vue-image-upload-resize';
 Vue.use(VueMoment, {
     moment,
 })
 // Vue.use(require('vue-moment'));
 Vue.use(Vuetify)
 Vue.use(VDateRange);
+Vue.use(ImageUploader);
 Vue.component('v-chart', ECharts)
 
 

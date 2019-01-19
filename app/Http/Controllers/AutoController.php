@@ -59,6 +59,13 @@ class AutoController extends Controller
         //
     }
 
+    public function storeapi(Request $request)
+    {
+        $auto = Auto::create($request->all());
+        return $auto;
+        // return $request->all();
+    }
+
     /**
      * Display the specified resource.
      *
