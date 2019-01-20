@@ -50,14 +50,14 @@ select:-webkit-autofill:focus {
                             <label>Marca</label>
                             <v-autocomplete :items="automarca" item-text="text" item-value="text" v-model="marca" name="marca" required="required"></v-autocomplete>
                             <label>Placa</label>
-                            <v-text-field v-model="placa" required="required" pattern="^[A-Z]{3}-[1-9]{3}$" title="ABC-123"></v-text-field>
+                            <v-text-field maxlength="7" v-model="placa" required="required" pattern="^[A-Z]{3}-[1-9]{3}$" title="ABC-123"></v-text-field>
 
                         </v-flex>
                         <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
                             <label>Modelo</label>
                             <v-autocomplete :items="automodelo" item-text="text" item-value="text" v-model="modelo" required="required"></v-autocomplete>
                             <label>Color</label>
-                            <v-text-field v-model="color" required="required"></v-text-field>
+                            <v-text-field maxlength="10" v-model="color" required="required"></v-text-field>
                         </v-flex>
 
                         <v-flex text-lg-center="text-lg-center" lg4="lg4">
@@ -107,7 +107,7 @@ select:-webkit-autofill:focus {
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
                                 <label>Combustible</label>
-                                <v-text-field v-model="combustible" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="combustible" required="required"></v-text-field>
                             </v-flex>
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
@@ -117,17 +117,17 @@ select:-webkit-autofill:focus {
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
                                 <label>Cilindrada</label>
-                                <v-text-field v-model="cilindrada" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
                             </v-flex>
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
                                 <label>Kilometraje Inicial</label>
-                                <v-text-field v-model="km_inicial" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="km_inicial" required="required"></v-text-field>
                             </v-flex>
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
                                 <label>Octanaje</label>
-                                <v-text-field v-model="octanaje" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="octanaje" required="required"></v-text-field>
                             </v-flex>
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
@@ -142,7 +142,7 @@ select:-webkit-autofill:focus {
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
                                 <label>Galones</label>
-                                <v-text-field v-model="galones" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="galones" required="required"></v-text-field>
                             </v-flex>
 
                         </v-layout>
@@ -166,15 +166,15 @@ select:-webkit-autofill:focus {
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg6="lg6">
                                 <label>Pago Afiliado Mensual</label>
-                                <v-text-field v-model="pago_afi_men" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
                                 <label>Tipo de Garantia</label>
-                                <v-text-field v-model="tipo_garantia" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
                             </v-flex>
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg6="lg6">
                                 <label>Precio por dia</label>
-                                <v-text-field v-model="precio_por_dia" required="required"></v-text-field>
+                                <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
                                 <label>Contrato</label>
-                                <v-text-field v-model="contrato" required="required"></v-text-field>
+                                <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
                             </v-flex>
 
                         </v-layout>
@@ -462,22 +462,6 @@ export default {
       this.image = file;
       this.subir(file);
     },
-    // dataURItoBlob(dataURI) {
-    //         // convert base64/URLEncoded data component to raw binary data held in a string
-    //         var byteString;
-    //         if (dataURI.split(',')[0].indexOf('base64') >= 0)
-    //             byteString = atob(dataURI.split(',')[1]);
-    //         else
-    //             byteString = unescape(dataURI.split(',')[1]);
-    //         // separate out the mime component
-    //         var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    //         // write the bytes of the string to a typed array
-    //         var ia = new Uint8Array(byteString.length);
-    //         for (var i = 0; i < byteString.length; i++) {
-    //             ia[i] = byteString.charCodeAt(i);
-    //         }
-    //         return new Blob([ia], {type:mimeString});
-    //     },
     subir(item) {
       let form = document.getElementById('subir');
       const formData = new FormData(form);
@@ -537,8 +521,8 @@ export default {
             imagen2: this.imagen2,
             imagen3: this.imagen3,
             comentarios: this.comentarios,
-            fechainicioauto: this.fechainicioauto,
-            fechafinauto: this.fechafinauto,
+            fechainicioauto: new Date().toISOString().substr(0, 10),
+            fechafinauto: new Date().toISOString().substr(0, 10),
             estado: this.estado,
             disponible: this.disponible,
           })
