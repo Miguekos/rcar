@@ -3,3 +3,5 @@ https://api.whatsapp.com/send?phone=51965778450&text=https://encrypted-tbn0.gsta
 
 
 http://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/#2-line-chart
+
+https://www.chartjs.org/docs/latest/general/fonts.html

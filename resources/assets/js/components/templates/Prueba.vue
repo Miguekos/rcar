@@ -9,7 +9,7 @@
     </v-card>
   </v-dialog>
   <v-form method="post" @submit.prevent="disponible()">
-    <v-container px-0 pb-0 grid-list-lg>
+    <v-container grid-list-lg>
       <v-layout align-center justify-center fill-height>
 
         <v-flex xs12 sm4 md4>

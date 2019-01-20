@@ -185,7 +185,7 @@ button:hover {
 
       <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
         <v-card @click="reservarAuto(props.item)" ripple hover>
-          <v-layout align-center justify-center row fill-height>
+          <!-- <v-layout align-center justify-center row fill-height>
             <v-flex xs1></v-flex>
             <v-flex xs3>
               <v-avatar size="70%">
@@ -210,19 +210,95 @@ button:hover {
                 </v-layout>
               </v-card-title>
             </v-flex>
-          </v-layout>
+        </v-layout> -->
           <!-- <v-divider dense light></v-divider> -->
+          <v-layout align-center justify-center row fill-height>
+            <v-flex xs1>
+            </v-flex>
+            <v-flex xs3>
+              <v-avatar size="70%">
+                <v-img :src="props.item.imagen1"></v-img>
+                <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
+              </v-avatar>
+            </v-flex>
+            <v-flex xs8>
+              <v-flex text-xs-right text-lg-right text-sm-right>
+                <v-icon small class="mr-2" @click="editItem(props.item)">
+                  edit
+                </v-icon>
+                <v-icon small @click="deleteItem(props.item)">
+                  close
+                </v-icon>
+              </v-flex>
+              <v-card-title primary-title class="pl-0">
+                <v-layout row wrap>
+                  <v-flex xs12 lg12>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="texto-18 px-0 py-0">
+                        {{ props.item.marca }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs12 lg6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Placa: {{ props.item.placa }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs12 lg6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Color: {{ props.item.color }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs12 lg6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Año: {{ props.item.anio }}
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <v-flex xs12 lg6>
+                    <!-- <v-card color=""> -->
+                      <v-card-text class="px-0 py-0">
+                        Precio: {{ props.item.precio_por_dia }} $
+                      </v-card-text>
+                    <!-- </v-card> -->
+                  </v-flex>
+                  <!-- <div>
+                    <h3>{{ props.item.marca }}</h3>
+                  </div>
+                  <div>
+                    <div class="text-xs-left">Placa: {{ props.item.placa }}</div>
+                    <div>Color: {{ props.item.color }}</div>
+                    <v-spacer></v-spacer>
+                    <v-flex align-content-end>
+                      <v-icon small class="mr-2" @click="dialog3 = true">
+                        mail_outline
+                      </v-icon>
+                    </v-flex>
+                  </div>
+                  <div class="">
+                    <div>Año: {{ props.item.anio }}</div>
+                    <div>Precio: {{ props.item.precio_por_dia }}</div>
+                  </div> -->
+                </v-layout>
+
+              </v-card-title>
+            </v-flex>
+          </v-layout>
           <v-card-actions>
 
           </v-card-actions>
         </v-card>
       </v-flex>
-      </v-layout>
-      </v-card>
+      
       <hr>
       <v-divider></v-divider>
 
-      </v-flex>
+      
       <template slot="no-data">
         <v-alert :value="true" color="white" style="color: black;" icon="warning">
           Lo siento no hay datos que cargar :(
