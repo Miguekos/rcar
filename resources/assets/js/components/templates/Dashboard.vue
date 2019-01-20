@@ -1,315 +1,251 @@
 <template lang="html">
-  <div class="content">
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-chart">
-              <div class="card-header ">
-                <div class="row">
-                  <div class="col-sm-6 text-left">
-                    <h5 class="card-category">Ultimo Mes</h5>
-                    <h2 class="card-title">Alquiler</h2>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                      <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                        <input type="radio" name="options" checked>
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-single-02"></i>
-                        </span>
-                      </label>
-                      <label class="btn btn-sm btn-primary btn-simple" id="1">
-                        <input type="radio" class="d-none d-sm-none" name="options">
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-gift-2"></i>
-                        </span>
-                      </label>
-                      <label class="btn btn-sm btn-primary btn-simple" id="2">
-                        <input type="radio" class="d-none" name="options">
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-tap-02"></i>
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="chartBig1"></canvas>
-                </div>
-              </div>
+<div class="">
+    <v-container grid-list-md="grid-list-md" text-xs-center="text-xs-center">
+        <v-layout row="row" wrap="wrap">
+
+            <v-flex xs12="xs12" lg6="lg6">
+                <v-card color="">
+                    <v-card-title class="pb-1">
+                        Control de gasots por dia
+                    </v-card-title>
+                    <v-card-text class="pt-0">
+                        <canvas id="doughnut-chart" width="20%" height="20%"></canvas>
+                        <!-- <canvas id="doughnut-chart"></canvas> -->
+                    </v-card-text>
+
+                </v-card>
+            </v-flex>
+
+            <v-flex xs12="xs12" lg6="lg6">
+                <v-card color="">
+                    <v-card-title class="pb-1">
+                        Modelos mas alquilados
+                    </v-card-title>
+                    <v-card-text class="pt-0">
+                        <canvas id="bar-chart" width="20%" height="20%"></canvas>
+                        <!-- <canvas id="bar-chart"></canvas> -->
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+
+            <v-flex xs12="xs12" lg12="lg12">
+                <v-card>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-chart">
+                                <div class="card-header ">
+                                    <div class="row">
+                                        <div class="col-sm-6 text-left">
+                                            <h5 class="card-category">Ultimo Mes</h5>
+                                            <h2 class="card-title">Gastos de operacion</h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                                                <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                                                    <input type="radio" name="options" checked="checked">
+                                                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Diario</span>
+                                                        <span class="d-block d-sm-none">
+                                                            <i class="tim-icons icon-single-02"></i>
+                                                        </span>
+                                                    </label>
+                                                    <label class="btn btn-sm btn-primary btn-simple" id="1">
+                                                        <input type="radio" class="d-none d-sm-none" name="options">
+                                                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Semanal</span>
+                                                            <span class="d-block d-sm-none">
+                                                                <i class="tim-icons icon-gift-2"></i>
+                                                            </span>
+                                                        </label>
+                                                        <label class="btn btn-sm btn-primary btn-simple" id="2">
+                                                            <input type="radio" class="d-none" name="options">
+                                                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Mensual</span>
+                                                                <span class="d-block d-sm-none">
+                                                                    <i class="tim-icons icon-tap-02"></i>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <canvas id="chartBig1"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </v-card>
+                        </v-flex>
+
+                    </v-layout>
+                </v-container>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category">Ganacia</h5>
-                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 73,215 $</h3>
-              </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="chartLinePurple"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category">Gastos Taller</h5>
-                <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> 3,500 $</h3>
-              </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="CountryChart"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category">Afiliados</h5>
-                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 45</h3>
-              </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="chartLineGreen"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> Vehiculos con mayor produccion</h4>
-              </div>
-              <div class="card-body">
-                <div class="">
-                  <table class="table tablesorter "id="">
-                    <thead class="text-primary">
-                      <tr>
-                        <th>
-                          Marca
-                        </th>
-                        <th>
-                          Modelo
-                        </th>
-                        <th class="text-center">
-                          $
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-center">
-                          $36,738
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-center">
-                          $23,789
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-center">
-                          $56,142
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Korea, South
-                        </td>
-                        <td>
-                          Overland Park
-                        </td>
-                        <td class="text-center">
-                          $38,735
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Malawi
-                        </td>
-                        <td>
-                          Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-center">
-                          $63,542
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Chile
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-center">
-                          $78,615
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Portugal
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-center">
-                          $98,615
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
 </template>
 
 <script>
-export default {
+window.onload = function() {
+  // Dona
+  new Chart(document.getElementById("doughnut-chart"), {
+    type: 'doughnut',
+    data: {
+      labels: ["Repuestos", "Taller", "Seguro", "Papeletas"],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#c45850"],
+        data: [1250, 2035, 1100, 1800]
+      }]
+    },
+    options: {
+      legend: {
+        display: true
+      },
+      title: {
+        display: false,
+        text: 'Control de gastos por dia'
+      }
+    }
+  });
+
+  // Bar chart
+  new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Repuestos", "Taller", "Seguro", "Papeletas", "Repuestos", "Taller", "Seguro", "Papeletas"],
+      datasets: [{
+        label: "Mas Alquilados",
+        // backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+        backgroundColor: [],
+        data: [2478, 5267, 734, 784, 433, 2478, 5267, 734, 784, 433]
+      }]
+    },
+    options: {
+      legend: {
+        labels: {
+          // This more specific font property overrides the global property
+          fontColor: 'black'
+        },
+        display: true
+      },
+      title: {
+        display: false,
+        text: 'Modelos mas Alquilados'
+      },
+      events: ['click'],
+      responsive: true,
+    }
+  });
+  // big charts
+  gradientChartOptionsConfigurationWithTooltipPurple = {
+    maintainAspectRatio: false,
+    legend: {
+      labels: {
+        // This more specific font property overrides the global property
+        fontColor: 'black'
+      },
+      display: false
+    },
+    tooltips: {
+      backgroundColor: '#f5f5f5',
+      titleFontColor: '#333',
+      bodyFontColor: '#666',
+      bodySpacing: 4,
+      xPadding: 12,
+      mode: "nearest",
+      intersect: 0,
+      position: "nearest"
+    },
+    responsive: true,
+    scales: {
+      yAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(29,140,248,0.0)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          suggestedMin: 60,
+          suggestedMax: 125,
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }],
+      xAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(225,78,202,0.1)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }]
+    }
+  };
+  var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
+  var ctx = document.getElementById("chartBig1").getContext('2d');
+
+  var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke.addColorStop(1, 'rgba(72,72,176,0.1)');
+  gradientStroke.addColorStop(0.4, 'rgba(72,72,176,0.0)');
+  gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+  // gradientStroke.addColorStop(1, 'rgba(72,72,176,0.1)');
+  // gradientStroke.addColorStop(0.4, 'rgba(72,72,176,0.0)');
+  // gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+  // gradientStroke.addColorStop(0, 'rgba(29,204,94,1)'); //purple colors
+  var config = {
+    type: 'line',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: "My First dataset",
+        fill: true,
+        backgroundColor: gradientStroke,
+        borderColor: '#17962f',
+        borderWidth: 2,
+        borderDash: [],
+        borderDashOffset: 0.0,
+        pointBackgroundColor: '#17962f',
+        pointBorderColor: 'rgba(255,255,255,0)',
+        pointHoverBackgroundColor: '#17962f',
+        pointBorderWidth: 20,
+        pointHoverRadius: 4,
+        pointHoverBorderWidth: 15,
+        pointRadius: 4,
+        data: chart_data,
+      }]
+    },
+    options: gradientChartOptionsConfigurationWithTooltipPurple
+  };
+  var myChartData = new Chart(ctx, config);
+  $("#0").click(function() {
+    var data = myChartData.config.data;
+    data.datasets[0].data = chart_data;
+    data.labels = chart_labels;
+    myChartData.update();
+  });
+  $("#1").click(function() {
+    var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
+    var data = myChartData.config.data;
+    data.datasets[0].data = chart_data;
+    data.labels = chart_labels;
+    myChartData.update();
+  });
+
+  $("#2").click(function() {
+    var chart_data = [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130];
+    var data = myChartData.config.data;
+    data.datasets[0].data = chart_data;
+    data.labels = chart_labels;
+    myChartData.update();
+  });
+
 }
-$(document).ready(function() {
-      $().ready(function() {
-        $sidebar = $('.sidebar');
-        $navbar = $('.navbar');
-        $main_panel = $('.main-panel');
-
-        $full_page = $('.full-page');
-
-        $sidebar_responsive = $('body > .navbar-collapse');
-        sidebar_mini_active = true;
-        white_color = false;
-
-        window_width = $(window).width();
-
-        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-        $('.fixed-plugin a').click(function(event) {
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
-
-        $('.fixed-plugin .background-color span').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('color');
-
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data', new_color);
-          }
-
-          if ($main_panel.length != 0) {
-            $main_panel.attr('data', new_color);
-          }
-
-          if ($full_page.length != 0) {
-            $full_page.attr('filter-color', new_color);
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.attr('data', new_color);
-          }
-        });
-
-        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-          var $btn = $(this);
-
-          if (sidebar_mini_active == true) {
-            $('body').removeClass('sidebar-mini');
-            sidebar_mini_active = false;
-            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-          } else {
-            $('body').addClass('sidebar-mini');
-            sidebar_mini_active = true;
-            blackDashboard.showSidebarMessage('Sidebar mini activated...');
-          }
-
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
-
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
-        });
-
-        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-          var $btn = $(this);
-
-          if (white_color == true) {
-
-            $('body').addClass('change-background');
-            setTimeout(function() {
-              $('body').removeClass('change-background');
-              $('body').removeClass('white-content');
-            }, 900);
-            white_color = false;
-          } else {
-
-            $('body').addClass('change-background');
-            setTimeout(function() {
-              $('body').removeClass('change-background');
-              $('body').addClass('white-content');
-            }, 900);
-
-            white_color = true;
-          }
-
-
-        });
-
-        $('.light-badge').click(function() {
-          $('body').addClass('white-content');
-        });
-
-        $('.dark-badge').click(function() {
-          $('body').removeClass('white-content');
-        });
-      });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
-
-    });
 </script>
+
+<style lang="css" scoped>
+</style>

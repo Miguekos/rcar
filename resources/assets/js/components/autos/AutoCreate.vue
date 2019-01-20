@@ -282,9 +282,7 @@ select:-webkit-autofill:focus {
 
                             </v-flex>
                         </v-layout>
-
                         <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-
                     </v-flex>
                 </v-layout>
             </v-container>

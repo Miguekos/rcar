@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
     <!-- <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet"> -->
     <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Inconsolata:300|Material+Icons' rel="stylesheet" type="text/css"> -->
     <!-- Required styles for MDC Web -->
@@ -49,11 +52,13 @@ html {
     </div>
 </body>
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+
 <script type="text/javascript" src="/js/moment.min.js"></script>
+
 <script src="{{ asset('js/app.js') }}"></script>
+
+
 <!--   Core JS Files   -->
-
-
 
 
 <!--  Google Maps Plugin    -->

@@ -48,30 +48,24 @@
             </v-list-tile>
 
             <v-spacer></v-spacer>
-            <v-menu offset-x="offset-x" offset-y="offset-y" transition="scale-transition">
-                <v-btn icon="icon" slot="activator">
 
-                    <v-icon>more_vert</v-icon>
-                </v-btn>
-                <v-list>
-                    <v-list-tile @click="logout()">
-                        <v-list-tile-title>Salir</v-list-tile-title>
-                    </v-list-tile>
-                </v-list>
-            </v-menu>
-        </v-toolbar>
-    </div>
+            <!-- <v-list-tile-avatar>
+                <img src="/img/avatar.jpg">
+            </v-list-tile-avatar> -->
+                <!-- <v-menu offset-x="offset-x" offset-y="offset-y" transition="scale-transition"> <v-btn icon="icon" slot="activator"> <v-icon>more_vert</v-icon> </v-btn>
+                <v-list> <v-list-tile @click="logout()"> <v-list-tile-title>Salir</v-list-tile-title> </v-list-tile> </v-list> </v-menu> -->
+            </v-toolbar>
+        </div>
 </template>
 
 <script>
 export default {
-  props: ['user','titulo'],
+  props: ['user', 'titulo'],
   data: () => ({
     drawer: null,
     back: "",
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    items: [
-      {
+    items: [{
         icon: 'dashboard',
         text: 'Dasboard',
         link: '/'
@@ -129,7 +123,7 @@ export default {
       //   text: 'App downloads',
       //   link: '/'
       // },
-       {
+      {
         icon: 'keyboard',
         text: 'Limpiar Cache',
         link: '/clear-cache'
@@ -140,7 +134,7 @@ export default {
       }
     ]
   }),
-  created () {
+  created() {
     var cadena = new String(this.titulo);
     cadena = cadena.toLowerCase();
     this.back = cadena;
@@ -166,7 +160,7 @@ export default {
         this.logout();
       }
     },
-    atras () {
+    atras() {
       window.location.href = `/${this.back}`;
     },
   },
