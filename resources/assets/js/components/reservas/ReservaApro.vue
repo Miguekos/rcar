@@ -29,22 +29,22 @@
 <template id="prereserva">
 <div class="">
 
-  <v-snackbar
-      v-model="snackbar"
-      :bottom="y === 'bottom'"
-      :left="x === 'left'"
-      :multi-line="mode === 'multi-line'"
-      :right="x === 'right'"
-      :timeout="timeout"
-      :top="y === 'top'"
-      :vertical="mode === 'vertical'">
-      {{ texto }}
-      <v-btn color="pink" flat="flat" @click="snackbar = false">
-          Close
-      </v-btn>
-  </v-snackbar>
+    <v-snackbar
+        v-model="snackbar"
+        :bottom="y === 'bottom'"
+        :left="x === 'left'"
+        :multi-line="mode === 'multi-line'"
+        :right="x === 'right'"
+        :timeout="timeout"
+        :top="y === 'top'"
+        :vertical="mode === 'vertical'">
+        {{ texto }}
+        <v-btn color="pink" flat="flat" @click="snackbar = false">
+            Close
+        </v-btn>
+    </v-snackbar>
 
-    <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
+    <v-dialog v-model="dialog4" persistent="persistent" max-width="80%">
         <v-card>
             <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
             <v-card-title class="">Registro de Pagos - Reserva N° 0000{{ numeroReserva }}</v-card-title>
@@ -54,40 +54,35 @@
                         <v-flex class="" xs12="xs12" lg12="lg12">
                             <v-card>
                                 <v-form>
-
                                     <v-card-text px-0="px-0" py-0="py-0">
                                         <v-container grid-list-xs,sm,md,lg,xl="grid-list-xs,sm,md,lg,xl">
                                             <v-layout wrap="wrap">
                                                 <table class="v-datatable v-table teme--light">
                                                     <tbody>
                                                         <tr>
-                                                            <td>Pago Por Servicios</td>
-                                                            <td class="text-xs-right">{{ reserva.totalF - reserva.garantia }}
-                                                                $</td>
+                                                            <td class="px-0">Servicios</td>
+                                                            <td class="text-xs-right px-0">{{ reserva.totalF - reserva.garantia }}$</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Garantia</td>
-                                                            <td class="text-xs-right">{{ reserva.garantia }}
-                                                                $</td>
+                                                            <td class="px-0">Garantia</td>
+                                                            <td class="text-xs-right px-0">{{ reserva.garantia }}$</td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td>
+                                                            <td class="px-0">
                                                                 <strong>Total a pagar</strong>
                                                             </td>
-                                                            <td class="text-xs-right">
-                                                                <b>{{ reserva.totalF }}
-                                                                    $</b>
+                                                            <td class="text-xs-right px-0">
+                                                                <b>{{ reserva.totalF }}$</b>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
+                                                            <td class="px-0">
                                                                 <strong>Deuda total</strong>
                                                             </td>
-                                                            <td class="text-xs-right">
-                                                                <b>{{ reserva.totalF - sumaAbonos }}
-                                                                    $</b>
+                                                            <td class="text-xs-right px-0">
+                                                                <b>{{ reserva.totalF - sumaAbonos }}$</b>
                                                             </td>
                                                         </tr>
                                                         <!-- <tr> <td><strong>Total abonado</strong></td> <td class="text-xs-right"><b>{{ sumaAbonos }} $</b></td> </tr> -->
@@ -103,11 +98,11 @@
                                         <v-container fluid="fluid" grid-list-xl="grid-list-xl">
                                             <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" wrap="wrap">
                                                 <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                                                    <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
+                                                    <v-autocomplete :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-autocomplete>
                                                 </v-flex>
 
                                                 <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                                                    <v-select :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
+                                                    <v-autocomplete :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-autocomplete>
                                                 </v-flex>
 
                                                 <v-flex xs12="xs12" sm6="sm6" md3="md3">
@@ -138,10 +133,10 @@
                                                     <v-data-table :items="desserts" class="elevation-1" hide-actions="hide-actions" hide-headers="hide-headers">
                                                         <!-- <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers> -->
                                                         <template slot="items" slot-scope="props">
-                                                            <td>{{ props.item.tipodepago }}</td>
-                                                            <td class="text-xs-right">{{ props.item.banco }}</td>
+                                                            <td class="text-xs-left">{{ props.item.banco }}</td>
+                                                            <td class="text-xs-right pl-5">{{ props.item.montodepositado }}./s</td>
                                                             <td class="text-xs-right">{{ props.item.codigodepago }}</td>
-                                                            <td class="text-xs-right">{{ props.item.montodepositado }}</td>
+                                                            <td class="px-2">{{ props.item.tipodepago }}</td>
                                                             <td @click="deleteItem(props.item)" class="text-xs-right">
                                                                 <v-btn fab="fab" dark="dark" small="small" color="red">
                                                                     <v-icon>delete</v-icon>
@@ -184,6 +179,7 @@
                             <v-flex xs1="xs1"></v-flex>
                             <v-flex xs3="xs3">
                                 <v-avatar size="70%">
+                                    <!-- <v-img :src="props.item.imagen1"></v-img> -->
                                     <v-img src="loginnew/images/logo.png"></v-img>
                                 </v-avatar>
                             </v-flex>
@@ -197,34 +193,56 @@
                                     </v-icon>
                                 </v-flex>
                                 <v-card-title primary-title="primary-title">
-                                    <v-layout align-center="align-center" justify-space-around="justify-space-around" row="row" fill-height="fill-height">
-                                        <div>
-                                            <div class="title">{{ props.item.cliente }}</div>
-                                            <div class="text-xs-left">
-                                                <strong>Monto a pagar:</strong>
-                                                {{ props.item.totalF }}$</div>
-                                            <div class="text-xs-left">
-                                                <strong>Dias Disponible:</strong>
-                                                {{ props.item.diasdisponible }}</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs-right">
-                                                <strong>Auto:</strong>
-                                                {{ props.item.autoSeleccionado }}</div>
-                                            <div class="text-xs-right">
-                                                <strong>Fecha Inicio:</strong>
-                                                {{ props.item.fechasInicio }}</div>
-                                            <div class="text-xs-right">
-                                                <strong>Fecha Fin:</strong>
-                                                {{ props.item.fechaFin }}</div>
-                                        </div>
+                                    <v-layout row="row" wrap="wrap">
+                                        <v-flex xs12="xs12" lg12="lg12">
+                                            <!-- <v-card color=""> -->
+                                            <v-card-text class="texto-18 px-0 py-0 text-xs-left text-lg-left text-sm-left">
+                                                {{ props.item.cliente }}
+                                            </v-card-text>
+                                            <!-- </v-card> -->
+                                        </v-flex>
+                                        <v-flex xs12="xs12" lg6="lg6">
+                                            <!-- <v-card color=""> -->
+                                            <v-card-text class="px-0 py-0">
+                                                <b>Total</b>:
+                                                {{ props.item.totalF }}
+                                                $
+                                            </v-card-text>
+                                            <!-- </v-card> -->
+                                        </v-flex>
+                                        <v-flex xs12="xs12" lg6="lg6">
+                                            <!-- <v-card color=""> -->
+                                            <v-card-text class="px-0 py-0">
+                                                <b>Disp.</b>:
+                                                {{ props.item.diasdisponible }}
+                                            </v-card-text>
+                                            <!-- </v-card> -->
+                                        </v-flex>
+                                        <v-flex xs12="xs12" lg6="lg6">
+                                            <!-- <v-card color=""> -->
+                                            <v-card-text class="px-0 py-0">
+                                                <b>Auto</b>:
+                                                {{ props.item.autoSeleccionado }}
+                                            </v-card-text>
+                                            <!-- </v-card> -->
+                                        </v-flex>
+                                        <v-flex xs12="xs12" lg6="lg6">
+                                            <!-- <v-card color=""> -->
+                                            <v-card-text class="px-0 py-0">
+                                                <b>Entrega</b>:
+                                                {{ props.item.fechasInicio }}
+                                            </v-card-text>
+                                            <!-- </v-card> -->
+                                        </v-flex>
+
                                     </v-layout>
+
                                 </v-card-title>
                             </v-flex>
                         </v-layout>
                         <!-- <v-divider dense light></v-divider> -->
                         <v-card-actions>
-                            <strong>N° Reserva:&nbsp
+                            <strong>N°:&nbsp
                             </strong>
                             00000{{ props.item.nreserva }}
                             <v-spacer></v-spacer>
@@ -497,9 +515,9 @@ export default {
             });
           this.getDataAbono();
           this.Tipopagovalue = "",
-          this.Bancovalue = "",
-          this.codigodepago = "",
-          this.montodepositado = ""
+            this.Bancovalue = "",
+            this.codigodepago = "",
+            this.montodepositado = ""
         }
       }
     },

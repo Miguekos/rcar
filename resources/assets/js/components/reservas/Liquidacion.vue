@@ -24,10 +24,10 @@
 <template id="prereserva">
 <div class="">
 
-  <v-dialog v-model="dialog4" persistent max-width="60%">
+  <v-dialog v-model="dialog4" persistent max-width="80%">
     <v-card>
       <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
-      <v-card-title class="">Registro de LIQUIDACION - Reserva N° 0000{{ jsonitem.nreserva }}</v-card-title>
+      <v-card-title class="">LIQUIDACION - Reserva N° 0000{{ jsonitem.nreserva }}</v-card-title>
       <v-card-text>
         <v-container fluid grid-list-xl>
           <v-layout align-center justify-space-between row fill-height>
@@ -40,21 +40,21 @@
                           <table class="v-datatable v-table teme--light">
                             <tbody>
                               <tr>
-                                <td>Garantia</td>
-                                <td class="text-xs-right"> {{ jsonitem.garantia }} $</td>
+                                <td class="px-0">Garantia</td>
+                                <td class="px-0 text-xs-right"> {{ jsonitem.garantia }} $</td>
                                 <!-- <td class="text-xs-right">{{ reserva.garantia }} $</td> -->
                               </tr>
                             </tbody>
                             <tfoot>
                               <tr>
-                                <td><strong>Cobros adicionales</strong></td>
+                                <td class="px-0"><strong>Cobros adicionales</strong></td>
                                 <!-- <td class="text-xs-right"><b>{{ reserva.totalF }} $</b></td> -->
-                                <td class="text-xs-right"><b> {{ jsonitem.cobrosadi }} $</b></td>
+                                <td class="px-0 text-xs-right"><b> {{ jsonitem.cobrosadi }} $</b></td>
                               </tr>
                               <tr>
-                                <td><strong>Deuda total</strong></td>
+                                <td class="px-0"><strong>Deuda total</strong></td>
                                 <!-- <td class="text-xs-right"><b>{{ reserva.totalF - sumaAbonos }} $</b></td> -->
-                                <td class="text-xs-right"><b> {{ jsonitem.totaladevolver - sumaAbonos }} $</b></td>
+                                <td class="px-0 text-xs-right"><b> {{ jsonitem.totaladevolver - sumaAbonos }} $</b></td>
                               </tr>
                               <!-- <tr>
                                 <td><strong>Total abonado</strong></td>
@@ -69,32 +69,32 @@
                   <v-divider></v-divider>
 
                   <v-card-text>
-                    <v-container fluid grid-list-xl>
-                      <v-layout align-center justify-space-between row wrap>
-                        <v-flex xs12 sm6 md3>
-                          <v-autocomplete required :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-autocomplete>
-                        </v-flex>
+                      <v-container fluid="fluid" grid-list-xl="grid-list-xl">
+                          <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" wrap="wrap">
+                              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                  <v-autocomplete :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-autocomplete>
+                              </v-flex>
 
-                        <v-flex xs12 sm6 md3>
-                          <v-autocomplete required :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-autocomplete>
-                        </v-flex>
+                              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                  <v-autocomplete :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-autocomplete>
+                              </v-flex>
 
-                        <v-flex xs12 sm6 md3>
-                          <v-text-field required label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
-                        </v-flex>
+                              <v-flex xs12="xs12" sm6="sm6" md3="md3">
+                                  <v-text-field label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
+                              </v-flex>
 
-                        <v-flex xs12 sm6 md2>
-                          <v-text-field required label="Monto $" v-model="montodepositado"></v-text-field>
-                        </v-flex>
+                              <v-flex xs12="xs12" sm6="sm6" md2="md2">
+                                  <v-text-field required="required" label="Monto $" v-model="montodepositado"></v-text-field>
+                              </v-flex>
 
-                        <v-flex xs12 sm6 md1>
-                          <v-btn fab dark small color="primary">
-                            <v-icon title="Agregar Abono" @click="createAbono()" dark>add</v-icon>
-                          </v-btn>
-                          <!-- <v-icon title="Agregar Abono" @click="createAbono()" color="success">add</v-icon> -->
-                        </v-flex>
-                      </v-layout>
-                    </v-container>
+                              <v-flex xs12="xs12" sm6="sm6" md1="md1">
+                                  <v-btn fab="fab" dark="dark" small="small" color="primary">
+                                      <v-icon title="Agregar Abono" @click="createAbono()" dark="dark">add</v-icon>
+                                  </v-btn>
+                                  <!-- <v-icon title="Agregar Abono" @click="createAbono()" color="success">add</v-icon> -->
+                              </v-flex>
+                          </v-layout>
+                      </v-container>
                   </v-card-text>
 
                   <v-divider></v-divider>
@@ -107,10 +107,10 @@
                           <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers>
                           <!-- <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers> -->
                             <template slot="items" slot-scope="props">
-                              <td>{{ props.item.tipodepago }}</td>
-                              <td class="text-xs-right">{{ props.item.banco }}</td>
+                              <td class="text-xs-left">{{ props.item.banco }}</td>
+                              <td class="text-xs-right pl-5">{{ props.item.montodepositado }}./s</td>
                               <td class="text-xs-right">{{ props.item.codigodepago }}</td>
-                              <td class="text-xs-right">{{ props.item.montodepositado }}</td>
+                              <td class="px-2">{{ props.item.tipodepago }}</td>
                               <td @click="deleteItem(props.item)" class="text-xs-right"> <v-btn fab dark small color="red"> <v-icon>delete</v-icon> </v-btn> </td>
                             </template>
                           </v-data-table>
@@ -125,10 +125,10 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" round dark @click="liquidarFinal()">Liquidar</v-btn>
         <v-spacer></v-spacer>
+        <v-btn color="primary" round dark @click="liquidarFinal()">Liquidar</v-btn>
         <v-btn color="green darken-1" round dark @click="dialog4 = false">Guardar</v-btn>
-        <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn>
+        <!-- <v-btn color="red darken-1" round dark @click="dialog4 = false">Cancelar</v-btn> -->
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -136,52 +136,80 @@
   <v-container grid-list-md fluid text-xs-justify>
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
       <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
-        <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 1}`" class="mx-auto">
-            <v-layout align-center justify-center row fill-height>
-              <v-flex xs1></v-flex>
-              <v-flex xs3>
-                <v-avatar size="70%">
-                  <v-img src="loginnew/images/logo.png"></v-img>
-                </v-avatar>
-              </v-flex>
-              <v-flex xs8>
-                <!-- <v-flex text-xs-right text-lg-right text-sm-right>
-                  <v-icon small class="mr-2" @click="editItem(props.item)">
-                    edit
-                  </v-icon>
-                  <v-icon small @click="deleteItem(props.item)">
-                    close
-                  </v-icon>
-                </v-flex> -->
-                <v-card-title primary-title>
-                  <v-layout align-center justify-space-around row fill-height>
-
-                    <div>
-                      <div class="headline">{{ props.item.cliente }}</div>
-                      <div class="text-xs-left"><strong>Monto a pagar:</strong> {{ props.item.totalF }}$</div>
-                      <div class="text-xs-left"><strong>Dias Disponible:</strong> {{ props.item.diasdisponible }}</div>
-                    </div>
-                    <div>
-                      <div class="text-xs-right"><strong>Auto:</strong> {{ props.item.autoSeleccionado }}</div>
-                      <div class="text-xs-right"><strong>Fecha Inicio:</strong> {{ props.item.fechasInicio }}</div>
-                      <div class="text-xs-right"><strong>Fecha Fin:</strong> {{ props.item.fechaFin }}</div>
-                    </div>
-                  </v-layout>
-                </v-card-title>
-              </v-flex>
+          <v-card class="mx-auto">
+            <v-layout align-center="align-center" justify-center="justify-center" row="row" fill-height="fill-height">
+                <v-flex xs1="xs1"></v-flex>
+                <v-flex xs3="xs3">
+                    <v-avatar size="70%">
+                        <!-- <v-img :src="props.item.imagen1"></v-img> -->
+                        <v-img src="loginnew/images/logo.png"></v-img>
+                    </v-avatar>
+                </v-flex>
+                <v-flex xs8="xs8">
+                    <v-flex text-xs-right="text-xs-right" text-lg-right="text-lg-right" text-sm-right="text-sm-right">
+                        <v-icon small="small" class="mr-2" @click="editItem(props.item)">
+                            edit
+                        </v-icon>
+                        <v-icon small="small" @click="deleteItem(props.item)">
+                            close
+                        </v-icon>
+                    </v-flex>
+                    <v-card-title primary-title="primary-title">
+                        <v-layout row="row" wrap="wrap">
+                            <v-flex xs12="xs12" lg12="lg12">
+                                <!-- <v-card color=""> -->
+                                <v-card-text class="texto-18 px-0 py-0 text-xs-left text-lg-left text-sm-left">
+                                    {{ props.item.cliente }}
+                                </v-card-text>
+                                <!-- </v-card> -->
+                            </v-flex>
+                            <v-flex xs12="xs12" lg6="lg6">
+                                <!-- <v-card color=""> -->
+                                <v-card-text class="px-0 py-0">
+                                    <b>Total</b>:
+                                    {{ props.item.totalF }}
+                                    $
+                                </v-card-text>
+                                <!-- </v-card> -->
+                            </v-flex>
+                            <v-flex xs12="xs12" lg6="lg6">
+                                <!-- <v-card color=""> -->
+                                <v-card-text class="px-0 py-0">
+                                    <b>Direc.</b>:
+                                    {{ props.item.direccionEntrega }}
+                                </v-card-text>
+                                <!-- </v-card> -->
+                            </v-flex>
+                            <v-flex xs12="xs12" lg6="lg6">
+                                <!-- <v-card color=""> -->
+                                <v-card-text class="px-0 py-0">
+                                    <b>Auto</b>:
+                                    {{ props.item.autoSeleccionado }}
+                                </v-card-text>
+                                <!-- </v-card> -->
+                            </v-flex>
+                            <v-flex xs12="xs12" lg6="lg6">
+                                <!-- <v-card color=""> -->
+                                <v-card-text class="px-0 py-0">
+                                    <b>Entrega</b>:
+                                    {{ props.item.fechasInicio }}
+                                </v-card-text>
+                                <!-- </v-card> -->
+                            </v-flex>
+                        </v-layout>
+                    </v-card-title>
+                </v-flex>
             </v-layout>
             <!-- <v-divider dense light></v-divider> -->
             <v-card-actions>
-              <strong>Numero de Reserva:&nbsp </strong> 00000{{ props.item.nreserva }}
+              <strong>N°:&nbsp </strong> 00000{{ props.item.nreserva }}
               <v-spacer></v-spacer>
               <v-btn @click="liquidar(props.item)" small color="primary">Liquidar</v-btn>
-              <v-btn @click="devolver(props.item)" small color="success">Registrar Devolucion</v-btn>
+              <v-btn @click="devolver(props.item)" small color="success">Devolucion</v-btn>
 
               <!-- <v-btn  small color="error">cancelar</v-btn> -->
             </v-card-actions>
           </v-card>
-        </v-hover>
       </v-flex>
       <template slot="no-data">
         <v-alert :value="true" color="white" icon="warning" style="color: black;">

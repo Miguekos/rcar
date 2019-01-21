@@ -360,7 +360,7 @@ table.v-table tbody th {
             <v-btn color="error">Cancelar</v-btn>
         </v-container>
     </form>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre> -->
 
     <v-text-field value="calcularPuntos" type="hidden"></v-text-field>
 </div>

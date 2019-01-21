@@ -10,7 +10,7 @@
                         <v-list-tile-content>
                             <v-list-tile-title>{{ user.name }}</v-list-tile-title>
                             <h6 class="text--blue">
-                                v1.5.4.5
+                                v1.5.5
                             </h6>
                         </v-list-tile-content>
                     </v-list-tile>
@@ -123,11 +123,12 @@ export default {
       //   text: 'App downloads',
       //   link: '/'
       // },
+      // {
+      //   icon: 'keyboard',
+      //   text: 'Limpiar Cache',
+      //   link: '/clear-cache'
+      // },
       {
-        icon: 'keyboard',
-        text: 'Limpiar Cache',
-        link: '/clear-cache'
-      }, {
         icon: 'exit_to_app',
         text: 'Salir',
         link: 'logout'

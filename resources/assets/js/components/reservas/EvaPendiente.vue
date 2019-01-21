@@ -24,41 +24,7 @@
 <template id="prereserva">
 <div class="">
 
-    <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
-        <v-card style="border-radius: 0px 10px 0px 10px">
-            <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title>
-            <v-card-text>
-                <v-container fluid="fluid" grid-list-xl="grid-list-xl">
-                    <v-layout row="row" wrap="wrap">
-
-                        <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                            <v-select :items="Tipopago" item-text="text" item-value="text" v-model="Tipopagovalue" label="Tipo de Pago"></v-select>
-                        </v-flex>
-
-                        <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                            <v-select :items="Banco" item-text="text" item-value="text" v-model="Bancovalue" label="Banco"></v-select>
-                        </v-flex>
-
-                        <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                            <v-text-field label="Codigo de Deposito" v-model="codigodepago"></v-text-field>
-                        </v-flex>
-
-                        <v-flex xs12="xs12" sm6="sm6" md3="md3">
-                            <v-text-field label="Monto Depositado" v-model="montodepositado"></v-text-field>
-                        </v-flex>
-
-                    </v-layout>
-                </v-container>
-            </v-card-text>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="green darken-1" round="round" dark="dark" @click="update(), dialog4 = false">Guardar</v-btn>
-                <v-btn color="red darken-1" round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-dialog>
-
-    <v-dialog v-model="dialog5" persistent="persistent" max-width="40%">
+    <v-dialog v-model="dialog5" persistent="persistent" max-width="80%">
         <v-card style="border-radius: 0px 10px 0px 10px">
             <v-card-title class="headline">¿Aprobar?</v-card-title>
             <v-card-text>
@@ -76,7 +42,7 @@
         </v-card>
     </v-dialog>
 
-    <v-dialog v-model="dialog6" persistent="persistent" max-width="40%">
+    <v-dialog v-model="dialog6" persistent="persistent" max-width="80%">
         <v-card style="border-radius: 0px 10px 0px 10px">
             <v-card-title class="headline">¿Rechazar?</v-card-title>
             <v-card-text>

@@ -3,6 +3,10 @@
   padding-top: 0px;
 }
 
+.container.grid-list-lg .layout .flex {
+    padding: 6px;
+}
+
 .v-card__tit le {
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -16,13 +20,13 @@
 }
 
 /* html {
-  font-size: 12px;
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-} */
+    font-size: 12px;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  } */
 
 .custom-ripple {
   user-select: none
@@ -58,9 +62,9 @@
 
 button:hover {
   /*background: grey;
-    color: white;
-    color: #3a7999;
-    box-shadow: inset 0 0 0 3px #F44336;*/
+      color: white;
+      color: #3a7999;
+      box-shadow: inset 0 0 0 3px #F44336;*/
 }
 
 @-webkit-keyframes hvr-pulse {
@@ -125,40 +129,6 @@ button:hover {
   </v-dialog>
 
   <v-container px-0 py-0 grid-list-md fluid text-xs-justify>
-    <!-- <v-container grid-list-xs>
-      <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
-            <v-card-title primary-title>
-              DESARGAR PDF
-              <v-spacer></v-spacer>
-              <v-icon color="success">cloud_download</v-icon>
-            </v-card-title>
-          </v-card>
-        </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light elevation-2 hover ripple class="nuevo">
-            <v-card-title primary-title>
-              DESARGAR EXCEL
-              <v-spacer></v-spacer>
-              <v-icon color="success">cloud_download</v-icon>
-            </v-card-title>
-          </v-card>
-        </v-flex>
-        <v-flex lg3 class="nuevo">
-          <v-card light hover ripple class="nuevo">
-            <v-card-title primary-title>
-              EXPORTAR CATALOGOS
-              <v-spacer></v-spacer>
-              <v-icon color="success">cloud_download</v-icon>
-            </v-card-title>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container> -->
-
-    <!-- <hr> -->
-
     <v-layout class="py-0" row wrap>
 
       <v-flex xs3>
@@ -183,35 +153,8 @@ button:hover {
 
     <v-data-iterator :items="dispo" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
 
-      <v-flex slot="item" slot-scope="props" xs12 sm6 md6 lg6>
+      <v-flex slot="item" slot-scope="props" xs12 lg6>
         <v-card @click="reservarAuto(props.item)" ripple hover>
-          <!-- <v-layout align-center justify-center row fill-height>
-            <v-flex xs1></v-flex>
-            <v-flex xs3>
-              <v-avatar size="70%">
-                <v-img src="loginnew/images/logo.png"></v-img>
-              </v-avatar>
-            </v-flex>
-            <v-flex xs8>
-              <v-flex text-xs-right text-lg-right text-sm-right>
-
-              </v-flex>
-              <v-card-title primary-title>
-                <v-layout align-center justify-space-around row fill-height>
-                  <div>
-                    <div class="titulos-card">{{ props.item.marca }}</div>
-                    <div class="text-xs-left"><strong>Placa:</strong> {{ props.item.placa }}$</div>
-                    <div class="text-xs-left"><strong>Color:</strong> {{ props.item.color }}</div>
-                  </div>
-                  <div>
-                    <div class="text-xs-right"><strong>Año:</strong> {{ props.item.anio }}</div>
-                    <div class="text-xs-right"><strong>Precio:</strong> {{ props.item.precio_por_dia }} $</div>
-                  </div>
-                </v-layout>
-              </v-card-title>
-            </v-flex>
-        </v-layout> -->
-          <!-- <v-divider dense light></v-divider> -->
           <v-layout align-center justify-center row fill-height>
             <v-flex xs1>
             </v-flex>
@@ -221,14 +164,14 @@ button:hover {
                 <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
               </v-avatar>
             </v-flex>
-            <v-flex xs8>
+            <v-flex xs8 class="px-0 py-0">
               <v-flex text-xs-right text-lg-right text-sm-right>
-                <v-icon small class="mr-2" @click="editItem(props.item)">
+                <!-- <v-icon small class="mr-2" @click="editItem(props.item)">
                   edit
                 </v-icon>
                 <v-icon small @click="deleteItem(props.item)">
                   close
-                </v-icon>
+                </v-icon> -->
               </v-flex>
               <v-card-title primary-title class="pl-0">
                 <v-layout row wrap>
@@ -267,23 +210,6 @@ button:hover {
                       </v-card-text>
                     <!-- </v-card> -->
                   </v-flex>
-                  <!-- <div>
-                    <h3>{{ props.item.marca }}</h3>
-                  </div>
-                  <div>
-                    <div class="text-xs-left">Placa: {{ props.item.placa }}</div>
-                    <div>Color: {{ props.item.color }}</div>
-                    <v-spacer></v-spacer>
-                    <v-flex align-content-end>
-                      <v-icon small class="mr-2" @click="dialog3 = true">
-                        mail_outline
-                      </v-icon>
-                    </v-flex>
-                  </div>
-                  <div class="">
-                    <div>Año: {{ props.item.anio }}</div>
-                    <div>Precio: {{ props.item.precio_por_dia }}</div>
-                  </div> -->
                 </v-layout>
 
               </v-card-title>
@@ -294,11 +220,14 @@ button:hover {
           </v-card-actions>
         </v-card>
       </v-flex>
-      
-      <hr>
-      <v-divider></v-divider>
 
-      
+      <!-- <hr>
+      <hr>
+      <hr> -->
+      <!-- <br> -->
+      <!-- <v-divider></v-divider> -->
+
+
       <template slot="no-data">
         <v-alert :value="true" color="white" style="color: black;" icon="warning">
           Lo siento no hay datos que cargar :(

@@ -334,7 +334,7 @@ select:-webkit-autofill:focus {
                                 <v-btn color="error">Cancelar</v-btn>
                             </v-flex>
                         </form>
-                        <pre>{{ $data }}</pre>
+                        <!-- <pre>{{ $data }}</pre> -->
                     </div>
 </template>
 

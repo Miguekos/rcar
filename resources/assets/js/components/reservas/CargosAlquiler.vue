@@ -92,7 +92,7 @@
                                         <strong>Total Servicios</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b>{{ reservaData.totalF }}$</b>
+                                        <b>{{ (reservaData.totalF).toFixed(2) }}$</b>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,9 +130,9 @@
                         <label>Zona delivery devolucion</label>
                         <v-autocomplete :items="zonaItem" item-text="name" v-model="zonadelivery" solo="solo"></v-autocomplete>
                         <label>Kilometros Iniciales</label>
-                        <v-text-field readonly id="id" v-model="reservaData.kilometroinicial" solo="solo"></v-text-field>
+                        <v-text-field readonly v-model="reservaData.kilometroinicial" solo="solo"></v-text-field>
                         <label>Kilometros devolucion</label>
-                        <v-text-field v-model="kilometrodevolucion" id="id"></v-text-field>
+                        <v-text-field type="number" v-model="kilometrodevolucion"></v-text-field>
                     </v-card-text>
                 </v-card>
             </v-flex>
@@ -189,23 +189,23 @@
                         <v-layout row="" wrap="">
                             <v-flex xs12="xs12" sm6="sm6" md3="md6" lg6="lg6">
                                 <label>Kilometros Extendidos</label>
-                                <v-text-field solo-inverted="solo-inverted"></v-text-field>
+                                <v-text-field v-model="kilometroexten" solo-inverted="solo-inverted"></v-text-field>
                             </v-flex>
 
                             <v-flex xs12="xs12" sm6="sm6" md3="md6" lg6="lg6">
                                 <label>Penalidad KM</label>
-                                <v-text-field v-model="penalidadporkm" solo="solo"></v-text-field>
+                                <v-text-field readonly v-model="penalidadporkm" solo="solo"></v-text-field>
                             </v-flex>
                         </v-layout>
 
                         <label>Pago por daños</label>
-                        <v-text-field  v-model="pagopord" solo="solo" color="error"></v-text-field>
+                        <v-text-field  v-model="pagopord" color="error"></v-text-field>
                         <label>Lucro sesante</label>
-                        <v-text-field v-model="lucrosesante" solo="solo" color="error"></v-text-field>
+                        <v-text-field v-model="lucrosesante" color="error"></v-text-field>
                         <label>Multa ($100)</label>
-                        <v-text-field v-model="multa" solo="solo"></v-text-field>
+                        <v-text-field v-model="multa"></v-text-field>
                         <label>Otros cobros</label>
-                        <v-text-field v-model="otroscobros" solo="solo"></v-text-field>
+                        <v-text-field v-model="otroscobros"></v-text-field>
                     </v-card-text>
                 </v-card>
             </v-flex>
@@ -279,23 +279,12 @@
             </v-flex>
 
         </v-layout>
-    </v-container>
-    <v-container>
-        <v-layout row="row" justify-space-between="justify-space-between">
-            <v-flex xs2="xs2" lg4="lg4">
-
-                <v-btn @click="atras()" color="primary">Cancelar</v-btn>
-
-            </v-flex>
-            <v-flex xs2="xs2" lg4="lg4"></v-flex>
-            <v-flex xs2="xs6" lg4="lg6">
-
-                <v-btn @click="updateRegistrar()" color="success">Regsitrar devolucion</v-btn>
-                <v-btn @click="updateLiquidar()" color="error">Liquidar</v-btn>
-
-            </v-flex>
-        </v-layout>
-
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn @click="atras()" color="primary">Cancelar</v-btn>
+          <v-btn @click="updateRegistrar()" color="success">Regsitrar devolucion</v-btn>
+          <!-- <v-btn @click="updateLiquidar()" color="error">Liquidar</v-btn> -->
+        </v-card-actions>
     </v-container>
     <v-text-field dark hidden v-model="sumaDevolver"></v-text-field>
     <v-text-field dark type="hidden" v-model="suma"></v-text-field>
@@ -321,7 +310,6 @@ export default {
     reservaData: {},
     vehiculoId: "",
     vehiculoData: {},
-
     zonaItem: [{
         name: "San Isidro",
         value: '100'
@@ -450,8 +438,8 @@ export default {
       axios
         .get(`/v1.0/auto/${this.reservasc[0].vehiculo}`)
         .then(response => {
-          console.log(response.data[0]);
-          this.vehiculoData = response.data[0];
+          console.log(response.data);
+          this.vehiculoData = response.data;
         })
         .catch(e => {
           console.log(e);
