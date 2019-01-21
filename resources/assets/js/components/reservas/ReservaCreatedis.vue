@@ -138,7 +138,12 @@ table.v-table tbody th {
                         required="required"
                         solo="solo"></v-autocomplete>
                     <label>Producto</label>
-                    <v-autocomplete :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." required="required" solo="solo"></v-autocomplete>
+                    <!-- item-value="{ name: items.name, value: product.value }" -->
+                    <v-autocomplete :items="productosItem" item-text="name" item-value="value" v-model="productos" placeholder="Select..." required="required"
+                    solo="solo"></v-autocomplete>
+                    <!-- <v-autocomplete :items="productosItem" item-text="name" item-value="{ id: productosItem.name, text: productosItem.value }" v-model="productos"
+                    placeholder="Select..." required="required" solo="solo"></v-autocomplete> -->
+                    <!-- <select v-model="productos"> <option v-for="option in productosItem" v-bind:value="option.value"> {{ option.text }} </option> </select> -->
                     <label>Paquete</label>
                     <v-autocomplete
                         :items="promo"
@@ -152,7 +157,7 @@ table.v-table tbody th {
                     <label>Zona de Entrega</label>
                     <v-autocomplete :items="zonaItem" item-text="name" item-value="value" v-model="zonas" required="required" placeholder="Select..." solo="solo"></v-autocomplete>
                     <label>Direccion de Entrega</label>
-                    <v-text-field required v-model="direccionEntrega"></v-text-field>
+                    <v-text-field required="required" v-model="direccionEntrega"></v-text-field>
                     <label>Seguro</label>
                     <v-autocomplete :items="seguroItem" item-text="name" item-value="value" v-model="seguro" required="required" placeholder="Select..." solo="solo"></v-autocomplete>
                     <v-layout align-center="align-center" justify-space-between="justify-space-between" row="row" fill-height="fill-height">
@@ -355,7 +360,7 @@ table.v-table tbody th {
             <v-btn color="error">Cancelar</v-btn>
         </v-container>
     </form>
-    <!-- <pre>{{ $data }}</pre> -->
+    <pre>{{ $data }}</pre>
 
     <v-text-field value="calcularPuntos" type="hidden"></v-text-field>
 </div>
@@ -377,6 +382,7 @@ import DateRange from 'vuetify-daterange-picker';
 export default {
   props: ['token', 'vehiculodis', 'user', 'fechai', 'fechaf'],
   data: () => ({
+    productos: 0,
     codigodepago: "",
     montodepositado: "50",
     Tipopagovalue: "",
@@ -444,7 +450,6 @@ export default {
     clienteId: "",
     vehiculoPrecio: 0,
     clientes: "",
-    productos: 0,
     paquetes: 0,
     placa: "",
     color: "",
@@ -620,6 +625,7 @@ export default {
           tanqueLleno: this.tanqueLleno,
           autoSeleccionado: this.autoSeleccionado,
           estado: 1,
+          disponible: 1,
           preciovihiculo: this.preciovihiculo,
           diaadicional: this.diaadicional,
           totalF: this.totalF,
@@ -662,6 +668,7 @@ export default {
           tanqueLleno: this.tanqueLleno,
           autoSeleccionado: this.autoSeleccionado,
           estado: 2,
+          disponible: 0,
           preciovihiculo: this.preciovihiculo,
           diaadicional: this.diaadicional,
           totalF: this.totalF,
@@ -690,26 +697,28 @@ export default {
       window.location.href = '/reserva';
     },
     verAuto() {
-      console.log("aqui esta");
+      console.log("Cargando vehiculo seleccionado");
       axios
         .get(`/v1.0/auto/${this.vehiculoId}`)
+        // .get(`/v1.0/auto/3`)
         .then(response => {
-          this.vehiculoData = response.data[0];
-          this.preciov = response.data[0].precio_por_dia;
-          this.autoSeleccionado = response.data[0].marca;
-          this.fechainicioauto = response.data[0].fechainicioauto;
-          this.fechafinauto = response.data[0].fechafinauto;
-          this.placa = response.data[0].placa;
-          this.color = response.data[0].color;
-          this.anio = response.data[0].anio;
-          this.precio_por_dia = response.data[0].precio_por_dia;
-          this.image = response.data[0].imagen1;
-          this.garantia = response.data[0].garantia;
-          console.log(response.data[0]);
-          console.log(response.data[0].precio_por_dia);
+          console.log(response.data);
+          this.vehiculoData = response.data;
+          this.preciov = response.data.precio_por_dia;
+          this.autoSeleccionado = response.data.marca;
+          this.fechainicioauto = response.data.fechainicioauto;
+          this.fechafinauto = response.data.fechafinauto;
+          this.placa = response.data.placa;
+          this.color = response.data.color;
+          this.anio = response.data.anio;
+          this.precio_por_dia = response.data.precio_por_dia;
+          this.image = response.data.imagen1;
+          this.garantia = response.data.garantia;
+          console.log(response.data);
+          console.log(response.data.precio_por_dia);
         })
         .catch(e => {
-          this.errors.push(e);
+          alert('No se pudo cargar el auto seleecionado');
         });
     },
     verCliente() {
@@ -721,7 +730,7 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
-          this.errors.push(e);
+          console.log(e);
         });
     },
     verPromo() {
@@ -733,7 +742,7 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
-          this.errors.push(e);
+          console.log(e);
         });
     },
     agregarCliente() {

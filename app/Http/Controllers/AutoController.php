@@ -80,8 +80,9 @@ class AutoController extends Controller
 
     public function showapi(Auto $auto)
     {
-      $autos = Auto::findOrFail($auto);
-      return $autos;
+      // $autos = Auto::findOrFail($auto);
+      // return $auto;
+      return response($auto, 200);
     }
 
     /**

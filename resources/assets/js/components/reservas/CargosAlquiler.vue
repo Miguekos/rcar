@@ -130,7 +130,7 @@
                         <label>Zona delivery devolucion</label>
                         <v-autocomplete :items="zonaItem" item-text="name" v-model="zonadelivery" solo="solo"></v-autocomplete>
                         <label>Kilometros Iniciales</label>
-                        <v-text-field id="id" v-model="reservaData.kilometroinicial" solo="solo"></v-text-field>
+                        <v-text-field readonly id="id" v-model="reservaData.kilometroinicial" solo="solo"></v-text-field>
                         <label>Kilometros devolucion</label>
                         <v-text-field v-model="kilometrodevolucion" id="id"></v-text-field>
                     </v-card-text>
@@ -427,6 +427,10 @@ export default {
           response.data
           console.log(response.data);
           window.location.href = '/reserva';
+        })
+        .catch(e => {
+          console.log(e);
+          alert("No se pudo registrar");
         });
     },
     getDataR() {
@@ -438,7 +442,7 @@ export default {
           this.reservaData = response.data;
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
     },
     getDataV() {
@@ -450,7 +454,7 @@ export default {
           this.vehiculoData = response.data[0];
         })
         .catch(e => {
-          this.errors.push(e);
+          console.log(e);
         });
     },
     atras() {

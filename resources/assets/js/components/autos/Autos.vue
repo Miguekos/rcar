@@ -171,7 +171,6 @@ button:hover {
         </v-flex>
       </v-layout>
     </v-container>
-
     <!-- <br> -->
     <v-layout class="py-0" row wrap>
 
@@ -342,7 +341,7 @@ export default {
     autostotal: "",
     autosnuevo: "",
     aumento: "",
-    editCliente: "",
+    editauto: "",
     idedit: "",
     dialog: false,
     dialog1: false,
@@ -388,12 +387,12 @@ export default {
     deleteItem(item) {
       console.log("Aqui abajo");
       console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar este Cliente?')
+      var borrar = confirm('Esta seguro que desea borrar este auto?')
       if (!borrar) {
         alert("Se cancelo");
       } else {
         axios
-          .delete(`/v1.0/cliente/${item.id}`, {
+          .delete(`/v1.0/auto/${item.id}`, {
             _token: this.csrf
           })
           .then(response => {

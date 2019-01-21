@@ -1,17 +1,4 @@
-<style scoped="promos">
-
-.nuevo {
-  padding: 10px 10px 0px 10px;
-  /* background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple); */
-  border-radius: 10px 10px 10px 10px;
-}
-
-.v-btn--small {
-  font-size: 10px;
-  height: 18px;
-  padding: 0 8px;
-}
-
+<style scope>
 .v-card__title--primary {
   padding-top: 0px;
 }
@@ -28,6 +15,19 @@
   padding: 0px;
 }
 
+/* html {
+  font-size: 12px;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} */
+
+.custom-ripple {
+  user-select: none;
+}
+
 .app-fab--absolute {
   position: fixed;
   /*z-index: 3;*/
@@ -42,13 +42,13 @@
   margin-bottom: 13px;
   border: none;
   outline: none;
-  color: #FFF;
+  color: #fff;
   font-size: 32px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transition: .3s;
+  transition: 0.3s;
 }
 
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
   .app-fab--absolute {
     bottom: 2.5rem;
     right: 2.5rem;
@@ -108,84 +108,105 @@ button:hover {
   animation-iteration-count: infinite;
 }
 </style>
-<template id="promos">
-<div>
+<template>
+  <div id="cartas">
+    <v-dialog v-model="dialog3" persistent max-width="690">
+      <v-card>
+        <v-card-title class="headline">Enviar Correo</v-card-title>
+        <v-card-text>
+          <v-textarea
+            name="input-7-1"
+            label="Escribe tu correo"
+            value
+            hint="Escribe aqui el correo"
+          ></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat @click="dialog3 = false">Cancelar</v-btn>
+          <v-btn color="green darken-1" flat @click="eliminar = 1">Enviar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
-  <v-container grid-list-md fluid text-xs-justify>
-    <v-container class="py-0" grid-list-xs>
-      <v-layout align-center justify-space-around row wrap fill-height>
-        <v-flex lg4 class="nuevo">
-          <v-card light hover ripple class="nuevo elevation-1">
-            <v-card-title primary-title>
-              <v-avatar>
-                <v-icon color="orange" size="250%">perm_identity</v-icon>
-              </v-avatar>
-              <span>Cliente Total</span>
-              <v-spacer></v-spacer>
-              <div class="text-lg-justify">
-                <div class="headline">{{ total }}</div>
-              </div>
-            </v-card-title>
-          </v-card>
+    <v-container grid-list-md fluid text-xs-justify>
+      <v-container class="px-0 py-0" grid-list-xs>
+        <v-layout align-center justify-space-around row wrap fill-height>
+          <v-flex lg4 class="nuevo">
+            <v-card light ripple class="nuevo elevation-1">
+              <v-card-title primary-title>
+                <v-avatar>
+                  <v-icon color="green" size="250%">perm_identity</v-icon>
+                </v-avatar>
+                <span>promo Total</span>
+                <v-spacer></v-spacer>
+                <div class="text-lg-justify">
+                  <div class="headline">{{ promostotal }}</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex lg4 class="nuevo">
+            <v-card light ripple class="nuevo elevation-1">
+              <v-card-title primary-title>
+                <v-avatar>
+                  <v-icon color="green" size="250%">person_add</v-icon>
+                </v-avatar>
+                <span>promos Nuevos</span>
+                <v-spacer></v-spacer>
+                <div class="text-lg-justify">
+                  <div class="headline">{{ aumento }}</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex lg4 class="nuevo">
+            <v-card light ripple class="nuevo elevation-1">
+              <v-card-title primary-title>
+                <v-avatar>
+                  <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
+                </v-avatar>
+                <span>Aumento</span>
+                <v-spacer></v-spacer>
+                <div class="text-lg-justify">
+                  <div class="headline">{{ promosnuevo }}%</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <!-- <br> -->
+      <v-layout class="py-0" row wrap>
+        <v-flex xs3>
+          <v-card-text class="titulos-text px-0">{{ title }}</v-card-text>
         </v-flex>
-        <v-flex lg4 class="nuevo">
-          <v-card light hover ripple class="nuevo elevation-1">
-            <v-card-title primary-title>
-              <v-avatar>
-                <v-icon color="blue" size="250%">person_add</v-icon>
-              </v-avatar>
-              <span>Clientes Nuevos</span>
-              <v-spacer></v-spacer>
-              <div class="text-lg-justify">
-                <div class="headline">{{ clienten }}</div>
-              </div>
-            </v-card-title>
-          </v-card>
+
+        <v-flex xs3>
+          <v-card-text style="font-size: 22px; text-align: right;" class>
+            <v-card class="pr-2">
+              <!-- Descarga<v-icon>cloud_download</v-icon> -->
+            </v-card>
+          </v-card-text>
         </v-flex>
-        <v-flex lg4 class="nuevo">
-          <v-card light hover ripple class="nuevo elevation-1">
-            <v-card-title primary-title>
-              <v-avatar>
-                <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
-              </v-avatar>
-              <span>Aumento</span>
-              <v-spacer></v-spacer>
-              <div class="text-lg-justify">
-                <div class="headline">{{ fecha }}%</div>
-              </div>
-            </v-card-title>
-          </v-card>
+
+        <v-flex xs2></v-flex>
+
+        <v-flex xs4>
+          <v-text-field
+            append-icon="search"
+            label="Buscar"
+            single-line
+            hide-details
+            v-model="search"
+          ></v-text-field>
         </v-flex>
       </v-layout>
-    </v-container>
 
-    <!-- <br> -->
-    <v-layout class="py-0" row wrap>
-
-      <v-flex xs3>
-        <v-card-text class="titulos-text px-0">{{ title }}</v-card-text>
-      </v-flex>
-
-      <v-flex xs3>
-        <v-card-text style="font-size: 22px; text-align: right;" class="">
-          <v-card class="pr-2">
-            <!-- Descarga<v-icon>cloud_download</v-icon> -->
-          </v-card>
-        </v-card-text>
-      </v-flex>
-
-      <v-flex xs2>
-      </v-flex>
-
-      <v-flex xs4>
-        <v-text-field append-icon="search" label="Buscar" single-line hide-details v-model="search"></v-text-field>
-      </v-flex>
-    </v-layout>
-
-    <v-data-iterator :disable-page-reset="true" :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
-      <v-flex slot="item" slot-scope="props" xs12 sm6 md4 lg6>
-        <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 1}`" class="mx-auto">
+      <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" :search="search" content-tag="v-layout" row wrap hide-actions>
+        <v-flex slot="item" slot-scope="props" xs12 sm12 md12 lg6>
+          <v-card class="mx-auto" hover tile>
             <v-layout align-center justify-center row fill-height>
               <v-flex xs1>
               </v-flex>
@@ -204,132 +225,159 @@ button:hover {
                   </v-icon>
                 </v-flex>
                 <v-card-title primary-title>
-                  <div>
-                    <div class="headline">{{ props.item.nombre }}</div>
-                    <div class="text-xs-left"><strong>Fecha Inicio: </strong>{{ props.item.vigencia }}</div>
-                    <div><strong>Dias pagados: </strong>{{ props.item.dias_pagados }}</div>
-                    <v-spacer></v-spacer>
-                  </div>
+                  <v-layout row wrap>
+                    <v-flex xs12 lg12>
+                      <!-- <v-card color=""> -->
+                        <v-card-text class="texto-18 px-0 py-0">
+                          {{ props.item.nombre }}
+                        </v-card-text>
+                      <!-- </v-card> -->
+                    </v-flex>
+                    <v-flex xs12 lg6>
+                      <!-- <v-card color=""> -->
+                        <v-card-text class="px-0 py-0">
+                          Vigencia: {{ props.item.vigencia }}
+                        </v-card-text>
+                      <!-- </v-card> -->
+                    </v-flex>
+                    <v-flex xs12 lg6>
+                      <!-- <v-card color=""> -->
+                        <v-card-text class="px-0 py-0">
+                          Dias pagados: {{ props.item.dias_pagados }}
+                        </v-card-text>
+                      <!-- </v-card> -->
+                    </v-flex>
+                    <v-flex xs12 lg6>
+                      <!-- <v-card color=""> -->
+                        <v-card-text class="px-0 py-0">
+                          Dias Libres: {{ props.item.dias_libres }}
+                        </v-card-text>
+                      <!-- </v-card> -->
+                    </v-flex>
+                    <!-- <v-flex xs12 lg6>
+
+                        <v-card-text class="px-0 py-0">
+                          Precio: {{ props.item.precio_por_dia }} $
+                        </v-card-text>
+
+                    </v-flex> -->
+                    <!-- <div>
+                      <h3>{{ props.item.marca }}</h3>
+                    </div>
+                    <div>
+                      <div class="text-xs-left">Placa: {{ props.item.placa }}</div>
+                      <div>Color: {{ props.item.color }}</div>
+                      <v-spacer></v-spacer>
+                      <v-flex align-content-end>
+                        <v-icon small class="mr-2" @click="dialog3 = true">
+                          mail_outline
+                        </v-icon>
+                      </v-flex>
+                    </div>
+                    <div class="">
+                      <div>Año: {{ props.item.anio }}</div>
+                      <div>Precio: {{ props.item.precio_por_dia }}</div>
+                    </div> -->
+                  </v-layout>
+
                 </v-card-title>
               </v-flex>
             </v-layout>
-            <!-- <v-divider dense light></v-divider> -->
-            <v-card-actions>
-              <!-- <v-btn flat >Listen now</v-btn> -->
-            </v-card-actions>
           </v-card>
-        </v-hover>
-      </v-flex>
-      <template slot="no-data">
-        <v-alert :value="true" color="white" icon="warning" style="color: black;">
-          Lo siento no hay datos que cargar :(
-        </v-alert>
-      </template>
+          <hr>
+          <v-divider></v-divider>
 
-    </v-data-iterator>
-    <div class="text-xs-center pt-2">
-      <v-pagination v-model="pagination.page" :length="page"></v-pagination>
-    </div>
-  </v-container>
+        </v-flex>
+        <template slot="no-data">
+          <v-alert :value="true" color="white" icon="warning" style="color: black">
+            Lo siento no hay datos que cargar :(
+          </v-alert>
+        </template>
 
-  <button id="hvr-pulse" @click="crear()" class="mdc-fab app-fab--absolute" aria-label="Agregar">
-    <span class="mdc-fab__icon material-icons">add</span>
-  </button>
-  <!-- <pre>{{ $data }}</pre> -->
-</div>
+      </v-data-iterator>
+      <div class="text-xs-center pt-2">
+        <v-pagination v-model="pagination.page" :length="page"></v-pagination>
+      </div>
+    </v-container>
+
+    <button
+      v-ripple
+      id="hvr-pulse"
+      @click="crear()"
+      class="mdc-fab app-fab--absolute"
+      aria-label="Agregar"
+    >
+      <span class="mdc-fab__icon material-icons">add</span>
+    </button>
+    <!-- <pre>{{ $data }}</pre> -->
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  props: ['user'],
+  props: ["user"],
   data: () => ({
-    total: "",
-    totaln: "",
-    totalp: "",
+    color: 0,
     // boton inicio
     // boton fin
     // pagination: {},
     title: "Promos",
-    registros: "",
     page: null,
     reviews: 413,
     value: 4.5,
     eliminar: "",
     dialog3: false,
-    pagination: {},
+    // pagination: {},
     slider: 56,
     tile: false,
     search: "",
-    total: "",
-    fecha: "",
-    clienten: "",
-    editCliente: "",
+    promostotal: "",
+    promosnuevo: "",
+    aumento: "",
+    editpromo: "",
     idedit: "",
     dialog: false,
     dialog1: false,
     rowsPerPageItems: [8, 12],
-    pagination: {
-      // rowsPerPage: 8
-    },
+    pagination: {},
     items: [],
     editedIndex: -1,
-    editedItem: {
-
-    },
-    defaultItem: {
-
-    },
+    editedItem: {},
+    defaultItem: {}
   }),
   created() {
-    this.getDataCliente();
-
+    this.getDatapromo();
   },
-  computed: {
-
-  },
+  computed: {},
   methods: {
     crear() {
-      window.location.href = '/promo/create';
+      window.location.href = "/promo/create";
     },
-    getDataCliente() {
+    getDatapromo() {
       console.log("en get data nuew");
       axios
         .get(`/v1.0/promos`)
         .then(response => {
-          console.log(response.data);
-          this.items = response.data.promo;
-          this.total = response.data.total;
-          this.totaln = response.data.totaln;
-          this.totalp = response.data.totalp;
+          this.items = response.data.promos;
+          this.promostotal = response.data.promostotal;
+          this.promosnuevo = response.data.promosnuevo;
+          this.aumento = response.data.aumento;
+          // console.log(response.data.fecha);
+          var paginas = Math.ceil(response.data.promostotal / 8);
+          this.page = paginas;
         })
         .catch(e => {
-          this.errors.push(e);
+
         });
-      console.log("aqui");
     },
     editItem(item) {
       window.location.href = `/promo/${item.id}/edit`;
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
-      // this.dialog1 = true
-      // this.idedit = item.id
-      // console.log(item.id);
-      // axios
-      // .get(`/v1.0/cliente/${item.id}`)
-      // .then(response => {
-      // this.editCliente = response.data;
-      // console.log(response.data);
-      // })
-      // .catch(e => {
-      // this.errors.push(e);
-      // });
     },
     deleteItem(item) {
-      // const index = this.desserts.indexOf(item)
       console.log("Aqui abajo");
       console.log(item.id);
-      var borrar = confirm('Esta seguro que desea borrar est promo?')
+      var borrar = confirm("Esta seguro que desea borrar este promo?");
       if (!borrar) {
         alert("Se cancelo");
       } else {
@@ -338,29 +386,17 @@ export default {
             _token: this.csrf
           })
           .then(response => {
-            //                    window.location.href = '/';
-            // JSON responses are automatically parsed.
-            //                        this.user = response.data;
-            //                        console.log(response.data);
             console.log("Borrado correctamente");
           })
-          .catch(e => {
-            //                        this.errors.push(e);
-          });
-        // this.getDataCliente();
+          .catch(e => {});
+        this.getDatapromo();
       }
     },
     close() {
-      this.dialog1 = false
-      this.dialog = false
+      this.dialog1 = false;
+      this.dialog = false;
       console.log("entro seguo que si");
-
-      // setTimeout(() => {
-      // this.editedItem = Object.assign({}, this.defaultItem)
-      // this.editedIndex = -1
-      // }, 300)
-    },
-  },
-
-}
+    }
+  }
+};
 </script>

@@ -27,7 +27,6 @@ select:-webkit-autofill:focus {
           <v-text-field
             autofocus
             v-model="promoedit.nombre"
-            solo
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6 md4>
@@ -56,7 +55,6 @@ select:-webkit-autofill:focus {
           <label for="">Dias Pagados</label>
           <v-text-field
             v-model="promoedit.dias_pagados"
-            solo
           ></v-text-field>
         </v-flex>
 
@@ -64,7 +62,6 @@ select:-webkit-autofill:focus {
           <label for="">Dias Libres</label>
           <v-text-field
             v-model="promoedit.dias_libres"
-            solo
           ></v-text-field>
         </v-flex>
 

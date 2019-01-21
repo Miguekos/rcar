@@ -115,11 +115,11 @@ class ReservaController extends Controller
     public function storeapi(Request $request)
     {
         $reserva = Reserva::create($request->all());
-        Auto::where('id', $request->vehiculo)
-            ->update(['estado' => 0]);
-        // return $request->vehiculo;
-        // return $qwe;
-        return $reserva;
+        $auto = Auto::where('id', $request->vehiculo)
+            ->update(['disponible' => $request->disponible]);
+        // return $reserva;
+        // return  $auto;
+        return response('Regitro de auto correcta',200);
     }
 
     /**
@@ -166,7 +166,11 @@ class ReservaController extends Controller
         $reservas = Reserva::findOrFail($reserva);
         $input = $request->all();
         $reservas->fill($input)->save();
-        return $reservas;
+
+        Auto::where('id', $reservas->vehiculo)
+            ->update(['disponible' => $reservas->disponible]);
+        // return $reservas;
+        return response($reservas, 200);
     }
 
     /**

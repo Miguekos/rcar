@@ -148,7 +148,6 @@ class DashboardController extends Controller
         // ['abono_id','=',0],
         // ['deuda','!=',0],
       ])->get();
-
       return $disponi;
     }
 

@@ -29,6 +29,21 @@
 <template id="prereserva">
 <div class="">
 
+  <v-snackbar
+      v-model="snackbar"
+      :bottom="y === 'bottom'"
+      :left="x === 'left'"
+      :multi-line="mode === 'multi-line'"
+      :right="x === 'right'"
+      :timeout="timeout"
+      :top="y === 'top'"
+      :vertical="mode === 'vertical'">
+      {{ texto }}
+      <v-btn color="pink" flat="flat" @click="snackbar = false">
+          Close
+      </v-btn>
+  </v-snackbar>
+
     <v-dialog v-model="dialog4" persistent="persistent" max-width="60%">
         <v-card>
             <!-- <v-card style="border-radius: 0px 10px 0px 10px"> -->
@@ -241,6 +256,12 @@ import axios from 'axios';
 export default {
   props: ['user'],
   data: () => ({
+    snackbar: false,
+    y: 'top',
+    x: 'right',
+    mode: '',
+    timeout: 6000,
+    texto: '',
     sumaAbonos: 0,
     reserva: {},
     codigodepago: "",
@@ -336,7 +357,7 @@ export default {
       window.location.href = '/reserva/create';
     },
     deleteItem(item) {
-      var borrar = confirm('Esta seguro que desea borrar este Cliente?')
+      var borrar = confirm('¿Esta seguro que desea borrar este abono?')
       if (!borrar) {
         alert("Se cancelo");
       } else {
@@ -382,12 +403,18 @@ export default {
           // console.log(response.data);
           var data = response.data.sinDeudare;
           if (data == null) {
-            alert("Ningun Abono realizado");
+            // alert('Ningun abono realizado');
+            this.texto = 'Ningun abono realizado';
+            this.snackbar = true;
           }
           if (response.data.sinDeudare.montorestante != 0) {
-            alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
+            // alert("Aun tienes deuda.. se debe cancelar antes de poder Activar");
+            this.texto = 'Aun tienes deuda.. se debe cancelar antes de poder Activar';
+            this.snackbar = true;
           } else {
-            alert("Sin deuda puedas Activar el contrato");
+            // alert("Sin deuda puedas Activar el contrato");
+            this.texto = 'Sin deuda puedas Activar el contrato';
+            this.snackbar = true;
             window.location.href = `/generarcontrato/${item.clienteId}/${item.vehiculo}/${item.nreserva}`;
           }
         })
@@ -431,13 +458,16 @@ export default {
     },
     createAbono() {
       if (this.montodepositado == 0 || this.codigodepago == 0) {
-        alert("no se puede crear abono");
+        this.texto = 'No puedes abonar con campos vacios.';
+        this.snackbar = true;
       } else {
         var asd = parseFloat(this.reserva.totalF) - parseFloat(this.sumaAbonos);
         console.log("###################################################");
         console.log(asd);
         if (asd < this.montodepositado) {
-          alert("No puedes tener deuda negativa verifique el monto depositado")
+          // alert("No puedes tener deuda negativa verifique el monto depositado")
+          this.texto = 'No puedes tener deuda negativa verifique el monto depositado';
+          this.snackbar = true;
         } else {
 
           console.log("Creando abono");
@@ -467,9 +497,9 @@ export default {
             });
           this.getDataAbono();
           this.Tipopagovalue = "",
-            this.Bancovalue = "",
-            this.codigodepago = "",
-            this.montodepositado = ""
+          this.Bancovalue = "",
+          this.codigodepago = "",
+          this.montodepositado = ""
         }
       }
     },

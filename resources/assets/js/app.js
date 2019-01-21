@@ -43,6 +43,10 @@ Next, we will create a fresh Vue application instance and attach it to
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Otros
+Vue.component('otros-snackbar', require('./components/templates/Snackbar.vue'));
+
+
 // chart
 
 Vue.component('chart-randomchart', require('./components/chart/RandomChart.vue'));

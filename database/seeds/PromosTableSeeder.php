@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class PromosTableSeeder extends Seeder
 {
@@ -13,14 +14,14 @@ class PromosTableSeeder extends Seeder
     {
       $faker = Faker\Factory::create('es_ES');
 
-      $limit = 12;
+      $limit = 1;
 
       for ($i = 0; $i < $limit; $i++) {
           DB::table('promos')->insert([ //,
-              'nombre' => $faker->name,
-              'vigencia' => $faker->date,
-              'dias_pagados' => $faker->randomNumber(8),
-              'dias_libres' => $faker->randomNumber(8),
+              'nombre' => 'Estandar',
+              'vigencia' => Carbon::now(),
+              'dias_pagados' => 0,
+              'dias_libres' => 0,
 
           ]);
       }

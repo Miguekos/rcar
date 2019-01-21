@@ -30,6 +30,22 @@ table.v-table {
 </style>
 <template>
 <div class="">
+
+  <v-snackbar
+      v-model="snackbar"
+      :bottom="y === 'bottom'"
+      :left="x === 'left'"
+      :multi-line="mode === 'multi-line'"
+      :right="x === 'right'"
+      :timeout="timeout"
+      :top="y === 'top'"
+      :vertical="mode === 'vertical'">
+      {{ texto }}
+      <v-btn color="pink" flat="flat" @click="snackbar = false">
+          Close
+      </v-btn>
+  </v-snackbar>
+
   <v-dialog v-model="dialog" persistent="persistent" max-width="60%">
     <!-- <form method="post" @submit.prevent="sendFormConfirmar()"> -->
       <v-card style="">
@@ -39,7 +55,6 @@ table.v-table {
             <v-layout row="row" wrap="wrap">
               <v-flex>
                 <v-text-field
-                solo
                     label="Correo"
                     hint="usuario@correo.com"
                     persistent-hint
@@ -306,6 +321,12 @@ table.v-table {
 export default {
   props: ['clientesc','autosc','reservasc'],
   data: () => ({
+    snackbar: false,
+    y: 'top',
+    x: 'right',
+    mode: '',
+    timeout: 6000,
+    texto: '',
     clienteData: "",
     autoData: "",
     reservaData: "",
@@ -327,7 +348,7 @@ export default {
         console.log("aqui id para ipdate");
             axios({
                 method: 'put',
-                url: `/v1.0/reserva/${this.reservaData.nreserva}`,
+                url: `/v1.0/reserva/${this.reservaData.id}`,
                 data: {
                   estado: 4,
                 }
@@ -336,6 +357,10 @@ export default {
                     response.data
                     console.log(response.data);
                     window.location.href = '/reserva';
+                })
+                .catch(e => {
+                  this.texto = 'No se pudo generar el contrato';
+                  this.snackbar = true;
                 });
             },
     disponible: function() {

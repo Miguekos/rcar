@@ -1,10 +1,10 @@
 <?php
 
-Route::get('/clear-cache', function() {
-    $exitCode = Artisan::call('cache:clear');
-    $exitCode = Artisan::call('view:clear');
-    return back();
-});
+// Route::get('/clear-cache', function() {
+//     $exitCode = Artisan::call('cache:clear');
+//     $exitCode = Artisan::call('view:clear');
+//     return back();
+// });
 
 Route::post('/foto', 'DashboardController@updatePhoto');
 

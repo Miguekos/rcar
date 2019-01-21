@@ -18,23 +18,42 @@ class PromoController extends Controller
         return  view('promos.index');
     }
 
+    // public function indexapi()
+    // {
+    //   $dias = Carbon::now()->subDay(30);
+    //   $promos = Promo::all();
+    //   $total = Promo::count();
+    //   $totaln = Promo::where([
+    //     ['created_at', '>=', $dias],
+    //     ])->count();
+    //   $num1 = $total / 100;
+    //   $totalp = $num1 * $totaln;
+    //
+    //   return json_encode([
+    //     'promo' => $promos,
+    //     'total' => $total,
+    //     'totaln' => $totaln,
+    //     'totalp' => $totalp,
+    //   ]); ;
+    // }
+
     public function indexapi()
     {
-      $dias = Carbon::now()->subDay(30);
-      $promos = Promo::all();
-      $total = Promo::count();
-      $totaln = Promo::where([
-        ['created_at', '>=', $dias],
-        ])->count();
-      $num1 = $total / 100;
-      $totalp = $num1 * $totaln;
-
-      return json_encode([
-        'promo' => $promos,
-        'total' => $total,
-        'totaln' => $totaln,
-        'totalp' => $totalp,
-      ]); ;
+        // 30 dias menos
+        $dias = Carbon::now()->subDay(30);
+        $promos = Promo::all();
+        $promostotal = Promo::count();
+        $aumento = Promo::where([
+          ['created_at', '>=', $dias],
+          ])->count();
+        $num1 = $promostotal / 100;
+        $promosnuevo = $num1 * $aumento;
+        return json_encode([
+            "promos" => $promos,
+            "promostotal" => $promostotal,
+            "promosnuevo" => $promosnuevo,
+            "aumento" => $aumento,
+        ]);
     }
 
     /**

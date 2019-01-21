@@ -1,18 +1,18 @@
-
 <style>
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
-input:-webkit-autofill:focus
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover
-textarea:-webkit-autofill:focus,
+input:-webkit-autofill:focus textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   /*border: 1px solid #d2d2d2;*/
-  -webkit-text-fill-color: 1px #606060;
-  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;
+  -webkit-text-fill-color: 1px #fafafa;
+  -webkit-box-shadow: 0 0 0px 1000px #fafafa inset;
   transition: background-color 5000s ease-in-out 0s;
+  /* -webkit-text-fill-color: 1px #606060;
+  -webkit-box-shadow: 0 0 0px 1000px #d2d2d2 inset;
+  transition: background-color 5000s ease-in-out 0s; */
 }
 </style>
 
@@ -27,7 +27,6 @@ select:-webkit-autofill:focus {
           <v-text-field
             autofocus
             name="nombre"
-            solo
           ></v-text-field>
         </v-flex>
 
@@ -35,7 +34,6 @@ select:-webkit-autofill:focus {
           <label for="">Vigencia</label>
           <v-text-field
             name="vigencia"
-            solo
           ></v-text-field>
         </v-flex> -->
 
@@ -66,7 +64,6 @@ select:-webkit-autofill:focus {
           <label for="">Dias Pagados</label>
           <v-text-field
             name="dias_pagados"
-            solo
           ></v-text-field>
         </v-flex>
 
@@ -74,7 +71,6 @@ select:-webkit-autofill:focus {
           <label for="">Dias Libres</label>
           <v-text-field
             name="dias_libres"
-            solo
           ></v-text-field>
         </v-flex>
 
@@ -96,24 +92,6 @@ select:-webkit-autofill:focus {
     data: () => ({
       date: new Date().toISOString().substr(0, 10),
       menu2: false,
-      // apellidoPaterno: '',
-      // apellidoMaterno: '',
-      // nombres: '',
-      // dni: '',
-      // image: '',
-      // fechaNacimiento: '',
-      // correo: '',
-      // celular: '',
-      // direccion: '',
-      // ciudad: '',
-      // cci: '',
-      // banco: '',
-      // nombreTitularCuenta: '',
-      // numeroBrevete: '',
-      // fechaVencimientoBrevete: '',
-      // fotoDni: '',
-      // calificacionCliente: '',
-      // comentariosAdicionales: '',
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     }),
       methods: {
