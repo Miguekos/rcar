@@ -10,6 +10,13 @@ Route::post('/foto', 'DashboardController@updatePhoto');
 
 Route::group(['prefix' => 'v1.0'], function () {
 
+// Afiliados Api
+      Route::get('/afiliados','AfiliadoController@indexapi');
+      Route::get('afiliado/{afiliado}', 'AfiliadoController@showapi');
+      Route::post('afiliado', 'AfiliadoController@storeapi');
+      Route::put('afiliado/{afiliado}', 'AfiliadoController@updateapi');
+      Route::delete('afiliado/{cliente}', 'AfiliadoController@destroyapi');
+
 // Clientes Api
     Route::get('/clientes','ClienteController@indexapi');
     Route::get('cliente/{cliente}', 'ClienteController@showapi');
@@ -96,6 +103,9 @@ Route::post('cambioclave/{empleado}', 'DashboardController@cambioclave')->name('
 
 // Cliente
 Route::resource('cliente', 'ClienteController')->middleware('auth');
+
+// Afiliado
+Route::resource('afiliado', 'AfiliadoController')->middleware('auth');
 
 // Generar prueba
 Route::get('prueba', 'DashboardController@prueba')->name('prueba')->middleware('auth');

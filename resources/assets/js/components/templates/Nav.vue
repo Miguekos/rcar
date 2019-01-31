@@ -80,6 +80,11 @@ export default {
         text: 'Clientes',
         link: '/cliente'
       },
+      {
+        icon: 'group',
+        text: 'Afiliados',
+        link: '/afiliado'
+      },
       // {
       //     divider: false
       // },

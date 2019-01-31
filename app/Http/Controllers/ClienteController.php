@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\User;
+use DateTime;
 use App\Control;
 use App\Cliente;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\ClassLike;

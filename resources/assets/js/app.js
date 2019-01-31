@@ -25,27 +25,8 @@ Vue.use(ImageUploader);
 Vue.component('v-chart', ECharts)
 
 
-// import HighchartsVue from 'highcharts-vue'
-// Vue.use(HighchartsVue)
-// Vue.use(HighchartsVue, {tagName: ['charts']})
 
-
-// Vue.use(HighchartsVue)
-// index.js or main.js
-// import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
-
-
-// const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
-
-/**
-Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-// Otros
 Vue.component('otros-snackbar', require('./components/templates/Snackbar.vue'));
-
 
 // chart
 
@@ -67,6 +48,14 @@ Vue.component('cliente-create2', require('./components/clientes/ClienteCreate2.v
 Vue.component('cliente-edit', require('./components/clientes/ClienteEdit.vue'));
 Vue.component('cliente-show', require('./components/clientes/ClienteShow.vue'));
 Vue.component('cliente-table', require('./components/clientes/ClienteTable.vue'));
+
+// Afiliados
+Vue.component('comp-afiliado', require('./components/afiliados/Afiliado.vue'));
+Vue.component('afiliado-create', require('./components/afiliados/AfiliadoCreate.vue'));
+// Vue.component('afiliado-create2', require('./components/afiliados/AfiliadoCreate2.vue'));
+// Vue.component('afiliado-edit', require('./components/afiliados/AfiliadoEdit.vue'));
+// Vue.component('afiliado-show', require('./components/afiliados/AfiliadoShow.vue'));
+// Vue.component('afiliado-table', require('./components/afiliados/AfiliadoTable.vue'));
 
 // Promos
 Vue.component('comp-promos', require('./components/promos/Promos.vue'));

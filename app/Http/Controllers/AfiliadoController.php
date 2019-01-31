@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\User;
+use DateTime;
 use App\Afiliado;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,26 @@ class AfiliadoController extends Controller
      */
     public function index()
     {
-        //
+        return view('afiliados.index');
+    }
+
+    public function indexapi()
+    {
+        // 30 dias menos
+        $dias = Carbon::now()->subDay(30);
+        $afiliados = Afiliado::all();
+        $afiliadostotal = Afiliado::count();
+        $aumento = Afiliado::where([
+          ['created_at', '>=', $dias],
+          ])->count();
+        $num1 = $afiliadostotal / 100;
+        $afiliadosnuevo = $num1 * $aumento;
+        return json_encode([
+            "afiliados" => $afiliados,
+            "afiliadostotal" => $afiliadostotal,
+            "afiliadosnuevo" => $afiliadosnuevo,
+            "aumento" => $aumento,
+        ]);
     }
 
     /**
@@ -24,7 +46,7 @@ class AfiliadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('afiliados.create');
     }
 
     /**
@@ -36,6 +58,14 @@ class AfiliadoController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function storeapi(Request $request)
+    {
+        // $afiliado = Afiliado::create($request->all());
+        // return $afiliado;
+        return Afiliado::create($request->all());
+        // return $request->all();
     }
 
     /**

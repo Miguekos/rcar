@@ -25,7 +25,7 @@ class CreateAfiliadosTable extends Migration
             $table->integer("celular")->nullable();
             $table->string("direccion")->nullable();
             $table->string("ciudad")->nullable();
-            $table->integer("cci")->nullable();
+            $table->string("cci", 50)->nullable();
             $table->string("banco")->nullable();
             $table->string("nombreTitularCuenta")->nullable();
             $table->string("fotoDni")->nullable();

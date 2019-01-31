@@ -1,0 +1,365 @@
+<style scope>
+.v-card__title--primary {
+  padding-top: 0px;
+}
+
+.v-card__tit le {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+
+/* html {
+  font-size: 12px;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} */
+
+.custom-ripple {
+  user-select: none;
+}
+
+.app-fab--absolute {
+  position: fixed;
+  /*z-index: 3;*/
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: green;
+  right: 0;
+  bottom: 0;
+  /*position: absolute;*/
+  margin-right: 13px;
+  margin-bottom: 13px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 32px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: 0.3s;
+}
+
+@media (min-width: 1024px) {
+  .app-fab--absolute {
+    bottom: 2.5rem;
+    right: 2.5rem;
+    /*z-index: 3;*/
+  }
+}
+
+button:hover {
+  /*background: grey;
+    color: white;
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #F44336;*/
+}
+
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+.hvr-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.hvr-pulse:hover,
+.hvr-pulse:focus,
+.hvr-pulse:active {
+  -webkit-animation-name: hvr-pulse;
+  animation-name: hvr-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+</style>
+<template>
+  <div id="cartas">
+    <v-dialog v-model="dialog3" persistent max-width="690">
+      <v-card>
+        <v-card-title class="headline">Enviar Correo</v-card-title>
+        <v-card-text>
+          <v-textarea
+            name="input-7-1"
+            label="Escribe tu correo"
+            value
+            hint="Escribe aqui el correo"
+          ></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat @click="dialog3 = false">Cancelar</v-btn>
+          <v-btn color="green darken-1" flat @click="eliminar = 1">Enviar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-container grid-list-md fluid text-xs-justify>
+      <v-container class="px-0 py-0" grid-list-xs>
+        <v-layout align-center justify-space-around row wrap fill-height>
+          <v-flex lg4 class="nuevo">
+            <v-card light ripple class="nuevo elevation-1">
+              <v-card-title primary-title>
+                <v-avatar>
+                  <v-icon color="green" size="250%">perm_identity</v-icon>
+                </v-avatar>
+                <span>Afiliado Total</span>
+                <v-spacer></v-spacer>
+                <div class="text-lg-justify">
+                  <div class="headline">{{ afiliadostotal }}</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex lg4 class="nuevo">
+            <v-card light ripple class="nuevo elevation-1">
+              <v-card-title primary-title>
+                <v-avatar>
+                  <v-icon color="green" size="250%">person_add</v-icon>
+                </v-avatar>
+                <span>Afiliados Nuevos</span>
+                <v-spacer></v-spacer>
+                <div class="text-lg-justify">
+                  <div class="headline">{{ aumento }}</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex lg4 class="nuevo">
+            <v-card light ripple class="nuevo elevation-1">
+              <v-card-title primary-title>
+                <v-avatar>
+                  <v-icon color="green" size="250%">call_missed_outgoing</v-icon>
+                </v-avatar>
+                <span>Aumento</span>
+                <v-spacer></v-spacer>
+                <div class="text-lg-justify">
+                  <div class="headline">{{ afiliadosnuevo }}%</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <!-- <br> -->
+      <v-layout class="py-0" row wrap>
+        <v-flex xs3>
+          <v-card-text class="titulos-text px-0">{{ title }}</v-card-text>
+        </v-flex>
+
+        <v-flex xs3>
+          <v-card-text style="font-size: 22px; text-align: right;" class>
+            <v-card class="pr-2">
+              <!-- Descarga<v-icon>cloud_download</v-icon> -->
+            </v-card>
+          </v-card-text>
+        </v-flex>
+
+        <v-flex xs2></v-flex>
+
+        <v-flex xs4>
+          <v-text-field
+            append-icon="search"
+            label="Buscar"
+            single-line
+            hide-details
+            v-model="search"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+
+      <v-data-iterator
+        :items="items"
+        :rows-per-page-items="rowsPerPageItems"
+        :pagination.sync="pagination"
+        :search="search"
+        content-tag="v-layout"
+        row
+        wrap
+        hide-actions
+      >
+        <v-flex slot="item" slot-scope="props" xs12 sm12 md12 lg6>
+          <v-card class="mx-auto" hover tile>
+            <v-layout align-center justify-center row fill-height>
+              <v-flex xs1></v-flex>
+              <v-flex xs3>
+                <v-avatar size="70%">
+                  <v-img :src="props.item.image"></v-img>
+                  <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
+                </v-avatar>
+              </v-flex>
+              <v-flex xs8>
+                <v-flex text-xs-right text-lg-right text-sm-right>
+                  <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
+                  <v-icon small @click="deleteItem(props.item)">close</v-icon>
+                </v-flex>
+                <v-card-title primary-title>
+                  <div>
+                    <div>
+                      <h3>{{ props.item.nombres }}</h3>
+                    </div>
+                    <div class="text-xs-left"><b>Pago mensual:</b> $ {{ props.item.ciudad }}</div>
+                    <div class="text-xs-left"><b>Vehiculo:</b> {{ props.item.ciudad }}</div>
+                    <div><b>Celular:</b> {{ props.item.celular }}</div>
+                    <v-spacer></v-spacer>
+                    <v-flex align-content-end>
+                      <v-icon small class="mr-2" @click="dialog3 = true">mail_outline</v-icon>
+                    </v-flex>
+                  </div>
+                </v-card-title>
+              </v-flex>
+            </v-layout>
+          </v-card>
+          <hr>
+          <v-divider></v-divider>
+        </v-flex>
+        <template slot="no-data">
+          <v-alert
+            :value="true"
+            color="white"
+            icon="warning"
+            style="color: black"
+          >Lo siento no hay datos que cargar :(</v-alert>
+        </template>
+      </v-data-iterator>
+      <div class="text-xs-center pt-2">
+        <v-pagination v-model="pagination.page" :length="page"></v-pagination>
+      </div>
+    </v-container>
+
+    <button
+      v-ripple
+      id="hvr-pulse"
+      @click="crear()"
+      class="mdc-fab app-fab--absolute"
+      aria-label="Agregar"
+    >
+      <span class="mdc-fab__icon material-icons">add</span>
+    </button>
+    <!-- <pre>{{ $data }}</pre> -->
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  props: ["user"],
+  data: () => ({
+    color: 0,
+    // boton inicio
+    // boton fin
+    // pagination: {},
+    title: "Afiliados",
+    page: null,
+    reviews: 413,
+    value: 4.5,
+    eliminar: "",
+    dialog3: false,
+    // pagination: {},
+    slider: 56,
+    tile: false,
+    search: "",
+    afiliadostotal: "",
+    afiliadosnuevo: "",
+    aumento: "",
+    editafiliado: "",
+    idedit: "",
+    dialog: false,
+    dialog1: false,
+    rowsPerPageItems: [8, 12],
+    pagination: {},
+    items: [],
+    editedIndex: -1,
+    editedItem: {},
+    defaultItem: {}
+  }),
+  created() {
+    this.getDataafiliado();
+  },
+  computed: {},
+  methods: {
+    crear() {
+      window.location.href = "/afiliado/create";
+    },
+    getDataafiliado() {
+      console.log("en get data nuew");
+      axios
+        .get(`/v1.0/afiliados`)
+        .then(response => {
+          this.items = response.data.afiliados;
+          this.afiliadostotal = response.data.afiliadostotal;
+          this.afiliadosnuevo = response.data.afiliadosnuevo;
+          this.aumento = response.data.aumento;
+          // console.log(response.data.fecha);
+          var paginas = Math.ceil(response.data.afiliadostotal / 8);
+          this.page = paginas;
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+    editItem(item) {
+      window.location.href = `/afiliado/${item.id}/edit`;
+    },
+    deleteItem(item) {
+      console.log("Aqui abajo");
+      console.log(item.id);
+      var borrar = confirm("Esta seguro que desea borrar este afiliado?");
+      if (!borrar) {
+        alert("Se cancelo");
+      } else {
+        axios
+          .delete(`/v1.0/afiliado/${item.id}`, {
+            _token: this.csrf
+          })
+          .then(response => {
+            console.log("Borrado correctamente");
+          })
+          .catch(e => {});
+        this.getDataafiliado();
+      }
+    },
+    close() {
+      this.dialog1 = false;
+      this.dialog = false;
+      console.log("entro seguo que si");
+    }
+  }
+};
+</script>
