@@ -52,9 +52,10 @@ class DashboardController extends Controller
       // $user->avatar = $destinationPath . $filename;
 
     $file = $request->file('photo');
-    $name = time().$file->getClientOriginalName();
-    $file->move(public_path().'/images/', $name);
-    return $name;
+    return $file;
+    // $name = time().$file->getClientOriginalName();
+    // $file->move(public_path().'/images/', $name);
+    // return $name;
 
     // $validator = Validator::make($request->all(), [
     // 'namedb' => 'unique:campas',
