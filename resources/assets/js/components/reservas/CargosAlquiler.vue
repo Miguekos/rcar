@@ -100,7 +100,7 @@
                                         <strong>Garantia</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b>{{ reservaData.garantia.toFixed(2) }}
+                                        <b>{{ reservaData.garantia }}
                                             $</b>
                                     </td>
                                 </tr>
@@ -109,8 +109,8 @@
                                         <strong>Total depositado</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b>{{ (parseFloat(reservaData.totalF) + parseFloat(reservaData.garantia).toFixed(2) }}
-                                            $</b>
+                                        <!-- <b>{{ parseFloat(reservaData.totalF) + parseFloat(reservaData.garantia)).toFixed(2) }}$</b> -->
+                                        <b>{{ reservaData.totalF + reservaData.garantia }}$</b>
                                     </td>
                                 </tr>
                             </tfoot>
