@@ -273,7 +273,7 @@ export default {
         })
         .then(response => {
           console.log(response.data)
-          // window.location.href = '/afiliado';
+          window.location.href = '/afiliado';
         })
         .catch(error => {
           console.log(error)

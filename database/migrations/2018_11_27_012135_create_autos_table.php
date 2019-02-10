@@ -20,7 +20,7 @@ class CreateAutosTable extends Migration
             $table->string('placa')->nullable();
             $table->string('color')->nullable();
             $table->integer('anio')->nullable();
-            $table->integer('combustible')->nullable();
+            $table->string('combustible')->nullable();
             $table->string('transmicion')->nullable();
             $table->string('cilindrada')->nullable();
             $table->integer('km_inicial')->nullable();

@@ -166,6 +166,8 @@ select:-webkit-autofill:focus {
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg6="lg6">
                                 <label>Pago Afiliado Mensual</label>
                                 <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
+                                <label>Garantia</label>
+                                <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
                                 <label>Tipo de Garantia</label>
                                 <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
                             </v-flex>
@@ -449,8 +451,8 @@ export default {
     comentarios: '',
     fechainicioauto: '',
     fechafinauto: '',
-    estado: '',
-    disponible: '',
+    estado: 0,
+    disponible: 1,
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
   }),
   methods: {

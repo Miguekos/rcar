@@ -142,7 +142,7 @@ class DashboardController extends Controller
         ['disponible','=',1],
         // ['fechasInicio', '<', $request->fechaIni],
         // ['fechaFin', '>', $request->fechaFin],
-        ['fechafinauto', '<', $request->fechaIni],
+        ['fechafinauto', '<=', $request->fechaIni],
         // ['fechafinauto', '>', $request->fechaIni],
         // ['estado', '==', 0],
         // ['abono_id','=',0],

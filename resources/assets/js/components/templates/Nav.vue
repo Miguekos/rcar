@@ -10,7 +10,7 @@
                         <v-list-tile-content>
                             <v-list-tile-title>{{ user.name }}</v-list-tile-title>
                             <h6 class="text--blue">
-                                v1.5.5
+                                v1.6
                             </h6>
                         </v-list-tile-content>
                     </v-list-tile>
@@ -81,7 +81,7 @@ export default {
         link: '/cliente'
       },
       {
-        icon: 'group',
+        icon: 'perm_identity',
         text: 'Afiliados',
         link: '/afiliado'
       },

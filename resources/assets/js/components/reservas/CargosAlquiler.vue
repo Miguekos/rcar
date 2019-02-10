@@ -83,7 +83,7 @@
                                     <td class="text-xs-right">
                                         <b>
                                             <!-- {{ (reservaData.totalF * 0.18).toFixed(2) }} -->
-                                            {{ (reservaData.totalF * 0.18) }}
+                                            {{ parseFloat(reservaData.totalF * 0.18).toFixed(2) }}
                                             $</b>
                                     </td>
                                 </tr>
@@ -92,7 +92,7 @@
                                         <strong>Total Servicios</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b>{{ reservaData.totalF }}$</b>
+                                        <b>{{ parseFloat(reservaData.totalF).toFixed(2) }}$</b>
                                     </td>
                                 </tr>
                                 <tr>
@@ -100,7 +100,7 @@
                                         <strong>Garantia</strong>
                                     </td>
                                     <td class="text-xs-right">
-                                        <b>{{ reservaData.garantia }}
+                                        <b>{{ parseFloat(reservaData.garantia).toFixed(2) }}
                                             $</b>
                                     </td>
                                 </tr>
@@ -110,7 +110,7 @@
                                     </td>
                                     <td class="text-xs-right">
                                         <!-- <b>{{ parseFloat(reservaData.totalF) + parseFloat(reservaData.garantia)).toFixed(2) }}$</b> -->
-                                        <b>{{ reservaData.totalF + reservaData.garantia }}$</b>
+                                        <b>{{ (parseFloat(reservaData.totalF) + parseFloat(reservaData.garantia)).toFixed(2) }}$</b>
                                     </td>
                                 </tr>
                             </tfoot>
