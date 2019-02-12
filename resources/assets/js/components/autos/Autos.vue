@@ -367,7 +367,7 @@ export default {
     getData() {
       console.log("en get data nuew");
       axios
-        .get(`/v1.0/autos`)
+        .get(`http://127.0.0.1:3000/api/autos`)
         .then(response => {
           this.items = response.data.autos;
           this.autostotal = response.data.autostotal;

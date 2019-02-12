@@ -8,6 +8,8 @@
 
 Route::post('/foto', 'DashboardController@updatePhoto');
 
+Route::group(['middleware' => 'httpCache:60'], function() {
+
 Route::group(['prefix' => 'v1.0'], function () {
 
 // Afiliados Api
@@ -65,6 +67,8 @@ Route::group(['prefix' => 'v1.0'], function () {
 
 });
 
+
+
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::get('dashboard', 'DashboardController@dashboard')->name('dashboard');
 
@@ -109,3 +113,9 @@ Route::resource('afiliado', 'AfiliadoController')->middleware('auth');
 
 // Generar prueba
 Route::get('prueba', 'DashboardController@prueba')->name('prueba')->middleware('auth');
+
+
+
+// All your routes wrapped here
+
+});

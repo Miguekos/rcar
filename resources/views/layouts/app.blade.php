@@ -15,7 +15,7 @@
     <!-- Required styles for MDC Web -->
     <!-- CSRF Token -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" /> -->
-    <link href="/css/all.css" rel="stylesheet">
+    <!-- <link href="/css/all.css" rel="stylesheet"> -->
 
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
