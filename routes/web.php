@@ -8,7 +8,7 @@
 
 Route::post('/foto', 'DashboardController@updatePhoto');
 
-Route::group(['middleware' => 'httpCache:60'], function() {
+// Route::group(['middleware' => 'httpCache:60'], function() {
 
 Route::group(['prefix' => 'v1.0'], function () {
 
@@ -118,4 +118,4 @@ Route::get('prueba', 'DashboardController@prueba')->name('prueba')->middleware('
 
 // All your routes wrapped here
 
-});
+// });
