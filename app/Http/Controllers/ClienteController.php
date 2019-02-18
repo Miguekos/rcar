@@ -139,7 +139,6 @@ class ClienteController extends Controller
     {
         $clientes  = Cliente::findOrFail($cliente);
         $cliente->delete();
-//        return redirect()->route('cliente.index')->with('flash','Se elimino el cliente correctamente..!!');
         return $clientes;
 
     }

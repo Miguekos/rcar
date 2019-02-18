@@ -49,7 +49,7 @@ select:-webkit-autofill:focus {
                             <label>Marca</label>
                             <v-autocomplete :items="automarca" item-text="text" item-value="text" v-model="marca" name="marca" required="required"></v-autocomplete>
                             <label>Placa</label>
-                            <v-text-field maxlength="7" v-model="placa" required="required" pattern="^[A-Z]{3}-[1-9]{3}$" title="ABC-123"></v-text-field>
+                            <v-text-field maxlength="6" minlength="6" v-model="placa" required="required" title="ABC123"></v-text-field>
 
                         </v-flex>
                         <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
@@ -68,35 +68,6 @@ select:-webkit-autofill:focus {
                                     <img :src="imagen1" alt="avatar"></v-avatar>
                                 </V-form>
 
-                                <!-- <image-uploader
-                                  :debug="1"
-                                  :maxWidth="512"
-                                  :quality="0.7"
-                                  :autoRotate=true
-                                  outputFormat="verbose"
-                                  :preview=false
-                                  :className="['fileinput', { 'fileinput--loaded' : hasImage }]"
-                                  capture="environment"
-                                  accept="video/*,image/*"
-                                  doNotResize="['gif', 'svg']"
-                                  @input="setImage"
-                                ></image-uploader> -->
-
-                                  <!-- <image-uploader
-                                    :debug="1"
-                                    :maxWidth="512"
-                                    :quality="0.7"
-                                    :autoRotate=true
-                                    outputFormat="verbose"
-                                    :preview=false
-                                    :className="['fileinput', { 'fileinput--loaded' : hasImage }]"
-                                    capture="environment"
-                                    accept="video/*,image/*"
-                                    doNotResize="['gif', 'svg']"
-                                    @input="setImage"
-                                    @onUpload="startImageResize"
-                                    @onComplete="endImageResize"
-                                  ></image-uploader> -->
                             </v-flex>
 
                             <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">

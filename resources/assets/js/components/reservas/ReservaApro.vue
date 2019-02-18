@@ -61,11 +61,11 @@
                                                     <tbody>
                                                         <tr>
                                                             <td class="px-0">Servicios</td>
-                                                            <td class="text-xs-right px-0">{{ reserva.totalF - reserva.garantia }}$</td>
+                                                            <td class="text-xs-right px-0">{{ formatPrice(reserva.totalF - reserva.garantia) }}$</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="px-0">Garantia</td>
-                                                            <td class="text-xs-right px-0">{{ reserva.garantia }}$</td>
+                                                            <td class="text-xs-right px-0">{{ formatPrice(reserva.garantia) }}$</td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot>
@@ -74,7 +74,7 @@
                                                                 <strong>Total a pagar</strong>
                                                             </td>
                                                             <td class="text-xs-right px-0">
-                                                                <b>{{ reserva.totalF }}$</b>
+                                                                <b id="number">{{ formatPrice(reserva.totalF) }}$</b>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -82,7 +82,7 @@
                                                                 <strong>Deuda total</strong>
                                                             </td>
                                                             <td class="text-xs-right px-0">
-                                                                <b>{{ reserva.totalF - sumaAbonos }}$</b>
+                                                                <b>{{ formatPrice(reserva.totalF - sumaAbonos) }}$</b>
                                                             </td>
                                                         </tr>
                                                         <!-- <tr> <td><strong>Total abonado</strong></td> <td class="text-xs-right"><b>{{ sumaAbonos }} $</b></td> </tr> -->
@@ -110,7 +110,7 @@
                                                 </v-flex>
 
                                                 <v-flex xs12="xs12" sm6="sm6" md2="md2">
-                                                    <v-text-field required="required" label="Monto $" v-model="montodepositado"></v-text-field>
+                                                    <v-text-field id="number" required="required" label="Monto $" v-model="montodepositado"></v-text-field>
                                                 </v-flex>
 
                                                 <v-flex xs12="xs12" sm6="sm6" md1="md1">
@@ -134,9 +134,9 @@
                                                         <!-- <v-data-table :items="desserts" class="elevation-1" hide-actions hide-headers> -->
                                                         <template slot="items" slot-scope="props">
                                                             <td class="text-xs-left">{{ props.item.banco }}</td>
-                                                            <td class="text-xs-right pl-5">{{ props.item.montodepositado }}./s</td>
+                                                            <td class="text-xs-right pl-5"> {{ props.item.montodepositado }} $</td>
                                                             <td class="text-xs-right">{{ props.item.codigodepago }}</td>
-                                                            <td class="px-2">{{ props.item.tipodepago }}</td>
+                                                            <td class="px-2 text-xs-right">{{ props.item.tipodepago }}</td>
                                                             <td @click="deleteItem(props.item)" class="text-xs-right">
                                                                 <v-btn fab="fab" dark="dark" small="small" color="red">
                                                                     <v-icon>delete</v-icon>
@@ -371,6 +371,10 @@ export default {
     },
   },
   methods: {
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
     crear() {
       window.location.href = '/reserva/create';
     },
@@ -475,7 +479,7 @@ export default {
       console.log("aqui");
     },
     createAbono() {
-      if (this.montodepositado == 0 || this.codigodepago == 0) {
+      if (this.montodepositado == 0 || this.codigodepago == 0 || this.Tipopagovalue == '' || this.Bancovalue == '') {
         this.texto = 'No puedes abonar con campos vacios.';
         this.snackbar = true;
       } else {
@@ -543,4 +547,5 @@ export default {
   },
 
 }
+
 </script>

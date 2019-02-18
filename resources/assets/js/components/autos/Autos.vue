@@ -396,7 +396,14 @@ export default {
             _token: this.csrf
           })
           .then(response => {
-            console.log("Borrado correctamente");
+            if (response.data == 0){
+                alert("No se puede eliminar el auto porque se encuentra activo en las reservas");
+                console.log(response.data);
+            }else{
+                console.log("Borrado correctamente");
+                console.log(response.data);
+            }
+
           })
           .catch(e => {});
         this.getData();

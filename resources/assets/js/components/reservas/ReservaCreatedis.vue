@@ -30,7 +30,7 @@ table.v-table tbody th {
 
 <template>
 <div>
-    <v-dialog v-model="dialog5" persistent="persistent" max-width="60%">
+    <v-dialog v-model="dialog5" persistent="persistent" max-width="90%">
         <!-- <form method="post" @submit.prevent="sendFormPopup()"> -->
         <v-card style="border-radius: 0px 10px 0px 10px">
             <!-- <v-card-title class="headline">Registro de confirmacion de reserva</v-card-title> -->
@@ -38,15 +38,17 @@ table.v-table tbody th {
             <v-container fluid="fluid" grid-list-xl="grid-list-xl">
                 <v-layout row="row" wrap="wrap">
 
+                    <!-- <cliente-create2></cliente-create2> -->
                     <cliente-create2></cliente-create2>
+
 
                 </v-layout>
             </v-container>
             <!-- </v-card-text> -->
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <!-- <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn> -->
-                <!-- <v-btn color="red darken-1" round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn> -->
+                <v-btn color="green darken-1" round="round" dark="dark" @click="sendForm()">Guardar</v-btn>
+                <v-btn color="red darken-1" round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn>
             </v-card-actions>
         </v-card>
         <!-- </form> -->

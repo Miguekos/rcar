@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reserva;
 use Carbon\Carbon;
 use App\Auto;
 use Illuminate\Http\Request;
@@ -93,7 +94,8 @@ class AutoController extends Controller
      */
     public function edit(Auto $auto)
     {
-        return view(autos.edit);
+        $info = $auto->id;
+        return view("autos.edit", compact('info'));
     }
 
     /**
@@ -108,6 +110,13 @@ class AutoController extends Controller
         //
     }
 
+    public function updateapi(Request $request, $auto)
+    {
+                $autos = Auto::find($auto);
+                $autos->update($request->all());
+                return response("actualizo bien", 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -117,5 +126,22 @@ class AutoController extends Controller
     public function destroy(Auto $auto)
     {
         //
+    }
+
+    public function destroyapi(Auto $auto)
+    {
+        $reserva = Reserva::where('vehiculo', '=', $auto)->get();
+        if ($reserva == true) {
+          return response(0 , 200);
+        } else {
+          $autos  = Auto::findOrFail($auto);
+          $cliente->delete();
+          return response( $autos, 200);
+        }
+
+
+
+
+
     }
 }

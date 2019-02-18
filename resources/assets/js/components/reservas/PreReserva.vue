@@ -60,9 +60,9 @@
                 <v-card-actions>
                     <!-- <v-spacer></v-spacer> -->
 
-                    <v-flex class="text-xs-center">
-                        <v-btn color="green darken-1" small round="round" dark="dark" type="submit">Guardar</v-btn>
-                        <v-btn color="red darken-1" small round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
+                    <v-flex class="text-xs-right">
+                        <v-btn color="green darken-1" round="round" dark="dark" type="submit">Guardar</v-btn>
+                        <v-btn color="red darken-1" round="round" dark="dark" @click="dialog4 = false">Cancelar</v-btn>
                     </v-flex>
                 </v-card-actions>
             </v-card>
@@ -82,9 +82,9 @@
             </v-card-text>
             <v-card-actions>
                 <!-- <v-spacer></v-spacer> -->
-                <v-flex class="text-xs-center">
-                <v-btn color="green darken-1" small round="round" dark="dark" @click="fexonerar(), dialog5 = false">Si</v-btn>
-                <v-btn color="red darken-1" small round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn>
+                <v-flex class="text-xs-right">
+                <v-btn color="green darken-1" round="round" dark="dark" @click="fexonerar(), dialog5 = false">Si</v-btn>
+                <v-btn color="red darken-1" round="round" dark="dark" @click="dialog5 = false">Cancelar</v-btn>
               </v-flex>
             </v-card-actions>
         </v-card>

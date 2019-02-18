@@ -7,7 +7,7 @@
 @section('content')
   <v-container>
     <auto-edit
-    :user="{{ auth()->user() }}"
+    :info="{{ $info }}">
     ></auto-edit>
   </v-container>
 @endsection
