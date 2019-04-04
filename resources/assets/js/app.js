@@ -11,7 +11,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 import Vuetify from 'vuetify';
 import VueMoment from 'vue-moment';
+// import { Button, Upload } from 'element-ui';
 // import moment from 'moment-timezone';
+import Element from 'element-ui';
 import ECharts from 'vue-echarts/components/ECharts';
 import VDateRange from 'vuetify-daterange-picker';
 import ImageUploader from 'vue-image-upload-resize';
@@ -19,6 +21,9 @@ Vue.use(VueMoment, {
     moment,
 })
 // Vue.use(require('vue-moment'));
+Vue.use(Element)
+// Vue.use(Button)
+// Vue.use(Upload)
 Vue.use(Vuetify)
 Vue.use(VDateRange);
 Vue.use(ImageUploader);

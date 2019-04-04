@@ -34,141 +34,181 @@ select:-webkit-autofill:focus {
         </v-btn>
     </v-snackbar>
     <form id="ContactForm" method="post" @submit.prevent="sendForm()">
-        <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+        <v-container grid-list-xl="grid-list-xl">
             <v-layout row="row" wrap="wrap">
-                <v-flex lg12="lg12">
-                    <!-- <v-card hover> -->
-                    <v-card-text class="text-lg-left">
-                        <h3 class="">Informacion Basica</h3>
-                    </v-card-text>
-                    <!-- </v-card> -->
-
-                    <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height">
-
-                        <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                            <label>Marca</label>
-                            <v-autocomplete :items="automarca" item-text="text" item-value="text" v-model="marca" name="marca" required="required"></v-autocomplete>
-                            <label>Placa</label>
-                            <v-text-field maxlength="6" minlength="6" v-model="placa" required="required" title="ABC123"></v-text-field>
-
+                <v-flex lg8="lg8">
+                    <v-card class="cuerpoautocreate">
+                        <!-- <v-card hover> -->
+                        <v-flex class="titulosautocreate">
+                            <h3>Informacion Basica</h3>
                         </v-flex>
-                        <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                            <label>Modelo</label>
-                            <v-autocomplete :items="automodelo" item-text="text" item-value="text" v-model="modelo" required="required"></v-autocomplete>
-                            <label>Color</label>
-                            <v-text-field maxlength="10" v-model="color" required="required"></v-text-field>
-                        </v-flex>
+            
 
-                        <v-flex text-lg-center="text-lg-center" lg4="lg4">
+                        <!-- </v-card> -->
+                        <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
+                        <v-layout row wrap py-2 px-2>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Marca</label>
+                                <v-autocomplete :items="automarca" item-text="text" item-value="text" v-model="marca" name="marca" required="required"></v-autocomplete>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Placa</label>
+                                <v-text-field maxlength="6" minlength="6" v-model="placa" required="required" title="ABC123"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Modelo</label>
+                                <v-autocomplete :items="automodelo" item-text="text" item-value="text" v-model="modelo" required="required"></v-autocomplete>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Color</label>
+                                <v-text-field maxlength="10" v-model="color" required="required"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Año</label>
+                                <v-autocomplete :items="autoanio" item-text="text" item-value="text" v-model="anio" required="required"></v-autocomplete>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Combustible</label>
+                                <v-text-field maxlength="10" v-model="combustible" required="required"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Transmicion</label>
+                                <v-autocomplete required="required" v-model="transmicion" :items="autotransmicion"></v-autocomplete>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Cilindrada</label>
+                                <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Kilometraje Inicial</label>
+                                <v-text-field maxlength="10" v-model="km_inicial" required="required"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Octanaje</label>
+                                <v-text-field maxlength="10" v-model="octanaje" required="required"></v-text-field>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Airbag</label>
+                                <v-switch v-model="airbag" true-value="1" false-value="0" label="Airbag" color="success" hide-details="hide-details"></v-switch>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Silla de bebe</label>
+                                <v-switch v-model="silla_bebe" :value="silla_bebe" true-value="1" false-value="0" label="Silla Bebe" color="success" hide-details="hide-details"></v-switch>
+                            </v-flex>
+
+                            <v-flex xs12 sm6 md3>
+                                <label>Galones</label>
+                                <v-text-field maxlength="10" v-model="galones" required="required"></v-text-field>
+                            </v-flex>
+                        </v-layout>
+                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+                    </v-card>
+                </v-flex>
+
+                <v-flex lg4="lg4">
+                  <!-- <v-layout align-center justify-center row fill-height> -->
+                    <!-- <v-card class="cuerpoautocreate">
+                        <v-flex text-lg-center="text-lg-center">
                             <v-form id="subir" @submit.prevent="subir('photo')">
-                            <!-- <v-form id="subir"> -->
                                 <input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
                                 <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field>
                                 <v-avatar tile="tile" size="70%" color="grey lighten-4">
                                     <img :src="imagen1" alt="avatar"></v-avatar>
                                 </V-form>
-
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Año</label>
-                                <v-autocomplete :items="autoanio" item-text="text" item-value="text" v-model="anio" required="required"></v-autocomplete>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Combustible</label>
-                                <v-text-field maxlength="10" v-model="combustible" required="required"></v-text-field>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Transmicion</label>
-                                <v-autocomplete required="required" v-model="transmicion" :items="autotransmicion"></v-autocomplete>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Cilindrada</label>
-                                <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Kilometraje Inicial</label>
-                                <v-text-field maxlength="10" v-model="km_inicial" required="required"></v-text-field>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Octanaje</label>
-                                <v-text-field maxlength="10" v-model="octanaje" required="required"></v-text-field>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Airbag</label>
-                                <v-switch v-model="airbag" true-value="1" false-value="0" label="Airbag" color="success" hide-details="hide-details"></v-switch>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Silla de bebe</label>
-                                <v-switch v-model="silla_bebe" :value="silla_bebe" true-value="1" false-value="0" label="Silla Bebe" color="success" hide-details="hide-details"></v-switch>
-                            </v-flex>
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg4="lg4">
-                                <label>Galones</label>
-                                <v-text-field maxlength="10" v-model="galones" required="required"></v-text-field>
-                            </v-flex>
-
-                        </v-layout>
-
-                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-
+                        </v-flex>
+                        <v-flex text-lg-center="text-lg-center">
+                                <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field>
+                        </v-flex>
+                      </v-card> -->
+                        <!-- <h1>Click on the image to upload new image</h1> -->
+                        <template v-if="length > 1">
+                          <div style="border-radius: 10px 10px 10px 10px;" class="">
+                            <div class="" v-for="(file, index) in files" :key="index">
+                              <img :src="file.url" @click="uploadImage" />
+                            </div>
+                          </div>
+                        </template>
+                        <template v-else>
+                          <div style="border-radius: 10px 10px 10px 10px;" class="">
+                            <div class="">
+                              <img :src="files[0].url" @click="uploadImage" />
+                            </div>
+                          </div>
+                        </template>
+                        <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
+                      <!-- </v-layout> -->
                     </v-flex>
+                </v-layout>
+            </v-container>
+
+            <v-container grid-list-xl="grid-list-xl">
+                <v-layout row="row" wrap="wrap">
+                    <v-flex lg12="lg12">
+                        <v-card class="cuerpoautocreate">
+                            <!-- <v-card hover="hover"> -->
+                            <v-flex class="titulosautocreate">
+                                <h3>Informacion Financiera</h3>
+                            </v-flex>
+                            <!-- </v-card> -->
+                            <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
+                            <v-layout row wrap py-2 px-2>
+                                <v-flex xs12 sm6 md3>
+                                    <label>Pago Afiliado Mensual</label>
+                                    <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
+                                </v-flex>
+
+                                <v-flex xs12 sm6 md3>
+                                    <label>Garantia</label>
+                                    <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
+                                </v-flex>
+
+                                <v-flex xs12 sm6 md3>
+                                    <label>Tipo de Garantia</label>
+                                    <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
+                                </v-flex>
+
+                                <v-flex xs12 sm6 md3>
+                                    <label>Precio por dia</label>
+                                    <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
+                                </v-flex>
+
+                                <v-flex xs12 sm6 md3>
+                                    <label>Contrato</label>
+                                    <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
+                                </v-flex>
+
+                            </v-layout>
+                            <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+                        </v-card>
+                    </v-flex>
+
                 </v-layout>
             </v-container>
 
             <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
                 <v-layout row="row" wrap="wrap">
                     <v-flex lg12="lg12">
-                        <!-- <v-card hover="hover"> -->
-                        <v-card-text class="text-lg-left">
-                            <h3>Informacion Financiera</h3>
-                        </v-card-text>
-                        <!-- </v-card> -->
+                      <v-card class="cuerpoautocreate">
 
-                        <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height">
-
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg6="lg6">
-                                <label>Pago Afiliado Mensual</label>
-                                <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
-                                <label>Garantia</label>
-                                <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
-                                <label>Tipo de Garantia</label>
-                                <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
-                            </v-flex>
-                            <v-flex text-lg-left="text-lg-left" text-xs-left="text-xs-left" lg6="lg6">
-                                <label>Precio por dia</label>
-                                <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
-                                <label>Contrato</label>
-                                <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
-                            </v-flex>
-
-                        </v-layout>
-
-                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-
-                    </v-flex>
-                </v-layout>
-            </v-container>
-
-            <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-                <v-layout row="row" wrap="wrap">
-                    <v-flex lg12="lg12">
-
-                        <v-card-text class="text-lg-left">
+                        <v-flex class="titulosautocreate">
                             <h3>Registros de documentos</h3>
-                        </v-card-text>
+                        </v-flex>
 
-                        <v-layout row="row" wrap="wrap" fill-height="fill-height">
+                        <v-layout row wrap py-2 px-2>
 
-                            <v-flex text-lg-center="text-lg-center" lg3="lg3">
-
+                            <v-flex lg3="lg3">
                                 <v-menu
                                     :close-on-content-click="false"
                                     v-model="menu1"
@@ -181,16 +221,9 @@ select:-webkit-autofill:focus {
                                     <v-text-field slot="activator" v-model="renovacion_soat" label="Renovacion de SOAT" prepend-icon="event" readonly="readonly"></v-text-field>
                                     <v-date-picker v-model="renovacion_soat" @input="menu1 = false"></v-date-picker>
                                 </v-menu>
-
-                                <!-- <v-menu ref="menu1" :close-on-content-click="false" v-model="menu1" :nudge-right="40" :return-value.sync="fsoat" lazy="lazy" transition="scale-transition"
-                                offset-y="offset-y" full-width="full-width" min-width="290px"> <v-text-field name="renovacion_soat" slot="activator" v-model="fsoat" label="Renovacion de SOAT"
-                                prepend-icon="event" readonly="readonly"></v-text-field> <v-date-picker v-model="fsoat" no-title="no-title" scrollable="scrollable"> <v-spacer></v-spacer>
-                                <v-btn flat="flat" color="primary" @click="menu1 = false">Cancel</v-btn> <v-btn flat="flat" color="primary" @click="$refs.menu.save(fsoat)">OK</v-btn>
-                                </v-date-picker> </v-menu> -->
-
                             </v-flex>
 
-                            <v-flex text-lg-center="text-lg-center" lg3="lg3">
+                            <v-flex lg3="lg3">
                                 <v-menu
                                     :close-on-content-click="false"
                                     v-model="menu2"
@@ -203,11 +236,9 @@ select:-webkit-autofill:focus {
                                     <v-text-field slot="activator" v-model="lunas_polari" label="Lunas Polariza" prepend-icon="event" readonly="readonly"></v-text-field>
                                     <v-date-picker v-model="lunas_polari" @input="menu2 = false"></v-date-picker>
                                 </v-menu>
-
                             </v-flex>
 
-                            <v-flex text-lg-center="text-lg-center" lg3="lg3">
-
+                            <v-flex lg3="lg3">
                                 <v-menu
                                     :close-on-content-click="false"
                                     v-model="menu3"
@@ -222,7 +253,7 @@ select:-webkit-autofill:focus {
                                 </v-menu>
                             </v-flex>
 
-                            <v-flex text-lg-center="text-lg-center" lg4="lg4">
+                            <v-flex lg3="lg3">
                                 <v-menu
                                     :close-on-content-click="false"
                                     v-model="menu4"
@@ -235,10 +266,9 @@ select:-webkit-autofill:focus {
                                     <v-text-field slot="activator" v-model="inspec_tecnica" label="Inspeccion Tecnica" prepend-icon="event" readonly="readonly"></v-text-field>
                                     <v-date-picker v-model="inspec_tecnica" @input="menu4 = false"></v-date-picker>
                                 </v-menu>
-
                             </v-flex>
 
-                            <v-flex text-lg-center="text-lg-center" lg4="lg4">
+                            <v-flex lg3="lg3">
                                 <v-menu
                                     :close-on-content-click="false"
                                     v-model="menu5"
@@ -251,10 +281,11 @@ select:-webkit-autofill:focus {
                                     <v-text-field slot="activator" v-model="poliza_de_seguro" label="Poliza de seguros" prepend-icon="event" readonly="readonly"></v-text-field>
                                     <v-date-picker v-model="poliza_de_seguro" @input="menu5 = false"></v-date-picker>
                                 </v-menu>
-
                             </v-flex>
+
                         </v-layout>
                         <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+                      </v-card>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -262,27 +293,74 @@ select:-webkit-autofill:focus {
             <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
                 <v-layout row="row" wrap="wrap">
                     <v-flex lg12="lg12">
-                        <v-card hover="hover">
-                            <v-card-text class="text-lg-left">
-                                <h3>Registros de documentos</h3>
-                            </v-card-text>
-                        </v-card>
+                      <v-card class="cuerpoautocreate">
 
-                        <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height">
+                        <v-flex class="titulosautocreate">
+                            <h3>Imagenes</h3>
+                        </v-flex>
 
-                            <v-flex text-lg-center="text-lg-center" lg4="lg4">
-                                <v-avatar tile="tile" size="70%" color="grey lighten-4">
-                                    <img src="/img/img_212915.png" alt="avatar"></v-avatar>
-                                </v-flex>
-                                <v-flex text-lg-center="text-lg-center" lg4="lg4">
-                                    <v-avatar tile="tile" size="70%" color="grey lighten-4">
-                                        <img src="/img/img_212915.png" alt="avatar"></v-avatar>
-                                    </v-flex>
-                                    <v-flex text-lg-center="text-lg-center" lg4="lg4">
-                                        <v-avatar tile="tile" size="70%" color="grey lighten-4">
-                                            <img src="/img/img_212915.png" alt="avatar"></v-avatar>
-                                        </v-flex>
+                        <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height" py-2 px-2>
+                          <!-- <v-layout row wrap > -->
+                          <v-flex lg4="lg4">
+                                  <template v-if="length > 1">
+                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                      <div class="" v-for="(file, index) in files" :key="index">
+                                        <img :src="file.url" @click="uploadImage" />
+                                      </div>
+                                    </div>
+                                  </template>
+                                  <template v-else>
+                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                      <div class="">
+                                        <img :src="files[0].url" @click="uploadImage" />
+                                      </div>
+                                    </div>
+                                  </template>
+                                  <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
+                                <!-- </v-layout> -->
+                              </v-flex>
+
+                              <v-flex lg4="lg4">
+                                      <template v-if="length > 1">
+                                        <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                          <div class="" v-for="(file, index) in files" :key="index">
+                                            <img :src="file.url" @click="uploadImage" />
+                                          </div>
+                                        </div>
+                                      </template>
+                                      <template v-else>
+                                        <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                          <div class="">
+                                            <img :src="files[0].url" @click="uploadImage" />
+                                          </div>
+                                        </div>
+                                      </template>
+                                      <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
+                                    <!-- </v-layout> -->
+                                  </v-flex>
+
+                                  <v-flex lg4="lg4">
+                                          <template v-if="length > 1">
+                                            <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                              <div class="" v-for="(file, index) in files" :key="index">
+                                                <img :src="file.url" @click="uploadImage" />
+                                              </div>
+                                            </div>
+                                          </template>
+                                          <template v-else>
+                                            <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                              <div class="">
+                                                <img :src="files[0].url" @click="uploadImage" />
+                                              </div>
+                                            </div>
+                                          </template>
+                                          <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
+                                        <!-- </v-layout> -->
+                                      </v-flex>
+
+
                                     </v-layout>
+                                  </v-card>
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -294,7 +372,8 @@ select:-webkit-autofill:focus {
                                 <v-layout align-center="align-center" justify-center="justify-center" row="row" wrap="wrap" fill-height="fill-height">
                                     <v-flex text-lg-left="text-lg-left" lg12="lg12">
                                         <label>Comentarios adicionales</label>
-                                        <v-text-field v-model="comentarios" label="" textarea="textarea"></v-text-field>
+
+                                        <v-textarea v-model="comentarios" label=""></v-textarea>
 
                                     </v-flex>
                                 </v-layout>
@@ -315,6 +394,14 @@ select:-webkit-autofill:focus {
 export default {
   props: ['token'],
   data: () => ({
+    length: 1,
+      files: [
+        {
+          id: 1,
+          url:
+            "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+        }
+      ],
     image: {},
     snackbar: false,
     colorsnackbar: '',
@@ -427,6 +514,46 @@ export default {
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
   }),
   methods: {
+    uploadImage() {
+      this.$refs.uploadFileReference.click();
+    },
+    uploadFileReference(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      this.length = files.length;
+      this.showImage(files);
+    },
+    showImage(files) {
+      // if (files.length > 1) {
+      this.files = [];
+      /** Solution provided by Chem **/
+      const test = Array.from(files).forEach((file, idx) => {
+        const fileReader = new FileReader();
+        const getResult = new Promise(resolve => {
+          fileReader.onload = e => {
+            this.files.push({
+              id: idx,
+              url: e.target.result
+            });
+          };
+        });
+
+        fileReader.readAsDataURL(file);
+        return getResult.then(file => {
+          return file;
+        });
+      });
+      // }
+      /*
+      } else {
+        const fileReader = new FileReader();
+        fileReader.onload = e => {
+          this.files[0].id = 1;
+          this.files[0].url = e.target.result;
+        };
+        fileReader.readAsDataURL(files[0]);
+      }
+      */
+    },
     setImage: function (file) {
       this.hasImage = true;
       this.image = file;
@@ -517,7 +644,6 @@ export default {
       return this.formatDate(this.date)
     }
   },
-
   watch: {
     date(val) {
       this.dateFormatted = this.formatDate(this.date)
@@ -525,3 +651,23 @@ export default {
   },
 }
 </script>
+
+
+<style scoped>
+input[type="file"] {
+  display: none;
+}
+.img-wrapper {
+  display: flex;
+  flex: 1 0 100%;
+  flex-direction: row;
+  align-items: center;
+}
+.img-container {
+  width: 10rem;
+  height: 15rem;
+}
+img {
+  max-width: 100%;
+}
+</style>
