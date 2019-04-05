@@ -42,7 +42,7 @@ html {
 
 </head>
 
-<body class="white-content">
+<body class="cuerpo white-content">
     <div id="app" data-app>
         <v-app>
                         @yield('nav')

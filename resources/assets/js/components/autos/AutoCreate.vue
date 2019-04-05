@@ -42,7 +42,6 @@ select:-webkit-autofill:focus {
                         <v-flex class="titulosautocreate">
                             <h3>Informacion Basica</h3>
                         </v-flex>
-            
 
                         <!-- </v-card> -->
                         <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
@@ -50,7 +49,7 @@ select:-webkit-autofill:focus {
 
                             <v-flex xs12 sm6 md3>
                                 <label>Marca</label>
-                                <v-autocomplete :items="automarca" item-text="text" item-value="text" v-model="marca" name="marca" required="required"></v-autocomplete>
+                                <v-autocomplete @click="getJsonFile('marcas')" :items="automarca" item-text="descripcion" item-value="descripcion" v-model="marca" name="marca" required="required"></v-autocomplete>
                             </v-flex>
 
                             <v-flex xs12 sm6 md3>
@@ -60,7 +59,7 @@ select:-webkit-autofill:focus {
 
                             <v-flex xs12 sm6 md3>
                                 <label>Modelo</label>
-                                <v-autocomplete :items="automodelo" item-text="text" item-value="text" v-model="modelo" required="required"></v-autocomplete>
+                                <v-autocomplete :items="automodelo" item-text="descripcion" item-value="descripcion" v-model="modelo" required="required"></v-autocomplete>
                             </v-flex>
 
                             <v-flex xs12 sm6 md3>
@@ -70,7 +69,7 @@ select:-webkit-autofill:focus {
 
                             <v-flex xs12 sm6 md3>
                                 <label>Año</label>
-                                <v-autocomplete :items="autoanio" item-text="text" item-value="text" v-model="anio" required="required"></v-autocomplete>
+                                <v-autocomplete :items="autoanio" item-text="descripcion" item-value="descripcion" v-model="anio" required="required"></v-autocomplete>
                             </v-flex>
 
                             <v-flex xs12 sm6 md3>
@@ -118,89 +117,80 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex lg4="lg4">
-                  <!-- <v-layout align-center justify-center row fill-height> -->
-                    <!-- <v-card class="cuerpoautocreate">
-                        <v-flex text-lg-center="text-lg-center">
-                            <v-form id="subir" @submit.prevent="subir('photo')">
-                                <input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
-                                <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field>
-                                <v-avatar tile="tile" size="70%" color="grey lighten-4">
-                                    <img :src="imagen1" alt="avatar"></v-avatar>
-                                </V-form>
-                        </v-flex>
-                        <v-flex text-lg-center="text-lg-center">
-                                <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field>
-                        </v-flex>
-                      </v-card> -->
-                        <!-- <h1>Click on the image to upload new image</h1> -->
-                        <template v-if="length > 1">
-                          <div style="border-radius: 10px 10px 10px 10px;" class="">
+                    <!-- <v-layout align-center justify-center row fill-height> -->
+                    <!-- <v-card class="cuerpoautocreate"> <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('photo')"> <input type="hidden"
+                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
+                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> </v-flex> <v-flex text-lg-center="text-lg-center"> <v-text-field
+                    required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> </v-flex> </v-card> -->
+                    <!-- <h1>Click on the image to upload new image</h1> -->
+                    <template v-if="length > 1">
+                        <div style="border-radius: 10px 10px 10px 10px;" class="">
                             <div class="" v-for="(file, index) in files" :key="index">
-                              <img :src="file.url" @click="uploadImage" />
+                                <img :src="file.url" @click="uploadImage"/>
                             </div>
-                          </div>
-                        </template>
-                        <template v-else>
-                          <div style="border-radius: 10px 10px 10px 10px;" class="">
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div style="border-radius: 10px 10px 10px 10px;" class="">
                             <div class="">
-                              <img :src="files[0].url" @click="uploadImage" />
+                                <img :src="files[0].url" @click="uploadImage"/>
                             </div>
-                          </div>
-                        </template>
-                        <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
-                      <!-- </v-layout> -->
-                    </v-flex>
-                </v-layout>
-            </v-container>
+                        </div>
+                    </template>
+                    <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
+                    <!-- </v-layout> -->
+                </v-flex>
+            </v-layout>
+        </v-container>
 
-            <v-container grid-list-xl="grid-list-xl">
-                <v-layout row="row" wrap="wrap">
-                    <v-flex lg12="lg12">
-                        <v-card class="cuerpoautocreate">
-                            <!-- <v-card hover="hover"> -->
-                            <v-flex class="titulosautocreate">
-                                <h3>Informacion Financiera</h3>
+        <v-container grid-list-xl="grid-list-xl">
+            <v-layout row="row" wrap="wrap">
+                <v-flex lg12="lg12">
+                    <v-card class="cuerpoautocreate">
+                        <!-- <v-card hover="hover"> -->
+                        <v-flex class="titulosautocreate">
+                            <h3>Informacion Financiera</h3>
+                        </v-flex>
+                        <!-- </v-card> -->
+                        <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
+                        <v-layout row wrap py-2 px-2>
+                            <v-flex xs12 sm6 md3>
+                                <label>Pago Afiliado Mensual</label>
+                                <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
                             </v-flex>
-                            <!-- </v-card> -->
-                            <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
-                            <v-layout row wrap py-2 px-2>
-                                <v-flex xs12 sm6 md3>
-                                    <label>Pago Afiliado Mensual</label>
-                                    <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
-                                </v-flex>
 
-                                <v-flex xs12 sm6 md3>
-                                    <label>Garantia</label>
-                                    <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
-                                </v-flex>
+                            <v-flex xs12 sm6 md3>
+                                <label>Garantia</label>
+                                <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
+                            </v-flex>
 
-                                <v-flex xs12 sm6 md3>
-                                    <label>Tipo de Garantia</label>
-                                    <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
-                                </v-flex>
+                            <v-flex xs12 sm6 md3>
+                                <label>Tipo de Garantia</label>
+                                <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
+                            </v-flex>
 
-                                <v-flex xs12 sm6 md3>
-                                    <label>Precio por dia</label>
-                                    <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
-                                </v-flex>
+                            <v-flex xs12 sm6 md3>
+                                <label>Precio por dia</label>
+                                <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
+                            </v-flex>
 
-                                <v-flex xs12 sm6 md3>
-                                    <label>Contrato</label>
-                                    <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
-                                </v-flex>
+                            <v-flex xs12 sm6 md3>
+                                <label>Contrato</label>
+                                <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
+                            </v-flex>
 
-                            </v-layout>
-                            <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-                        </v-card>
-                    </v-flex>
+                        </v-layout>
+                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+                    </v-card>
+                </v-flex>
 
-                </v-layout>
-            </v-container>
+            </v-layout>
+        </v-container>
 
-            <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-                <v-layout row="row" wrap="wrap">
-                    <v-flex lg12="lg12">
-                      <v-card class="cuerpoautocreate">
+        <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+            <v-layout row="row" wrap="wrap">
+                <v-flex lg12="lg12">
+                    <v-card class="cuerpoautocreate">
 
                         <v-flex class="titulosautocreate">
                             <h3>Registros de documentos</h3>
@@ -285,114 +275,113 @@ select:-webkit-autofill:focus {
 
                         </v-layout>
                         <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-                      </v-card>
-                    </v-flex>
-                </v-layout>
-            </v-container>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
 
-            <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-                <v-layout row="row" wrap="wrap">
-                    <v-flex lg12="lg12">
-                      <v-card class="cuerpoautocreate">
+        <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+            <v-layout row="row" wrap="wrap">
+                <v-flex lg12="lg12">
+                    <v-card class="cuerpoautocreate">
 
                         <v-flex class="titulosautocreate">
                             <h3>Imagenes</h3>
                         </v-flex>
 
                         <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height" py-2 px-2>
-                          <!-- <v-layout row wrap > -->
-                          <v-flex lg4="lg4">
-                                  <template v-if="length > 1">
+                            <!-- <v-layout row wrap > -->
+                            <v-flex lg4="lg4">
+                                <template v-if="length > 1">
                                     <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                      <div class="" v-for="(file, index) in files" :key="index">
-                                        <img :src="file.url" @click="uploadImage" />
-                                      </div>
+                                        <div class="" v-for="(file, index) in files" :key="index">
+                                            <img :src="file.url" @click="uploadImage"/>
+                                        </div>
                                     </div>
-                                  </template>
-                                  <template v-else>
+                                </template>
+                                <template v-else>
                                     <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                      <div class="">
-                                        <img :src="files[0].url" @click="uploadImage" />
-                                      </div>
+                                        <div class="">
+                                            <img :src="files[0].url" @click="uploadImage"/>
+                                        </div>
                                     </div>
-                                  </template>
-                                  <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
+                                </template>
+                                <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
                                 <!-- </v-layout> -->
-                              </v-flex>
-
-                              <v-flex lg4="lg4">
-                                      <template v-if="length > 1">
-                                        <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                          <div class="" v-for="(file, index) in files" :key="index">
-                                            <img :src="file.url" @click="uploadImage" />
-                                          </div>
-                                        </div>
-                                      </template>
-                                      <template v-else>
-                                        <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                          <div class="">
-                                            <img :src="files[0].url" @click="uploadImage" />
-                                          </div>
-                                        </div>
-                                      </template>
-                                      <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
-                                    <!-- </v-layout> -->
-                                  </v-flex>
-
-                                  <v-flex lg4="lg4">
-                                          <template v-if="length > 1">
-                                            <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                              <div class="" v-for="(file, index) in files" :key="index">
-                                                <img :src="file.url" @click="uploadImage" />
-                                              </div>
-                                            </div>
-                                          </template>
-                                          <template v-else>
-                                            <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                              <div class="">
-                                                <img :src="files[0].url" @click="uploadImage" />
-                                              </div>
-                                            </div>
-                                          </template>
-                                          <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference" />
-                                        <!-- </v-layout> -->
-                                      </v-flex>
-
-
-                                    </v-layout>
-                                  </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-
-                        <br>
-
-                            <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-
-                                <v-layout align-center="align-center" justify-center="justify-center" row="row" wrap="wrap" fill-height="fill-height">
-                                    <v-flex text-lg-left="text-lg-left" lg12="lg12">
-                                        <label>Comentarios adicionales</label>
-
-                                        <v-textarea v-model="comentarios" label=""></v-textarea>
-
-                                    </v-flex>
-                                </v-layout>
-
-                            </v-container>
-
-                            <v-flex text-lg-center="text-lg-center" lg12="lg12">
-
-                                <v-btn type="submit" color="success">Guardar</v-btn>
-                                <v-btn color="error">Cancelar</v-btn>
                             </v-flex>
-                        </form>
-                        <!-- <pre>{{ $data }}</pre> -->
-                    </div>
+
+                            <v-flex lg4="lg4">
+                                <template v-if="length > 1">
+                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                        <div class="" v-for="(file, index) in files" :key="index">
+                                            <img :src="file.url" @click="uploadImage"/>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                        <div class="">
+                                            <img :src="files[0].url" @click="uploadImage"/>
+                                        </div>
+                                    </div>
+                                </template>
+                                <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
+                                <!-- </v-layout> -->
+                            </v-flex>
+
+                            <v-flex lg4="lg4">
+                                <template v-if="length > 1">
+                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                        <div class="" v-for="(file, index) in files" :key="index">
+                                            <img :src="file.url" @click="uploadImage"/>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
+                                        <div class="">
+                                            <img :src="files[0].url" @click="uploadImage"/>
+                                        </div>
+                                    </div>
+                                </template>
+                                <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
+                                <!-- </v-layout> -->
+                            </v-flex>
+
+                        </v-layout>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
+
+        <br>
+
+            <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+
+                <v-layout align-center="align-center" justify-center="justify-center" row="row" wrap="wrap" fill-height="fill-height">
+                    <v-flex text-lg-left="text-lg-left" lg12="lg12">
+                        <label>Comentarios adicionales</label>
+
+                        <v-textarea v-model="comentarios" label=""></v-textarea>
+
+                    </v-flex>
+                </v-layout>
+
+            </v-container>
+
+            <v-flex text-lg-center="text-lg-center" lg12="lg12">
+
+                <v-btn type="submit" color="success">Guardar</v-btn>
+                <v-btn color="error">Cancelar</v-btn>
+            </v-flex>
+        </form>
+      <pre>{{ $data }}</pre>
+    </div>
 </template>
 
 <script>
+
 export default {
-  props: ['token'],
   data: () => ({
     length: 1,
       files: [
@@ -424,54 +413,9 @@ export default {
     automarca: "",
     airbag: 0,
     silla_bebe: 0,
-    automarca: [{
-        text: 'Toyota'
-      },
-      {
-        text: 'Chevrolet'
-      },
-      {
-        text: 'Ford'
-      },
-      {
-        text: 'Nissan'
-      },
-      {
-        text: 'KIA'
-      },
-    ],
-    automodelo: [{
-        text: 'modelo1'
-      },
-      {
-        text: 'modelo2'
-      },
-      {
-        text: 'modelo3'
-      },
-      {
-        text: 'modelo4'
-      },
-      {
-        text: 'modelo5'
-      },
-    ],
-    autoanio: [{
-        text: '2019'
-      },
-      {
-        text: '2018'
-      },
-      {
-        text: '2017'
-      },
-      {
-        text: '2016'
-      },
-      {
-        text: '2015'
-      },
-    ],
+    automarca: {},
+    automodelo: {},
+    autoanio: {},
     autotransmicion: [{
         text: 'Manual'
       },
@@ -514,6 +458,10 @@ export default {
     csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
   }),
   methods: {
+    getJsonFile (carga) {
+      console.log(carga);
+      this.automarca = require(`./${carga}.json`)
+    },
     uploadImage() {
       this.$refs.uploadFileReference.click();
     },
@@ -542,17 +490,6 @@ export default {
           return file;
         });
       });
-      // }
-      /*
-      } else {
-        const fileReader = new FileReader();
-        fileReader.onload = e => {
-          this.files[0].id = 1;
-          this.files[0].url = e.target.result;
-        };
-        fileReader.readAsDataURL(files[0]);
-      }
-      */
     },
     setImage: function (file) {
       this.hasImage = true;
@@ -639,10 +576,9 @@ export default {
       window.location.href = '/auto';
     },
   },
-  computed: {
-    computedDateFormatted() {
-      return this.formatDate(this.date)
-    }
+  computed () {
+  },
+  mounted () {
   },
   watch: {
     date(val) {

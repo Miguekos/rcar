@@ -1,0 +1,1080 @@
+[
+	{
+		"ideValor": 340510,
+		"descripcion": "ROLLS ROYCE",
+		"orden": 10,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 325213,
+		"descripcion": "DS",
+		"orden": 10,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105790,
+		"descripcion": "ACURA",
+		"orden": 122,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 171479,
+		"descripcion": "ALFA",
+		"orden": 268,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105807,
+		"descripcion": "ALFA ROMEO",
+		"orden": 270,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105297,
+		"descripcion": "AMC",
+		"orden": 309,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 171482,
+		"descripcion": "AMERICAN MOTOR",
+		"orden": 339,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105806,
+		"descripcion": "ASTON MARTIN",
+		"orden": 526,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105372,
+		"descripcion": "AUDI",
+		"orden": 558,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104862,
+		"descripcion": "AUSTIN",
+		"orden": 579,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105272,
+		"descripcion": "BEIJING",
+		"orden": 759,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105121,
+		"descripcion": "BMW",
+		"orden": 834,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105019,
+		"descripcion": "BRILLIANCE",
+		"orden": 907,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105795,
+		"descripcion": "BUICK",
+		"orden": 952,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105288,
+		"descripcion": "BYD",
+		"orden": 1002,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 286277,
+		"descripcion": "YEMA AUTOS",
+		"orden": 1010,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105290,
+		"descripcion": "CADILLAC",
+		"orden": 1033,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 171924,
+		"descripcion": "CAR VAZ 2121",
+		"orden": 1131,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105236,
+		"descripcion": "CHANGAN",
+		"orden": 1271,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 107771,
+		"descripcion": "CHANGFENG",
+		"orden": 1302,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105500,
+		"descripcion": "CHANGHE",
+		"orden": 1310,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104857,
+		"descripcion": "CHERY",
+		"orden": 1363,
+		"ideValorPadre": 39911,
+		"descripcionPadre": "RURAL"
+	},
+	{
+		"ideValor": 104979,
+		"descripcion": "CHERY",
+		"orden": 1364,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105712,
+		"descripcion": "CHEVROLET",
+		"orden": 1391,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105389,
+		"descripcion": "CHEVY",
+		"orden": 1435,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105252,
+		"descripcion": "CHRYSLER",
+		"orden": 1460,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172037,
+		"descripcion": "CHUKY MOTOR",
+		"orden": 1482,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104895,
+		"descripcion": "CITROEN",
+		"orden": 1526,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172082,
+		"descripcion": "COLT",
+		"orden": 1634,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172086,
+		"descripcion": "CUSTON",
+		"orden": 1802,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104917,
+		"descripcion": "DACIA",
+		"orden": 1820,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105114,
+		"descripcion": "DAEWOO",
+		"orden": 1848,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 40528,
+		"descripcion": "DAIHATSU",
+		"orden": 1906,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172129,
+		"descripcion": "DAIHATSU CHARMANT",
+		"orden": 1952,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172143,
+		"descripcion": "DAIMLER",
+		"orden": 1956,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172141,
+		"descripcion": "DAIMLER BENZ",
+		"orden": 1959,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105668,
+		"descripcion": "DATSUN",
+		"orden": 1984,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172154,
+		"descripcion": "DIAMLER BENZ",
+		"orden": 2097,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172156,
+		"descripcion": "DKW",
+		"orden": 2163,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105767,
+		"descripcion": "DODGE",
+		"orden": 2178,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105539,
+		"descripcion": "DONG FENG",
+		"orden": 2229,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105672,
+		"descripcion": "EAGLE",
+		"orden": 2349,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172182,
+		"descripcion": "EZGO",
+		"orden": 2512,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105771,
+		"descripcion": "FAW",
+		"orden": 2764,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105514,
+		"descripcion": "FERRARI",
+		"orden": 2827,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105257,
+		"descripcion": "FIAT",
+		"orden": 2843,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105452,
+		"descripcion": "FORD",
+		"orden": 2942,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 285675,
+		"descripcion": "BAIC",
+		"orden": 3055,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105028,
+		"descripcion": "GEELY",
+		"orden": 3262,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172331,
+		"descripcion": "GEELY FORTE",
+		"orden": 3275,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105302,
+		"descripcion": "GEO",
+		"orden": 3298,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105050,
+		"descripcion": "GMC",
+		"orden": 3328,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105386,
+		"descripcion": "GONOW",
+		"orden": 3399,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105251,
+		"descripcion": "GREAT WALL",
+		"orden": 3446,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105433,
+		"descripcion": "HAFEI",
+		"orden": 3546,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105045,
+		"descripcion": "HAIMA",
+		"orden": 3561,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105814,
+		"descripcion": "HILLMAN",
+		"orden": 3713,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105618,
+		"descripcion": "HONDA",
+		"orden": 3804,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105567,
+		"descripcion": "HYUNDAI",
+		"orden": 3970,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172508,
+		"descripcion": "INFINITI",
+		"orden": 4213,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104850,
+		"descripcion": "ISUZU",
+		"orden": 4449,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105241,
+		"descripcion": "JAC",
+		"orden": 4580,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105371,
+		"descripcion": "JAGUAR",
+		"orden": 4639,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105111,
+		"descripcion": "KIA",
+		"orden": 5149,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105805,
+		"descripcion": "LADA",
+		"orden": 5426,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172608,
+		"descripcion": "LAMBORGHINI",
+		"orden": 5465,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172611,
+		"descripcion": "LANCER",
+		"orden": 5480,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172613,
+		"descripcion": "LANCIA",
+		"orden": 5482,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105426,
+		"descripcion": "LAND ROVER",
+		"orden": 5486,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172618,
+		"descripcion": "LEKTRIK",
+		"orden": 5527,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 41485,
+		"descripcion": "LEXUS",
+		"orden": 5537,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105497,
+		"descripcion": "LIFAN",
+		"orden": 5572,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105571,
+		"descripcion": "LINCOLN",
+		"orden": 5608,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172633,
+		"descripcion": "LOTUS",
+		"orden": 5669,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172640,
+		"descripcion": "M & G",
+		"orden": 5712,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105762,
+		"descripcion": "MASERATI",
+		"orden": 5931,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172651,
+		"descripcion": "MAVECO",
+		"orden": 5955,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105763,
+		"descripcion": "MAZDA",
+		"orden": 5977,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104927,
+		"descripcion": "MERCEDES BENZ",
+		"orden": 6078,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105199,
+		"descripcion": "MERCURY",
+		"orden": 6158,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105206,
+		"descripcion": "MG",
+		"orden": 6193,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172771,
+		"descripcion": "MGB",
+		"orden": 6204,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105585,
+		"descripcion": "MINI",
+		"orden": 6236,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104943,
+		"descripcion": "MITSUBISHI",
+		"orden": 6256,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172827,
+		"descripcion": "MMP",
+		"orden": 6347,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172829,
+		"descripcion": "MORGAN",
+		"orden": 6411,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105443,
+		"descripcion": "MORRIS",
+		"orden": 6424,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 107644,
+		"descripcion": "MORRIS GARACES",
+		"orden": 6428,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172836,
+		"descripcion": "MORRIS GARAGE",
+		"orden": 6432,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105067,
+		"descripcion": "NISSAN",
+		"orden": 6625,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105742,
+		"descripcion": "OLDSMOBILE",
+		"orden": 6739,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105233,
+		"descripcion": "OPEL",
+		"orden": 6780,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 172915,
+		"descripcion": "PACKARD",
+		"orden": 6831,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105726,
+		"descripcion": "PEUGEOT",
+		"orden": 6949,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104952,
+		"descripcion": "PLYMOUTH",
+		"orden": 7006,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173035,
+		"descripcion": "POLONEZ",
+		"orden": 7037,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173038,
+		"descripcion": "POLSKI",
+		"orden": 7040,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105597,
+		"descripcion": "PONTIAC",
+		"orden": 7044,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104962,
+		"descripcion": "PORSCHE",
+		"orden": 7054,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173088,
+		"descripcion": "PROTON",
+		"orden": 7085,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173092,
+		"descripcion": "PUMA",
+		"orden": 7091,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105350,
+		"descripcion": "RAMBLER",
+		"orden": 7162,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 40378,
+		"descripcion": "RENAULT",
+		"orden": 7283,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173162,
+		"descripcion": "REVA",
+		"orden": 7332,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104810,
+		"descripcion": "ROVER",
+		"orden": 7489,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173174,
+		"descripcion": "SAAB",
+		"orden": 7539,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105342,
+		"descripcion": "SAMSUNG",
+		"orden": 7566,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105082,
+		"descripcion": "SATURN",
+		"orden": 7659,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105611,
+		"descripcion": "SCION",
+		"orden": 7732,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105326,
+		"descripcion": "SEAT",
+		"orden": 7743,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173211,
+		"descripcion": "SIMCA",
+		"orden": 7958,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173216,
+		"descripcion": "SINGER",
+		"orden": 7981,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105096,
+		"descripcion": "SKODA",
+		"orden": 8046,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104831,
+		"descripcion": "SMA",
+		"orden": 8077,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173220,
+		"descripcion": "SMART",
+		"orden": 8081,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 106958,
+		"descripcion": "SOUEAST",
+		"orden": 8119,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173229,
+		"descripcion": "STANDARD TRIUM",
+		"orden": 8171,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173231,
+		"descripcion": "STORM",
+		"orden": 8209,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105053,
+		"descripcion": "STUDEBAKER",
+		"orden": 8252,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104788,
+		"descripcion": "SUBARU",
+		"orden": 8256,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173328,
+		"descripcion": "SUNBEAM",
+		"orden": 8316,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104939,
+		"descripcion": "SUZUKI",
+		"orden": 8340,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173375,
+		"descripcion": "TALBOT",
+		"orden": 8412,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173379,
+		"descripcion": "TAUNUS",
+		"orden": 8471,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173389,
+		"descripcion": "TAURIA",
+		"orden": 8480,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173396,
+		"descripcion": "TELLO MOTORS",
+		"orden": 8501,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 107664,
+		"descripcion": "TIAJIN SAW",
+		"orden": 8536,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105489,
+		"descripcion": "TIANJIN FAW",
+		"orden": 8543,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 41548,
+		"descripcion": "TOYOTA",
+		"orden": 8617,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105329,
+		"descripcion": "TRIUMPH",
+		"orden": 8820,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173474,
+		"descripcion": "UFO",
+		"orden": 8882,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173476,
+		"descripcion": "VALIANT",
+		"orden": 8959,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 173479,
+		"descripcion": "VAUXHALL",
+		"orden": 8979,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 104786,
+		"descripcion": "VOLKSWAGEN",
+		"orden": 9080,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105448,
+		"descripcion": "VOLVO",
+		"orden": 9167,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 106137,
+		"descripcion": "XIALI",
+		"orden": 9461,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105736,
+		"descripcion": "YUGO",
+		"orden": 9613,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 105494,
+		"descripcion": "ZOTYE",
+		"orden": 9746,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287283,
+		"descripcion": "MC LAREN",
+		"orden": 10078,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287365,
+		"descripcion": "ARO",
+		"orden": 10160,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287379,
+		"descripcion": "BSA",
+		"orden": 10174,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287523,
+		"descripcion": "POLAR TANK",
+		"orden": 10318,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287562,
+		"descripcion": "C & C 110",
+		"orden": 10357,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287570,
+		"descripcion": "CATERHAM",
+		"orden": 10365,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287717,
+		"descripcion": "SENOVA",
+		"orden": 10512,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 287742,
+		"descripcion": "SUMBEAM",
+		"orden": 10537,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288098,
+		"descripcion": "MINIMINORS",
+		"orden": 10893,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288182,
+		"descripcion": "BRIDA",
+		"orden": 10977,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288189,
+		"descripcion": "BMCH",
+		"orden": 10984,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288249,
+		"descripcion": "FULU",
+		"orden": 11044,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288435,
+		"descripcion": "COOPER",
+		"orden": 11230,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288505,
+		"descripcion": "JEEP",
+		"orden": 11300,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 288573,
+		"descripcion": "SEM",
+		"orden": 11368,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	},
+	{
+		"ideValor": 310472,
+		"descripcion": "HAWTAI",
+		"orden": 252431,
+		"ideValorPadre": 39929,
+		"descripcionPadre": "AUTO"
+	}
+]

@@ -1,0 +1,849 @@
+[
+	{
+		"ideValor": 57944,
+		"descripcion": "2020",
+		"orden": 1,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57943,
+		"descripcion": "2019",
+		"orden": 2,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57942,
+		"descripcion": "2018",
+		"orden": 3,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57941,
+		"descripcion": "2017",
+		"orden": 4,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57940,
+		"descripcion": "2016",
+		"orden": 5,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57939,
+		"descripcion": "2015",
+		"orden": 6,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57938,
+		"descripcion": "2014",
+		"orden": 7,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57937,
+		"descripcion": "2013",
+		"orden": 8,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57936,
+		"descripcion": "2012",
+		"orden": 9,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57935,
+		"descripcion": "2011",
+		"orden": 10,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57934,
+		"descripcion": "2010",
+		"orden": 11,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57933,
+		"descripcion": "2009",
+		"orden": 12,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57932,
+		"descripcion": "2008",
+		"orden": 13,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57931,
+		"descripcion": "2007",
+		"orden": 14,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57930,
+		"descripcion": "2006",
+		"orden": 15,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57929,
+		"descripcion": "2005",
+		"orden": 16,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57928,
+		"descripcion": "2004",
+		"orden": 17,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57927,
+		"descripcion": "2003",
+		"orden": 18,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57926,
+		"descripcion": "2002",
+		"orden": 19,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57925,
+		"descripcion": "2001",
+		"orden": 20,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57924,
+		"descripcion": "2000",
+		"orden": 21,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58044,
+		"descripcion": "1999",
+		"orden": 22,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58043,
+		"descripcion": "1998",
+		"orden": 23,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58042,
+		"descripcion": "1997",
+		"orden": 24,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58041,
+		"descripcion": "1996",
+		"orden": 25,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58040,
+		"descripcion": "1995",
+		"orden": 26,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58039,
+		"descripcion": "1994",
+		"orden": 27,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58038,
+		"descripcion": "1993",
+		"orden": 28,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58037,
+		"descripcion": "1992",
+		"orden": 29,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58036,
+		"descripcion": "1991",
+		"orden": 30,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58035,
+		"descripcion": "1990",
+		"orden": 31,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58034,
+		"descripcion": "1989",
+		"orden": 32,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58033,
+		"descripcion": "1988",
+		"orden": 33,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58032,
+		"descripcion": "1987",
+		"orden": 34,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58031,
+		"descripcion": "1986",
+		"orden": 35,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58030,
+		"descripcion": "1985",
+		"orden": 36,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58029,
+		"descripcion": "1984",
+		"orden": 37,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58028,
+		"descripcion": "1983",
+		"orden": 38,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58027,
+		"descripcion": "1982",
+		"orden": 39,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58026,
+		"descripcion": "1981",
+		"orden": 40,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58025,
+		"descripcion": "1980",
+		"orden": 41,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58024,
+		"descripcion": "1979",
+		"orden": 42,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58023,
+		"descripcion": "1978",
+		"orden": 43,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58022,
+		"descripcion": "1977",
+		"orden": 44,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58021,
+		"descripcion": "1976",
+		"orden": 45,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58020,
+		"descripcion": "1975",
+		"orden": 46,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58019,
+		"descripcion": "1974",
+		"orden": 47,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58018,
+		"descripcion": "1973",
+		"orden": 48,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58017,
+		"descripcion": "1972",
+		"orden": 49,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58016,
+		"descripcion": "1971",
+		"orden": 50,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58015,
+		"descripcion": "1970",
+		"orden": 51,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58014,
+		"descripcion": "1969",
+		"orden": 52,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58013,
+		"descripcion": "1968",
+		"orden": 53,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58012,
+		"descripcion": "1967",
+		"orden": 54,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58011,
+		"descripcion": "1966",
+		"orden": 55,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58010,
+		"descripcion": "1965",
+		"orden": 56,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58009,
+		"descripcion": "1964",
+		"orden": 57,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58008,
+		"descripcion": "1963",
+		"orden": 58,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58007,
+		"descripcion": "1962",
+		"orden": 59,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58006,
+		"descripcion": "1961",
+		"orden": 60,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58005,
+		"descripcion": "1960",
+		"orden": 61,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58004,
+		"descripcion": "1959",
+		"orden": 62,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58003,
+		"descripcion": "1958",
+		"orden": 63,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58002,
+		"descripcion": "1957",
+		"orden": 64,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58001,
+		"descripcion": "1956",
+		"orden": 65,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 58000,
+		"descripcion": "1955",
+		"orden": 66,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57999,
+		"descripcion": "1954",
+		"orden": 67,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57998,
+		"descripcion": "1953",
+		"orden": 68,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57997,
+		"descripcion": "1952",
+		"orden": 69,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57996,
+		"descripcion": "1951",
+		"orden": 70,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57995,
+		"descripcion": "1950",
+		"orden": 71,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57994,
+		"descripcion": "1949",
+		"orden": 72,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57993,
+		"descripcion": "1948",
+		"orden": 73,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57992,
+		"descripcion": "1947",
+		"orden": 74,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57991,
+		"descripcion": "1946",
+		"orden": 75,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57990,
+		"descripcion": "1945",
+		"orden": 76,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57989,
+		"descripcion": "1944",
+		"orden": 77,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57988,
+		"descripcion": "1943",
+		"orden": 78,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57987,
+		"descripcion": "1942",
+		"orden": 79,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57986,
+		"descripcion": "1941",
+		"orden": 80,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57985,
+		"descripcion": "1940",
+		"orden": 81,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57984,
+		"descripcion": "1939",
+		"orden": 82,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57983,
+		"descripcion": "1938",
+		"orden": 83,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57982,
+		"descripcion": "1937",
+		"orden": 84,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57981,
+		"descripcion": "1936",
+		"orden": 85,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57980,
+		"descripcion": "1935",
+		"orden": 86,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57979,
+		"descripcion": "1934",
+		"orden": 87,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57978,
+		"descripcion": "1933",
+		"orden": 88,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57977,
+		"descripcion": "1932",
+		"orden": 89,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57976,
+		"descripcion": "1931",
+		"orden": 90,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57975,
+		"descripcion": "1930",
+		"orden": 91,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57974,
+		"descripcion": "1929",
+		"orden": 92,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57973,
+		"descripcion": "1928",
+		"orden": 93,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57972,
+		"descripcion": "1927",
+		"orden": 94,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57971,
+		"descripcion": "1926",
+		"orden": 95,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57970,
+		"descripcion": "1925",
+		"orden": 96,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57969,
+		"descripcion": "1924",
+		"orden": 97,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57968,
+		"descripcion": "1923",
+		"orden": 98,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57967,
+		"descripcion": "1922",
+		"orden": 99,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57966,
+		"descripcion": "1921",
+		"orden": 100,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57965,
+		"descripcion": "1920",
+		"orden": 101,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57964,
+		"descripcion": "1919",
+		"orden": 102,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57963,
+		"descripcion": "1918",
+		"orden": 103,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57962,
+		"descripcion": "1917",
+		"orden": 104,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57961,
+		"descripcion": "1916",
+		"orden": 105,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57960,
+		"descripcion": "1915",
+		"orden": 106,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57959,
+		"descripcion": "1914",
+		"orden": 107,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57958,
+		"descripcion": "1913",
+		"orden": 108,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57957,
+		"descripcion": "1912",
+		"orden": 109,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57956,
+		"descripcion": "1911",
+		"orden": 110,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57955,
+		"descripcion": "1910",
+		"orden": 111,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57954,
+		"descripcion": "1909",
+		"orden": 112,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57953,
+		"descripcion": "1908",
+		"orden": 113,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57952,
+		"descripcion": "1907",
+		"orden": 114,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57951,
+		"descripcion": "1906",
+		"orden": 115,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57950,
+		"descripcion": "1905",
+		"orden": 116,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57949,
+		"descripcion": "1904",
+		"orden": 117,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57948,
+		"descripcion": "1903",
+		"orden": 118,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57947,
+		"descripcion": "1902",
+		"orden": 119,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57945,
+		"descripcion": "1902",
+		"orden": 120,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	},
+	{
+		"ideValor": 57946,
+		"descripcion": "1901",
+		"orden": 121,
+		"ideValorPadre": null,
+		"descripcionPadre": null
+	}
+]
