@@ -6,7 +6,7 @@
 //     return back();
 // });
 
-Route::post('/foto', 'DashboardController@updatePhoto');
+
 
 // Route::group(['middleware' => 'httpCache:60'], function() {
 
@@ -115,6 +115,15 @@ Route::resource('afiliado', 'AfiliadoController')->middleware('auth');
 Route::get('prueba', 'DashboardController@prueba')->name('prueba')->middleware('auth');
 
 
+Route::get('anios', 'AnioController@index')->name('anio')->middleware('auth');
+
+Route::get('marcas', 'MarcaController@index')->name('marcas')->middleware('auth');
+
+Route::get('modelos', 'ModeloController@index')->name('modelos')->middleware('auth');
+
+Route::post('/upload', 'DashboardController@upload');
+
+Route::post('/foto', 'DashboardController@updatePhoto');
 
 // All your routes wrapped here
 

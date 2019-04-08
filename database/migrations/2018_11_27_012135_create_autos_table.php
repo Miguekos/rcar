@@ -47,6 +47,7 @@ class CreateAutosTable extends Migration
             $table->date('fechafinauto')->nullable();
             $table->integer('estado')->nullable();
             $table->integer('disponible')->nullable();
+            $table->date('fechadepago')->nullable();
             $table->timestamps();
         });
     }

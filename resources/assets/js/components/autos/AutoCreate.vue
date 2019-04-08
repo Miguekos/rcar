@@ -17,388 +17,538 @@ select:-webkit-autofill:focus {
 </style>
 
 <template>
-<div>
+  <div>
     <v-snackbar
-        v-model="snackbar"
-        :bottom="y === 'bottom'"
-        :left="x === 'left'"
-        :multi-line="mode === 'multi-line'"
-        :right="x === 'right'"
-        :timeout="timeout"
-        :top="y === 'top'"
-        :vertical="mode === 'vertical'"
-        :color="colorsnackbar">
-        {{ texto }}
-        <v-btn color="white" flat="flat" @click="snackbar = false">
-            Close
-        </v-btn>
+      v-model="snackbar"
+      :bottom="y === 'bottom'"
+      :left="x === 'left'"
+      :multi-line="mode === 'multi-line'"
+      :right="x === 'right'"
+      :timeout="timeout"
+      :top="y === 'top'"
+      :vertical="mode === 'vertical'"
+      :color="colorsnackbar"
+    >
+      {{ texto }}
+      <v-btn color="white" flat="flat" @click="snackbar = false">Close</v-btn>
     </v-snackbar>
     <form id="ContactForm" method="post" @submit.prevent="sendForm()">
-        <v-container grid-list-xl="grid-list-xl">
-            <v-layout row="row" wrap="wrap">
-                <v-flex lg8="lg8">
-                    <v-card class="cuerpoautocreate">
-                        <!-- <v-card hover> -->
-                        <v-flex class="titulosautocreate">
-                            <h3>Informacion Basica</h3>
-                        </v-flex>
+      <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg8="lg8">
+            <v-card class="cuerpoautocreate">
+              <!-- <v-card hover> -->
+              <v-flex class="titulosautocreate">
+                <h3>Informacion Basica</h3>
+              </v-flex>
 
-                        <!-- </v-card> -->
-                        <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
-                        <v-layout row wrap py-2 px-2>
+              <!-- </v-card> -->
+              <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
+              <v-layout row wrap py-4 px-4>
+                <v-flex xs12 sm6 md3>
+                  <label>Marca</label>
+                  <v-autocomplete
+                    :items="automarca"
+                    item-text="name"
+                    item-value="name"
+                    v-model="marca"
+                    name="marca"
+                    required="required"
+                  ></v-autocomplete>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Marca</label>
-                                <v-autocomplete @click="getJsonFile('marcas')" :items="automarca" item-text="descripcion" item-value="descripcion" v-model="marca" name="marca" required="required"></v-autocomplete>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Placa</label>
+                  <v-text-field
+                    maxlength="6"
+                    minlength="6"
+                    v-model="placa"
+                    required="required"
+                    title="ABC123"
+                  ></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Placa</label>
-                                <v-text-field maxlength="6" minlength="6" v-model="placa" required="required" title="ABC123"></v-text-field>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Modelo</label>
+                  <v-autocomplete
+                    :items="automodelo"
+                    item-text="name"
+                    item-value="name"
+                    v-model="modelo"
+                    required="required"
+                  ></v-autocomplete>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Modelo</label>
-                                <v-autocomplete :items="automodelo" item-text="descripcion" item-value="descripcion" v-model="modelo" required="required"></v-autocomplete>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Color</label>
+                  <v-text-field maxlength="10" v-model="color" required="required"></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Color</label>
-                                <v-text-field maxlength="10" v-model="color" required="required"></v-text-field>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Año</label>
+                  <v-autocomplete
+                    :items="autoanio"
+                    item-text="name"
+                    item-value="name"
+                    v-model="anio"
+                    required="required"
+                  ></v-autocomplete>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Año</label>
-                                <v-autocomplete :items="autoanio" item-text="descripcion" item-value="descripcion" v-model="anio" required="required"></v-autocomplete>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Combustible</label>
+                  <v-autocomplete
+                    :items="autocombustible"
+                    item-text="name"
+                    item-value="name"
+                    v-model="combustible"
+                    required="required"
+                  ></v-autocomplete>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Combustible</label>
-                                <v-text-field maxlength="10" v-model="combustible" required="required"></v-text-field>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Transmicion</label>
+                  <v-autocomplete
+                    required="required"
+                    v-model="transmicion"
+                    :items="autotransmicion"
+                  ></v-autocomplete>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Transmicion</label>
-                                <v-autocomplete required="required" v-model="transmicion" :items="autotransmicion"></v-autocomplete>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Cilindrada</label>
+                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Cilindrada</label>
-                                <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Carroceria</label>
+                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Kilometraje Inicial</label>
-                                <v-text-field maxlength="10" v-model="km_inicial" required="required"></v-text-field>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>N° de Motor</label>
+                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Octanaje</label>
-                                <v-text-field maxlength="10" v-model="octanaje" required="required"></v-text-field>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>N° de Serie</label>
+                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Airbag</label>
-                                <v-switch v-model="airbag" true-value="1" false-value="0" label="Airbag" color="success" hide-details="hide-details"></v-switch>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Kilometraje Inicial</label>
+                  <v-text-field maxlength="10" v-model="km_inicial" required="required"></v-text-field>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Silla de bebe</label>
-                                <v-switch v-model="silla_bebe" :value="silla_bebe" true-value="1" false-value="0" label="Silla Bebe" color="success" hide-details="hide-details"></v-switch>
-                            </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Octanaje</label>
+                  <v-autocomplete
+                    :items="autooctanaje"
+                    item-text="name"
+                    item-value="name"
+                    v-model="octanaje"
+                    required="required"
+                  ></v-autocomplete>
+                </v-flex>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Galones</label>
-                                <v-text-field maxlength="10" v-model="galones" required="required"></v-text-field>
-                            </v-flex>
-                        </v-layout>
-                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-                    </v-card>
+                <v-flex xs12 sm6 md3>
+                  <label>Airbag</label>
+                  <v-switch
+                    v-model="airbag"
+                    true-value="1"
+                    false-value="0"
+                    label="Airbag"
+                    color="success"
+                    hide-details="hide-details"
+                  ></v-switch>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Silla de bebe</label>
+                  <v-switch
+                    v-model="silla_bebe"
+                    :value="silla_bebe"
+                    true-value="1"
+                    false-value="0"
+                    label="Silla Bebe"
+                    color="success"
+                    hide-details="hide-details"
+                  ></v-switch>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Galones</label>
+                  <v-text-field maxlength="10" v-model="galones" required="required"></v-text-field>
+                </v-flex>
+              </v-layout>
+              <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+            </v-card>
+          </v-flex>
+
+          <v-flex lg4="lg4">
+            <!-- <v-layout align-center justify-center row fill-height> -->
+            <!-- <v-card class="cuerpoautocreate"> <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('image')"> <input type="hidden"
+                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
+                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> </v-flex> <v-flex text-lg-center="text-lg-center"> <v-text-field
+            required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> </v-flex> </v-card>-->
+            <!-- <h1>Click on the image to upload new image</h1> -->
+            <template v-if="length > 1">
+              <div style="border-radius: 10px 10px 10px 10px;" class>
+                <div class v-for="(file, index) in files" :key="index">
+                  <img :src="file.url" @click="uploadImage">
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div style="border-radius: 10px 10px 10px 10px;" class>
+                <div class>
+                  <img :src="files[0].url" @click="uploadImage">
+                </div>
+              </div>
+            </template>
+            <input
+              type="file"
+              multiple
+              accpet
+              ref="uploadFileReference"
+              @change="uploadFileReference"
+            >
+            <!-- </v-layout> -->
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <!-- <v-card hover="hover"> -->
+              <v-flex class="titulosautocreate">
+                <h3>Informacion Financiera</h3>
+              </v-flex>
+              <!-- </v-card> -->
+              <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
+              <v-layout row wrap py-4 px-4>
+                <v-flex xs12 sm6 md3>
+                  <label>Pago Afiliado Mensual</label>
+                  <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Garantia</label>
+                  <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Tipo de Garantia</label>
+                  <v-autocomplete
+                    :items="autotipogarantia"
+                    item-text="name"
+                    item-value="name"
+                    v-model="tipo_garantia"
+                    required="required"
+                  ></v-autocomplete>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Precio por dia</label>
+                  <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Contrato</label>
+                  <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md3>
+                  <label>Fecha de pago</label>
+                  <v-text-field maxlength="20" v-model="fechadepago" required="required"></v-text-field>
+                </v-flex>
+              </v-layout>
+              <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Registros de documentos</h3>
+              </v-flex>
+
+              <v-layout row wrap py-4 px-4>
+                <v-flex lg3="lg3">
+                  <v-menu
+                    :close-on-content-click="false"
+                    v-model="menu1"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="renovacion_soat"
+                      label="Renovacion de SOAT"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker v-model="renovacion_soat" @input="menu1 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>
+
+                <!-- <v-flex lg3="lg3">
+                  <v-menu
+                    :close-on-content-click="false"
+                    v-model="menu2"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="lunas_polari"
+                      label="Lunas Polariza"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker v-model="lunas_polari" @input="menu2 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>-->
+
+                <v-flex lg3="lg3">
+                  <v-menu
+                    :close-on-content-click="false"
+                    v-model="menu3"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="gps"
+                      label="GPS"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker v-model="gps" @input="menu3 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>
+
+                <v-flex lg3="lg3">
+                  <v-menu
+                    :close-on-content-click="false"
+                    v-model="menu4"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="inspec_tecnica"
+                      label="Inspeccion Tecnica"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker v-model="inspec_tecnica" @input="menu4 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>
+
+                <v-flex lg3="lg3">
+                  <v-menu
+                    :close-on-content-click="false"
+                    v-model="menu5"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="poliza_de_seguro"
+                      label="Poliza de seguros"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker v-model="poliza_de_seguro" @input="menu5 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>
+              </v-layout>
+              <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Imagenes</h3>
+              </v-flex>
+
+              <v-layout
+                align-center="align-center"
+                justify="justify"
+                row="row"
+                wrap="wrap"
+                fill-height="fill-height"
+                py-2
+                px-2
+              >
+                <v-flex lg4="lg4">
+                  <label for>Tarjeta</label>
+                  <template v-if="length > 2">
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class v-for="(file, index) in files" :key="index">
+                        <img :src="file.url" @click="uploadImage">
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class>
+                        <img :src="files[0].url" @click="uploadImage">
+                      </div>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+                </v-flex>
+                <v-flex lg4="lg4">
+                  <label for>SOAT</label>
+                  <template v-if="length > 3">
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class v-for="(file, index) in files" :key="index">
+                        <img :src="file.url" @click="uploadImage">
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class>
+                        <img :src="files[0].url" @click="uploadImage">
+                      </div>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+                  <!-- </v-layout> -->
                 </v-flex>
 
                 <v-flex lg4="lg4">
-                    <!-- <v-layout align-center justify-center row fill-height> -->
-                    <!-- <v-card class="cuerpoautocreate"> <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('photo')"> <input type="hidden"
-                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
-                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> </v-flex> <v-flex text-lg-center="text-lg-center"> <v-text-field
-                    required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> </v-flex> </v-card> -->
-                    <!-- <h1>Click on the image to upload new image</h1> -->
-                    <template v-if="length > 1">
-                        <div style="border-radius: 10px 10px 10px 10px;" class="">
-                            <div class="" v-for="(file, index) in files" :key="index">
-                                <img :src="file.url" @click="uploadImage"/>
-                            </div>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <div style="border-radius: 10px 10px 10px 10px;" class="">
-                            <div class="">
-                                <img :src="files[0].url" @click="uploadImage"/>
-                            </div>
-                        </div>
-                    </template>
-                    <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
-                    <!-- </v-layout> -->
+                  <label for>Permiso de Lunas</label>
+                  <template v-if="length > 4">
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class v-for="(file, index) in files" :key="index">
+                        <img :src="file.url" @click="uploadImage">
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class>
+                        <img :src="files[0].url" @click="uploadImage">
+                      </div>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+                  <!-- </v-layout> -->
                 </v-flex>
-            </v-layout>
-        </v-container>
+              </v-layout>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
 
-        <v-container grid-list-xl="grid-list-xl">
-            <v-layout row="row" wrap="wrap">
-                <v-flex lg12="lg12">
-                    <v-card class="cuerpoautocreate">
-                        <!-- <v-card hover="hover"> -->
-                        <v-flex class="titulosautocreate">
-                            <h3>Informacion Financiera</h3>
-                        </v-flex>
-                        <!-- </v-card> -->
-                        <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
-                        <v-layout row wrap py-2 px-2>
-                            <v-flex xs12 sm6 md3>
-                                <label>Pago Afiliado Mensual</label>
-                                <v-text-field maxlength="10" v-model="pago_afi_men" required="required"></v-text-field>
-                            </v-flex>
+      <br>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Garantia</label>
-                                <v-text-field maxlength="10" v-model="garantia" required="required"></v-text-field>
-                            </v-flex>
+      <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
+        <v-layout
+          align-center="align-center"
+          justify-center="justify-center"
+          row="row"
+          wrap="wrap"
+          fill-height="fill-height"
+        >
+          <v-flex text-lg-left="text-lg-left" lg12="lg12">
+            <label>Comentarios adicionales</label>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Tipo de Garantia</label>
-                                <v-text-field maxlength="10" v-model="tipo_garantia" required="required"></v-text-field>
-                            </v-flex>
+            <v-textarea v-model="comentarios" label></v-textarea>
+          </v-flex>
+        </v-layout>
+      </v-container>
 
-                            <v-flex xs12 sm6 md3>
-                                <label>Precio por dia</label>
-                                <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
-                            </v-flex>
-
-                            <v-flex xs12 sm6 md3>
-                                <label>Contrato</label>
-                                <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
-                            </v-flex>
-
-                        </v-layout>
-                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-                    </v-card>
-                </v-flex>
-
-            </v-layout>
-        </v-container>
-
-        <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-            <v-layout row="row" wrap="wrap">
-                <v-flex lg12="lg12">
-                    <v-card class="cuerpoautocreate">
-
-                        <v-flex class="titulosautocreate">
-                            <h3>Registros de documentos</h3>
-                        </v-flex>
-
-                        <v-layout row wrap py-2 px-2>
-
-                            <v-flex lg3="lg3">
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    v-model="menu1"
-                                    :nudge-right="40"
-                                    lazy="lazy"
-                                    transition="scale-transition"
-                                    offset-y="offset-y"
-                                    full-width="full-width"
-                                    min-width="290px">
-                                    <v-text-field slot="activator" v-model="renovacion_soat" label="Renovacion de SOAT" prepend-icon="event" readonly="readonly"></v-text-field>
-                                    <v-date-picker v-model="renovacion_soat" @input="menu1 = false"></v-date-picker>
-                                </v-menu>
-                            </v-flex>
-
-                            <v-flex lg3="lg3">
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    v-model="menu2"
-                                    :nudge-right="40"
-                                    lazy="lazy"
-                                    transition="scale-transition"
-                                    offset-y="offset-y"
-                                    full-width="full-width"
-                                    min-width="290px">
-                                    <v-text-field slot="activator" v-model="lunas_polari" label="Lunas Polariza" prepend-icon="event" readonly="readonly"></v-text-field>
-                                    <v-date-picker v-model="lunas_polari" @input="menu2 = false"></v-date-picker>
-                                </v-menu>
-                            </v-flex>
-
-                            <v-flex lg3="lg3">
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    v-model="menu3"
-                                    :nudge-right="40"
-                                    lazy="lazy"
-                                    transition="scale-transition"
-                                    offset-y="offset-y"
-                                    full-width="full-width"
-                                    min-width="290px">
-                                    <v-text-field slot="activator" v-model="gps" label="GPS" prepend-icon="event" readonly="readonly"></v-text-field>
-                                    <v-date-picker v-model="gps" @input="menu3 = false"></v-date-picker>
-                                </v-menu>
-                            </v-flex>
-
-                            <v-flex lg3="lg3">
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    v-model="menu4"
-                                    :nudge-right="40"
-                                    lazy="lazy"
-                                    transition="scale-transition"
-                                    offset-y="offset-y"
-                                    full-width="full-width"
-                                    min-width="290px">
-                                    <v-text-field slot="activator" v-model="inspec_tecnica" label="Inspeccion Tecnica" prepend-icon="event" readonly="readonly"></v-text-field>
-                                    <v-date-picker v-model="inspec_tecnica" @input="menu4 = false"></v-date-picker>
-                                </v-menu>
-                            </v-flex>
-
-                            <v-flex lg3="lg3">
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    v-model="menu5"
-                                    :nudge-right="40"
-                                    lazy="lazy"
-                                    transition="scale-transition"
-                                    offset-y="offset-y"
-                                    full-width="full-width"
-                                    min-width="290px">
-                                    <v-text-field slot="activator" v-model="poliza_de_seguro" label="Poliza de seguros" prepend-icon="event" readonly="readonly"></v-text-field>
-                                    <v-date-picker v-model="poliza_de_seguro" @input="menu5 = false"></v-date-picker>
-                                </v-menu>
-                            </v-flex>
-
-                        </v-layout>
-                        <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
-                    </v-card>
-                </v-flex>
-            </v-layout>
-        </v-container>
-
-        <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-            <v-layout row="row" wrap="wrap">
-                <v-flex lg12="lg12">
-                    <v-card class="cuerpoautocreate">
-
-                        <v-flex class="titulosautocreate">
-                            <h3>Imagenes</h3>
-                        </v-flex>
-
-                        <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height" py-2 px-2>
-                            <!-- <v-layout row wrap > -->
-                            <v-flex lg4="lg4">
-                                <template v-if="length > 1">
-                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                        <div class="" v-for="(file, index) in files" :key="index">
-                                            <img :src="file.url" @click="uploadImage"/>
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-else>
-                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                        <div class="">
-                                            <img :src="files[0].url" @click="uploadImage"/>
-                                        </div>
-                                    </div>
-                                </template>
-                                <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
-                                <!-- </v-layout> -->
-                            </v-flex>
-
-                            <v-flex lg4="lg4">
-                                <template v-if="length > 1">
-                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                        <div class="" v-for="(file, index) in files" :key="index">
-                                            <img :src="file.url" @click="uploadImage"/>
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-else>
-                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                        <div class="">
-                                            <img :src="files[0].url" @click="uploadImage"/>
-                                        </div>
-                                    </div>
-                                </template>
-                                <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
-                                <!-- </v-layout> -->
-                            </v-flex>
-
-                            <v-flex lg4="lg4">
-                                <template v-if="length > 1">
-                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                        <div class="" v-for="(file, index) in files" :key="index">
-                                            <img :src="file.url" @click="uploadImage"/>
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-else>
-                                    <div style="border-radius: 10px 10px 10px 10px;" class="">
-                                        <div class="">
-                                            <img :src="files[0].url" @click="uploadImage"/>
-                                        </div>
-                                    </div>
-                                </template>
-                                <input type="file" multiple accpet="" ref="uploadFileReference" @change="uploadFileReference"/>
-                                <!-- </v-layout> -->
-                            </v-flex>
-
-                        </v-layout>
-                    </v-card>
-                </v-flex>
-            </v-layout>
-        </v-container>
-
-        <br>
-
-            <v-container grid-list-xl="grid-list-xl" text-xs-center="text-xs-center">
-
-                <v-layout align-center="align-center" justify-center="justify-center" row="row" wrap="wrap" fill-height="fill-height">
-                    <v-flex text-lg-left="text-lg-left" lg12="lg12">
-                        <label>Comentarios adicionales</label>
-
-                        <v-textarea v-model="comentarios" label=""></v-textarea>
-
-                    </v-flex>
-                </v-layout>
-
-            </v-container>
-
-            <v-flex text-lg-center="text-lg-center" lg12="lg12">
-
-                <v-btn type="submit" color="success">Guardar</v-btn>
-                <v-btn color="error">Cancelar</v-btn>
-            </v-flex>
-        </form>
-      <pre>{{ $data }}</pre>
-    </div>
+      <v-flex text-lg-center="text-lg-center" lg12="lg12">
+        <v-btn type="submit" color="success">Guardar</v-btn>
+        <v-btn color="error">Cancelar</v-btn>
+      </v-flex>
+    </form>
+    <!-- <pre>{{ $data }}</pre> -->
+  </div>
 </template>
 
 <script>
-
 export default {
   data: () => ({
     length: 1,
-      files: [
-        {
-          id: 1,
-          url:
-            "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
-        }
-      ],
+    files: [
+      {
+        id: 1,
+        url: "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+      },
+      {
+        id: 2,
+        url:
+          "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+      },
+      {
+        id: 3,
+        url:
+          "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+      }
+    ],
     image: {},
     snackbar: false,
-    colorsnackbar: '',
-    y: 'top',
-    x: 'right',
-    mode: '',
+    colorsnackbar: "",
+    y: "top",
+    x: "right",
+    mode: "",
     timeout: 6000,
-    texto: '',
+    texto: "",
     auto1: "/img/img_212915.png",
     renovacion_soat: new Date().toISOString().substr(0, 10),
     lunas_polari: new Date().toISOString().substr(0, 10),
@@ -410,65 +560,127 @@ export default {
     menu3: false,
     menu4: false,
     menu5: false,
-    automarca: "",
     airbag: 0,
     silla_bebe: 0,
     automarca: {},
     automodelo: {},
     autoanio: {},
-    autotransmicion: [{
-        text: 'Manual'
+    autotipogarantia: [
+      {
+        name: "Garantia A"
       },
       {
-        text: 'Automatica'
+        name: "Garantia B"
       },
+      {
+        name: "Garantia C"
+      }
     ],
-    marca: '',
-    modelo: '',
-    placa: '',
-    color: '',
-    anio: '',
-    combustible: '',
-    transmicion: '',
-    cilindrada: '',
-    km_inicial: '',
-    airbag: '',
-    silla_bebe: '',
-    galones: '',
-    luna_polar: '',
-    octanaje: '',
-    pago_afi_men: '',
-    precio_por_dia: '',
-    garantia: '',
-    tipo_garantia: '',
-    contrato: '',
-    renovacion_soat: '',
-    lunas_polari: '',
-    gps: '',
-    inspec_tecnica: '',
-    poliza_de_seguro: '',
-    imagen1: '/img/img_212915.png',
-    imagen2: '',
-    imagen3: '',
-    comentarios: '',
-    fechainicioauto: '',
-    fechafinauto: '',
+    autocombustible: [
+      {
+        name: "95"
+      },
+      {
+        name: "90"
+      }
+    ],
+    autooctanaje: [
+      {
+        name: "95"
+      },
+      {
+        name: "90"
+      }
+    ],
+    autotransmicion: [
+      {
+        text: "Manual"
+      },
+      {
+        text: "Automatica"
+      }
+    ],
+    marca: "",
+    modelo: "",
+    placa: "",
+    color: "",
+    anio: "",
+    combustible: "",
+    transmicion: "",
+    cilindrada: "",
+    km_inicial: "",
+    airbag: "",
+    silla_bebe: "",
+    galones: "",
+    luna_polar: "",
+    octanaje: "",
+    pago_afi_men: "",
+    precio_por_dia: "",
+    garantia: "",
+    tipo_garantia: "",
+    contrato: "",
+    renovacion_soat: "",
+    lunas_polari: "",
+    gps: "",
+    inspec_tecnica: "",
+    poliza_de_seguro: "",
+    imagen1: "/img/img_212915.png",
+    imagen2: "",
+    imagen3: "",
+    comentarios: "",
+    fechainicioauto: "",
+    fechafinauto: "",
+    fechadepago: "",
     estado: 0,
     disponible: 1,
-    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+    csrf: document
+      .querySelector('meta[name="csrf-token"]')
+      .getAttribute("content")
   }),
   methods: {
-    getJsonFile (carga) {
-      console.log(carga);
-      this.automarca = require(`./${carga}.json`)
+    getanios() {
+      axios
+        .get("/anios")
+        .then(response => {
+          console.log(response.data);
+          this.autoanio = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getmarcas() {
+      axios
+        .get("/marcas")
+        .then(response => {
+          console.log(response.data);
+          this.automarca = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getmodelos() {
+      axios
+        .get("/modelos")
+        .then(response => {
+          console.log(response.data);
+          this.automodelo = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     uploadImage() {
       this.$refs.uploadFileReference.click();
     },
     uploadFileReference(e) {
+      console.log(e);
       let files = e.target.files || e.dataTransfer.files;
       this.length = files.length;
-      this.showImage(files);
+        this.showImage(files);
+      this.subir(files);
+      console.log(files);
     },
     showImage(files) {
       // if (files.length > 1) {
@@ -491,25 +703,31 @@ export default {
         });
       });
     },
-    setImage: function (file) {
+    setImage: function(file) {
       this.hasImage = true;
       this.image = file;
       this.subir(file);
     },
     subir(item) {
-      let form = document.getElementById('subir');
-      const formData = new FormData(form);
+        console.log("Abajo Items");
+        
+      console.log(item);
+      //   let form = document.getElementById("subir");
+      const formData = new FormData(item);
+      console.log("Abajo el formData");
       console.log(formData);
-      axios.post('/foto', formData)
+      axios
+        .post("/foto", formData)
         .then(response => {
-          console.log(response)
-          this.image = `/images/${response.data}`;
-          this.imagen1 = `/images/${response.data}`;
+          console.log("Abajo el request de subir la foto");
+          console.log(response);
+          //   this.image = `/images/${response.data}`;
+          //   this.imagen1 = `/images/${response.data}`;
         })
         .catch(error => {
-          console.log(error)
+          console.log(error);
           // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
-        })
+        });
     },
     alerta(msj, color) {
       this.colorsnackbar = color;
@@ -517,16 +735,16 @@ export default {
     },
     sendForm(e) {
       if (
-        this.renovacion_soat == '' ||
-        this.lunas_polari == '' ||
-        this.gps == '' ||
-        this.inspec_tecnica == '' ||
-        this.poliza_de_seguro == ''
+        this.renovacion_soat == "" ||
+        this.gps == "" ||
+        this.inspec_tecnica == "" ||
+        this.poliza_de_seguro == ""
       ) {
-        this.alerta('las fehas no pueden estar vacias', 'red');
+        this.alerta("las fehas no pueden estar vacias", "red");
         this.snackbar = true;
       } else {
-        axios.post('/v1.0/auto', {
+        axios
+          .post("/v1.0/auto", {
             marca: this.marca,
             modelo: this.modelo,
             placa: this.placa,
@@ -557,35 +775,37 @@ export default {
             comentarios: this.comentarios,
             fechainicioauto: new Date().toISOString().substr(0, 10),
             fechafinauto: new Date().toISOString().substr(0, 10),
+            fechadepago: this.fechadepago,
             estado: this.estado,
-            disponible: this.disponible,
+            disponible: this.disponible
           })
           .then(response => {
-            console.log(response)
-            window.location.href = '/auto';
+            console.log(response);
+            window.location.href = "/auto";
           })
           .catch(error => {
-            console.log(error)
-            this.alerta('Surgio un error al guardar tu auto', 'red');
+            console.log(error);
+            this.alerta("Surgio un error al guardar tu auto", "red");
             this.snackbar = true;
             // alert("Surgio un error al guardar tu auto");
-          })
+          });
       }
     },
     cancelar() {
-      window.location.href = '/auto';
-    },
+      window.location.href = "/auto";
+    }
   },
-  computed () {
-  },
-  mounted () {
+  mounted() {
+    this.getanios();
+    this.getmarcas();
+    this.getmodelos();
   },
   watch: {
     date(val) {
-      this.dateFormatted = this.formatDate(this.date)
+      this.dateFormatted = this.formatDate(this.date);
     }
-  },
-}
+  }
+};
 </script>
 
 
