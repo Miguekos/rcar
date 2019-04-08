@@ -122,17 +122,17 @@ select:-webkit-autofill:focus {
 
                 <v-flex xs12 sm6 md3>
                   <label>Carroceria</label>
-                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                  <v-text-field maxlength="10" v-model="carroceria" required="required"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
                   <label>N° de Motor</label>
-                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                  <v-text-field maxlength="10" v-model="numeromotor" required="required"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
                   <label>N° de Serie</label>
-                  <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
+                  <v-text-field maxlength="10" v-model="numeroserie" required="required"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -187,12 +187,17 @@ select:-webkit-autofill:focus {
 
           <v-flex lg4="lg4">
             <!-- <v-layout align-center justify-center row fill-height> -->
-            <!-- <v-card class="cuerpoautocreate"> <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('image')"> <input type="hidden"
+            <v-card class="cuerpoautocreate"> 
+                <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('image')"> <input type="hidden"
                     name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
-                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> </v-flex> <v-flex text-lg-center="text-lg-center"> <v-text-field
-            required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> </v-flex> </v-card>-->
+                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> 
+                    </v-flex> 
+                    <!-- <v-flex text-lg-center="text-lg-center"> <v-text-field
+            required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> 
+            </v-flex>  -->
+            </v-card>
             <!-- <h1>Click on the image to upload new image</h1> -->
-            <template v-if="length > 1">
+            <!-- <template v-if="length > 1">
               <div style="border-radius: 10px 10px 10px 10px;" class>
                 <div class v-for="(file, index) in files" :key="index">
                   <img :src="file.url" @click="uploadImage">
@@ -205,14 +210,14 @@ select:-webkit-autofill:focus {
                   <img :src="files[0].url" @click="uploadImage">
                 </div>
               </div>
-            </template>
-            <input
+            </template> -->
+            <!-- <input
               type="file"
               multiple
               accpet
               ref="uploadFileReference"
               @change="uploadFileReference"
-            >
+            > -->
             <!-- </v-layout> -->
           </v-flex>
         </v-layout>
@@ -257,13 +262,35 @@ select:-webkit-autofill:focus {
 
                 <v-flex xs12 sm6 md3>
                   <label>Contrato</label>
-                  <v-text-field maxlength="20" v-model="contrato" required="required"></v-text-field>
+                  <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm6 md3>
+                <v-flex lg3="lg3">
+                  <v-menu
+                    :close-on-content-click="false"
+                    v-model="menu2"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      slot="activator"
+                      v-model="fechadepago"
+                      label="Fecha de Pago"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker v-model="fechadepago" @input="menu2 = false"></v-date-picker>
+                  </v-menu>
+                </v-flex>
+
+                <!-- <v-flex xs12 sm6 md3>
                   <label>Fecha de pago</label>
                   <v-text-field maxlength="20" v-model="fechadepago" required="required"></v-text-field>
-                </v-flex>
+                </v-flex> -->
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
             </v-card>
@@ -301,28 +328,6 @@ select:-webkit-autofill:focus {
                     <v-date-picker v-model="renovacion_soat" @input="menu1 = false"></v-date-picker>
                   </v-menu>
                 </v-flex>
-
-                <!-- <v-flex lg3="lg3">
-                  <v-menu
-                    :close-on-content-click="false"
-                    v-model="menu2"
-                    :nudge-right="40"
-                    lazy="lazy"
-                    transition="scale-transition"
-                    offset-y="offset-y"
-                    full-width="full-width"
-                    min-width="290px"
-                  >
-                    <v-text-field
-                      slot="activator"
-                      v-model="lunas_polari"
-                      label="Lunas Polariza"
-                      prepend-icon="event"
-                      readonly="readonly"
-                    ></v-text-field>
-                    <v-date-picker v-model="lunas_polari" @input="menu2 = false"></v-date-picker>
-                  </v-menu>
-                </v-flex>-->
 
                 <v-flex lg3="lg3">
                   <v-menu
@@ -551,7 +556,7 @@ export default {
     texto: "",
     auto1: "/img/img_212915.png",
     renovacion_soat: new Date().toISOString().substr(0, 10),
-    lunas_polari: new Date().toISOString().substr(0, 10),
+    fechadepago: new Date().toISOString().substr(0, 10),
     gps: new Date().toISOString().substr(0, 10),
     inspec_tecnica: new Date().toISOString().substr(0, 10),
     poliza_de_seguro: new Date().toISOString().substr(0, 10),
@@ -631,6 +636,9 @@ export default {
     fechainicioauto: "",
     fechafinauto: "",
     fechadepago: "",
+    carroceria: "",
+    numeromotor: "",
+    numeroserie: "",
     estado: 0,
     disponible: 1,
     csrf: document
@@ -777,7 +785,10 @@ export default {
             fechafinauto: new Date().toISOString().substr(0, 10),
             fechadepago: this.fechadepago,
             estado: this.estado,
-            disponible: this.disponible
+            disponible: this.disponible,
+            carroceria: this.carroceria,
+            numeromotor: this.numeromotor,
+            numeroserie: this.numeroserie
           })
           .then(response => {
             console.log(response);

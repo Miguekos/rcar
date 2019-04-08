@@ -48,6 +48,9 @@ class CreateAutosTable extends Migration
             $table->integer('estado')->nullable();
             $table->integer('disponible')->nullable();
             $table->date('fechadepago')->nullable();
+            $table->string('carroceria')->nullable();
+            $table->string('numeromotor')->nullable();
+            $table->string('numeroserie')->nullable();
             $table->timestamps();
         });
     }
