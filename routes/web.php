@@ -68,6 +68,9 @@ Route::group(['prefix' => 'v1.0'], function () {
 });
 
 
+// Colores
+Route::get('/color','ColorController@indexapi');
+Route::post('color', 'ColorController@storeapi');
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::get('dashboard', 'DashboardController@dashboard')->name('dashboard');

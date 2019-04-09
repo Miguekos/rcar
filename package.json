@@ -22,6 +22,7 @@
     "dependencies": {
         "chart.js": "^2.7.3",
         "element-ui": "^2.7.2",
+        "fs-web": "^1.0.1",
         "highcharts-vue": "^1.2.0",
         "material-components-web": "^0.41.1",
         "material-design-icons-iconfont": "^4.0.3",

@@ -18,6 +18,19 @@ select:-webkit-autofill:focus {
 
 <template>
   <div>
+    <v-layout row justify-center>
+      <v-dialog class="px-3 py-3" v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="">Agregar Color</v-card-title>
+          <v-text-field class="px-3 py-3" name="name" label="Nuevo Color" v-model="nuevocolor"></v-text-field>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red darken-1" flat="flat" @click="dialog = false">Cancelar</v-btn>
+            <v-btn color="green darken-1" flat="flat" @click="addColor()">Guardar</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
     <v-snackbar
       v-model="snackbar"
       :bottom="y === 'bottom'"
@@ -54,6 +67,7 @@ select:-webkit-autofill:focus {
                     v-model="marca"
                     name="marca"
                     required="required"
+                    placeholder="Select..."
                   ></v-autocomplete>
                 </v-flex>
 
@@ -76,12 +90,24 @@ select:-webkit-autofill:focus {
                     item-value="name"
                     v-model="modelo"
                     required="required"
+                    placeholder="Select..."
                   ></v-autocomplete>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
                   <label>Color</label>
-                  <v-text-field maxlength="10" v-model="color" required="required"></v-text-field>
+                  <v-autocomplete
+                    @click:append-outer="dialog = true"
+                    append-outer-icon="add"
+                    :items="colores"
+                    item-text="name"
+                    item-value="name"
+                    v-model="color"
+                    placeholder="Select..."
+                    required
+                  ></v-autocomplete>
+                  <!-- <label>Color</label>
+                  <v-text-field maxlength="10" v-model="colores" required="required"></v-text-field>-->
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -122,7 +148,13 @@ select:-webkit-autofill:focus {
 
                 <v-flex xs12 sm6 md3>
                   <label>Carroceria</label>
-                  <v-text-field maxlength="10" v-model="carroceria" required="required"></v-text-field>
+                  <v-autocomplete
+                    :items="carrocerias"
+                    item-text="name"
+                    item-value="name"
+                    v-model="carroceria"
+                    required="required"
+                  ></v-autocomplete>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -138,17 +170,6 @@ select:-webkit-autofill:focus {
                 <v-flex xs12 sm6 md3>
                   <label>Kilometraje Inicial</label>
                   <v-text-field maxlength="10" v-model="km_inicial" required="required"></v-text-field>
-                </v-flex>
-
-                <v-flex xs12 sm6 md3>
-                  <label>Octanaje</label>
-                  <v-autocomplete
-                    :items="autooctanaje"
-                    item-text="name"
-                    item-value="name"
-                    v-model="octanaje"
-                    required="required"
-                  ></v-autocomplete>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -287,26 +308,26 @@ select:-webkit-autofill:focus {
                     ref="uploadFileReference"
                     @change="uploadFileReference"
                   >
-                </v-flex> -->
-                  <!-- <label>Contrato</label> -->
-                  <!-- <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field> -->
-                  <!-- <template> -->
-                    <!-- <label for>Contrato</label> -->
-                    <!-- <div style="border-radius: 10px 10px 10px 10px;" class> -->
-                      <!-- <div class> -->
-                        <!-- <img :src="files[1].url" @click="uploadImage(1)"> -->
-                      <!-- </div> -->
-                    <!-- </div> -->
-                  <!-- </template> -->
-                  <!-- <v-text-field
+                </v-flex>-->
+                <!-- <label>Contrato</label> -->
+                <!-- <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field> -->
+                <!-- <template> -->
+                <!-- <label for>Contrato</label> -->
+                <!-- <div style="border-radius: 10px 10px 10px 10px;" class> -->
+                <!-- <div class> -->
+                <!-- <img :src="files[1].url" @click="uploadImage(1)"> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- </template> -->
+                <!-- <v-text-field
                     name="contrato"
                     type="file"
                     multiple
                     accpet
                     ref="uploadFileReference"
                     @change="uploadFileReference"
-                  ></v-text-field> -->
-                  
+                ></v-text-field>-->
+
                 <!-- </v-flex> -->
 
                 <v-flex lg3="lg3">
@@ -562,47 +583,41 @@ select:-webkit-autofill:focus {
 </template>
 
 <script>
+import Color from "./color.json";
 export default {
   data: () => ({
+    nuevocolor: "",
+    dialog: false,
     length: 1,
     idimage: 0,
     files: [
       {
         id: 1,
-        url:
-          "/img/placeholder-image.png",
-        fileUpload:
-          "/img/placeholder-image.png"
+        url: "/img/placeholder-image.png",
+        fileUpload: "/img/placeholder-image.png"
       },
       {
         id: 2,
-        url:
-          "/img/placeholder-image.png",
-        fileUpload:
-          "/img/placeholder-image.png"
+        url: "/img/placeholder-image.png",
+        fileUpload: "/img/placeholder-image.png"
       },
       {
         id: 3,
-        url:
-          "/img/placeholder-image.png",
-        fileUpload:
-          "/img/placeholder-image.png"
+        url: "/img/placeholder-image.png",
+        fileUpload: "/img/placeholder-image.png"
       },
       {
         id: 4,
-        url:
-          "/img/placeholder-image.png",
-        fileUpload:
-          "/img/placeholder-image.png"
+        url: "/img/placeholder-image.png",
+        fileUpload: "/img/placeholder-image.png"
       },
       {
         id: 5,
-        url:
-          "/img/placeholder-image.png",
-        fileUpload:
-          "/img/placeholder-image.png"
+        url: "/img/placeholder-image.png",
+        fileUpload: "/img/placeholder-image.png"
       }
     ],
+    colores: {},
     image: {},
     snackbar: false,
     colorsnackbar: "",
@@ -627,6 +642,20 @@ export default {
     automarca: {},
     automodelo: {},
     autoanio: {},
+    carrocerias: [
+      {
+        name: "Sedan"
+      },
+      {
+        name: "Coupe"
+      },
+      {
+        name: "Suv"
+      },
+      {
+        name: "Camioneta"
+      }
+    ],
     autotipogarantia: [
       {
         name: "Garantia A"
@@ -704,6 +733,35 @@ export default {
       .getAttribute("content")
   }),
   methods: {
+    addColor() {
+      console.log("Se agrego el color");
+      const color = this.nuevocolor;
+      if (color == " ") {
+        alert("Campo color no puede estar vacio");
+      } else {
+        axios
+          .post("/color", { name: color })
+          .then(response => {
+            this.getJsonFile();
+            alert("Seguardo correcta,met");
+            this.dialog = false
+          })
+          .cash(err => {
+            console.log(err);
+          });
+      }
+    },
+    getJsonFile() {
+      // this.colores = require(`./color.json`);
+      axios
+        .get("/color")
+        .then(response => {
+          this.colores = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     getanios() {
       axios
         .get("/anios")
@@ -852,6 +910,7 @@ export default {
     this.getanios();
     this.getmarcas();
     this.getmodelos();
+    this.getJsonFile();
   },
   watch: {
     date(val) {

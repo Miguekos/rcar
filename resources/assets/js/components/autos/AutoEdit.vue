@@ -18,6 +18,19 @@ select:-webkit-autofill:focus {
 
 <template>
   <div>
+    <v-layout row justify-center>
+      <v-dialog class="px-3 py-3" v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class>Agregar Color</v-card-title>
+          <v-text-field class="px-3 py-3" name="name" label="Nuevo Color" v-model="nuevocolor"></v-text-field>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red darken-1" flat="flat" @click="dialog = false">Cancelar</v-btn>
+            <v-btn color="green darken-1" flat="flat" @click="addColor()">Guardar</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
     <v-snackbar
       v-model="autoedit.snackbar"
       :bottom="y === 'bottom'"
@@ -81,7 +94,18 @@ select:-webkit-autofill:focus {
 
                 <v-flex xs12 sm6 md3>
                   <label>Color</label>
-                  <v-text-field maxlength="10" v-model="autoedit.color" required="required"></v-text-field>
+                  <v-autocomplete
+                    @click:append-outer="dialog = true"
+                    append-outer-icon="add"
+                    :items="colores"
+                    item-text="name"
+                    item-value="name"
+                    v-model="autoedit.color"
+                    placeholder="Select..."
+                    required="required"
+                  ></v-autocomplete>
+                  <!-- <label>Color</label>
+                  <v-text-field maxlength="10" v-model="colores" required="required"></v-text-field>-->
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -122,7 +146,13 @@ select:-webkit-autofill:focus {
 
                 <v-flex xs12 sm6 md3>
                   <label>Carroceria</label>
-                  <v-text-field maxlength="10" v-model="autoedit.carroceria" required="required"></v-text-field>
+                  <v-autocomplete
+                    :items="carrocerias"
+                    item-text="name"
+                    item-value="name"
+                    v-model="autoedit.carroceria"
+                    required="required"
+                  ></v-autocomplete>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -138,17 +168,6 @@ select:-webkit-autofill:focus {
                 <v-flex xs12 sm6 md3>
                   <label>Kilometraje Inicial</label>
                   <v-text-field maxlength="10" v-model="autoedit.km_inicial" required="required"></v-text-field>
-                </v-flex>
-
-                <v-flex xs12 sm6 md3>
-                  <label>Octanaje</label>
-                  <v-autocomplete
-                    :items="autooctanaje"
-                    item-text="name"
-                    item-value="name"
-                    v-model="autoedit.octanaje"
-                    required="required"
-                  ></v-autocomplete>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -562,7 +581,7 @@ select:-webkit-autofill:focus {
         <v-btn color="error">Cancelar</v-btn>
       </v-flex>
     </form>
-    <!-- <pre>{{ $data }}</pre> -->
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -624,6 +643,21 @@ export default {
     automarca: {},
     automodelo: {},
     autoanio: {},
+    colores: {},
+    carrocerias: [
+      {
+        name: "Sedan"
+      },
+      {
+        name: "Coupe"
+      },
+      {
+        name: "Suv"
+      },
+      {
+        name: "Camioneta"
+      }
+    ],
     autotipogarantia: [
       {
         name: "Garantia A"
@@ -636,14 +670,6 @@ export default {
       }
     ],
     autocombustible: [
-      {
-        name: "95"
-      },
-      {
-        name: "90"
-      }
-    ],
-    autooctanaje: [
       {
         name: "95"
       },
@@ -701,6 +727,35 @@ export default {
       .getAttribute("content")
   }),
   methods: {
+    addColor() {
+      console.log("Se agrego el color");
+      const color = this.nuevocolor;
+      if (color == " ") {
+        alert("Campo color no puede estar vacio");
+      } else {
+        axios
+          .post("/color", { name: color })
+          .then(response => {
+            this.getJsonFile();
+            alert("Seguardo correcta,met");
+            this.dialog = false;
+          })
+          .cash(err => {
+            console.log(err);
+          });
+      }
+    },
+    getJsonFile() {
+      // this.colores = require(`./color.json`);
+      axios
+        .get("/color")
+        .then(response => {
+          this.colores = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     getAutoEdit() {
       axios({
         method: "get",
@@ -829,6 +884,7 @@ export default {
     this.getanios();
     this.getmarcas();
     this.getmodelos();
+    this.getJsonFile();
   },
   watch: {
     date(val) {
