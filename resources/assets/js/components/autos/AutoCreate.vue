@@ -186,38 +186,48 @@ select:-webkit-autofill:focus {
           </v-flex>
 
           <v-flex lg4="lg4">
+            <!-- <v-flex lg4="lg4">
+                  <label for>Tarjeta</label>
+                <template>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class>
+                        <img :src="files[3].url" @click="uploadImage(3)">
+                      </div>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+            </v-flex>-->
             <!-- <v-layout align-center justify-center row fill-height> -->
-            <v-card class="cuerpoautocreate"> 
+            <!-- <v-card class="cuerpoautocreate"> 
                 <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('photo')"> <input type="hidden"
                     name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
                     size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> 
-                    </v-flex> 
-                    <!-- <v-flex text-lg-center="text-lg-center"> <v-text-field
+            </v-flex>-->
+            <!-- <v-flex text-lg-center="text-lg-center"> <v-text-field
             required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> 
-            </v-flex>  -->
-            </v-card>
+            </v-flex>-->
+            <!-- </v-card> -->
             <!-- <h1>Click on the image to upload new image</h1> -->
-            <!-- <template v-if="length > 1">
+            <template>
               <div style="border-radius: 10px 10px 10px 10px;" class>
-                <div class v-for="(file, index) in files" :key="index">
-                  <img :src="file.url" @click="uploadImage">
+                <div class>
+                  <img :src="files[0].url" @click="uploadImage(0)">
                 </div>
               </div>
             </template>
-            <template v-else>
-              <div style="border-radius: 10px 10px 10px 10px;" class>
-                <div class>
-                  <img :src="files[0].url" @click="uploadImage">
-                </div>
-              </div>
-            </template> -->
-            <!-- <input
+            <input
               type="file"
               multiple
               accpet
               ref="uploadFileReference"
               @change="uploadFileReference"
-            > -->
+            >
             <!-- </v-layout> -->
           </v-flex>
         </v-layout>
@@ -261,8 +271,23 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
-                  <label>Contrato</label>
-                  <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field>
+                  <!-- <label>Contrato</label> -->
+                  <!-- <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field> -->
+                  <template>
+                    <label for>Contrato</label>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <!-- <div class> -->
+                        <!-- <img :src="files[4].url" @click="uploadImage(4)"> -->
+                      <!-- </div> -->
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
                 </v-flex>
 
                 <v-flex lg3="lg3">
@@ -286,11 +311,6 @@ select:-webkit-autofill:focus {
                     <v-date-picker v-model="fechadepago" @input="menu2 = false"></v-date-picker>
                   </v-menu>
                 </v-flex>
-
-                <!-- <v-flex xs12 sm6 md3>
-                  <label>Fecha de pago</label>
-                  <v-text-field maxlength="20" v-model="fechadepago" required="required"></v-text-field>
-                </v-flex> -->
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
             </v-card>
@@ -420,81 +440,56 @@ select:-webkit-autofill:focus {
               >
                 <v-flex lg4="lg4">
                   <label for>Tarjeta</label>
-                  <template v-if="length > 2">
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class v-for="(file, index) in files" :key="index">
-                        <img :src="file.url" @click="uploadImage">
-                      </div>
-                    </div>
-                  </template>
-                  <template v-else>
+                  <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[0].url" @click="uploadImage">
+                        <img :src="files[1].url" @click="uploadImage(1)">
                       </div>
                     </div>
                   </template>
                   <input
-                    name="photo"
                     type="file"
                     multiple
                     accpet
                     ref="uploadFileReference"
                     @change="uploadFileReference"
                   >
-                </v-flex>
-                <v-flex lg4="lg4">
-                  <label for>SOAT</label>
-                  <template v-if="length > 3">
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class v-for="(file, index) in files" :key="index">
-                        <img :src="file.url" @click="uploadImage">
-                      </div>
-                    </div>
-                  </template>
-                  <template v-else>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[0].url" @click="uploadImage">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    name="photo"
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                  >
-                  <!-- </v-layout> -->
                 </v-flex>
 
                 <v-flex lg4="lg4">
-                  <label for>Permiso de Lunas</label>
-                  <template v-if="length > 4">
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class v-for="(file, index) in files" :key="index">
-                        <img :src="file.url" @click="uploadImage">
-                      </div>
-                    </div>
-                  </template>
-                  <template v-else>
+                  <label for>Tarjeta</label>
+                  <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[0].url" @click="uploadImage">
+                        <img :src="files[2].url" @click="uploadImage(2)">
                       </div>
                     </div>
                   </template>
                   <input
-                    name="photo"
                     type="file"
                     multiple
                     accpet
                     ref="uploadFileReference"
                     @change="uploadFileReference"
                   >
-                  <!-- </v-layout> -->
+                </v-flex>
+
+                <v-flex lg4="lg4">
+                  <label for>Tarjeta</label>
+                  <template>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class>
+                        <img :src="files[3].url" @click="uploadImage(3)">
+                      </div>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
                 </v-flex>
               </v-layout>
             </v-card>
@@ -533,20 +528,35 @@ select:-webkit-autofill:focus {
 export default {
   data: () => ({
     length: 1,
+    idimage: 0,
     files: [
       {
         id: 1,
-        url: "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+        url:
+          "/img/placeholder-image.png",
+        fileUpload:
+          "/img/placeholder-image.png"
       },
       {
         id: 2,
         url:
-          "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+          "/img/placeholder-image.png",
+        fileUpload:
+          "/img/placeholder-image.png"
       },
       {
         id: 3,
         url:
-          "https://utmsi.utexas.edu/components/com_easyblog/themes/wireframe/images/placeholder-image.png"
+          "/img/placeholder-image.png",
+        fileUpload:
+          "/img/placeholder-image.png"
+      },
+      {
+        id: 4,
+        url:
+          "/img/placeholder-image.png",
+        fileUpload:
+          "/img/placeholder-image.png"
       }
     ],
     image: {},
@@ -633,8 +643,9 @@ export default {
     inspec_tecnica: "",
     poliza_de_seguro: "",
     imagen1: "/img/img_212915.png",
-    imagen2: "",
-    imagen3: "",
+    imagen2: false,
+    imagen3: false,
+    imagen4: false,
     comentarios: "",
     fechainicioauto: "",
     fechafinauto: "",
@@ -682,33 +693,24 @@ export default {
           console.log(error);
         });
     },
-    uploadImage() {
+    uploadImage(idx) {
       this.$refs.uploadFileReference.click();
+      this.idimage = idx;
     },
     uploadFileReference(e) {
-      console.log(e);
       let files = e.target.files || e.dataTransfer.files;
       this.length = files.length;
-      this.subirimagen(files);
-        this.showImage(files);
-      this.subir(files);
-      console.log("FILASSS");
-      
-      console.log(files);
+      this.showImage(files);
     },
     showImage(files) {
-      // if (files.length > 1) {
-      this.files = [];
-      /** Solution provided by Chem **/
       const test = Array.from(files).forEach((file, idx) => {
+        console.log(idx);
         const fileReader = new FileReader();
         const getResult = new Promise(resolve => {
           fileReader.onload = e => {
-              this.subirimagen(e.target.result);
-            this.files.push({
-              id: idx,
-              url: e.target.result
-            });
+            const idI = this.idimage;
+            this.files[idI].url = e.target.result;
+            this.subirimagen(e.target.result);
           };
         });
 
@@ -718,44 +720,17 @@ export default {
         });
       });
     },
-    setImage: function(file) {
-      this.hasImage = true;
-      this.image = file;
-      this.subir(file);
-    },
-    subir(item) {
-        console.log("Abajo Items");
-        
-      console.log(item);
-      let form = document.getElementById("subir");
-      const formData = new FormData(item);
-      console.log("Abajo el formData");
-      console.log(formData);
+    subirimagen(image) {
       axios
-        .post("/foto", formData)
+        .post("/upload", { base64: image })
         .then(response => {
-          console.log("Abajo el request de subir la foto");
           console.log(response);
-          //   this.image = `/images/${response.data}`;
-          //   this.imagen1 = `/images/${response.data}`;
+          const idI = this.idimage;
+          this.files[idI].fileUpload = `/images/${response.data}`;
         })
         .catch(error => {
           console.log(error);
-          // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
         });
-    },
-        subirimagen (image) {
-            console.log("imagen para subir");
-            console.log(image);
-      axios.post('/upload', {base64: image})
-          .then(response => {
-            console.log(response)
-            // this.image = `/images/${response.data}`;
-          })
-          .catch(error => {
-            console.log(error)
-            // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
-          })
     },
     alerta(msj, color) {
       this.colorsnackbar = color;
@@ -797,9 +772,10 @@ export default {
             gps: this.gps,
             inspec_tecnica: this.inspec_tecnica,
             poliza_de_seguro: this.poliza_de_seguro,
-            imagen1: this.imagen1,
-            imagen2: this.imagen2,
-            imagen3: this.imagen3,
+            imagen1: this.files[0].fileUpload,
+            imagen2: this.files[1].fileUpload,
+            imagen3: this.files[2].fileUpload,
+            imagen4: this.files[3].fileUpload,
             comentarios: this.comentarios,
             fechainicioauto: new Date().toISOString().substr(0, 10),
             fechafinauto: new Date().toISOString().substr(0, 10),
