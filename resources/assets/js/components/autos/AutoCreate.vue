@@ -270,15 +270,14 @@ select:-webkit-autofill:focus {
                   <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
                 </v-flex>
 
-                <v-flex xs12 sm6 md3>
-                  <!-- <label>Contrato</label> -->
-                  <!-- <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field> -->
+                <!-- <v-flex xs12 sm6 md3>
+                  <v-flex lg4="lg4">
+                  <label for>Contrato</label>
                   <template>
-                    <label for>Contrato</label>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <!-- <div class> -->
-                        <!-- <img :src="files[4].url" @click="uploadImage(4)"> -->
-                      <!-- </div> -->
+                      <div class>
+                        <img :src="files[1].url" @click="uploadImage(1)">
+                      </div>
                     </div>
                   </template>
                   <input
@@ -288,7 +287,27 @@ select:-webkit-autofill:focus {
                     ref="uploadFileReference"
                     @change="uploadFileReference"
                   >
-                </v-flex>
+                </v-flex> -->
+                  <!-- <label>Contrato</label> -->
+                  <!-- <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field> -->
+                  <!-- <template> -->
+                    <!-- <label for>Contrato</label> -->
+                    <!-- <div style="border-radius: 10px 10px 10px 10px;" class> -->
+                      <!-- <div class> -->
+                        <!-- <img :src="files[1].url" @click="uploadImage(1)"> -->
+                      <!-- </div> -->
+                    <!-- </div> -->
+                  <!-- </template> -->
+                  <!-- <v-text-field
+                    name="contrato"
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  ></v-text-field> -->
+                  
+                <!-- </v-flex> -->
 
                 <v-flex lg3="lg3">
                   <v-menu
@@ -457,7 +476,7 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex lg4="lg4">
-                  <label for>Tarjeta</label>
+                  <label for>SOAT</label>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
@@ -475,11 +494,29 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex lg4="lg4">
-                  <label for>Tarjeta</label>
+                  <label for>Lunas</label>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
                         <img :src="files[3].url" @click="uploadImage(3)">
+                      </div>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+                </v-flex>
+
+                <v-flex lg4="lg4">
+                  <label for>Contrato</label>
+                  <template>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                      <div class>
+                        <img :src="files[4].url" @click="uploadImage(4)">
                       </div>
                     </div>
                   </template>
@@ -520,7 +557,7 @@ select:-webkit-autofill:focus {
         <v-btn color="error">Cancelar</v-btn>
       </v-flex>
     </form>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre> -->
   </div>
 </template>
 
@@ -553,6 +590,13 @@ export default {
       },
       {
         id: 4,
+        url:
+          "/img/placeholder-image.png",
+        fileUpload:
+          "/img/placeholder-image.png"
+      },
+      {
+        id: 5,
         url:
           "/img/placeholder-image.png",
         fileUpload:
@@ -711,6 +755,8 @@ export default {
             const idI = this.idimage;
             this.files[idI].url = e.target.result;
             this.subirimagen(e.target.result);
+            this.alerta("Archivo cargado correctamente.!", "green");
+            this.snackbar = true;
           };
         });
 
@@ -766,7 +812,7 @@ export default {
             precio_por_dia: this.precio_por_dia,
             garantia: this.garantia,
             tipo_garantia: this.tipo_garantia,
-            contrato: this.contrato,
+            contrato: this.files[4].fileUpload,
             renovacion_soat: this.renovacion_soat,
             lunas_polari: this.lunas_polari,
             gps: this.gps,
@@ -803,9 +849,9 @@ export default {
     }
   },
   mounted() {
-    // this.getanios();
-    // this.getmarcas();
-    // this.getmodelos();
+    this.getanios();
+    this.getmarcas();
+    this.getmodelos();
   },
   watch: {
     date(val) {

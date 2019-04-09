@@ -201,7 +201,7 @@ button:hover {
             <v-flex xs1>
             </v-flex>
             <v-flex xs3>
-              <v-avatar size="70%">
+              <v-avatar tile="false" size="100%">
                 <v-img :src="props.item.imagen1"></v-img>
                 <!-- <v-img src="loginnew/images/logo.png"></v-img> -->
               </v-avatar>

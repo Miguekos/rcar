@@ -31,7 +31,7 @@ class CreateAutosTable extends Migration
             $table->string('octanaje')->nullable();
             $table->float('pago_afi_men')->nullable();
             $table->float('precio_por_dia')->nullable();
-            $table->float('garantia')->nullable();
+            $table->string('garantia')->nullable();
             $table->string('tipo_garantia')->nullable();
             $table->string('contrato')->nullable();
             $table->date('renovacion_soat')->nullable();
