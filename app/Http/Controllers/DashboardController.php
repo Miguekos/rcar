@@ -42,7 +42,71 @@ class DashboardController extends Controller
 
 
   public function upload(Request $request)
+  // public function upload()
   {
+
+    // return $request->base64;
+
+    // $data = Input::all();
+    // $png_url = "product-".time().".png";
+    // $path = public_path() . "/img/designs/" . $png_url;
+
+    // Image::make(file_get_contents($request->base64))->save($path);
+    // $response = array(
+    //     'status' => 'success',
+    // );
+    // return Response::json( $response  );
+
+    // if ($request->hasFile('base64')){
+    //   return "El archivo se llama file";
+    // }else{
+    //   return "No se llam nada";
+    // }
+
+
+    // $parametre =$request->all();
+    // $name = "product-".time().".png";
+    // $image = base64_encode(file_get_contents($request->base64));
+    // $image->move(public_path() . '/images/', $name);
+    // return $name; 
+
+
+
+    // $file = $request->base64;
+    // $name = "product-".time().".png";
+    // $file->move(public_path() . '/images/', $name);
+    // return $name;
+    // $image = base64_encode(file_get_contents($request->base64)); // your base64 encoded
+    // return $image;
+    // $base_to_php = explode(',', $request->base64);
+    // $data = $base_to_php[1]; // BBBFBfj42Pj4....
+    // return $data;
+
+    
+    // $pos  = strpos($request->base64, ';');
+    // $type = explode(':', substr($request->base64, 0, $pos))[1];
+    
+    $image = base64_encode(file_get_contents($request->base64)); // your base64 encoded
+    $extension = explode('/', mime_content_type($request->base64))[1];
+    $image = str_replace('data:image/png;base64,', '', $image);
+    $image = str_replace(' ', '+', $image);
+    $imageName = str_random(20) . '.' . $extension;
+    \File::put(public_path() . '/images/' . $imageName, base64_decode($image));
+    return $imageName;
+    
+    // if ($request->hasFile('image')) {
+    //     if($request->file('image')->isValid()) {
+    //         try {
+    //             $file = $request->file('image');
+    //             $image = base64_encode($file);
+    //             echo $image;
+    //         } catch (FileNotFoundException $e) {
+    //             echo "catch";
+
+    //         }
+    //     }
+    //   }
+
     // $files = $request->file('file');
     // return $files;
     // if (!empty($files)) {
@@ -51,19 +115,25 @@ class DashboardController extends Controller
     //   }
     // }
 
-    if ($request->hasFile('image')) {
-      $image = $request->file('image');
-      $name = time().'.'.$image->getClientOriginalExtension();
-      $destinationPath = storage_path('/app/images');
-      $image->move($destinationPath, $name);
-      return response()->json(['data'=>"image is uploaded"]);
-    }
+    // $image = $request->image;  // your base64 encoded
+    //     $image = str_replace('data:image/png;base64,', '', $image);
+    //     $image = str_replace(' ', '+', $image);
+    //     $imageName = str_random(10).'.'.'png';
+    //     \File::put(storage_path(). '/' . $imageName, base64_decode($image));
+
+    // if ($request->hasFile('image')) {
+    //   $image = $request->file('image');
+    //   $name = time().'.'.$image->getClientOriginalExtension();
+    //   $destinationPath = storage_path('/app/images');
+    //   $image->move($destinationPath, $name);
+    //   return response()->json(['data'=>"image is uploaded"]);
+    // }
   }
 
 
   public function updatePhoto(Request $request)
   {
-    return $request;
+    // return $request;
     // if ($request->hasFile('files')){
     //   return "El archivo se llama file";
     // }else{
@@ -78,10 +148,10 @@ class DashboardController extends Controller
     // $file->move(public_path(). $destinationPath, $filename);
     // $user->avatar = $destinationPath . $filename;
 
-    // $file = $request->file('photo');
-    // $name = time() . $file->getClientOriginalName();
-    // $file->move(public_path() . '/images/', $name);
-    // return $name;
+    $file = $request->file('photo');
+    $name = time() . $file->getClientOriginalName();
+    $file->move(public_path() . '/images/', $name);
+    return $name;
 
     // $validator = Validator::make($request->all(), [
     // 'namedb' => 'unique:campas',

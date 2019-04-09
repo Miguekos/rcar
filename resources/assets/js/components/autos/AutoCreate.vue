@@ -188,8 +188,8 @@ select:-webkit-autofill:focus {
           <v-flex lg4="lg4">
             <!-- <v-layout align-center justify-center row fill-height> -->
             <v-card class="cuerpoautocreate"> 
-                <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('image')"> <input type="hidden"
-                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
+                <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('photo')"> <input type="hidden"
+                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
                     size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> 
                     </v-flex> 
                     <!-- <v-flex text-lg-center="text-lg-center"> <v-text-field
@@ -435,6 +435,7 @@ select:-webkit-autofill:focus {
                     </div>
                   </template>
                   <input
+                    name="photo"
                     type="file"
                     multiple
                     accpet
@@ -459,6 +460,7 @@ select:-webkit-autofill:focus {
                     </div>
                   </template>
                   <input
+                    name="photo"
                     type="file"
                     multiple
                     accpet
@@ -485,6 +487,7 @@ select:-webkit-autofill:focus {
                     </div>
                   </template>
                   <input
+                    name="photo"
                     type="file"
                     multiple
                     accpet
@@ -522,7 +525,7 @@ select:-webkit-autofill:focus {
         <v-btn color="error">Cancelar</v-btn>
       </v-flex>
     </form>
-    <!-- <pre>{{ $data }}</pre> -->
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -686,8 +689,11 @@ export default {
       console.log(e);
       let files = e.target.files || e.dataTransfer.files;
       this.length = files.length;
+      this.subirimagen(files);
         this.showImage(files);
       this.subir(files);
+      console.log("FILASSS");
+      
       console.log(files);
     },
     showImage(files) {
@@ -698,6 +704,7 @@ export default {
         const fileReader = new FileReader();
         const getResult = new Promise(resolve => {
           fileReader.onload = e => {
+              this.subirimagen(e.target.result);
             this.files.push({
               id: idx,
               url: e.target.result
@@ -720,7 +727,7 @@ export default {
         console.log("Abajo Items");
         
       console.log(item);
-      //   let form = document.getElementById("subir");
+      let form = document.getElementById("subir");
       const formData = new FormData(item);
       console.log("Abajo el formData");
       console.log(formData);
@@ -736,6 +743,19 @@ export default {
           console.log(error);
           // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
         });
+    },
+        subirimagen (image) {
+            console.log("imagen para subir");
+            console.log(image);
+      axios.post('/upload', {base64: image})
+          .then(response => {
+            console.log(response)
+            // this.image = `/images/${response.data}`;
+          })
+          .catch(error => {
+            console.log(error)
+            // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
+          })
     },
     alerta(msj, color) {
       this.colorsnackbar = color;
@@ -807,9 +827,9 @@ export default {
     }
   },
   mounted() {
-    this.getanios();
-    this.getmarcas();
-    this.getmodelos();
+    // this.getanios();
+    // this.getmarcas();
+    // this.getmodelos();
   },
   watch: {
     date(val) {
