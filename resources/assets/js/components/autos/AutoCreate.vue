@@ -573,7 +573,7 @@ select:-webkit-autofill:focus {
           <v-flex text-lg-left="text-lg-left" lg12="lg12">
             <label>Comentarios adicionales</label>
 
-            <v-textarea v-model="comentarios" label></v-textarea>
+            <v-textarea outline v-model="comentarios" label></v-textarea>
           </v-flex>
         </v-layout>
       </v-container>

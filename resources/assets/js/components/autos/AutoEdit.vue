@@ -104,8 +104,6 @@ select:-webkit-autofill:focus {
                     placeholder="Select..."
                     required="required"
                   ></v-autocomplete>
-                  <!-- <label>Color</label>
-                  <v-text-field maxlength="10" v-model="colores" required="required"></v-text-field>-->
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -200,43 +198,14 @@ select:-webkit-autofill:focus {
                   <v-text-field maxlength="10" v-model="autoedit.galones" required="required"></v-text-field>
                 </v-flex>
               </v-layout>
-              <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
             </v-card>
           </v-flex>
 
           <v-flex lg4="lg4">
-            <!-- <v-flex lg4="lg4">
-                  <label for>Tarjeta</label>
-                <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[3].url" @click="uploadImage(3)">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                  >
-            </v-flex>-->
-            <!-- <v-layout align-center justify-center row fill-height> -->
-            <!-- <v-card class="cuerpoautocreate"> 
-                <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('photo')"> <input type="hidden"
-                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
-                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> 
-            </v-flex>-->
-            <!-- <v-flex text-lg-center="text-lg-center"> <v-text-field
-            required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> 
-            </v-flex>-->
-            <!-- </v-card> -->
-            <!-- <h1>Click on the image to upload new image</h1> -->
             <template>
               <div style="border-radius: 10px 10px 10px 10px;" class>
                 <div class>
-                  <img :src="files[0].url" @click="uploadImage(0)">
+                  <img height="200px" :src="files[0].url" @click="uploadImage(0)">
                 </div>
               </div>
             </template>
@@ -247,7 +216,6 @@ select:-webkit-autofill:focus {
               ref="uploadFileReference"
               @change="uploadFileReference"
             >
-            <!-- </v-layout> -->
           </v-flex>
         </v-layout>
       </v-container>
@@ -292,45 +260,6 @@ select:-webkit-autofill:focus {
                     required="required"
                   ></v-text-field>
                 </v-flex>
-
-                <!-- <v-flex xs12 sm6 md3>
-                  <v-flex lg4="lg4">
-                  <label for>Contrato</label>
-                  <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[1].url" @click="uploadImage(1)">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                  >
-                </v-flex>-->
-                <!-- <label>Contrato</label> -->
-                <!-- <v-text-field maxlength="20" type="file" v-model="autoedit.contrato" required="required"></v-text-field> -->
-                <!-- <template> -->
-                <!-- <label for>Contrato</label> -->
-                <!-- <div style="border-radius: 10px 10px 10px 10px;" class> -->
-                <!-- <div class> -->
-                <!-- <img :src="files[1].url" @click="uploadImage(1)"> -->
-                <!-- </div> -->
-                <!-- </div> -->
-                <!-- </template> -->
-                <!-- <v-text-field
-                    name="contrato"
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                ></v-text-field>-->
-
-                <!-- </v-flex> -->
 
                 <v-flex lg3="lg3">
                   <v-menu
@@ -456,6 +385,28 @@ select:-webkit-autofill:focus {
                     <v-date-picker v-model="autoedit.poliza_de_seguro" @input="menu5 = false"></v-date-picker>
                   </v-menu>
                 </v-flex>
+
+                <v-flex lg3="lg3">
+                  <label for>Contrato</label>
+                  <v-btn
+                    :color="colorboton"
+                    class="white--text"
+                    @click="loader = 'loading3', uploadImage(4)"
+                  >
+                    {{ namecontrato }}
+                    <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
+                  <template>
+                    <div style="border-radius: 10px 10px 10px 10px;" class></div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+                </v-flex>
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
             </v-card>
@@ -485,7 +436,7 @@ select:-webkit-autofill:focus {
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[1].url" @click="uploadImage(1)">
+                        <img height="200px" :src="files[1].url" @click="uploadImage(1)">
                       </div>
                     </div>
                   </template>
@@ -503,7 +454,7 @@ select:-webkit-autofill:focus {
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[2].url" @click="uploadImage(2)">
+                        <img height="200px" :src="files[2].url" @click="uploadImage(2)">
                       </div>
                     </div>
                   </template>
@@ -517,11 +468,11 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex lg4="lg4">
-                  <label for>Lunas</label>
+                  <label for>Permisos de Lunas</label>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[3].url" @click="uploadImage(3)">
+                        <img height="200px" :src="files[3].url" @click="uploadImage(3)">
                       </div>
                     </div>
                   </template>
@@ -531,25 +482,6 @@ select:-webkit-autofill:focus {
                     accpet
                     ref="uploadFileReference"
                     @change="uploadFileReference"
-                  >
-                </v-flex>
-
-                <v-flex lg4="lg4">
-                  <label for>Contrato</label>
-                  <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[4].url" @click="uploadImage(4)">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                    :v-model="autoedit.contrato"
                   >
                 </v-flex>
               </v-layout>
@@ -571,7 +503,7 @@ select:-webkit-autofill:focus {
           <v-flex text-lg-left="text-lg-left" lg12="lg12">
             <label>Comentarios adicionales</label>
 
-            <v-textarea v-model="autoedit.comentarios" label></v-textarea>
+            <v-textarea outline v-model="autoedit.comentarios" label></v-textarea>
           </v-flex>
         </v-layout>
       </v-container>
@@ -589,6 +521,10 @@ select:-webkit-autofill:focus {
 export default {
   props: ["info"],
   data: () => ({
+    nuevocolor: "",
+    colorboton: "red",
+    namecontrato: "Subir",
+    dialog: false,
     length: 1,
     idimage: 0,
     files: [
@@ -828,6 +764,9 @@ export default {
             this.subirimagen(e.target.result);
             this.alerta("Archivo cargado correctamente.!", "green");
             this.snackbar = true;
+            if (this.idimage == 4) {
+              (this.colorboton = "green"), (this.namecontrato = "Listo");
+            }
           };
         });
 
