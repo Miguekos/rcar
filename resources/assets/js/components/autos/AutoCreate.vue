@@ -21,7 +21,7 @@ select:-webkit-autofill:focus {
     <v-layout row justify-center>
       <v-dialog class="px-3 py-3" v-model="dialog" max-width="290">
         <v-card>
-          <v-card-title class="">Agregar Color</v-card-title>
+          <v-card-title class>Agregar Color</v-card-title>
           <v-text-field class="px-3 py-3" name="name" label="Nuevo Color" v-model="nuevocolor"></v-text-field>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -454,6 +454,29 @@ select:-webkit-autofill:focus {
                     <v-date-picker v-model="poliza_de_seguro" @input="menu5 = false"></v-date-picker>
                   </v-menu>
                 </v-flex>
+
+                <v-flex lg3="lg3">
+                  <label for>Contrato</label>
+                  <v-btn
+                      :color="colorboton"
+                      class="white--text"
+                      @click="loader = 'loading3', uploadImage(4)"
+                    >
+                      {{ namecontrato }}
+                      <v-icon right dark>cloud_upload</v-icon>
+                    </v-btn>
+                  <template>
+                    <div style="border-radius: 10px 10px 10px 10px;" class>
+                    </div>
+                  </template>
+                  <input
+                    type="file"
+                    multiple
+                    accpet
+                    ref="uploadFileReference"
+                    @change="uploadFileReference"
+                  >
+                </v-flex>
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
             </v-card>
@@ -531,24 +554,6 @@ select:-webkit-autofill:focus {
                     @change="uploadFileReference"
                   >
                 </v-flex>
-
-                <v-flex lg4="lg4">
-                  <label for>Contrato</label>
-                  <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[4].url" @click="uploadImage(4)">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                  >
-                </v-flex>
               </v-layout>
             </v-card>
           </v-flex>
@@ -587,6 +592,8 @@ import Color from "./color.json";
 export default {
   data: () => ({
     nuevocolor: "",
+    colorboton: "red",
+    namecontrato: "Subir",
     dialog: false,
     length: 1,
     idimage: 0,
@@ -744,7 +751,7 @@ export default {
           .then(response => {
             this.getJsonFile();
             alert("Seguardo correcta,met");
-            this.dialog = false
+            this.dialog = false;
           })
           .cash(err => {
             console.log(err);
@@ -815,6 +822,10 @@ export default {
             this.subirimagen(e.target.result);
             this.alerta("Archivo cargado correctamente.!", "green");
             this.snackbar = true;
+            if (this.idimage == 4) {
+              this.colorboton = "green",
+              this.namecontrato = "Listo"
+            }
           };
         });
 
