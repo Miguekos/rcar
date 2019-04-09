@@ -30,9 +30,7 @@ Vue.use(ImageUploader);
 Vue.component('v-chart', ECharts)
 
 
-
 Vue.component('otros-snackbar', require('./components/templates/Snackbar.vue'));
-
 // chart
 
 Vue.component('chart-randomchart', require('./components/chart/RandomChart.vue'));
