@@ -766,18 +766,7 @@ export default {
     descargar (archivo) {
       var pdf_descargar = this.files[archivo].fileUpload;
       var pdf_lista = pdf_descargar.slice(8);
-      // console.log(pdf_lista);
-      window.open(`/download/${pdf_lista}`, '_blank');
-      // axios
-      // .get(`/download/${this.files[archivo].fileUpload}`)
-      
-      // .then(response => {
-      //   console.log('archivo descargado');
-      // })
-      // .catch(err => {
-      //   console.log("Error");
-      // })
-      
+      window.open(`/download/${pdf_lista}`, '_blank');     
     },
     verImagen(imagen) {
       this.dialog1 = true

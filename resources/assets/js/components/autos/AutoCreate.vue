@@ -410,7 +410,7 @@ select:-webkit-autofill:focus {
                   <v-btn
                     :color="colorboton[4].abrir"
                     class="white--text"
-                    @click="loader = 'loading3', verImagen(4)"
+                    @click="loader = 'loading3', descargar(4)"
                   >
                     {{ abrirarchivos }}
                     <!-- <v-icon right dark>cloud_upload</v-icon> -->
@@ -766,6 +766,11 @@ export default {
       .getAttribute("content")
   }),
   methods: {
+    descargar (archivo) {
+      var pdf_descargar = this.files[archivo].fileUpload;
+      var pdf_lista = pdf_descargar.slice(8);
+      window.open(`/download/${pdf_lista}`, '_blank');     
+    },
     verImagen(imagen) {
       this.dialog1 = true
       this.veraarchivo = this.files[imagen].fileUpload
