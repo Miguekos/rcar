@@ -54,9 +54,6 @@ select:-webkit-autofill:focus {
               <v-flex class="titulosautocreate">
                 <h3>Informacion Basica</h3>
               </v-flex>
-
-              <!-- </v-card> -->
-              <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
               <v-layout row wrap py-4 px-4>
                 <v-flex xs12 sm6 md3>
                   <label>Marca</label>
@@ -106,8 +103,6 @@ select:-webkit-autofill:focus {
                     placeholder="Select..."
                     required
                   ></v-autocomplete>
-                  <!-- <label>Color</label>
-                  <v-text-field maxlength="10" v-model="colores" required="required"></v-text-field>-->
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -207,38 +202,10 @@ select:-webkit-autofill:focus {
           </v-flex>
 
           <v-flex lg4="lg4">
-            <!-- <v-flex lg4="lg4">
-                  <label for>Tarjeta</label>
-                <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[3].url" @click="uploadImage(3)">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                  >
-            </v-flex>-->
-            <!-- <v-layout align-center justify-center row fill-height> -->
-            <!-- <v-card class="cuerpoautocreate"> 
-                <v-flex text-lg-center="text-lg-center"> <v-form id="subir" @submit.prevent="subir('photo')"> <input type="hidden"
-                    name="MAX_FILE_SIZE" value="2000000"/> <v-text-field required="required" type="file" name="photo" @change="subir('auto1')"></v-text-field> <v-avatar tile="tile"
-                    size="70%" color="grey lighten-4"> <img :src="imagen1" alt="avatar"></v-avatar> </V-form> 
-            </v-flex>-->
-            <!-- <v-flex text-lg-center="text-lg-center"> <v-text-field
-            required="required" type="file" name="image" @change="subir('auto1')"></v-text-field> 
-            </v-flex>-->
-            <!-- </v-card> -->
-            <!-- <h1>Click on the image to upload new image</h1> -->
             <template>
               <div style="border-radius: 10px 10px 10px 10px;" class>
                 <div class>
-                  <img :src="files[0].url" @click="uploadImage(0)">
+                  <img height="200px" :src="files[0].url" @click="uploadImage(0)">
                 </div>
               </div>
             </template>
@@ -262,8 +229,6 @@ select:-webkit-autofill:focus {
               <v-flex class="titulosautocreate">
                 <h3>Informacion Financiera</h3>
               </v-flex>
-              <!-- </v-card> -->
-              <!-- <v-layout align-center="align-center" justify="justify" row="row" wrap="wrap" fill-height="fill-height"> -->
               <v-layout row wrap py-4 px-4>
                 <v-flex xs12 sm6 md3>
                   <label>Pago Afiliado Mensual</label>
@@ -290,45 +255,6 @@ select:-webkit-autofill:focus {
                   <label>Precio por dia</label>
                   <v-text-field maxlength="10" v-model="precio_por_dia" required="required"></v-text-field>
                 </v-flex>
-
-                <!-- <v-flex xs12 sm6 md3>
-                  <v-flex lg4="lg4">
-                  <label for>Contrato</label>
-                  <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
-                        <img :src="files[1].url" @click="uploadImage(1)">
-                      </div>
-                    </div>
-                  </template>
-                  <input
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                  >
-                </v-flex>-->
-                <!-- <label>Contrato</label> -->
-                <!-- <v-text-field maxlength="20" type="file" v-model="contrato" required="required"></v-text-field> -->
-                <!-- <template> -->
-                <!-- <label for>Contrato</label> -->
-                <!-- <div style="border-radius: 10px 10px 10px 10px;" class> -->
-                <!-- <div class> -->
-                <!-- <img :src="files[1].url" @click="uploadImage(1)"> -->
-                <!-- </div> -->
-                <!-- </div> -->
-                <!-- </template> -->
-                <!-- <v-text-field
-                    name="contrato"
-                    type="file"
-                    multiple
-                    accpet
-                    ref="uploadFileReference"
-                    @change="uploadFileReference"
-                ></v-text-field>-->
-
-                <!-- </v-flex> -->
 
                 <v-flex lg3="lg3">
                   <v-menu
@@ -506,7 +432,7 @@ select:-webkit-autofill:focus {
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[1].url" @click="uploadImage(1)">
+                        <img height="200px" :src="files[1].url" @click="uploadImage(1)">
                       </div>
                     </div>
                   </template>
@@ -524,7 +450,7 @@ select:-webkit-autofill:focus {
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[2].url" @click="uploadImage(2)">
+                        <img height="200px" :src="files[2].url" @click="uploadImage(2)">
                       </div>
                     </div>
                   </template>
@@ -542,7 +468,7 @@ select:-webkit-autofill:focus {
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <div class>
-                        <img :src="files[3].url" @click="uploadImage(3)">
+                        <img height="200px" :src="files[3].url" @click="uploadImage(3)">
                       </div>
                     </div>
                   </template>
