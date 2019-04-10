@@ -98,13 +98,14 @@ select:-webkit-autofill:focus {
 
                 <v-flex xs12 sm6 md3>
                   <label>Modelo</label>
-                  <v-autocomplete
+                  <!-- <v-autocomplete
                     :items="automodelo"
                     item-text="name"
                     item-value="name"
                     v-model="autoedit.modelo"
                     required="required"
-                  ></v-autocomplete>
+                  ></v-autocomplete> -->
+                  <v-text-field maxlength="10" v-model="autoedit.modelo" required="required"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6 md3>
@@ -152,10 +153,10 @@ select:-webkit-autofill:focus {
                   ></v-autocomplete>
                 </v-flex>
 
-                <v-flex xs12 sm6 md3>
+                <!-- <v-flex xs12 sm6 md3>
                   <label>Cilindrada</label>
                   <v-text-field maxlength="10" v-model="autoedit.cilindrada" required="required"></v-text-field>
-                </v-flex>
+                </v-flex> -->
 
                 <v-flex xs12 sm6 md3>
                   <label>Carroceria</label>
@@ -208,10 +209,10 @@ select:-webkit-autofill:focus {
                   ></v-switch>
                 </v-flex>
 
-                <v-flex xs12 sm6 md3>
+                <!-- <v-flex xs12 sm6 md3>
                   <label>Galones</label>
                   <v-text-field maxlength="10" v-model="autoedit.galones" required="required"></v-text-field>
-                </v-flex>
+                </v-flex> -->
               </v-layout>
             </v-card>
           </v-flex>
