@@ -31,6 +31,21 @@ select:-webkit-autofill:focus {
         </v-card>
       </v-dialog>
     </v-layout>
+
+    <v-layout row justify-center>
+      <v-dialog class="px-3 py-3" v-model="dialog1" max-width="300">
+        <v-card class="text-lg-center">
+          <v-card-title class>Archivo</v-card-title>
+          <img height="250px" :src="veraarchivo">
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red darken-1" flat="flat" @click="dialog1 = false">Salir</v-btn>
+            <!-- <v-btn color="green darken-1" flat="flat" @click="addColor()">Guardar</v-btn> -->
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
+
     <v-snackbar
       v-model="snackbar"
       :bottom="y === 'bottom'"
@@ -381,7 +396,7 @@ select:-webkit-autofill:focus {
                   </v-menu>
                 </v-flex>
 
-                <v-flex lg3="lg3">
+                <v-flex lg4="lg4">
                   <label for>Contrato</label>
                   <v-btn
                     :color="colorboton[4].name"
@@ -390,6 +405,14 @@ select:-webkit-autofill:focus {
                   >
                     {{ namecontrato }}
                     <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
+                  <v-btn
+                    :color="colorboton[4].abrir"
+                    class="white--text"
+                    @click="loader = 'loading3', verImagen(4)"
+                  >
+                    {{ abrirarchivos }}
+                    <!-- <v-icon right dark>cloud_upload</v-icon> -->
                   </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class></div>
@@ -436,6 +459,14 @@ select:-webkit-autofill:focus {
                     {{ namecontrato }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
+                  <v-btn
+                    :color="colorboton[1].abrir"
+                    class="white--text"
+                    @click="loader = 'loading3', verImagen(1)"
+                  >
+                    {{ abrirarchivos }}
+                    <!-- <v-icon right dark>cloud_upload</v-icon> -->
+                  </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <!-- <div class>
@@ -462,6 +493,14 @@ select:-webkit-autofill:focus {
                     {{ namecontrato }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
+                  <v-btn
+                    :color="colorboton[2].abrir"
+                    class="white--text"
+                    @click="loader = 'loading3', verImagen(2)"
+                  >
+                    {{ abrirarchivos }}
+                    <!-- <v-icon right dark>cloud_upload</v-icon> -->
+                  </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
                       <!-- <div class>
@@ -487,6 +526,14 @@ select:-webkit-autofill:focus {
                   >
                     {{ namecontrato }}
                     <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
+                  <v-btn
+                    :color="colorboton[3].abrir"
+                    class="white--text"
+                    @click="loader = 'loading3', verImagen(3)"
+                  >
+                    {{ abrirarchivos }}
+                    <!-- <v-icon right dark>cloud_upload</v-icon> -->
                   </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
@@ -541,25 +588,33 @@ import Color from "./color.json";
 export default {
   data: () => ({
     nuevocolor: "",
+    abrirarchivos: "Abrir",
+    veraarchivo: "",
     colorboton: [
       {
-        name: "red"
+        name: "red",
+        abrir: "blue"
       },
       {
-        name: "red"
+        name: "red",
+        abrir: "blue"
       },
       {
-        name: "red"
+        name: "red",
+        abrir: "blue"
       },
       {
-        name: "red"
+        name: "red",
+        abrir: "blue"
       },
       {
-        name: "red"
+        name: "red",
+        abrir: "blue"
       }
     ],
     namecontrato: "Subir",
     dialog: false,
+    dialog1: false,
     length: 1,
     idimage: 0,
     files: [
@@ -705,6 +760,10 @@ export default {
       .getAttribute("content")
   }),
   methods: {
+    verImagen(imagen) {
+      this.dialog1 = true
+      this.veraarchivo = this.files[imagen].fileUpload
+    },
     addColor() {
       console.log("Se agrego el color");
       const color = this.nuevocolor;
@@ -715,7 +774,6 @@ export default {
           .post("/color", { name: color })
           .then(response => {
             this.getJsonFile();
-            alert("Seguardo correcta,met");
             this.dialog = false;
           })
           .cash(err => {
