@@ -67,6 +67,8 @@ Route::group(['prefix' => 'v1.0'], function () {
 
 });
 
+// Descargar
+Route::get('/download/{file}' , 'DashboardController@downloadFile');
 
 // Colores
 Route::get('/color','ColorController@indexapi');

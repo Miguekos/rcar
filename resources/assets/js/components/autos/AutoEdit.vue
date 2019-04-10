@@ -409,13 +409,13 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(4)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[4].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
                     :color="colorboton[4].abrir"
                     class="white--text"
-                    @click="loader = 'loading3', verImagen(4)"
+                    @click="loader = 'loading3', descargar(4)"
                   >
                     {{ abrirarchivos }}
                     <!-- <v-icon right dark>cloud_upload</v-icon> -->
@@ -462,11 +462,11 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(1)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[1].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
-                    :color="colorboton[4].abrir"
+                    :color="colorboton[1].abrir"
                     class="white--text"
                     @click="loader = 'loading3', verImagen(1)"
                   >
@@ -496,7 +496,7 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(2)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[2].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
@@ -530,7 +530,7 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(3)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[3].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
@@ -600,26 +600,30 @@ export default {
     colorboton: [
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       }
     ],
-    namecontrato: "Subir",
     dialog: false,
     length: 1,
     idimage: 0,
@@ -759,6 +763,22 @@ export default {
       .getAttribute("content")
   }),
   methods: {
+    descargar (archivo) {
+      var pdf_descargar = this.files[archivo].fileUpload;
+      var pdf_lista = pdf_descargar.slice(8);
+      // console.log(pdf_lista);
+      window.open(`/download/${pdf_lista}`, '_blank');
+      // axios
+      // .get(`/download/${this.files[archivo].fileUpload}`)
+      
+      // .then(response => {
+      //   console.log('archivo descargado');
+      // })
+      // .catch(err => {
+      //   console.log("Error");
+      // })
+      
+    },
     verImagen(imagen) {
       this.dialog1 = true
       this.veraarchivo = this.files[imagen].fileUpload
@@ -863,9 +883,8 @@ export default {
             this.subirimagen(e.target.result);
             this.alerta("Archivo cargado correctamente.!", "green");
             this.snackbar = true;
-            if (this.idimage == 4) {
-              (this.colorboton = "green"), (this.namecontrato = "Listo");
-            }
+            this.colorboton[idI].name = "green",
+            this.colorboton[idI].nombreboton = "Listo";
           };
         });
 

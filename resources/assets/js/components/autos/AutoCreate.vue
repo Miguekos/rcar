@@ -404,7 +404,7 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(4)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[4].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
@@ -457,7 +457,7 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(1)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[1].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
@@ -491,7 +491,7 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(2)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[2].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
@@ -525,7 +525,7 @@ select:-webkit-autofill:focus {
                     class="white--text"
                     @click="loader = 'loading3', uploadImage(3)"
                   >
-                    {{ namecontrato }}
+                    {{ colorboton[3].nombreboton }}
                     <v-icon right dark>cloud_upload</v-icon>
                   </v-btn>
                   <v-btn
@@ -594,26 +594,31 @@ export default {
     colorboton: [
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
+
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       },
       {
         name: "red",
-        abrir: "blue"
+        abrir: "blue",
+        nombreboton: "Subir"
       }
     ],
-    namecontrato: "Subir",
     dialog: false,
     dialog1: false,
     length: 1,
@@ -846,8 +851,8 @@ export default {
             this.subirimagen(e.target.result);
             this.alerta("Archivo cargado correctamente.!", "green");
             this.snackbar = true;
-            (this.colorboton[idI].name = "green"),
-              (this.namecontrato = "Listo");
+            this.colorboton[idI].name = "green",
+            this.colorboton[idI].nombreboton = "Listo";
           };
         });
 

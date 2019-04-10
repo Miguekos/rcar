@@ -34,6 +34,14 @@ class DashboardController extends Controller
     return back()->with('flash', 'Se actualizo la contraseña correctamente');
   }
 
+  public function downloadFile($file)
+  {
+    $pathtoFile = public_path() . '/images/' . $file;
+    // $pathtoFile = public_path() . '/images/' . $file;
+    // return $pathtoFile;
+    return response()->download($pathtoFile);
+  }
+
 
   public function cambioclaveform()
   {
