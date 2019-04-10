@@ -205,7 +205,7 @@ select:-webkit-autofill:focus {
             <template>
               <div style="border-radius: 10px 10px 10px 10px;" class>
                 <div class>
-                  <img height="200px" :src="files[0].url" @click="uploadImage(0)">
+                  <img height="250px" :src="files[0].url" @click="uploadImage(0)">
                 </div>
               </div>
             </template>
@@ -384,16 +384,15 @@ select:-webkit-autofill:focus {
                 <v-flex lg3="lg3">
                   <label for>Contrato</label>
                   <v-btn
-                      :color="colorboton"
-                      class="white--text"
-                      @click="loader = 'loading3', uploadImage(4)"
-                    >
-                      {{ namecontrato }}
-                      <v-icon right dark>cloud_upload</v-icon>
-                    </v-btn>
+                    :color="colorboton[4].name"
+                    class="white--text"
+                    @click="loader = 'loading3', uploadImage(4)"
+                  >
+                    {{ namecontrato }}
+                    <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
                   <template>
-                    <div style="border-radius: 10px 10px 10px 10px;" class>
-                    </div>
+                    <div style="border-radius: 10px 10px 10px 10px;" class></div>
                   </template>
                   <input
                     type="file"
@@ -429,11 +428,19 @@ select:-webkit-autofill:focus {
               >
                 <v-flex lg4="lg4">
                   <label for>Tarjeta</label>
+                  <v-btn
+                    :color="colorboton[1].name"
+                    class="white--text"
+                    @click="loader = 'loading3', uploadImage(1)"
+                  >
+                    {{ namecontrato }}
+                    <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
+                      <!-- <div class>
                         <img height="200px" :src="files[1].url" @click="uploadImage(1)">
-                      </div>
+                      </div>-->
                     </div>
                   </template>
                   <input
@@ -447,11 +454,19 @@ select:-webkit-autofill:focus {
 
                 <v-flex lg4="lg4">
                   <label for>SOAT</label>
+                  <v-btn
+                    :color="colorboton[2].name"
+                    class="white--text"
+                    @click="loader = 'loading3', uploadImage(2)"
+                  >
+                    {{ namecontrato }}
+                    <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
+                      <!-- <div class>
                         <img height="200px" :src="files[2].url" @click="uploadImage(2)">
-                      </div>
+                      </div>-->
                     </div>
                   </template>
                   <input
@@ -465,11 +480,19 @@ select:-webkit-autofill:focus {
 
                 <v-flex lg4="lg4">
                   <label for>Lunas</label>
+                  <v-btn
+                    :color="colorboton[3].name"
+                    class="white--text"
+                    @click="loader = 'loading3', uploadImage(3)"
+                  >
+                    {{ namecontrato }}
+                    <v-icon right dark>cloud_upload</v-icon>
+                  </v-btn>
                   <template>
                     <div style="border-radius: 10px 10px 10px 10px;" class>
-                      <div class>
+                      <!-- <div class>
                         <img height="200px" :src="files[3].url" @click="uploadImage(3)">
-                      </div>
+                      </div>-->
                     </div>
                   </template>
                   <input
@@ -518,7 +541,23 @@ import Color from "./color.json";
 export default {
   data: () => ({
     nuevocolor: "",
-    colorboton: "red",
+    colorboton: [
+      {
+        name: "red"
+      },
+      {
+        name: "red"
+      },
+      {
+        name: "red"
+      },
+      {
+        name: "red"
+      },
+      {
+        name: "red"
+      }
+    ],
     namecontrato: "Subir",
     dialog: false,
     length: 1,
@@ -748,10 +787,8 @@ export default {
             this.subirimagen(e.target.result);
             this.alerta("Archivo cargado correctamente.!", "green");
             this.snackbar = true;
-            if (this.idimage == 4) {
-              this.colorboton = "green",
-              this.namecontrato = "Listo"
-            }
+            (this.colorboton[idI].name = "green"),
+              (this.namecontrato = "Listo");
           };
         });
 
