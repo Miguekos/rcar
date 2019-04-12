@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('nav')
-  <nav-bar titulo="Cliente" :user="{{ auth()->user() }}"></nav-bar>
+  <nav-bar titulo="Afiliado" :user="{{ auth()->user() }}"></nav-bar>
 @endsection
 
 @section('content')
   <v-container grid-list-xl>
-    <cliente-edit
+    <afiliado-edit
     :info="{{ $info }}">
-    </cliente-edit>
+    </afiliado-edit>
   </v-container>
 @endsection

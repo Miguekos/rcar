@@ -278,6 +278,7 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex lg3="lg3">
+                  <label>Fecha de Pago</label>
                   <v-menu
                     :close-on-content-click="false"
                     v-model="autoedit.menu2"
@@ -291,12 +292,20 @@ select:-webkit-autofill:focus {
                     <v-text-field
                       slot="activator"
                       v-model="autoedit.fechadepago"
-                      label="Fecha de Pago"
                       prepend-icon="event"
                       readonly="readonly"
                     ></v-text-field>
                     <v-date-picker v-model="autoedit.fechadepago" @input="menu2 = false"></v-date-picker>
                   </v-menu>
+                </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Asignar Afiliado</label>
+                  <v-autocomplete
+                    :items="afiliados"
+                    item-text="nombres"
+                    item-value="id"
+                    v-model="autoedit.afiliado_id"
+                  ></v-autocomplete>
                 </v-flex>
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
@@ -585,7 +594,7 @@ select:-webkit-autofill:focus {
         <v-btn color="error">Cancelar</v-btn>
       </v-flex>
     </form>
-    <!-- <pre>{{ $data }}</pre> -->
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -593,6 +602,8 @@ select:-webkit-autofill:focus {
 export default {
   props: ["info"],
   data: () => ({
+    afiliados: {},
+    afiliadoid: "",
     nuevocolor: "",
     dialog1: false,
     veraarchivo: "",
@@ -763,6 +774,17 @@ export default {
       .getAttribute("content")
   }),
   methods: {
+    getAfiliados (){
+      axios
+      .get(`/v1.0/afiliados`)
+      .then(response => {
+        console.log(response.data.afiliados);
+        this.afiliados = response.data.afiliados;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
     descargar (archivo) {
       var pdf_descargar = this.files[archivo].fileUpload;
       var pdf_lista = pdf_descargar.slice(8);
@@ -781,7 +803,7 @@ export default {
         axios
           .post("/color", { name: color })
           .then(response => {
-            this.getJsonFile();
+            this.getColor();
             this.dialog = false;
           })
           .cash(err => {
@@ -789,7 +811,7 @@ export default {
           });
       }
     },
-    getJsonFile() {
+    getColor() {
       // this.colores = require(`./color.json`);
       axios
         .get("/color")
@@ -930,7 +952,8 @@ export default {
     this.getanios();
     this.getmarcas();
     this.getmodelos();
-    this.getJsonFile();
+    this.getColor();
+    this.getAfiliados();
   },
   watch: {
     date(val) {

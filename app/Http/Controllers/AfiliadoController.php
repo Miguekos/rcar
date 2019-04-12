@@ -79,6 +79,12 @@ class AfiliadoController extends Controller
         //
     }
 
+    public function showapi($afiliado)
+    {
+      $afiliados = Afiliado::findOrFail($afiliado);
+      return $afiliados;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -87,7 +93,11 @@ class AfiliadoController extends Controller
      */
     public function edit(Afiliado $afiliado)
     {
-        //
+        // $info = Cliente::find($cliente);
+        // return $clientes;
+        $info = $afiliado->id;
+        // return $info;
+        return view('afiliados.edit',compact('info'));
     }
 
     /**

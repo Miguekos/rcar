@@ -30,13 +30,19 @@ Vue.use(ImageUploader);
 Vue.component('v-chart', ECharts)
 
 
+Vue.component('FileUploadComponent', require('./components/FileUploadComponent.vue'));
+Vue.component('AutosAfiliados', require('./components/AutosAfiliados.vue'));
+Vue.component('AutosDeAfiliados', require('./components/AutosDeAfiliados.vue'));
+
+
+
 Vue.component('otros-snackbar', require('./components/templates/Snackbar.vue'));
 // chart
 
 Vue.component('chart-randomchart', require('./components/chart/RandomChart.vue'));
 
 //  Templates
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('layout-nav', require('./components/layouts/Layout.vue'));
 Vue.component('nav-bar', require('./components/templates/Nav.vue'));
 Vue.component('comp-dashboard', require('./components/templates/Dashboard.vue'));
@@ -56,7 +62,7 @@ Vue.component('cliente-table', require('./components/clientes/ClienteTable.vue')
 Vue.component('comp-afiliado', require('./components/afiliados/Afiliado.vue'));
 Vue.component('afiliado-create', require('./components/afiliados/AfiliadoCreate.vue'));
 // Vue.component('afiliado-create2', require('./components/afiliados/AfiliadoCreate2.vue'));
-// Vue.component('afiliado-edit', require('./components/afiliados/AfiliadoEdit.vue'));
+Vue.component('afiliado-edit', require('./components/afiliados/AfiliadoEdit.vue'));
 // Vue.component('afiliado-show', require('./components/afiliados/AfiliadoShow.vue'));
 // Vue.component('afiliado-table', require('./components/afiliados/AfiliadoTable.vue'));
 

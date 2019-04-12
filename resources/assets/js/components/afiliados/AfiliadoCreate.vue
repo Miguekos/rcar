@@ -17,144 +17,295 @@ html {
 }
 </style>
 <template>
-<!-- <v-container fluid grid-list-xl> -->
-<div>
+  <!-- <v-container fluid grid-list-xl> -->
+  <div>
     <form id="ContactForm" method="post" @submit.prevent="sendForm()">
-        <v-container>
-            <v-flex xs12="xs12" lg12="lg12" text-lg-left="text-lg-left">
-                <h2>Informacion Basica</h2>
-            </v-flex>
-
-            <v-layout row="row" wrap="wrap">
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Apellido Paterno</label>
-                    <v-text-field required="required" autofocus="autofocus" maxlength="20" v-model="apellidoPaterno"></v-text-field>
+      <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg8="lg8">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Informacion Basica</h3>
+              </v-flex>
+              <v-layout row wrap py-4 px-4>
+                <v-flex xs12 sm6 md3>
+                  <label for>Apellido Paterno</label>
+                  <v-text-field
+                    required="required"
+                    autofocus="autofocus"
+                    maxlength="20"
+                    v-model="apellidoPaterno"
+                  ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Apellido Materno</label>
-                    <v-text-field required="required" v-model="apellidoMaterno" maxlength="20"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>Apellido Materno</label>
+                  <v-text-field required="required" v-model="apellidoMaterno" maxlength="20"></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Nombres</label>
-                    <v-text-field @keyup="" type="text" name="name" title="Tu nombre" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required="required" maxlength="20" v-model="nombres"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>Nombres</label>
+                  <v-text-field
+                    type="text"
+                    name="name"
+                    title="Tu nombre"
+                    pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+                    required="required"
+                    maxlength="20"
+                    v-model="nombres"
+                  ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">DNI/C.E</label>
-                    <v-text-field minlength="8" maxlength="9" type="text" title="DNI" pattern="^[0-9]+$" required="required" v-model="dni"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>DNI/C.E</label>
+                  <v-text-field
+                    minlength="8"
+                    maxlength="9"
+                    type="text"
+                    title="DNI"
+                    pattern="^[0-9]+$"
+                    required="required"
+                    v-model="dni"
+                  ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Imagen del Cliente</label>
-                    <v-form id="subir" @submit.prevent="subir('photo')">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
-                        <v-text-field required="required" type="file" name="photo" @change="subir('photo')" solo="solo"></v-text-field>
-                    </V-form>
+                <v-flex xs12 sm6 md3>
+                  <label for>Fecha de Nacimiento</label>
+                  <v-menu
+                    ref="menu"
+                    :close-on-content-click="false"
+                    v-model="menu"
+                    :nudge-right="40"
+                    lazy="lazy"
+                    transition="scale-transition"
+                    offset-y="offset-y"
+                    full-width="full-width"
+                    min-width="290px"
+                  >
+                    <v-text-field
+                      required="required"
+                      slot="activator"
+                      v-model="date"
+                      prepend-icon="event"
+                      readonly="readonly"
+                    ></v-text-field>
+                    <v-date-picker
+                      required="required"
+                      ref="picker"
+                      v-model="date"
+                      :max="new Date().toISOString().substr(0, 10)"
+                      min="1950-01-01"
+                      @change="save"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </v-flex>
+
+          <v-flex lg4="lg4">
+            <div class="text-lg-center">
+              <label for>Foto Perfil</label>
+              <file-upload-component @fotoperfilafiliados="fotoperfil"/>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+      
+      <!-- <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Autos Afiliados</h3>
+              </v-flex>
+              <v-layout row wrap py-4 px-4>
+                <v-flex xs12 sm12 md12>
+
+              <AutosAfiliados />
+
+              </v-flex>
+
+              </v-layout>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container> -->
+
+      <!-- <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Autos Afiliados</h3>
+              </v-flex>
+                
+                <AutosAfiliados/>
+              
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container> -->
+
+      <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Informacion de Contacto</h3>
+              </v-flex>
+              <v-layout row wrap py-4 px-4>
+                <v-flex xs12 sm6 md3>
+                  <label for>Correo</label>
+                  <v-text-field
+                    type="email"
+                    v-model="correo"
+                    title="Tu email"
+                    pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+                    required="required"
+                  ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6" md4="md4">
-                    <label for="">Fecha de Nacimiento</label>
-                    <v-menu
-                        ref="menu"
-                        :close-on-content-click="false"
-                        v-model="menu"
-                        :nudge-right="40"
-                        lazy="lazy"
-                        transition="scale-transition"
-                        offset-y="offset-y"
-                        full-width="full-width"
-                        min-width="290px"
-                        >
-                        <v-text-field required="required" slot="activator"  v-model="date" prepend-icon="event" readonly="readonly"></v-text-field>
-                        <v-date-picker required="required" ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
-                    </v-menu>
-                </v-flex>
-            </v-layout>
-            <!-- <v-divider light></v-divider> -->
-            <v-flex xs12="xs12" lg12="lg12" text-lg-left="text-lg-left">
-                <h2>Informacion de Contacto</h2>
-            </v-flex>
-
-            <v-layout row="row" wrap="wrap">
-
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Correo</label>
-                    <v-text-field type="email" v-model="correo" title="Tu email" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required="required"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>Celular</label>
+                  <v-text-field
+                    type="tel"
+                    v-model="celular"
+                    minlength="9"
+                    maxlength="9"
+                    title="Solo numeros"
+                    pattern="^[0-9]+$"
+                    required="required"
+                  ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Celular</label>
-                    <v-text-field type="tel" v-model="celular" minlength="9" maxlength="9" title="Solo numeros" pattern="^[0-9]+$" required="required"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>Direccion</label>
+                  <v-text-field maxlength="40" required="required" v-model="direccion"></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Direccion</label>
-                    <v-text-field maxlength="20" required="required" v-model="direccion"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>Ciudad</label>
+                  <v-text-field maxlength="20" required="required" v-model="ciudad"></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Informacion Bancaria</h3>
+              </v-flex>
+              <v-layout row wrap py-4 px-4>
+                <v-flex xs12 sm6 md6>
+                  <label for>CCi</label>
+                  <v-text-field
+                    required="required"
+                    v-model="cci"
+                    minlength="19"
+                    maxlength="20"
+                    type="text"
+                  ></v-text-field>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Ciudad</label>
-                    <v-text-field maxlength="20" required="required" v-model="ciudad"></v-text-field>
-                </v-flex>
-            </v-layout>
-            <!-- <v-divider light></v-divider> -->
-            <v-flex xs12="xs12" lg12="lg12" text-lg-left="text-lg-left">
-                <h2>Informacion Bancaria</h2>
-            </v-flex>
-
-            <v-layout row="row" wrap="wrap">
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">CCi</label>
-                    <v-text-field required="required" v-model="cci" minlength="19" maxlength="20" type="text"></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <label for>Banco</label>
+                  <v-select
+                    :items="Banco"
+                    item-text="text"
+                    item-value="text"
+                    v-model="banco"
+                    label="Select.."
+                  ></v-select>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Banco</label>
-                    <v-select :items="Banco" item-text="text" item-value="text" v-model="banco" label="Banco" solo></v-select>
+                <v-flex xs12 sm6 md3>
+                  <label for>Nombre Titutar</label>
+                  <v-text-field required="required" maxlength="20" v-model="nombreTitularCuenta"></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-container grid-list-xl="grid-list-xl">
+        <v-layout row="row" wrap="wrap">
+          <v-flex lg12="lg12">
+            <v-card class="cuerpoautocreate">
+              <v-flex class="titulosautocreate">
+                <h3>Informacion Adicional</h3>
+              </v-flex>
+              <v-layout row wrap py-4 px-4>
+                <v-flex class="text-lg-center" xs12 sm6 md6>
+                  <label for>Foto DNI</label>
+                  <file-upload-component @fotoperfilafiliados="fotodni"/>
                 </v-flex>
 
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Nombre Titutar</label>
-                    <v-text-field required="required" maxlength="20" v-model="nombreTitularCuenta"></v-text-field>
+                <v-flex xs12 sm6 md6>
+                  <label for>Comentarios</label>
+                  <v-textarea value hint="Comentarios" v-model="comentariosAdicionales"></v-textarea>
                 </v-flex>
-            </v-layout>
-            <!-- <v-divider light></v-divider> -->
-            <v-flex xs12="xs12" lg12="lg12" text-lg-left="text-lg-left">
-                <h2>Documentos</h2>
-            </v-flex>
+              </v-layout>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
 
-            <v-layout row="row" wrap="wrap">
-
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Foto Dni</label>
-                    <v-form id="subir" @submit.prevent="subir()">
-                        <v-text-field required="required" type="file" name="photo" @change="subir()" solo="solo"></v-text-field>
-                    </V-form>
-                </v-flex>
-
-                <v-flex xs12="xs12" sm6="sm6">
-                    <label for="">Comentarios</label>
-                    <v-textarea value="" hint="Comentarios" v-model="comentariosAdicionales"></v-textarea>
-                </v-flex>
-            </v-layout>
-            <v-flex xs12="xs12" lg12="lg12">
-                <v-btn type="submit" color="green" dark="dark" black="black">Guardar</v-btn>
-                <v-btn @click="cancelar" color="red" dark="dark" black="black">Cancelar</v-btn>
-            </v-flex>
-
-        </v-container>
+      <v-flex class="text-lg-center" xs12="xs12" lg12="lg12">
+        <v-btn type="submit" color="green" dark="dark" black="black">Guardar</v-btn>
+        <v-btn @click="cancelar" color="red" dark="dark" black="black">Cancelar</v-btn>
+      </v-flex>
     </form>
     <!-- <pre>{{ $data }}</pre> -->
-</div>
-<!-- </v-container> -->
+  </div>
 </template>
 
 <script>
 export default {
-  props: ['token'],
+  props: ["token"],
   data: () => ({
+    autodelafiliado: "",
+    abrirarchivos: "Abrir",
+    veraarchivo: "",
+    colorboton: [
+      {
+        name: "red",
+        abrir: "blue",
+        nombreboton: "Subir"
+      },
+      {
+        name: "red",
+        abrir: "blue",
+        nombreboton: "Subir"
+      },
+      {
+        name: "red",
+        abrir: "blue",
+        nombreboton: "Subir"
+      },
+      {
+        name: "red",
+        abrir: "blue",
+        nombreboton: "Subir"
+      },
+      {
+        name: "red",
+        abrir: "blue",
+        nombreboton: "Subir"
+      }
+    ],
+    autosafiliados: {},
+    autoaguardar: {},
+    dialog: false,
+    dialog1: false,
+    idimage: 0,
+    length: 1,
     apellidoPaterno: "",
     apellidoMaterno: "",
     nombres: "",
@@ -175,85 +326,66 @@ export default {
     date1: "",
     menu: false,
     menu1: false,
-    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    Banco: [{
-        text: 'BBVA'
+    csrf: document
+      .querySelector('meta[name="csrf-token"]')
+      .getAttribute("content"),
+    Banco: [
+      {
+        text: "BBVA"
       },
       {
-        text: 'Scotiabank'
+        text: "Scotiabank"
       },
       {
-        text: 'BCP'
+        text: "BCP"
       },
       {
-        text: 'Interbank'
+        text: "Interbank"
       },
       {
-        text: 'Efectivo'
-      },
-    ],
+        text: "Efectivo"
+      }
+    ]
   }),
   watch: {
     menu(val) {
-      val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
+      val && this.$nextTick(() => (this.$refs.picker.activePicker = "YEAR"));
     },
     menu1(val) {
-      val && this.$nextTick(() => (this.$refs.picker1.activePicker = 'YEAR'))
+      val && this.$nextTick(() => (this.$refs.picker1.activePicker = "YEAR"));
     }
   },
   methods: {
+    fotoperfil(archivo) {
+      this.image = archivo;
+    },
+    fotodni(archivo) {
+      this.fotoDni = archivo;
+    },
     validateData(e) {
       let input = e.target,
-        expression
+        expression;
       if (input.pattern) {
-        let regex = new RegExp(input.pattern)
-        expression = !regex.exec(input.value)
+        let regex = new RegExp(input.pattern);
+        expression = !regex.exec(input.value);
       } else {
-        expression = !input.value
+        expression = !input.value;
       }
-
       if (expression) {
-        this.message[input.name] = `Dato incorrecto, ${input.title}`
+        this.message[input.name] = `Dato incorrecto, ${input.title}`;
       } else {
-        this.message[input.name] = ''
-      }
-    },
-    subir(item) {
-      let form = document.getElementById('subir');
-      const formData = new FormData(form);
-      console.log("FormData");
-      console.log(formData);
-      console.log(form);
-      if (item == 'photo') {
-        axios.post('/foto', formData)
-          .then(response => {
-            console.log(response)
-            this.image = `/images/${response.data}`;
-          })
-          .catch(error => {
-            console.log(error)
-            // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
-          })
-      } else {
-        axios.post('/foto', formData)
-          .then(response => {
-            console.log(response)
-            this.fotoDni = `/images/${response.data}`;
-          })
-          .catch(error => {
-            console.log(error)
-            // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
-          })
+        this.message[input.name] = "";
       }
     },
     save(date) {
-      this.$refs.menu.save(date)
+      this.$refs.menu.save(date);
     },
     save1(date) {
-      this.$refs.menu1.save(date)
+      this.$refs.menu1.save(date);
     },
     sendForm(e) {
-      axios.post('/v1.0/afiliado', {
+      axios
+        .post("/v1.0/afiliado", {
           apellidoPaterno: this.apellidoPaterno,
           apellidoMaterno: this.apellidoMaterno,
           nombres: this.nombres,
@@ -269,22 +401,24 @@ export default {
           nombreTitularCuenta: this.nombreTitularCuenta,
           fotoDni: this.fotoDni,
           comentariosAdicionales: this.comentariosAdicionales,
-          _token: this.csrf,
+          _token: this.csrf
         })
         .then(response => {
-          console.log(response.data)
-          window.location.href = '/afiliado';
+          console.log(response.data);
+          window.location.href = "/afiliado";
         })
         .catch(error => {
-          console.log(error)
+          console.log(error);
           alert("Se genero error al guardar afiliado, intentelo mas tarde");
           // alert("Surgio un error, verifique los campos e intente nuevamente..!!");
-        })
+        });
     },
     cancelar() {
-      window.location.href = '/afiliado';
-    },
+      window.location.href = "/afiliado";
+    }
+  },
+  mounted () {
+    // this.getAutos();
   }
-
-}
+};
 </script>

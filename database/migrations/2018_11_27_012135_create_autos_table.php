@@ -52,6 +52,9 @@ class CreateAutosTable extends Migration
             $table->string('carroceria')->nullable();
             $table->string('numeromotor')->nullable();
             $table->string('numeroserie')->nullable();
+            $table->integer('afiliado_id')->unsigned()->nullable();
+            $table->foreign('afiliado_id')->references('id')->on('afiliados')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('afiliado')->nullable();
             $table->timestamps();
         });
     }

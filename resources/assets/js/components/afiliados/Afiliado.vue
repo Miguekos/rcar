@@ -234,8 +234,8 @@ button:hover {
                     <div>
                       <h3>{{ props.item.nombres }}</h3>
                     </div>
-                    <div class="text-xs-left"><b>Pago mensual:</b> $ {{ props.item.ciudad }}</div>
-                    <div class="text-xs-left"><b>Vehiculo:</b> {{ props.item.ciudad }}</div>
+                    <div class="text-xs-left"><b>Nombres:</b> {{ props.item.nombres }}</div>
+                    <div class="text-xs-left"><b>DNI:</b> {{ props.item.dni }}</div>
                     <div><b>Celular:</b> {{ props.item.celular }}</div>
                     <v-spacer></v-spacer>
                     <v-flex align-content-end>

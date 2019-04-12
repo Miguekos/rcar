@@ -103,7 +103,7 @@ select:-webkit-autofill:focus {
                     v-model="modelo"
                     required="required"
                     placeholder="Select..."
-                  ></v-autocomplete> -->
+                  ></v-autocomplete>-->
                   <v-text-field maxlength="10" v-model="modelo" required="required"></v-text-field>
                 </v-flex>
 
@@ -155,7 +155,7 @@ select:-webkit-autofill:focus {
                 <!-- <v-flex xs12 sm6 md3>
                   <label>Cilindrada</label>
                   <v-text-field maxlength="10" v-model="cilindrada" required="required"></v-text-field>
-                </v-flex> -->
+                </v-flex>-->
 
                 <v-flex xs12 sm6 md3>
                   <label>Carroceria</label>
@@ -211,7 +211,7 @@ select:-webkit-autofill:focus {
                 <!-- <v-flex xs12 sm6 md3>
                   <label>Galones</label>
                   <v-text-field maxlength="10" v-model="galones" required="required"></v-text-field>
-                </v-flex> -->
+                </v-flex>-->
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
             </v-card>
@@ -232,7 +232,6 @@ select:-webkit-autofill:focus {
               ref="uploadFileReference"
               @change="uploadFileReference"
             >
-            <!-- </v-layout> -->
           </v-flex>
         </v-layout>
       </v-container>
@@ -273,6 +272,7 @@ select:-webkit-autofill:focus {
                 </v-flex>
 
                 <v-flex lg3="lg3">
+                  <label>Fecha de Pago</label>
                   <v-menu
                     :close-on-content-click="false"
                     v-model="menu2"
@@ -286,12 +286,20 @@ select:-webkit-autofill:focus {
                     <v-text-field
                       slot="activator"
                       v-model="fechadepago"
-                      label="Fecha de Pago"
                       prepend-icon="event"
                       readonly="readonly"
                     ></v-text-field>
                     <v-date-picker v-model="fechadepago" @input="menu2 = false"></v-date-picker>
                   </v-menu>
+                </v-flex>
+                <v-flex xs12 sm6 md3>
+                  <label>Asignar Afiliado</label>
+                  <v-autocomplete
+                    :items="afiliados"
+                    item-text="nombres"
+                    item-value="id"
+                    v-model="afiliadoid"
+                  ></v-autocomplete>
                 </v-flex>
               </v-layout>
               <!-- <v-flex text-lg-center lg12> <v-btn color="success">Guardar</v-btn> <v-btn color="error">Cancelar</v-btn> </v-flex> -->
@@ -585,9 +593,10 @@ select:-webkit-autofill:focus {
 </template>
 
 <script>
-import Color from "./color.json";
 export default {
   data: () => ({
+    afiliados: {},
+    afiliadoid: "",
     nuevocolor: "",
     abrirarchivos: "Abrir",
     veraarchivo: "",
@@ -596,7 +605,6 @@ export default {
         name: "red",
         abrir: "blue",
         nombreboton: "Subir"
-
       },
       {
         name: "red",
@@ -766,14 +774,25 @@ export default {
       .getAttribute("content")
   }),
   methods: {
-    descargar (archivo) {
+    getAfiliados() {
+      axios
+        .get(`/v1.0/afiliados`)
+        .then(response => {
+          console.log(response.data.afiliados);
+          this.afiliados = response.data.afiliados;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    descargar(archivo) {
       var pdf_descargar = this.files[archivo].fileUpload;
       var pdf_lista = pdf_descargar.slice(8);
-      window.open(`/download/${pdf_lista}`, '_blank');     
+      window.open(`/download/${pdf_lista}`, "_blank");
     },
     verImagen(imagen) {
-      this.dialog1 = true
-      this.veraarchivo = this.files[imagen].fileUpload
+      this.dialog1 = true;
+      this.veraarchivo = this.files[imagen].fileUpload;
     },
     addColor() {
       console.log("Se agrego el color");
@@ -784,7 +803,7 @@ export default {
         axios
           .post("/color", { name: color })
           .then(response => {
-            this.getJsonFile();
+            this.getColor();
             this.dialog = false;
           })
           .cash(err => {
@@ -792,7 +811,7 @@ export default {
           });
       }
     },
-    getJsonFile() {
+    getColor() {
       // this.colores = require(`./color.json`);
       axios
         .get("/color")
@@ -856,8 +875,8 @@ export default {
             this.subirimagen(e.target.result);
             this.alerta("Archivo cargado correctamente.!", "green");
             this.snackbar = true;
-            this.colorboton[idI].name = "green",
-            this.colorboton[idI].nombreboton = "Listo";
+            (this.colorboton[idI].name = "green"),
+              (this.colorboton[idI].nombreboton = "Listo");
           };
         });
 
@@ -931,7 +950,8 @@ export default {
             disponible: this.disponible,
             carroceria: this.carroceria,
             numeromotor: this.numeromotor,
-            numeroserie: this.numeroserie
+            numeroserie: this.numeroserie,
+            afiliado_id: this.afiliadoid
           })
           .then(response => {
             console.log(response);
@@ -953,7 +973,8 @@ export default {
     this.getanios();
     this.getmarcas();
     this.getmodelos();
-    this.getJsonFile();
+    this.getColor();
+    this.getAfiliados();
   },
   watch: {
     date(val) {
