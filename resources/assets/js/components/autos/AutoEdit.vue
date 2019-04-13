@@ -823,7 +823,8 @@ export default {
         });
     },
     getAutoEdit() {
-      axios({
+      console.log("AUI DEbw venir");
+      axios({   
         method: "get",
         url: `/v1.0/auto/${this.info}`
       }).then(response => {
