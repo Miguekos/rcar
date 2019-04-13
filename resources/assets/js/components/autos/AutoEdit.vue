@@ -304,7 +304,7 @@ select:-webkit-autofill:focus {
                     :items="afiliados"
                     item-text="nombres"
                     item-value="id"
-                    v-model="prueba"
+                    v-model="afiliadoid"
                   ></v-autocomplete>
                 </v-flex>
               </v-layout>
@@ -602,7 +602,6 @@ select:-webkit-autofill:focus {
 export default {
   props: ["info"],
   data: () => ({
-    prueba: 2,
     afiliados: {},
     afiliadoid: "",
     nuevocolor: "",
@@ -841,6 +840,7 @@ export default {
         this.files[2].fileUpload = response.data.imagen3;
         this.files[3].fileUpload = response.data.imagen4;
         this.files[4].fileUpload = response.data.contrato;
+        this.afiliadoid = response.data.afiliado_id
       });
     },
     getanios() {
@@ -924,6 +924,7 @@ export default {
       this.texto = msj;
     },
     update() {
+      this.autoedit.afiliado_id = this.afiliadoid
       this.autoedit.imagen1 = this.files[0].fileUpload;
       this.autoedit.imagen2 = this.files[1].fileUpload;
       this.autoedit.imagen3 = this.files[2].fileUpload;
