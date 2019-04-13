@@ -603,7 +603,7 @@ export default {
   props: ["info"],
   data: () => ({
     afiliados: {},
-    afiliadoid: "",
+    afiliadoid: null,
     nuevocolor: "",
     dialog1: false,
     veraarchivo: "",
