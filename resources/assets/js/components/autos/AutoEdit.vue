@@ -304,7 +304,7 @@ select:-webkit-autofill:focus {
                     :items="afiliados"
                     item-text="nombres"
                     item-value="id"
-                    v-model="autoedit.afiliado_id"
+                    v-model="prueba"
                   ></v-autocomplete>
                 </v-flex>
               </v-layout>
@@ -602,6 +602,7 @@ select:-webkit-autofill:focus {
 export default {
   props: ["info"],
   data: () => ({
+    prueba: 2,
     afiliados: {},
     afiliadoid: "",
     nuevocolor: "",
