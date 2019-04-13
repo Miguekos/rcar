@@ -840,7 +840,7 @@ export default {
         this.files[2].fileUpload = response.data.imagen3;
         this.files[3].fileUpload = response.data.imagen4;
         this.files[4].fileUpload = response.data.contrato;
-        this.afiliadoid = response.data.afiliado_id
+        this.afiliadoid = response.data.afiliado_id;
       });
     },
     getanios() {
@@ -956,6 +956,8 @@ export default {
     this.getmodelos();
     this.getColor();
     this.getAfiliados();
+  },
+  created () {
     this.getAutoEdit();
   },
   watch: {
