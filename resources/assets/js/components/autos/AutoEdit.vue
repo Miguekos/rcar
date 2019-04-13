@@ -594,7 +594,7 @@ select:-webkit-autofill:focus {
         <v-btn color="error">Cancelar</v-btn>
       </v-flex>
     </form>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre> -->
   </div>
 </template>
 
@@ -949,12 +949,12 @@ export default {
     }
   },
   mounted() {
-    this.getAutoEdit();
     this.getanios();
     this.getmarcas();
     this.getmodelos();
     this.getColor();
     this.getAfiliados();
+    this.getAutoEdit();
   },
   watch: {
     date(val) {
