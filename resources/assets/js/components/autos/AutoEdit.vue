@@ -603,7 +603,7 @@ export default {
   props: ["info"],
   data: () => ({
     afiliados: {},
-    afiliadoid: null,
+    afiliadoid: "",
     nuevocolor: "",
     dialog1: false,
     veraarchivo: "",
@@ -775,6 +775,10 @@ export default {
   }),
   methods: {
     getAfiliados (){
+      console.log("aasdadasdasdasdasdasdas");
+      console.log(this.afiliadoid);
+      console.log(this.autoedit.afiliado_id);
+      this.afiliadoid = this.autoedit.afiliado_id;
       axios
       .get(`/v1.0/afiliados`)
       .then(response => {
@@ -840,7 +844,6 @@ export default {
         this.files[2].fileUpload = response.data.imagen3;
         this.files[3].fileUpload = response.data.imagen4;
         this.files[4].fileUpload = response.data.contrato;
-        this.afiliadoid = response.data.afiliado_id;
       });
     },
     getanios() {
@@ -955,10 +958,10 @@ export default {
     this.getmarcas();
     this.getmodelos();
     this.getColor();
-    this.getAfiliados();
   },
   created () {
     this.getAutoEdit();
+    this.getAfiliados();
   },
   watch: {
     date(val) {
